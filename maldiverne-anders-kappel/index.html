@@ -64,7 +64,7 @@
 
       /* Meal plan badges – premium */
       .mp{
-        display:inline-block; padding:3px 10px; margin-left:8px;
+        display:inline-block; padding:3px 10px; margin-left:8px; /* lille luft efter hotelnavn */
         border:1px solid #e7e2da; border-radius:999px;
         font-size:12px; line-height:16px; font-weight:700;
         color:#1c1c1c; white-space:nowrap;
@@ -110,10 +110,15 @@
         .chip{ font-size:11px !important; }
         .hotel-cap{ font-size:14px !important; }
 
-        /* Badge i egen række OVER transfer (kun mobil) */
-        .hotel-cap .mp-desktop{ display:none !important; }           /* skjul i titel */
-        .mp-row{ display:block !important; margin:8px 0 0 !important; } /* ens luft som transfer */
-        .mp-row .mp{ font-size:11px !important; padding:2px 8px !important; }
+        /* Badge i egen række OVER transfer (kun mobil), venstrestillet og samme størrelse som .tr */
+        .hotel-cap .mp-desktop{ display:none !important; }                /* skjul i titel */
+        .mp-row{ display:block !important; margin:8px 0 0 !important; }  /* samme luft som før transfer */
+        .mp-row .mp{
+          margin-left:0 !important;     /* venstrestil */
+          font-size:12px !important;    /* samme som .tr */
+          line-height:16px !important;
+          padding:3px 10px !important;  /* samme som .tr */
+        }
 
         /* Match “fly” + “inklusioner”-tekst med hotellerne */
         .flight-details,
