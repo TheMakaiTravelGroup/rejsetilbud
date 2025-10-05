@@ -25,7 +25,7 @@
       .muted { color:#6a6a6a; font-size:12px; line-height:18px; }
       .tight td { padding:6px 0; border-top:1px solid #f0ece4; }
 
-      /* ENS LUFT VED ALLE SEKTIONSOVERSKRIFTER (samme over/under) */
+      /* ENS LUFT VED ALLE SEKTIONSOVERSKRIFTER */
       .section-title{
         font-family:'TeX Gyre Termes','Times New Roman',serif;
         font-size:18px; font-weight:700; text-transform:uppercase; color:#9d8665;
@@ -37,16 +37,13 @@
         content:""; position:absolute; top:0; left:0; width:56px; height:2px; background:#9d8665;
       }
 
-      /* FLY: venstrestillet, luftig og smal */
+      /* FLY */
       .flight-inner { max-width:440px; padding:18px; }
       .journey-title { font-family:'TeX Gyre Termes','Times New Roman',serif; font-size:16px; font-weight:700; text-transform:uppercase; color:#9d8665; margin:0 0 12px; }
       .chip { display:block; padding:2px 10px; border:1px solid #e7e2da; border-radius:999px; font-size:12px; line-height:18px; margin:0 0 6px 0; }
       .leg { margin:0 0 16px 0; }
       .times { display:block; font-weight:700; font-size:15px; line-height:1.4; font-variant-numeric: tabular-nums; margin:0; }
-
-      /* NYT: flyselskab + flightnr-linje under tiderne */
       .flight-meta { display:block; font-family:'TeX Gyre Termes','Times New Roman',serif; font-size:13px; line-height:20px; color:#6a6a6a; margin-top:2px; }
-
       .layover { position:relative; margin:10px 0 14px 0; }
       .layover:before { content:""; position:absolute; left:0; right:0; top:50%; border-top:1px dashed #e9e2d6; }
       .layover span { position:relative; background:#fff; padding:0 10px 0 0; font-size:12px; color:#6a6a6a; white-space:nowrap; }
@@ -54,7 +51,7 @@
       .journey-foot { font-size:12px; color:#6a6a6a; margin-top:6px; }
       .plus1 { font-size:10px; vertical-align:super; color:#9d8665; font-weight:700; margin-left:2px; }
 
-      /* Lange hotelkort i én kolonne */
+      /* Hoteller */
       .hotel-long { padding:16px 18px; }
       .hotel-cap { font-family:'TeX Gyre Termes','Times New Roman',serif; font-size:15px; font-weight:700; color:#9d8665; letter-spacing:.2px; }
       .rate-list { width:100%; margin-top:12px; }
@@ -91,15 +88,13 @@
         margin-right:6px; vertical-align:middle;
       }
 
-      /* CTA */
-      .btn{
-        display:inline-block; padding:14px 24px; border:1px solid #9d8665; border-radius:999px;
-        background:#e7e2da; color:#1c1c1c; font-family:'TeX Gyre Termes','Times New Roman',serif;
-        font-size:13px; font-weight:700; letter-spacing:.6px; text-transform:uppercase; text-decoration:none;
-      }
+      /* Desktop: vis badge i titel-linjen */
+      .mp-desktop{ display:inline-block; }
 
       /* Kun mobil */
       .mobile-only{ display:none; }
+      .mp-row{ display:none; } /* skjul på desktop */
+
       @media only screen and (max-width:600px) {
         .wrap { width:100% !important; }
         .px { padding-left:20px !important; padding-right:20px !important; }
@@ -115,15 +110,10 @@
         .chip{ font-size:11px !important; }
         .hotel-cap{ font-size:14px !important; }
 
-        /* Hold meal plan-badget pænt ude til højre ved lange navne (kun mobil) */
-        .hotel-cap .mp{
-          float:right !important;
-          margin:0 0 0 8px !important;
-          font-size:11px !important;
-          padding:2px 8px !important;
-        }
-        .hotel-cap:after{ content:""; display:block; clear:both; } /* clearfix */
-        .rate-list{ clear:both; } /* sørg for at prisliste starter under badget */
+        /* Badge i egen række OVER transfer (kun mobil) */
+        .hotel-cap .mp-desktop{ display:none !important; }           /* skjul i titel */
+        .mp-row{ display:block !important; margin:8px 0 0 !important; } /* ens luft som transfer */
+        .mp-row .mp{ font-size:11px !important; padding:2px 8px !important; }
 
         /* Match “fly” + “inklusioner”-tekst med hotellerne */
         .flight-details,
@@ -222,11 +212,16 @@
                       <div class="hotel-long card text">
                         <div class="hotel-cap">
                           You & Me Maldives 4+★
-                          <span class="mp mp--ai">All-Inclusive Premium</span>
+                          <span class="mp mp--ai mp-desktop">All-Inclusive Premium</span>
                         </div>
                         <table class="rate-list">
                           <tr class="tight"><td>Lagoon Suite</td><td align="right"><strong>DKK 66.900,-</strong></td></tr>
                         </table>
+                        <!-- Meal plan (mobil) -->
+                        <div class="mp-row">
+                          <span class="mp mp--ai">All-Inclusive Premium</span>
+                        </div>
+                        <!-- Transfer -->
                         <div class="hotel-meta">
                           <span class="tr">Transfer: Vandfly (ca. 45 min.)</span>
                         </div>
@@ -239,11 +234,14 @@
                       <div class="hotel-long card text">
                         <div class="hotel-cap">
                           Cora Cora Maldives 4+★
-                          <span class="mp mp--ai">Premium All-Inclusive</span>
+                          <span class="mp mp--ai mp-desktop">Premium All-Inclusive</span>
                         </div>
                         <table class="rate-list">
                           <tr class="tight"><td>Lagoon Villa</td><td align="right"><strong>DKK 67.900,-</strong></td></tr>
                         </table>
+                        <div class="mp-row">
+                          <span class="mp mp--ai">Premium All-Inclusive</span>
+                        </div>
                         <div class="hotel-meta">
                           <span class="tr">Transfer: Vandfly (ca. 45 min.)</span>
                         </div>
@@ -256,11 +254,14 @@
                       <div class="hotel-long card text">
                         <div class="hotel-cap">
                           Ananea Madivaru 5★
-                          <span class="mp mp--ai">Halvpension</span>
+                          <span class="mp mp--ai mp-desktop">Halvpension</span>
                         </div>
                         <table class="rate-list">
                           <tr class="tight"><td>Water Pool Villa</td><td align="right"><strong>DKK 69.500,-</strong></td></tr>
                         </table>
+                        <div class="mp-row">
+                          <span class="mp mp--ai">Halvpension</span>
+                        </div>
                         <div class="hotel-meta">
                           <span class="tr">Transfer: Vandfly (ca. 20 min.)</span>
                         </div>
@@ -273,7 +274,7 @@
                       <div class="hotel-long card text">
                         <div class="hotel-cap">
                           Kuramathi Maldives 4+★
-                          <span class="mp mp--ai">Basic All-Inclusive</span>
+                          <span class="mp mp--ai mp-desktop">Basic All-Inclusive</span>
                         </div>
                         <table class="rate-list">
                           <tr class="tight">
@@ -281,6 +282,9 @@
                             <td align="right"><strong>DKK 70.500,-</strong></td>
                           </tr>
                         </table>
+                        <div class="mp-row">
+                          <span class="mp mp--ai">Basic All-Inclusive</span>
+                        </div>
                         <div class="hotel-meta">
                           <span class="tr">Transfer: Båd (ca. 75 min.)</span>
                         </div>
