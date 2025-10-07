@@ -7,34 +7,32 @@
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&display=swap');
       body, table, td, a { -webkit-text-size-adjust:100%; -ms-text-size-adjust:100%; }
-      body { margin:0; padding:0; background:#faf7f2; } /* ← ændret */
+      body { margin:0; padding:0; background:#faf7f2; }
       table { border-collapse:collapse; }
       a { color:#1c1c1c; text-decoration:none; }
 
       .heading { font-family:'Playfair Display', Georgia, serif; color:#1c1c1c; }
       .text { font-family:'TeX Gyre Termes','Times New Roman',serif; color:#1c1c1c; font-size:15px; line-height:24px; }
       .gold { color:#9d8665; }
-      .hotel-title { font-family:'TeX Gyre Termes','Times New Roman',serif; font-size:15px; line-height:1.2; font-weight:700; color:#9d8665; }
 
       .card { border:1px solid #e7e2da; border-radius:12px; background:#fff; }
       .col { vertical-align:top; }
       .muted { color:#6a6a6a; font-size:12px; line-height:18px; }
-      .tight td { padding:6px 0; border-top:1px solid #f0ece4; }
 
+      /* Sektionstitler */
       .section-title{
         font-family:'TeX Gyre Termes','Times New Roman',serif;
         font-size:18px; font-weight:700; text-transform:uppercase; color:#9d8665;
-        position:relative;
-        margin:16px 0 16px;
-        padding-top:16px;
+        position:relative; margin:16px 0 16px; padding-top:16px;
       }
       .section-title:before{ content:""; position:absolute; top:0; left:0; width:56px; height:2px; background:#9d8665; }
 
+      /* Fly */
       .flight-inner { max-width:440px; padding:18px; }
       .journey-title { font-family:'TeX Gyre Termes','Times New Roman',serif; font-size:16px; font-weight:700; text-transform:uppercase; color:#9d8665; margin:0 0 12px; }
       .chip { display:block; padding:2px 10px; border:1px solid #e7e2da; border-radius:999px; font-size:12px; line-height:18px; margin:0 0 6px 0; }
       .leg { margin:0 0 16px 0; }
-      .times { display:block; font-weight:700; font-size:15px; line-height:1.4; font-variant-numeric: tabular-nums; margin:0; }
+      .times { display:block; font-weight:700; font-size:15px; line-height:1.4; margin:0; font-variant-numeric: tabular-nums; }
       .flight-meta { display:block; font-family:'TeX Gyre Termes','Times New Roman',serif; font-size:13px; line-height:20px; color:#6a6a6a; margin-top:2px; }
       .layover { position:relative; margin:10px 0 14px 0; }
       .layover:before { content:""; position:absolute; left:0; right:0; top:50%; border-top:1px dashed #e9e2d6; }
@@ -43,15 +41,27 @@
       .journey-foot { font-size:12px; color:#6a6a6a; margin-top:6px; }
       .plus1 { font-size:10px; vertical-align:super; color:#9d8665; font-weight:700; margin-left:2px; }
 
-      .hotel-long { padding:16px 18px; }
+      /* Global, gælder for alle tight-rækker (fx flyopgradering) */
+      .tight td { padding:6px 0; border-top:1px solid #f0ece4; }
+
+      /* Opgraderingsliste: ingen top-bord/padding på første række */
+      .upg-list tr:first-child td { border-top:0; padding-top:0; }
+
+      /* Hoteller — LIDT MERE LUFT */
+      .hotel-long { padding:18px 20px; } /* før 16/18 */
       .hotel-cap { font-family:'TeX Gyre Termes','Times New Roman',serif; font-size:15px; font-weight:700; color:#9d8665; letter-spacing:.2px; }
-      .rate-list { width:100%; margin-top:12px; }
+
+      .rate-list { width:100%; margin-top:14px; } /* før 12 */
       .rate-list td { vertical-align:top; }
       .rate-list td:first-child { padding-right:12px; }
       .rate-list tr:first-child td { border-top:0; }
+
+      /* Kun inde i hotelbokse øger vi lodret padding i rækkerne en anelse */
+      .hotel-long .tight td { padding:8px 0; border-top:1px solid #f0ece4; } /* før 6px */
+
       .hotel-link a { color:#9d8665; text-decoration:underline; }
-      .hotel-link { margin-top:8px; }
-      .hotel-long + .hotel-long { margin-top:16px; }
+      .hotel-link { margin-top:10px; } /* før 8 */
+      .hotel-long + .hotel-long { margin-top:18px; } /* før 16 */
 
       /* Meal plan */
       .mp{
@@ -66,7 +76,7 @@
       .mp--ro{ background:#1c1c1c; color:#e7e2da; border-color:#1c1c1c; }
 
       /* Transfer-badge */
-      .hotel-meta{ margin-top:8px; }
+      .hotel-meta{ margin-top:10px; } /* før 8 */
       .tr{
         display:inline-block; padding:3px 10px;
         border:1px solid #e7e2da; border-radius:999px;
@@ -79,9 +89,25 @@
         margin-right:6px; vertical-align:middle;
       }
 
-      /* NY: link til villatype under navnet */
-      .room-link{ margin-top:2px; font-size:12px; line-height:18px; color:#6a6a6a; }
+      /* Små linklinjer under pris */
+      .room-link{ margin-top:4px; font-size:12px; line-height:18px; color:#6a6a6a; } /* før 2px */
       .room-link a{ color:#9d8665; text-decoration:underline; }
+
+      .facts-link{ margin-top:8px; font-size:12px; line-height:18px; color:#6a6a6a; } /* før 6px */
+      .facts-link a{ color:#9d8665; text-decoration:underline; }
+
+      /* Ekstra fordele (spa/honeymoon m.m.) */
+      .extras{
+        margin-top:12px; padding:12px 14px; /* før 10/12 */
+        border:1px solid #e7e2da; border-radius:10px; background:#f9f6f0;
+      }
+      .extras-title{
+        margin:0 0 6px; font-size:13px; font-weight:700; color:#9d8665; /* lidt mere bundmargin */
+      }
+      .extras-list{
+        margin:0; padding:0; list-style:none; font-size:13px; line-height:20px; color:#1c1c1c;
+      }
+      .extras-list li{ margin:0; padding:0; }
 
       .mp-desktop{ display:inline-block; }
       .mobile-only{ display:none; }
@@ -102,8 +128,9 @@
         .chip{ font-size:11px !important; }
         .hotel-cap{ font-size:14px !important; }
 
+        .hotel-long{ padding:18px 20px !important; } /* fasthold ekstra luft på mobil */
         .hotel-cap .mp-desktop{ display:none !important; }
-        .mp-row{ display:block !important; margin:8px 0 0 !important; }
+        .mp-row{ display:block !important; margin:10px 0 0 !important; } /* før 8px */
         .mp-row .mp{
           margin-left:0 !important;
           font-size:12px !important;
@@ -119,22 +146,34 @@
           line-height:20px !important;
         }
 
+        .extras{ padding:12px 14px !important; }
+        .extras-title, .extras-list{ font-size:12px !important; line-height:18px !important; }
         .mobile-only{ display:block !important; }
       }
     </style>
   </head>
   <body>
-    <table role="presentation" width="100%" bgcolor="#faf7f2"> <!-- ← ændret -->
+    <table role="presentation" width="100%" bgcolor="#faf7f2">
       <tr>
         <td align="center" style="padding:32px 16px;">
-          <table role="presentation" width="680" class="wrap" bgcolor="#ffffff" style="border:1px solid #d7cbbb; border-radius:14px; overflow:hidden;"> <!-- ← varmere ramme -->
+          <table role="presentation" width="680" class="wrap" bgcolor="#ffffff" style="border:1px solid #d7cbbb; border-radius:14px; overflow:hidden;">
 
             <!-- HEADER -->
             <tr>
               <td style="padding:24px 28px; border-bottom:1px solid #e7e2da;">
                 <table role="presentation" width="100%">
                   <tr>
-                    <td align="left" class="center" style="font-family:'TeX Gyre Termes','Times New Roman',serif; font-size:16px; color:#1c1c1c;">Maldivia - Beyond Excellence</td>
+                    <!-- VENSTRE: LOGO -->
+                    <td align="left" style="line-height:0;">
+                      <a href="https://www.maldivia.dk" target="_blank" style="display:inline-block; text-decoration:none;">
+                        <img
+                          src="https://maldivia.dk/wp-content/uploads/2025/10/LOGO-PNG-04-scaled.png"
+                          width="160"
+                          alt="Maldivia – Beyond Excellence"
+                          style="display:block; border:0; outline:none; text-decoration:none; height:auto;">
+                      </a>
+                    </td>
+                    <!-- HØJRE: Kontakt -->
                     <td align="right" class="center" style="font-family:'TeX Gyre Termes','Times New Roman',serif; font-size:12px; color:#6a6a6a;">
                       <span class="gold">Travel Designer</span><br>Rasmus Kirketerp<br>
                       <a href="mailto:rk@maldivia.dk" style="color:#9d8665;">rk@maldivia.dk</a>
@@ -147,13 +186,13 @@
             <!-- HERO -->
             <tr>
               <td style="padding:36px 40px 0;" class="px">
-                <div class="heading" style="font-size:28px; font-weight:700;">✦ REJSETILBUD TIL MALDIVERNE ✦</div>
+                <div class="heading" style="font-size:28px; font-weight:700;">REJSETILBUD TIL MALDIVERNE</div>
                 <div class="text" style="margin-top:6px; color:#6a6a6a;">06. februar – 15. februar 2026 &nbsp;•&nbsp; 8 nætter / 10 dage</div>
               </td>
             </tr>
 
             <!-- FLY -->
-            <tr><td style="padding:0 40px 0;" class="px"><div class="section-title">Flyrejse</div></td></tr>
+            <tr><td style="padding:10px 40px 10px;" class="px"><div class="section-title">Flyrejse</div></td></tr>
             <tr>
               <td style="padding:0 40px 0;" class="px">
                 <table role="presentation" width="100%" class="card flight-details">
@@ -163,13 +202,13 @@
                       <div class="leg">
                         <div class="chip">HAM → VIE</div>
                         <div class="times">15:10 – 16:40</div>
-                        <span class="flight-meta">Austrian • OS 254</span>
+                        <span class="flight-meta">Austrian Airlines • OS 254</span>
                       </div>
                       <div class="layover"><span>Mellemlanding i Wien • 3 t 10 m</span></div>
                       <div class="leg">
                         <div class="chip">VIE → MLE</div>
                         <div class="times">19:50 – 08:45<sup class="plus1">+1</sup></div>
-                        <span class="flight-meta">Austrian • OS 21</span>
+                        <span class="flight-meta">Austrian Airlines • OS 21</span>
                       </div>
                       <div class="journey-foot">Samlet rejsetid udrejse: 13 t 35 m</div>
 
@@ -194,112 +233,166 @@
               </td>
             </tr>
 
+            <!-- FLYOPGRADERINGER/ALTERNATIVER -->
+            <tr><td style="padding:10px 40px 10px;" class="px"><div class="section-title">Flyopgraderinger / alternativer</div></td></tr>
+            <tr>
+              <td style="padding:0 40px 0px;" class="px">
+                <table role="presentation" width="100%" class="card">
+                  <tr>
+                    <td style="padding:14px 18px;">
+                      <table role="presentation" width="100%" class="text upg-list">
+                        <!-- Række 1 -->
+                        <tr class="tight">
+                          <td><strong><span class="gold">Premium Economy (Austrian)</span></strong></td>
+                          <td align="right"><strong>DKK 10.500,-</strong></td>
+                        </tr>
+                      </table>
+                      <div class="muted" style="margin-top:8px;">
+                        Merprisen ovenfor er totale for 2 voksne. Pris og tilgængelighed kan ændre sig indtil endelig bestilling.
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+
             <!-- HOTELLER -->
-            <tr><td style="padding:0 40px 0;" class="px"><div class="section-title">Resorts & priser</div></td></tr>
+            <tr><td style="padding:10px 40px 10px;" class="px"><div class="section-title">Hoteller</div></td></tr>
             <tr>
               <td style="padding:0 40px 0;" class="px">
                 <table role="presentation" width="100%">
                   <tr>
                     <td class="stack col">
-                      <!-- Hotel 1 -->
-                      <div class="hotel-long card text">
-                        <div class="hotel-cap">
-                          Jumeirah Olhahali Island 5+★
-                          <span class="mp mp--ai mp-desktop">Halvpension</span>
-                        </div>
-                        <table class="rate-list">
-                          <tr class="tight">
-                            <td>
-                              Water Villa with Pool
-                              <div class="room-link"><a href="https://www.jumeirah.com/en/stay/maldives/jumeirah-maldives/accommodation/water-villa-with-pool" target="_blank">Læs om villatypen →</a></div>
-                            </td>
-                            <td align="right"><strong>DKK 111.500,-</strong></td>
-                          </tr>
-                        </table>
-                        <div class="mp-row"><span class="mp mp--ai">Halvpension</span></div>
-                        <div class="hotel-meta"><span class="tr">Transfer: Speedbåd (ca. 55 min.)</span></div>
-                        <div class="hotel-link"><a href="https://www.jumeirah.com/en/stay/maldives/jumeirah-maldives" target="_blank">Se resortet →</a></div>
-                      </div>
 
-                      <!-- Hotel 2 -->
-                      <div class="hotel-long card text">
-                        <div class="hotel-cap">
-                          Conrad Rangali Island 5+★
-                          <span class="mp mp--ai mp-desktop">Halvpension</span>
-                        </div>
-                        <table class="rate-list">
-                          <tr class="tight">
-                            <td>
-                              Sunset Water Villa with Pool
-                              <div class="room-link"><a href="https://www.conradmaldives.com/stay/villas-suites/" target="_blank">Læs om villatypen →</a></div>
-                            </td>
-                            <td align="right"><strong>DKK 116.900,-</strong></td>
-                          </tr>
-                        </table>
-                        <div class="mp-row"><span class="mp mp--ai">Halvpension</span></div>
-                        <div class="hotel-meta"><span class="tr">Transfer: Vandfly (ca. 30 min.)</span></div>
-                        <div class="hotel-link"><a href="https://www.conradmaldives.com/" target="_blank">Se resortet →</a></div>
-                      </div>
-
-                      <!-- Hotel 3 -->
+                      <!-- Hotel 1 – med 2 villatyper -->
                       <div class="hotel-long card text">
                         <div class="hotel-cap">
                           Ananea Madivaru 5★
-                          <span class="mp mp--ai mp-desktop">All-Inclusive</span>
+                          <span class="mp mp--ai mp-desktop">All-Inclusive (Dine Around)</span>
                         </div>
+
                         <table class="rate-list">
                           <tr class="tight">
                             <td>
-                              Water Pool Villa
-                              <div class="room-link"><a href="https://www.ananeamadivaru.com/villas/deluxe-water-pool-villas" target="_blank">Læs om villatypen →</a></div>
+                              Deluxe Water Pool Villa
+                              <div class="room-link">
+                                <a href="https://www.ananeamadivaru.com/villas/deluxe-water-pool-villas" target="_blank">Læs om villatypen →</a>
+                              </div>
                             </td>
                             <td align="right"><strong>DKK 132.900,-</strong></td>
                           </tr>
                         </table>
-                        <div class="mp-row"><span class="mp mp--ai">All-Inclusive</span></div>
+
+                        <div class="facts-link">
+                          <a href="https://caribiatravels-my.sharepoint.com/:b:/g/personal/caribia_caribia_dk/EXskwJWpQ5hKimTm9ejv_oEB3W6DND8NnIk8HCj6HZTu_g?e=Rlgj2B" target="_blank">Se factsheet (PDF) →</a>
+                        </div>
+
+                        <div class="extras">
+                          <div class="extras-title">Highlights & fordele</div>
+                          <ul class="extras-list">
+                            <li>Sunset Cruise (ét per person)</li>
+                            <li>Moderne og store poolvillaer</li>
+                            <li>Ét resort / 2 øer</li>
+                            <li>Padel, tennis, enorme pools mm.</li>
+                            <li>10 restauranter og barer (alle inkluderet)</li>
+                          </ul>
+                        </div>
+
+                        <div class="mp-row"><span class="mp mp--ai">All-Inclusive (Dine Around)</span></div>
+
                         <div class="hotel-meta"><span class="tr">Transfer: Vandfly (ca. 20 min.)</span></div>
                         <div class="hotel-link"><a href="https://www.ananeamadivaru.com/" target="_blank">Se resortet →</a></div>
                       </div>
 
-                      <!-- Hotel 4 -->
+                      <!-- Hotel 2 – med 2 villatyper (eksempel gentaget) -->
                       <div class="hotel-long card text">
                         <div class="hotel-cap">
-                          COMO Cocoa Island 5+★
-                          <span class="mp mp--ai mp-desktop">Helpension</span>
+                          Conrad Rangali Island 5+★
+                          <span class="mp mp--ai mp-desktop">Halvpension (HB) / Helpension (FB)</span>
                         </div>
+
                         <table class="rate-list">
                           <tr class="tight">
                             <td>
-                              Loft Water Villa
-                              <div class="room-link"><a href="https://www.comohotels.com/maldives/como-cocoa-island/accommodation/loft-water-villa" target="_blank">Læs om villatypen →</a></div>
+                              Sunset Water Villa with Pool (HB)
+                              <div class="room-link">
+                                <a href="https://www.conradmaldives.com/stay/villas-suites/" target="_blank">Læs om villatypen →</a>
+                              </div>
                             </td>
-                            <td align="right"><strong>DKK 139.500,-</strong></td>
+                            <td align="right"><strong>DKK 116.900,-</strong></td>
+                          </tr>
+
+                          <tr class="tight">
+                            <td>
+                              Sunset Water Villa with Pool (FB)
+                              <div class="room-link">
+                                <a href="https://www.conradmaldives.com/stay/villas-suites/" target="_blank">Læs om villatypen →</a>
+                              </div>
+                            </td>
+                            <td align="right"><strong>DKK 127.900,-</strong></td>
                           </tr>
                         </table>
-                        <div class="mp-row"><span class="mp mp--ai">Helpension</span></div>
-                        <div class="hotel-meta"><span class="tr">Transfer: Speedbåd (ca. 45 min.)</span></div>
-                        <div class="hotel-link"><a href="https://www.comohotels.com/maldives/como-cocoa-island" target="_blank">Se resortet →</a></div>
+
+                        <div class="facts-link">
+                          <a href="https://caribiatravels-my.sharepoint.com/:b:/g/personal/caribia_caribia_dk/Eejb9dQbaBtCt8cqgXvVS3YB98lztrG_-SRNUxViQlMf3w?e=kzoD8v" target="_blank">Se factsheet (PDF) →</a>
+                        </div>
+
+                        <div class="extras">
+                          <div class="extras-title">Highlights & fordele</div>
+                          <ul class="extras-list">
+                            <li>2 øer (Family & Adults Only Island)</li>
+                            <li>Ithaa – verdens første undervandsrestaurant</li>
+                            <li>Mulighed for snorkling m. hvalhajer året rundt</li>
+                            <li>Exceptionel gastronomi</li>
+                            <li>Enorm turkisblå lagune og godt husrev</li>
+                          </ul>
+                        </div>
+
+                        <div class="mp-row"><span class="mp mp--ai">Halvpension (HB) / Helpension (FB)</span></div>
+
+                        <div class="hotel-meta"><span class="tr">Transfer: Vandfly (ca. 30 min.)</span></div>
+                        <div class="hotel-link"><a href="https://www.conradmaldives.com//" target="_blank">Se resortet →</a></div>
                       </div>
 
-                      <!-- Hotel 5 -->
+                      <!-- Hotel 3 – med 1 villatype -->
                       <div class="hotel-long card text">
                         <div class="hotel-cap">
-                          Milaidhoo Maldives 5+★
-                          <span class="mp mp--ai mp-desktop">Halvpension</span>
+                          Kandolhu Maldives 5★
+                          <span class="mp mp--ai mp-desktop">Ultimate Inclusions All-Inclusive (Dine Around)</span>
                         </div>
+
                         <table class="rate-list">
                           <tr class="tight">
                             <td>
-                              Water Pool Villa
-                              <div class="room-link"><a href="https://www.milaidhoo.com/accommodation/water-pool-villas.html" target="_blank">Læs om villatypen →</a></div>
+                              Ocean Pool Villa
+                              <div class="room-link">
+                                <a href="https://www.kandolhu.com/villas/ocean-pool-villas.html" target="_blank">Læs om villatypen →</a>
+                              </div>
                             </td>
-                            <td align="right"><strong>DKK 162.900,-</strong></td>
+                            <td align="right"><strong>DKK 136.500,-</strong></td>
                           </tr>
                         </table>
-                        <div class="mp-row"><span class="mp mp--ai">Halvpension</span></div>
-                        <div class="hotel-meta"><span class="tr">Transfer: Vandfly (ca. 35 min.)</span></div>
-                        <div class="hotel-link"><a href="https://www.milaidhoo.com/" target="_blank">Se resortet →</a></div>
-                      </div>                      
+
+                        <div class="facts-link">
+                          <a href="https://caribiatravels-my.sharepoint.com/:b:/g/personal/caribia_caribia_dk/ESUjaUCgt-JEjfua1ZYmlusBbcL0uJ5O6iX9cYSMh95yOQ?e=HmxSZG" target="_blank">Se factsheet (PDF) →</a>
+                        </div>
+
+                        <div class="extras">
+                          <div class="extras-title">Highlights & fordele</div>
+                          <ul class="extras-list">
+                            <li>Sunset Champagne Cruise (ét per person)</li>
+                            <li>Maldivernes måske bedste husrev</li>
+                            <li>Lille ø (30 villaer) med hele 5 restauranter</li>
+                            <li>Over 30 vine inkluderet (også i minibaren)</li>
+                            <li>Ét af Maldivernes mest romantiske resorts</li>
+                          </ul>
+                        </div>
+
+                        <div class="mp-row"><span class="mp mp--ai">Ultimate Inclusions All-Inclusive (Dine Around)</span></div>
+
+                        <div class="hotel-meta"><span class="tr">Transfer: Vandfly (ca. 25 min.)</span></div>
+                        <div class="hotel-link"><a href="https://www.kandolhu.com/" target="_blank">Se resortet →</a></div>
+                      </div>
 
                     </td>
                   </tr>
@@ -308,7 +401,7 @@
             </tr>
 
             <!-- INKLUSIONER -->
-            <tr><td style="padding:0 40px 0;" class="px"><div class="section-title">Rejsetilbuddet inkluderer</div></td></tr>
+            <tr><td style="padding:10px 40px 10px;" class="px"><div class="section-title">Rejsetilbuddet inkluderer</div></td></tr>
             <tr>
               <td style="padding:0 40px 28px;" class="px">
                 <table role="presentation" width="100%" class="card">
@@ -316,7 +409,7 @@
                     • Fly mellem Hamborg og Malé t/r | Economy Class<br>
                     • Transfer mellem Malé Lufthavn og resortet t/r<br>
                     • 8 nætter på det valgte resort<br>
-                    • Måltider som vist under "Resorts & Priser"<br>
+                    • Måltider som vist under "Hoteller"<br>
                     • Obligatoriske skatter og afgifter
                   </td></tr>
                 </table>
@@ -325,7 +418,7 @@
 
             <!-- CTA -->
             <tr>
-              <td align="center" style="padding:0 40px 36px;" class="px">
+              <td align="center" style="padding:0 40px 28px;" class="px">
 
                 <!--[if mso]>
                   <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" href="mailto:rk@maldivia.dk?subject=Rejsetilbud%20til%20Maldiverne%20%7C%20Maldivia%20-%20Beyond%20Excellence"
@@ -351,12 +444,32 @@
               </td>
             </tr>
 
-            <!-- FOOTER -->
-            <tr>
-              <td style="padding:18px 28px; border-top:1px solid #e7e2da;" class="text" align="center" style="font-size:12px; color:#6a6a6a;">
-                © Maldivia – En del af The Makai Travel Group
-              </td>
-            </tr>
+<!-- FOOTER -->
+<tr>
+  <td align="center" class="text"
+      style="padding:18px 18px; border-top:1px solid #e7e2da; color:#6a6a6a; font-size:12px; line-height:18px;">
+    <a href="https://www.maldivia.dk" target="_blank" style="display:inline-block; text-decoration:none; line-height:0;">
+      <img src="https://maldivia.dk/wp-content/uploads/2025/10/LOGO-PNG-04-scaled.png"
+           width="160" alt="Maldivia – Beyond Excellence"
+           style="display:block; border:0; outline:none; text-decoration:none; height:auto;">
+    </a>
+
+    <!-- Lidt luft mellem logo og badge -->
+    <div style="height:8px; line-height:8px;">&nbsp;</div>
+
+    <!-- RGF badge (helst monokrom i #9d8665) -->
+    <a href="https://www.rejsegarantifonden.dk/medlem?s=2688" target="_blank" style="display:inline-block; text-decoration:none; line-height:0;">
+      <img src="https://maldivia.dk/wp-content/uploads/2025/10/Rejsegarantifonden.png"
+           width="110" alt="Medlem af Rejsegarantifonden"
+           style="display:block; border:0; outline:none; text-decoration:none; height:auto;">
+    </a>
+
+    <!-- Lidt luft før ophavsret -->
+    <div style="height:8px; line-height:8px;">&nbsp;</div>
+
+    © Maldivia – En del af The Makai Travel Group
+  </td>
+</tr>
 
           </table>
         </td>
