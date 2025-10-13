@@ -98,6 +98,17 @@
         border-radius:12px;
         border:1px solid #e7e2da;
       }
+
+      /* >>> INDSAT: desktop-hero billede skal følge kortets bredde */
+      .gallery-desktop img{
+        display:block;
+        width:100%;
+        height:auto;
+        border:1px solid #e7e2da;
+        border-radius:12px;
+      }
+      /* <<< SLUT indsætning */
+
       .gallery .prev, .gallery .next{
         position:absolute; top:50%; transform:translateY(-50%);
         background:rgba(255,255,255,0.9);
@@ -273,6 +284,10 @@
         /* Billeder & overflow-sikring */
         img{ max-width:100% !important; height:auto !important; }
         body, table, td{ max-width:100% !important; }
+
+        /* >>> INDSAT: skjul desktop-hero på mobil */
+        .gallery-desktop{ display:none !important; }
+        /* <<< SLUT indsætning */
       }
 
       /* Desktop: destination + dato side om side + korrekt hero-divider spacing */
@@ -290,11 +305,16 @@
         .hotel-long .rate-list tr:first-child td{
           padding-top:12px !important;
         }
+
+        /* >>> INDSAT: skjul mobilgalleri på desktop */
+        .gallery-mobile{ display:none !important; }
+        /* <<< SLUT indsætning */
       }
       
     </style>
   </head>
   <body>
+    <!-- (resten af dokumentet uændret) -->
     <table role="presentation" width="100%" bgcolor="#faf7f2">
       <tr>
         <td align="center" style="padding:32px 16px;">
@@ -363,7 +383,7 @@
                       </div>
                       <div class="layover"><span>Mellemlanding i Frankfurt • 2 t 55 m</span></div>
                       <div class="leg">
-                        <div class="chip">FRA → HAM</div>
+                        <div class="chip">FRA → CPH</div>
                         <div class="times">20:25 – 21:55</div>
                         <span class="flight-meta">SAS • SK 1636 (WX)</span>
                       </div>
@@ -592,7 +612,7 @@
                             <li>Helt nyt Premium All-Inclusive resort</li>
                             <li>Exceptionelt design og moderne poolvillaer</li>
                             <li>Maldivernes første overwater padel-bane</li>
-                            <li>60 min. spa og 3 ekskursioner per person inkl.</li>
+                            <li>45 min. spa og 2 ekskursioner per person inkl.</li>
                             <li>Unikke features såsom undervandsrestaurant</li>
                           </ul>
                           <div class="extras-more"><a href="https://maldivia.dk/wp-content/uploads/2025/10/Meyyafushi-Maldives.pdf" target="_blank">Se factsheet →</a></div>
