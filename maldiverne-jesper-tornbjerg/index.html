@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="da" xmlns="http://www.w3.org/1999/xhtml">
+<html lang="nb" xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Rejsetilbud til Maldiverne | Maldivia - Beyond Excellence</title>
+    <title>Reisetilbud til Oman og Maldivene | Maldivia - Beyond Excellence</title>
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&display=swap');
       body, table, td, a { -webkit-text-size-adjust:100%; -ms-text-size-adjust:100%; }
@@ -15,17 +15,9 @@
       .text { font-family:'TeX Gyre Termes','Times New Roman',serif; color:#1c1c1c; font-size:15px; line-height:24px; }
       .gold { color:#9d8665; }
 
-      /* Gør kort afrundede hjørner mere mail-sikre */
-      .card{
-        border:1px solid #e7e2da;
-        border-radius:12px;
-        background:#fff;
-        overflow:hidden; /* <- vigtigt for at klippe indholdet efter radius */
-      }
-
+      .card { border:1px solid #e7e2da; border-radius:12px; background:#fff; }
       .col { vertical-align:top; }
       .muted { color:#6a6a6a; font-size:12px; line-height:18px; }
-      .mobile-only{ display:none; } /* vises kun på mobil */
 
       /* Seksjonstitler (klassisk linje over) */
       .section-title{
@@ -38,36 +30,21 @@
       /* Fly */
       .flight-inner { max-width:440px; padding:18px; }
       .journey-title { font-family:'TeX Gyre Termes','Times New Roman',serif; font-size:16px; font-weight:700; text-transform:uppercase; color:#9d8665; margin:0 0 12px; }
-
-      /* chips på linje på desktop */
-      .chip{
-        display:inline-block;
+      .chip {
+        display:inline-block;        /* desktop/tablet: piller på linje */
         padding:3px 10px;
         border:1px solid #d7cbbb;
         border-radius:999px;
-        background:#f9f6f0;
+        background:#f9f6f0;          /* samme som datochip */
         font-size:12px;
         line-height:18px;
         font-weight:700;
         color:#1c1c1c;
-        margin:0 6px 6px 0;
+        margin:0 0 6px 0;
       }
       .leg { margin:0 0 14px 0; }
       .times { display:block; font-weight:700; font-size:15px; line-height:1.4; font-variant-numeric: tabular-nums; margin:0; }
       .flight-meta { display:block; font-family:'TeX Gyre Termes','Times New Roman',serif; font-size:13px; line-height:20px; color:#6a6a6a; margin-top:2px; }
-
-      /* Fly – hero-billede + logo */
-      .flight-hero img{
-        display:block;
-        width:100%;
-        height:auto;
-        border-bottom:1px solid #f0ece4;
-      }
-      .airline-badge img{
-        display:block;
-        height:20px;   /* justér ved behov */
-        width:auto;
-      }
 
       /* Layover */
       .layover { position:relative; margin:0 0 14px 0; }
@@ -141,6 +118,13 @@
         border:1px solid #e7e2da;
         border-radius:12px;
       }
+
+      /* Desktop: vis lokasjon/dato side om side */
+      @media only screen and (min-width:601px){
+        .hotel-loc{ margin-right:6px; display:inline-block; }
+        .hotel-dates{ display:inline-block; }
+      }
+      
       /* <<< SLUT indsætning */
 
       .gallery .prev, .gallery .next{
@@ -263,9 +247,8 @@
           padding-top:8px !important;   /* linje -> første villatype */
         }
 
-        /* Mobil: chips under hinanden + helper */
-        .chip{ display:block !important; margin-right:0 !important; }
-        .mobile-only{ display:block !important; }
+        /* MOBIL: LEG-chips skal være fuld bredde */
+        .chip{ display:block !important; }
 
         /* MOBIL: finjustér luft mellem sidste pris og divider */
         .rate-list tr:last-child{ padding-bottom:6px !important; }
@@ -323,8 +306,9 @@
         img{ max-width:100% !important; height:auto !important; }
         body, table, td{ max-width:100% !important; }
 
-        /* Fly – logo lidt mindre på mobil */
-        .airline-badge img{ height:18px !important; }
+      .total-amt{
+  font-size:15px !important;
+}
 
         /* >>> INDSAT: skjul desktop-hero på mobil */
         .gallery-desktop{ display:none !important; }
@@ -388,83 +372,109 @@
             <!-- HERO -->
             <tr>
               <td style="padding:36px 40px 0;" class="px">
-                <div class="heading" style="font-size:28px; font-weight:700;">REJSETILBUD TIL MALDIVERNE</div>
-                <div class="text" style="margin-top:6px; color:#6a6a6a;">17. januar – 25. januar 2026 &nbsp;•&nbsp; 7 nætter / 9 dage</div>
+                <div class="heading" style="font-size:28px; font-weight:700;">REISETILBUD TIL OMAN OG MALDIVENE</div>
+                <div class="text" style="margin-top:6px; color:#6a6a6a;">26. februar – 09. mars 2026 &nbsp;•&nbsp; 9 netter / 11 dager</div>
               </td>
             </tr>
 
-            <!-- FLY -->
-            <tr><td style="padding:10px 40px 10px;" class="px"><div class="section-title">Flyrejse</div></td></tr>
-            <tr>
-              <td style="padding:0 40px 0;" class="px">
-                <table role="presentation" width="100%" class="card flight-details"
-                       style="border-collapse:separate; border-radius:12px; overflow:hidden;">
-                  <tr><td style="padding:0;">
-                    <!-- HERO-billede til fly -->
-                    <div class="flight-hero">
-                      <img src="https://maldivia.dk/wp-content/uploads/2025/10/Emirates-1.jpg"
-                           alt="Swiss & Edelweiss til Malé">
-                    </div>
+<!-- FLY -->
+<tr>
+  <td style="padding:10px 40px 10px;" class="px">
+    <div class="section-title">Flyreise</div>
+  </td>
+</tr>
 
-                    <div class="flight-inner">
-                      <!-- Øverste række: titel + logo -->
-                      <table role="presentation" width="100%">
-                        <tr>
-                          <td class="journey-title" style="padding:0; margin:0;">København til Malé – 17.01.2026</td>
-                          <td align="right" class="airline-badge" style="padding:0; white-space:nowrap;">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/8/86/Swiss_International_Air_Lines_Logo.svg" alt="SWISS" height="20">
-                          </td>
-                        </tr>
-                      </table>
+<tr>
+  <td style="padding:0 40px 6px;" class="px">
+    <!-- Card som DIV (samme som HOTELLER) -->
+    <div class="card" style="border:1px solid #e7e2da; border-radius:12px; background:#fff; overflow:hidden;">
+      <!-- Indholdsramme som table -->
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:separate; border-spacing:0;">
+        <!-- HERO -->
+        <tr>
+          <td style="padding:0;">
+            <img src="https://maldivia.no/wp-content/uploads/sites/2/2025/10/Emirates-2.jpg"
+                 alt="Emirates"
+                 width="600"
+                 style="display:block; width:100%; height:auto;">
+          </td>
+        </tr>
 
-                      <div class="leg">
-                        <div class="chip">CPH → ZRH</div>
-                        <div class="times">14:55 – 16:40</div>
-                        <span class="flight-meta">Swiss • LX 1271</span>
-                      </div>
+<!-- INDHOLD -->
+<tr>
+  <td>
+    <div class="flight-inner">
 
-                      <div class="layover"><span>Mellemlanding i Zürich • 1 t 30 m</span></div>
+            <!-- REJSE 1: Oslo -> Muscat (1 mellomlanding) -->
+      <div class="journey-title">Oslo til Muscat – 26.02.2026</div>
+      <div class="leg">
+        <div class="chip">OSL → DXB</div>
+        <div class="times">14:00 – 23:55</div>
+        <span class="flight-meta">Emirates • EK 160</span>
+      </div>
+      <div class="layover"><span>Mellomlanding i Dubai • 2 t 45 m</span></div>
+      <div class="leg">
+        <div class="chip">DXB → MCT</div>
+        <div class="times">02:40 – 03:55</div>
+        <span class="flight-meta">Emirates • EK 866</span>
+      </div>
+      <div class="journey-foot">Total reisetid: 10 t 55 m</div>
 
-                      <div class="leg">
-                        <div class="chip">ZRH → MLE</div>
-                        <div class="times">18:10&nbsp;–&nbsp;07:50<sup class="plus1">+1</sup></div>
-                        <span class="flight-meta">Edelweiss • LX 8066 (WK)</span>
-                      </div>
+      <div class="journey-sep"></div>
 
-                      <div class="journey-foot">Total rejsetid: 12 t 55 m</div>
+            <!-- REJSE 2: Muscat -> Malé (1 mellomlanding) -->
+      <div class="journey-title">Muscat til Malé – 02.03.2026</div>
+      <div class="leg">
+        <div class="chip">MCT → AUH</div>
+        <div class="times">23:55 – 01:00<sup class="plus1">+1</sup></div>
+        <span class="flight-meta">Etihad • EY 697</span>
+      </div>
+      <div class="layover"><span>Mellomlanding i Abu Dhabi • 1 t 5 m</span></div>
+      <div class="leg">
+        <div class="chip">AUH → MLE</div>
+        <div class="times">02:05 – 07:25</div>
+        <span class="flight-meta">Etihad • EY 372</span>
+      </div>
+      <div class="journey-foot">Total reisetid: 6 t 30 m</div>
 
-                      <div class="journey-sep"></div>
+      <div class="journey-sep"></div>
 
-                      <!-- Retur – titel + logo -->
-                      <table role="presentation" width="100%">
-                        <tr>
-                          <td class="journey-title" style="padding:0; margin:0;">Malé til København – 25.01.2026</td>
-                          <td align="right" class="airline-badge" style="padding:0; white-space:nowrap;">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/5/54/Edelweiss_Air_logo.svg" alt="Edelweiss" height="20">
-                          </td>
-                        </tr>
-                      </table>
+            <!-- REJSE 3: Malé -> Oslo (1 mellomlanding) -->
+      <div class="journey-title">Malé til Oslo – 08.03.2026</div>
+      <div class="leg">
+        <div class="chip">MLE → DXB</div>
+        <div class="times">23:00 – 02:35<sup class="plus1">+1</sup></div>
+        <span class="flight-meta">Emirates • EK 653</span>
+      </div>
+      <div class="layover"><span>Mellomlanding i Dubai • 4 t 55 m</span></div>
+      <div class="leg">
+        <div class="chip">DXB → OSL</div>
+        <div class="times">07:30 – 11:55</div>
+        <span class="flight-meta">Emirates • EK 159</span>
+      </div>
+      <div class="journey-foot">Total reisetid: 16 t 55 m</div>
 
-                      <div class="leg">
-                        <div class="chip">MLE → ZRH</div>
-                        <div class="times">09:30 – 16:05</div>
-                        <span class="flight-meta">Edelweiss • LX 8067 (WK)</span>
-                      </div>
+    </div>
+  </td>
+</tr>
 
-                      <div class="layover"><span>Mellemlanding i Zürich • 1 t 10 m</span></div>
-
-                      <div class="leg">
-                        <div class="chip">ZRH → CPH</div>
-                        <div class="times">17:15 – 19:05</div>
-                        <span class="flight-meta">Swiss • LX 1272</span>
-                      </div>
-
-                      <div class="journey-foot">Total rejsetid: 13 t 35 m</div>
-                    </div>
-                  </td></tr>
-                </table>
-              </td>
-            </tr>
+        <!-- Logo-strip nederst (valgfri) -->
+        <tr>
+          <td style="padding:10px 18px 16px;">
+            <table role="presentation" cellpadding="0" cellspacing="0">
+              <tr>
+                <td style="padding-right:12px;">
+                  <img src="https://maldivia.no/wp-content/uploads/sites/2/2025/10/Emirats-1.png" alt="Emirates" width="64" style="display:block;">
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <!-- /card -->
+  </td>
+</tr>
             
             <!-- HOTELLER -->
             <tr><td style="padding:10px 40px 10px;" class="px"><div class="section-title">Hoteller</div></td></tr>
