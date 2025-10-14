@@ -15,7 +15,14 @@
       .text { font-family:'TeX Gyre Termes','Times New Roman',serif; color:#1c1c1c; font-size:15px; line-height:24px; }
       .gold { color:#9d8665; }
 
-      .card { border:1px solid #e7e2da; border-radius:12px; background:#fff; }
+      /* Gør kort afrundede hjørner mere mail-sikre */
+      .card{
+        border:1px solid #e7e2da;
+        border-radius:12px;
+        background:#fff;
+        overflow:hidden; /* <- vigtigt for at klippe indholdet efter radius */
+      }
+
       .col { vertical-align:top; }
       .muted { color:#6a6a6a; font-size:12px; line-height:18px; }
       .mobile-only{ display:none; } /* vises kun på mobil */
@@ -31,6 +38,7 @@
       /* Fly */
       .flight-inner { max-width:440px; padding:18px; }
       .journey-title { font-family:'TeX Gyre Termes','Times New Roman',serif; font-size:16px; font-weight:700; text-transform:uppercase; color:#9d8665; margin:0 0 12px; }
+
       /* chips på linje på desktop */
       .chip{
         display:inline-block;
@@ -47,6 +55,19 @@
       .leg { margin:0 0 14px 0; }
       .times { display:block; font-weight:700; font-size:15px; line-height:1.4; font-variant-numeric: tabular-nums; margin:0; }
       .flight-meta { display:block; font-family:'TeX Gyre Termes','Times New Roman',serif; font-size:13px; line-height:20px; color:#6a6a6a; margin-top:2px; }
+
+      /* Fly – hero-billede + logo */
+      .flight-hero img{
+        display:block;
+        width:100%;
+        height:auto;
+        border-bottom:1px solid #f0ece4;
+      }
+      .airline-badge img{
+        display:block;
+        height:20px;   /* justér ved behov */
+        width:auto;
+      }
 
       /* Layover */
       .layover { position:relative; margin:0 0 14px 0; }
@@ -302,6 +323,9 @@
         img{ max-width:100% !important; height:auto !important; }
         body, table, td{ max-width:100% !important; }
 
+        /* Fly – logo lidt mindre på mobil */
+        .airline-badge img{ height:18px !important; }
+
         /* >>> INDSAT: skjul desktop-hero på mobil */
         .gallery-desktop{ display:none !important; }
         /* <<< SLUT indsætning */
@@ -373,69 +397,75 @@
             <tr><td style="padding:10px 40px 10px;" class="px"><div class="section-title">Flyrejse</div></td></tr>
             <tr>
               <td style="padding:0 40px 0;" class="px">
-                <table role="presentation" width="100%" class="card flight-details">
-                  <tr><td>
+                <table role="presentation" width="100%" class="card flight-details"
+                       style="border-collapse:separate; border-radius:12px; overflow:hidden;">
+                  <tr><td style="padding:0;">
+                    <!-- HERO-billede til fly -->
+                    <div class="flight-hero">
+                      <img src="https://maldivia.dk/wp-content/uploads/2025/10/flight-hero-generic.jpg"
+                           alt="Swiss & Edelweiss til Malé">
+                    </div>
+
                     <div class="flight-inner">
-                      <div class="journey-title">København til Malé – 17.01.2026</div>
+                      <!-- Øverste række: titel + logo -->
+                      <table role="presentation" width="100%">
+                        <tr>
+                          <td class="journey-title" style="padding:0; margin:0;">København til Malé – 17.01.2026</td>
+                          <td align="right" class="airline-badge" style="padding:0; white-space:nowrap;">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/8/86/Swiss_International_Air_Lines_Logo.svg" alt="SWISS" height="20">
+                          </td>
+                        </tr>
+                      </table>
+
                       <div class="leg">
                         <div class="chip">CPH → ZRH</div>
                         <div class="times">14:55 – 16:40</div>
                         <span class="flight-meta">Swiss • LX 1271</span>
                       </div>
+
                       <div class="layover"><span>Mellemlanding i Zürich • 1 t 30 m</span></div>
+
                       <div class="leg">
                         <div class="chip">ZRH → MLE</div>
                         <div class="times">18:10&nbsp;–&nbsp;07:50<sup class="plus1">+1</sup></div>
                         <span class="flight-meta">Edelweiss • LX 8066 (WK)</span>
                       </div>
+
                       <div class="journey-foot">Total rejsetid: 12 t 55 m</div>
 
                       <div class="journey-sep"></div>
 
-                      <div class="journey-title">Malé til København – 25.01.2026</div>
+                      <!-- Retur – titel + logo -->
+                      <table role="presentation" width="100%">
+                        <tr>
+                          <td class="journey-title" style="padding:0; margin:0;">Malé til København – 25.01.2026</td>
+                          <td align="right" class="airline-badge" style="padding:0; white-space:nowrap;">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/5/54/Edelweiss_Air_logo.svg" alt="Edelweiss" height="20">
+                          </td>
+                        </tr>
+                      </table>
+
                       <div class="leg">
                         <div class="chip">MLE → ZRH</div>
                         <div class="times">09:30 – 16:05</div>
                         <span class="flight-meta">Edelweiss • LX 8067 (WK)</span>
                       </div>
+
                       <div class="layover"><span>Mellemlanding i Zürich • 1 t 10 m</span></div>
+
                       <div class="leg">
                         <div class="chip">ZRH → CPH</div>
                         <div class="times">17:15 – 19:05</div>
                         <span class="flight-meta">Swiss • LX 1272</span>
                       </div>
+
                       <div class="journey-foot">Total rejsetid: 13 t 35 m</div>
                     </div>
                   </td></tr>
                 </table>
               </td>
             </tr>
-
-            <!-- FLYOPGRADERINGER / ALTERNATIVER -->
-            <tr><td style="padding:10px 40px 10px;" class="px"><div class="section-title">Opgradér flyrejsen</div></td></tr>
-            <tr>
-              <td style="padding:0 40px 0px;" class="px">
-                <table role="presentation" width="100%" class="card">
-                  <tr>
-                    <td style="padding:14px 18px;">
-                      <table role="presentation" width="100%" class="text">
-                        <!-- Fjernet class="tight" for at undgå divider -->
-                        <tr>
-                          <td>
-                            <span class="gold" style="font-weight:700;">Economy Class</span> – Etihad
-                          </td>
-                          <td align="right"><strong>DKK 8.500,-</strong></td>
-                        </tr>
-                      </table>
-                      <div class="muted" style="margin-top:8px;">
-                        Merprisen ovenfor er totalt for 5 voksne. Pris og tilgængelighed kan ændre sig frem til endelig bestilling.
-                      </div>
-                    </td>
-                  </tr>
-                </table>
-              </td>
-            </tr>
-
+            
             <!-- HOTELLER -->
             <tr><td style="padding:10px 40px 10px;" class="px"><div class="section-title">Hoteller</div></td></tr>
             <tr>
