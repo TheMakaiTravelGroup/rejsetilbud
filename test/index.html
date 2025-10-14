@@ -31,17 +31,17 @@
       .flight-inner { max-width:440px; padding:18px; }
       .journey-title { font-family:'TeX Gyre Termes','Times New Roman',serif; font-size:16px; font-weight:700; text-transform:uppercase; color:#9d8665; margin:0 0 12px; }
       .chip {
-  display:inline-block;        /* <- skift fra block til inline-block */
-  padding:3px 10px;
-  border:1px solid #d7cbbb;
-  border-radius:999px;
-  background:#f9f6f0;          /* samme som datochip */
-  font-size:12px;
-  line-height:18px;
-  font-weight:700;
-  color:#1c1c1c;
-  margin:0 0 6px 0;
-}
+        display:inline-block;        /* desktop/tablet: piller på linje */
+        padding:3px 10px;
+        border:1px solid #d7cbbb;
+        border-radius:999px;
+        background:#f9f6f0;          /* samme som datochip */
+        font-size:12px;
+        line-height:18px;
+        font-weight:700;
+        color:#1c1c1c;
+        margin:0 0 6px 0;
+      }
       .leg { margin:0 0 14px 0; }
       .times { display:block; font-weight:700; font-size:15px; line-height:1.4; font-variant-numeric: tabular-nums; margin:0; }
       .flight-meta { display:block; font-family:'TeX Gyre Termes','Times New Roman',serif; font-size:13px; line-height:20px; color:#6a6a6a; margin-top:2px; }
@@ -240,7 +240,10 @@
           padding-top:8px !important;   /* linje -> første villatype */
         }
 
-        /* MOBIL: finjustér luft mellom siste pris og divider */
+        /* MOBIL: LEG-chips skal være fuld bredde */
+        .chip{ display:block !important; }
+
+        /* MOBIL: finjustér luft mellem sidste pris og divider */
         .rate-list tr:last-child{ padding-bottom:6px !important; }
         .rate-list tr:last-child td{ padding-bottom:0 !important; } /* mobil-override */
         .rate-list::after{
@@ -317,17 +320,9 @@
           padding-top:12px !important;
         }
 
-                /* standard = som hotellerne */
-.chip{ display:inline-block; }
-
-/* mobil: gør dem fuldbredde */
-@media only screen and (max-width:600px){
-  .chip{ display:block; }
-
         /* >>> INDSAT: skjul mobilgalleri på desktop */
         .gallery-mobile{ display:none !important; }
         /* <<< SLUT indsætning */
-
       }
       
     </style>
