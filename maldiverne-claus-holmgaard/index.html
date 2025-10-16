@@ -295,6 +295,7 @@
         /* MOBIL: finjustér luft mellem sidste pris og divider */
         .rate-list tr:last-child{ padding-bottom:6px !important; }
         .rate-list tr:last-child td{ padding-bottom:0 !important; } /* mobil-override */
+
         .rate-list::after{
           content:"";
           display:block;
@@ -305,6 +306,10 @@
         }
         .rate-list tr:not(:first-child){ padding-top:16px !important; }
         .extras{ margin-top:2px !important; }
+
+        /* >>> NYT: Tættere spacing når der kun er én række (gælder alle hoteller med 1 villatype) */
+        .rate-list tr:only-child{ margin-bottom:-12px !important; }
+        .rate-list tr:only-child td{ padding-bottom:0 !important; }
 
         /* Container */
         .wrap { width:100% !important; max-width:100% !important; }
@@ -348,9 +353,9 @@
         img{ max-width:100% !important; height:auto !important; }
         body, table, td{ max-width:100% !important; }
 
-      .total-amt{
-  font-size:15px !important;
-}
+        .total-amt{
+          font-size:15px !important;
+        }
 
         /* >>> INDSAT: skjul desktop-hero på mobil */
         .gallery-desktop{ display:none !important; }
@@ -407,7 +412,7 @@
                       </a>
                     </td>
                     <td align="right" class="center" style="font-family:'TeX Gyre Termes','Times New Roman',serif; font-size:13px; color:#6a6a6a;">
-                      <span style="font-family:'Playfair Display',serif; color:#9d8665; font-size:13.5px; letter-spacing:1px; text-transform:uppercase;">Travel Designer</span><br>Rasmus Kirketerp<br>
+                      <span style="font-family:'Playfair Display',serif; color:#9d8665; font-size:13.5px; letter-spacing:1px; text-transform:uppercase;">Travel Designer</span><br>Wende Pedersen<br>
                       <a href="mailto:rk@maldivia.dk" style="color:#9d8665; text-decoration:underline;">rk@maldivia.dk</a><br>
                       <a href="tel:+4571747270" style="color:#9d8665; text-decoration:underline;">+45&nbsp;71&nbsp;74&nbsp;72&nbsp;70</a>
                     </td>
@@ -587,11 +592,11 @@
                         <div class="extras">
                           <div class="extras-title">Højdepunkter & fordele</div>
                           <ul class="extras-list">
-<li>Adults Only resort (+16)</li>
-<li>Fantastisk undervandsrestaurant</li>
-<li>Rolig og romantisk atmosfære</li>
-<li>Autentisk maldivisk design</li>
-<li>Smuk, turkisblå lagune</li>
+                            <li>Adults Only resort (+16)</li>
+                            <li>Fantastisk undervandsrestaurant</li>
+                            <li>Rolig og romantisk atmosfære</li>
+                            <li>Autentisk maldivisk design</li>
+                            <li>Smuk, turkisblå lagune</li>
                           </ul>
                           <div class="extras-more"><a href="https://maldivia.dk/wp-content/uploads/2025/10/You-Me.pdf" target="_blank">Se factsheet →</a></div>
                         </div>
@@ -613,8 +618,8 @@
                           <div class="gallery-strip">
                             <a href="https://maldivia.dk/wp-content/uploads/2025/10/Avani-3.jpg" target="_blank"><img src="https://maldivia.dk/wp-content/uploads/2025/10/Avani-3.jpg" alt="Avani+ Fares – Pool & bar scene"></a>
                             <a href="https://maldivia.dk/wp-content/uploads/2025/10/Avani-2.jpg" target="_blank"><img src="https://maldivia.dk/wp-content/uploads/2025/10/Avani-2.jpg" alt="Avani+ Fares – Aerial of island"></a>
-<a href="https://maldivia.dk/wp-content/uploads/2025/10/Avani-4.jpg" target="_blank"><img src="https://maldivia.dk/wp-content/uploads/2025/10/Avani-4.jpg" alt="Avani+ Fares – Full island view"></a>
-<a href="https://maldivia.dk/wp-content/uploads/2025/10/Avani-5.webp" target="_blank"><img src="https://maldivia.dk/wp-content/uploads/2025/10/Avani-5.webp" alt="Avani+ Fares – Beachfront Restaurant"></a>
+                            <a href="https://maldivia.dk/wp-content/uploads/2025/10/Avani-4.jpg" target="_blank"><img src="https://maldivia.dk/wp-content/uploads/2025/10/Avani-4.jpg" alt="Avani+ Fares – Full island view"></a>
+                            <a href="https://maldivia.dk/wp-content/uploads/2025/10/Avani-5.webp" target="_blank"><img src="https://maldivia.dk/wp-content/uploads/2025/10/Avani-5.webp" alt="Avani+ Fares – Beachfront Restaurant"></a>
                             <a href="https://maldivia.dk/wp-content/uploads/2025/10/Avani-1.jpg" target="_blank"><img src="https://maldivia.dk/wp-content/uploads/2025/10/Avani-1.jpg" alt="Avani+ Fares – Lagoon and House Reef"></a>
                           </div>
                           <div class="scroll-hint mobile-only">Swipe for flere billeder →</div>
@@ -637,11 +642,11 @@
                         <div class="extras">
                           <div class="extras-title">Højdepunkter & fordele</div>
                           <ul class="extras-list">
-<li>Eksklusiv beliggenhed i Baa Atoll</li>
-<li>Manta-snorkling ved ikoniske Hanifaru Bay</li>
-<li>Turkis lagune og levende husrev</li>
-<li>Designervillaer med moderne ø-luksus</li>
-<li>Sofistikeret stemning med beach club vibe</li>
+                            <li>Eksklusiv beliggenhed i Baa Atoll</li>
+                            <li>Manta-snorkling ved ikoniske Hanifaru Bay</li>
+                            <li>Turkis lagune og levende husrev</li>
+                            <li>Designervillaer med moderne ø-luksus</li>
+                            <li>Sofistikeret stemning med beach club vibe</li>
                           </ul>
                           <div class="extras-more"><a href="https://maldivia.dk/wp-content/uploads/2025/10/Avani-Maldives.pdf" target="_blank">Se factsheet →</a></div>
                         </div>
@@ -650,25 +655,25 @@
                         <div class="hotel-link"><a href="https://www.avanihotels.com/en/fares-maldives" target="_blank">Udforsk hotellet →</a></div>
                       </div>
 
-                                            <!-- Hotel 3 -->
+                      <!-- Hotel 3 -->
                       <div class="hotel-long card text">
                         <div class="hotel-cap">Dhigali Maldives 5★</div>
                         <div class="hotel-loc"><span class="loc">Maldiverne • Raa Atoll</span></div>
                         <div class="hotel-dates sp-gap-chips"><span class="stay">31. januar – 07. februar 2026 • 7 nætter</span></div>
 
-<!-- Galleri -->
-<div class="gallery sp-chips-hero">
-  <button class="prev" aria-label="Forrige">‹</button>
-  <button class="next" aria-label="Næste">›</button>
-  <div class="gallery-strip">
-    <a href="https://maldivia.dk/wp-content/uploads/2025/10/1-2-1.jpg" target="_blank"><img src="https://maldivia.dk/wp-content/uploads/2025/10/1-2-1.jpg" alt="Dhigali Maldives - Aerial"></a>
-    <a href="https://maldivia.dk/wp-content/uploads/2025/10/5.jpg" target="_blank"><img src="https://maldivia.dk/wp-content/uploads/2025/10/5.jpg" alt="Dhigali Maldives - Haali Bar and Sandbank"></a>
-    <a href="https://maldivia.dk/wp-content/uploads/2025/10/Dhigali-Maldives-4740.jpg" target="_blank"><img src="https://maldivia.dk/wp-content/uploads/2025/10/Dhigali-Maldives-4740.jpg" alt="Dhigali Maldives - House Reef Snorkeling"></a>
-    <a href="https://maldivia.dk/wp-content/uploads/2025/10/Capers-Restaurant.jpg" target="_blank"><img src="https://maldivia.dk/wp-content/uploads/2025/10/Capers-Restaurant.jpg" alt="Dhigali Maldives - Restaurant Capers"></a>
-    <a href="https://maldivia.dk/wp-content/uploads/2025/10/Dhigali-Maldives.jpg" target="_blank"><img src="https://maldivia.dk/wp-content/uploads/2025/10/Dhigali-Maldives.jpg" alt="Dhigali Maldives - Pool Area"></a>
-  </div>
-  <div class="scroll-hint mobile-only">Swipe for flere billeder →</div>
-</div>
+                        <!-- Galleri -->
+                        <div class="gallery sp-chips-hero">
+                          <button class="prev" aria-label="Forrige">‹</button>
+                          <button class="next" aria-label="Næste">›</button>
+                          <div class="gallery-strip">
+                            <a href="https://maldivia.dk/wp-content/uploads/2025/10/1-2-1.jpg" target="_blank"><img src="https://maldivia.dk/wp-content/uploads/2025/10/1-2-1.jpg" alt="Dhigali Maldives - Aerial"></a>
+                            <a href="https://maldivia.dk/wp-content/uploads/2025/10/5.jpg" target="_blank"><img src="https://maldivia.dk/wp-content/uploads/2025/10/5.jpg" alt="Dhigali Maldives - Haali Bar and Sandbank"></a>
+                            <a href="https://maldivia.dk/wp-content/uploads/2025/10/Dhigali-Maldives-4740.jpg" target="_blank"><img src="https://maldivia.dk/wp-content/uploads/2025/10/Dhigali-Maldives-4740.jpg" alt="Dhigali Maldives - House Reef Snorkeling"></a>
+                            <a href="https://maldivia.dk/wp-content/uploads/2025/10/Capers-Restaurant.jpg" target="_blank"><img src="https://maldivia.dk/wp-content/uploads/2025/10/Capers-Restaurant.jpg" alt="Dhigali Maldives - Restaurant Capers"></a>
+                            <a href="https://maldivia.dk/wp-content/uploads/2025/10/Dhigali-Maldives.jpg" target="_blank"><img src="https://maldivia.dk/wp-content/uploads/2025/10/Dhigali-Maldives.jpg" alt="Dhigali Maldives - Pool Area"></a>
+                          </div>
+                          <div class="scroll-hint mobile-only">Swipe for flere billeder →</div>
+                        </div>
 
                         <table class="rate-list sp-hero-divider">
                           <tr class="tight">
@@ -686,11 +691,11 @@
                         <div class="extras sp-mp-extras">
                           <div class="extras-title">Højdepunkter & fordele</div>
                           <ul class="extras-list">
-<li>Premium All-Inclusive (Dine Around)</li>
-<li>Fantastisk snorkling og husrev</li>
-<li>Fremragende kulinariske oplevelser</li>
-<li>Smuk, naturlig og frodig ø</li>
-<li>Magiske solnedgange fra Haali Bar</li>
+                            <li>Premium All-Inclusive (Dine Around)</li>
+                            <li>Fantastisk snorkling og husrev</li>
+                            <li>Fremragende kulinariske oplevelser</li>
+                            <li>Smuk, naturlig og frodig ø</li>
+                            <li>Magiske solnedgange fra Haali Bar</li>
                           </ul>
                           <div class="extras-more"><a href="https://maldivia.dk/wp-content/uploads/2025/10/Dhigali.pdf" target="_blank">Se factsheet →</a></div>
                         </div>
