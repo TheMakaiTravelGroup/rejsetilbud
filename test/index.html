@@ -7,14 +7,7 @@
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&display=swap');
       body, table, td, a { -webkit-text-size-adjust:100%; -ms-text-size-adjust:100%; }
-      /* ← OPDATERET: baggrundstapet */
-      body { 
-        margin:0; padding:0; background:#faf7f2;
-        background-image:url('https://maldivia.dk/wp-content/uploads/2025/10/palm-tile-512.png.jpeg');
-        background-repeat:repeat;
-        background-position:top center;
-        /* ingen background-size for maksimal e-mailkompatibilitet */
-      }
+      body { margin:0; padding:0; background:#faf7f2; }
       table { border-collapse:collapse; }
       a { color:#1c1c1c; text-decoration:none; }
 
@@ -38,11 +31,11 @@
       .flight-inner { max-width:440px; padding:18px; }
       .journey-title { font-family:'TeX Gyre Termes','Times New Roman',serif; font-size:16px; font-weight:700; text-transform:uppercase; color:#9d8665; margin:0 0 12px; }
       .chip {
-        display:inline-block;
+        display:inline-block;        /* desktop/tablet: piller på linje */
         padding:3px 10px;
         border:1px solid #d7cbbb;
         border-radius:999px;
-        background:#f9f6f0;
+        background:#f9f6f0;          /* samme som datochip */
         font-size:12px;
         line-height:18px;
         font-weight:700;
@@ -97,8 +90,8 @@
       }
       
       /* Easy spacing knobs for chips */
-      .sp-gap-chips{ margin-top:6px !important; }
-      .sp-chips-hero{ margin-top:8px !important; }
+      .sp-gap-chips{ margin-top:6px !important; }   /* DESTINATION -> DATO (desktop) */
+      .sp-chips-hero{ margin-top:8px !important; }  /* DATO -> HERO (desktop) */
 
       /* ------- Galleri / Karussel ------- */
       .gallery{ position:relative; margin-top:12px; overflow:hidden; border-radius:12px; }
@@ -117,6 +110,7 @@
         border:1px solid #e7e2da;
       }
 
+      /* >>> INDSAT: desktop-hero billede skal følge kortets bredde */
       .gallery-desktop img{
         display:block;
         width:100%;
@@ -125,18 +119,23 @@
         border-radius:12px;
       }
 
+      /* >>> INDSAT: Ens højder for FLY-HERO (matcher hotel-hero) + flush mod ramme */
       .hero-img{
         display:block;
         width:100%;
-        height:280px !important;
+        height:280px !important;    /* match hotel-hero desktop */
         object-fit:cover;
-        border:0 !important;
-        border-radius:12px 12px 0 0;
+        border:0 !important;        /* ingen indre kant */
+        border-radius:12px 12px 0 0;/* kun runde tophjørner */
       }
       @media only screen and (max-width:600px){
-        .hero-img{ height:180px !important; width:auto; }
+        .hero-img{
+          height:180px !important;  /* match hotel-hero mobil */
+          width:auto;
+        }
       }
 
+      /* Desktop: vis lokasjon/dato side om side */
       @media only screen and (min-width:601px){
         .hotel-loc{ margin-right:6px; display:inline-block; }
         .hotel-dates{ display:inline-block; }
@@ -155,10 +154,11 @@
 
       .scroll-hint{ display:none; font-size:12px; color:#6a6a6a; margin-top:2px; text-align:left; }
 
+      /* --- HERO → DIVIDER → VILLATYPE (mail-safe) --- */
       .sp-hero-divider{
-        border-top:1px solid #f0ece4;
-        margin-top:20px;
-        padding-top:20px;
+        border-top:1px solid #f0ece4;  /* selve divideren */
+        margin-top:20px;               /* (overstyres på desktop) */
+        padding-top:20px;              /* linje -> første villatype */
       }
 
       .rate-list { width:100%; margin-top:8px; }
@@ -166,9 +166,11 @@
       .rate-list td:first-child { padding-right:12px; }
       .rate-list tr:first-child td { border-top:0; padding-top:8px; padding-bottom:16px; }
 
+      /* Enhetlig vertikal rytme i hotellrader */
       .hotel-long .tight td { padding:12px 0 16px; border-top:1px solid #f0ece4; }
-      .rate-list tr:last-child td{ padding-bottom:8px !important; }
+      .rate-list tr:last-child td{ padding-bottom:8px !important; } /* én sandhed globalt */
 
+      /* Meal plan chip */
       .mp{
         display:inline-block;
         padding:3px 10px;
@@ -187,6 +189,7 @@
       .hotel-link { margin-top:10px; }
       .hotel-long + .hotel-long { margin-top:18px; }
 
+      /* Transfer-badge */
       .hotel-meta{ margin-top:14px; }
       .tr{
         display:inline-block; padding:3px 10px;
@@ -200,9 +203,11 @@
         margin-right:6px; vertical-align:middle;
       }
 
+      /* Små lenker under pris – ens avstand fra tittel */
       .room-link{ margin-top:4px; font-size:12px; line-height:18px; color:#6a6a6a; }
       .room-link a{ color:#9d8665; text-decoration:underline; }
 
+      /* Høydepunkter-boks */
       .extras{
         margin-top:8px;
         margin-bottom:8px;
@@ -223,10 +228,11 @@
       .extras-more{ margin:8px 0 0; font-size:12px; line-height:18px; color:#6a6a6a; }
       .extras-more a{ color:#9d8665; text-decoration:underline; }
 
+      /* ---------- INKLUDERER – forbedret kort ---------- */
       .includes-card{
         border:1px solid #e7e2da; border-radius:12px; background:#f9f6f0;
-        border-collapse:separate !important;
-        overflow:hidden;
+        border-collapse:separate !important; /* overstyr globalt collapse */
+        overflow:hidden;                     /* klip til afrundede hjørner */
       }
       .includes-inner{ padding:14px 18px; }
       .people-pill{
@@ -247,7 +253,12 @@
       }
       .inc-item .tick{ font-weight:700; color:#9d8665; margin-right:8px; }
 
+      /* ---------------------------
+         MOBIL (≤600px)
+         --------------------------- */
       @media only screen and (max-width:600px){
+
+        /* Mobil: swipe-galleri, mindre luft til hint */
         .gallery-strip{
           display:block;
           white-space:nowrap;
@@ -255,20 +266,32 @@
           -webkit-overflow-scrolling:touch;
           transition:none;
         }
-        .gallery-strip a{ display:inline-block; width:auto; margin-right:8px; flex:none; }
+        .gallery-strip a{
+          display:inline-block;
+          width:auto;
+          margin-right:8px;
+          flex:none;
+        }
         .gallery-strip img{ height:180px !important; width:auto; }
         .gallery .prev, .gallery .next{ display:none !important; }
         .scroll-hint{ display:block !important; margin-top:2px !important; }
 
+        /* MOBIL: spacing knobs for chips */
         .sp-gap-chips{ margin-top:6px !important; }
         .sp-chips-hero{ margin-top:12px !important; }
 
-        .sp-hero-divider{ margin-top:12px !important; padding-top:8px !important; }
+        /* MOBIL: HERO → DIVIDER → VILLATYPE (lidt strammere) */
+        .sp-hero-divider{
+          margin-top:12px !important;   /* HERO -> linje */
+          padding-top:8px !important;   /* linje -> første villatype */
+        }
 
+        /* MOBIL: LEG-chips skal være fuld bredde */
         .chip{ display:block !important; }
 
+        /* MOBIL: finjustér luft mellem sidste pris og divider */
         .rate-list tr:last-child{ padding-bottom:6px !important; }
-        .rate-list tr:last-child td{ padding-bottom:0 !important; }
+        .rate-list tr:last-child td{ padding-bottom:0 !important; } /* mobil-override */
 
         .rate-list::after{
           content:"";
@@ -281,12 +304,15 @@
         .rate-list tr:not(:first-child){ padding-top:16px !important; }
         .extras{ margin-top:2px !important; }
 
+        /* >>> NYT: Tættere spacing når der kun er én række (gælder alle hoteller med 1 villatype) */
         .rate-list tr:only-child{ margin-bottom:-12px !important; }
         .rate-list tr:only-child td{ padding-bottom:0 !important; }
 
+        /* Container */
         .wrap { width:100% !important; max-width:100% !important; }
         .px { padding-left:18px !important; padding-right:18px !important; }
 
+        /* Typografi */
         .heading{ font-size:24px !important; }
         .section-title{ font-size:16px !important; }
         .text{ font-size:15px !important; line-height:23px !important; }
@@ -296,67 +322,80 @@
         .hotel-cap{ font-size:15px !important; }
         .hotel-long{ padding:18px 18px !important; }
 
+        /* Rate-liste: 1 kolonne */
         .rate-list, .rate-list tr, .rate-list td{ display:block !important; width:100% !important; }
         .hotel-long .tight td{ padding:0 !important; border:none !important; }
         .rate-list tr{ padding:12px 0 16px !important; border-top:1px solid #f0ece4 !important; }
         .rate-list tr:first-child{ border-top:0 !important; padding-top:8px !important; padding-bottom:16px !important; }
 
+        /* Kolonne-specifik */
         .rate-list td:first-child{ padding-right:0 !important; }
         .rate-list td:last-child{ text-align:left !important; padding-top:8px !important; }
         .rate-list td:last-child strong{ display:inline-block !important; font-size:15px !important; line-height:22px !important; }
 
+        /* Room-link & meal plan */
         .room-link{ margin-top:4px !important; line-height:18px !important; }
         .mp{ white-space:normal !important; margin-top:10px !important; line-height:16px !important; }
 
+        /* Høydepunkter-boks */
         .extras{ padding:12px 16px 12px !important; }
         .extras-title{ line-height:18px !important; }
         .extras-more{ line-height:18px !important; }
 
+        /* Transfer/links */
         .hotel-meta{ margin-top:14px !important; }
         .hotel-link{ margin-top:10px !important; }
 
+        /* Billeder & overflow-sikring */
         img{ max-width:100% !important; height:auto !important; }
         body, table, td{ max-width:100% !important; }
 
-        .total-amt{ font-size:15px !important; }
+        .total-amt{
+          font-size:15px !important;
+        }
 
+        /* >>> INDSAT: skjul desktop-hero på mobil */
         .gallery-desktop{ display:none !important; }
       }
 
+      /* Mobil: INKLUDERER-liste i én kolonne */
       @media only screen and (max-width:600px){
         .inc-list, .inc-list tr, .inc-list td{ display:block !important; width:100% !important; }
       }
 
+      /* Desktop: destination + dato side om side + korrekt hero-divider spacing */
       @media only screen and (min-width:601px){
         .hotel-loc{ display:inline-block; margin:6px 6px 4px 0; }
         .hotel-dates{ display:inline-block; margin:6px 0 8px 0; }
 
+        /* HERO -> divider styres af galleriets bund-padding */
         .gallery.sp-chips-hero{ padding-bottom:18px !important; }
+
+        /* Divider -> første villatype */
         .sp-hero-divider{ margin-top:0 !important; padding-top:28px !important; }
 
-        .hotel-long .rate-list tr:first-child td{ padding-top:12px !important; }
+        /* Divider -> første villatype (fintrim) */
+        .hotel-long .rate-list tr:first-child td{
+          padding-top:12px !important;
+        }
 
+        /* >>> INDSAT: skjul mobilgalleri på desktop */
         .gallery-mobile{ display:none !important; }
       }
       
     </style>
   </head>
   <body>
-    <!-- Outlook (Windows) baggrunds-fallback -->
-    <!--[if gte mso 9]>
-    <v:background xmlns:v="urn:schemas-microsoft-com:vml" fill="t">
-      <v:fill type="tile" color="#faf7f2" src="https://maldivia.dk/wp-content/uploads/2025/10/palm-tile-512.png.jpeg"/>
-    </v:background>
-    <![endif]-->
-
     <!-- (resten af dokumentet uændret) -->
-    <!-- ← OPDATERET: yderste tabel med background-attribut -->
-    <table role="presentation" width="100%" bgcolor="#faf7f2"
-           background="https://maldivia.dk/wp-content/uploads/2025/10/palm-tile-512.png.jpeg"
-           style="background:#faf7f2 url('https://maldivia.dk/wp-content/uploads/2025/10/palm-tile-512.png.jpeg') repeat top center;">
+    <table role="presentation" width="100%" bgcolor="#faf7f2">
       <tr>
         <td align="center" style="padding:32px 16px;">
-          <table role="presentation" width="680" class="wrap" bgcolor="#ffffff" style="border:1px solid #d7cbbb; border-radius:14px; overflow:hidden;">
+          <!-- OPDATERET: wrap med wallpaper inde i boksen -->
+          <table role="presentation" width="680" class="wrap"
+                 bgcolor="#ffffff"
+                 background="https://maldivia.dk/wp-content/uploads/2025/10/palm-tile-512.png.jpeg"
+                 style="border:1px solid #d7cbbb; border-radius:14px; overflow:hidden;
+                        background:#ffffff url('https://maldivia.dk/wp-content/uploads/2025/10/palm-tile-512.png.jpeg') repeat top center;">
 
             <!-- HEADER -->
             <tr>
@@ -660,6 +699,7 @@ som I <a href="https://maldivia.dk/informationer" target="_blank" style="color:#
                   </tr>
                 </table>
 
+                <!-- Let, email-safe JS til desktop-karussel (ignoreres af mailklienter) -->
                 <script>
                   (function(){
                     if (typeof window === 'undefined') return;
@@ -675,7 +715,7 @@ som I <a href="https://maldivia.dk/informationer" target="_blank" style="color:#
 
                       function update(){
                         if (window.matchMedia('(max-width:600px)').matches){
-                          strip.style.transform = '';
+                          strip.style.transform = ''; // ingen transform i mobil-swipe
                           return;
                         }
                         strip.style.transform = 'translateX(' + (-index * 100) + '%)';
