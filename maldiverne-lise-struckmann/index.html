@@ -374,6 +374,16 @@
   /* Galleri → PDF-link */
   .gallery.sp-chips-hero{ padding-bottom:6px !important; }  /* var blevet for høj */
 
+  /* Giv fly-hero samme luft som hotellerne */
+.gallery.fly-hero{ padding-bottom:6px !important; }
+
+/* Tving korrekt linjehøjde på swipe-hint,
+   så den ikke arver line-height:0 fra <td> */
+.gallery .scroll-hint{
+  line-height:18px !important;
+  margin-top:6px !important; /* lidt mere luft så det matcher hotellerne */
+}
+
   /* PDF-linkets typografi + afstand (som før) */
   .gallery-pdf{
     margin-top:1px !important;
