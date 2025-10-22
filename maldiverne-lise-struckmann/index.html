@@ -106,7 +106,7 @@
   border-radius:12px; border:1px solid #e7e2da;
 }
 
-/* Fly HERO — skal smelte med kortet og være 280px på desktop */
+/* Fly HERO — 280px på desktop + ingen kant */
 .gallery.fly-hero{
   margin:0; border-radius:12px 12px 0 0; overflow:hidden;
 }
@@ -132,22 +132,18 @@
 
 /* ---------- MOBIL (≤600px) ---------- */
 @media only screen and (max-width:600px){
-  /* Standard-galleri bliver swipebar i bredden */
   .gallery-strip{ display:block; white-space:nowrap; overflow-x:auto; -webkit-overflow-scrolling:touch; transition:none; }
   .gallery-strip a{ display:inline-block; width:auto; margin-right:8px; flex:none; }
   .gallery-strip img{ height:180px !important; width:auto; }
   .gallery .prev, .gallery .next{ display:none !important; }
-
-  /* Vis hint + pæn linjehøjde */
   .scroll-hint{ display:block !important; margin-top:6px !important; line-height:18px !important; }
 
-  /* Fly-HERO: skal være “hero”, ikke swipe-strip-width */
+  /* Fly-HERO specifikt på mobil */
   .gallery.fly-hero{ padding-bottom:6px !important; }
   .gallery.fly-hero .gallery-strip img{
     width:100% !important; height:180px !important; border:0 !important;
     border-radius:12px 12px 0 0 !important;
   }
-  /* Indryk hint så det flugter med .flight-inner (18px) */
   .gallery.fly-hero .scroll-hint{
     padding-left:18px !important; padding-right:18px !important; text-align:left !important;
   }
@@ -340,20 +336,6 @@
 
         .gallery-desktop{ display:none !important; }
       }
-
-      /* Samme luft under fly-hero som ved hotellerne */
-.gallery.fly-hero{ padding-bottom:6px !important; }
-
-/* “Swipe for flere billeder” – korrekt linjehøjde + indryk som flight-indholdet */
-.gallery .scroll-hint{
-  line-height:18px !important;
-  margin-top:6px !important;
-}
-.gallery.fly-hero .scroll-hint{
-  padding-left:18px !important;   /* matcher .flight-inner { padding:18px } */
-  padding-right:18px !important;
-  text-align:left !important;
-}
 
 /* Mobilhøjde + behold top-radius (vigtig: INGEN radius:0) */
 .gallery.fly-hero .gallery-strip img{
