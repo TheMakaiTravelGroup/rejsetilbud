@@ -336,34 +336,37 @@
         .hotel-long .rate-list tr:first-child td{ padding-top:12px !important; }
         .gallery-mobile{ display:none !important; }
       }
-      /* ===== MOBIL-FIX (læg nederst) ===== */
-@media only screen and (max-width:600px){
-  /* 1) Hotel-hint: stop klip ved bund (overflow) + lidt luft i linjen */
-  .gallery.sp-chips-hero{ overflow:visible !important; }            /* gør at teksten ikke klippes */
-  .gallery.sp-chips-hero .scroll-hint{
-    display:block !important;
-    line-height:18px !important;
-    padding-bottom:2px !important;                                   /* sikrer baseline ikke rammer kanten */
-    margin-top:6px !important;
-  }
-      @media only screen and (max-width:600px){
-  /* Fjern højre-gutter på sidste slide, så den flugter med kanten */
-  .gallery-strip a:last-child{ margin-right:0 !important; }
-}
-  /* ===== Kun mobil (≤600px) — to præcise justeringer ===== */
+/* ===== MOBIL (≤600px) — KUN de to ønskede steder. Sæt DENNE blok HELT TIL SIDST ===== */
 @media only screen and (max-width:600px){
 
-  /* 1) Hotel: Billede → "Swipe for flere billeder" */
+  /* 1) Hotel: Billede → "Swipe for flere billeder"
+     - Giv selve galleriet lidt bund-padding (ellers bliver teksten “klemt” af overflow:hidden)
+     - Finjustér tekstens afstand/linjehøjde */
+  .hotel-long .gallery.sp-chips-hero{ padding-bottom:8px !important; }
   .hotel-long .gallery .scroll-hint{
-    margin-top:4px !important;     /* ← justér luft her (fx 6–12px) */
-    line-height:18px !important;    /* stabil teksthøjde */
+    margin-top:4px !important;
+    line-height:18px !important;
+    display:block !important;
   }
 
-  /* 2) Hotel: "Se flere billeder fra paradis her" → divider */
-  .hotel-long .gallery-pdf + .sp-hero-divider{
-    padding-top:6px !important;    /* ← justér luft her (fx 8–14px) */
-    margin-top:0 !important;        /* hold ydre margin i ro */
+  /* 2) Hotel: "Se flere billeder fra paradis her" → divider
+     Din +-selector ramte ikke, fordi der ligger en spacer-div imellem.
+     Sænk højden på den spacer på mobil, og nul stil divider-padding. */
+  /* sænk spacer lige EFTER PDF-linket (10px-varianten) */
+  .hotel-long .gallery-pdf + div[style*="height:10px"]{
+    height:6px !important; line-height:6px !important;
   }
+  /* sænk spacer lige FØR .sp-hero-divider (14px-varianten) */
+  .hotel-long .gallery-pdf + div[style*="height:14px"]{
+    height:6px !important; line-height:6px !important;
+  }
+  /* og sørg for at selve divideren ikke lægger ekstra luft oveni */
+  .hotel-long .gallery-pdf + div + .sp-hero-divider{
+    padding-top:0 !important; margin-top:0 !important;
+  }
+
+  /* (bevarer dit eksisterende fix for sidste slide, hvis det ikke allerede står sidst) */
+  .gallery-strip a:last-child{ margin-right:0 !important; }
 }
     </style>
   </head>
