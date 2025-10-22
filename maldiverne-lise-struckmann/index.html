@@ -350,6 +350,21 @@
   /* Fjern højre-gutter på sidste slide, så den flugter med kanten */
   .gallery-strip a:last-child{ margin-right:0 !important; }
 }
+  /* ===== Kun mobil (≤600px) — to præcise justeringer ===== */
+@media only screen and (max-width:600px){
+
+  /* 1) Hotel: Billede → "Swipe for flere billeder" */
+  .hotel-long .gallery .scroll-hint{
+    margin-top:8px !important;     /* ← justér luft her (fx 6–12px) */
+    line-height:18px !important;    /* stabil teksthøjde */
+  }
+
+  /* 2) Hotel: "Se flere billeder fra paradis her" → divider */
+  .hotel-long .gallery-pdf + .sp-hero-divider{
+    padding-top:10px !important;    /* ← justér luft her (fx 8–14px) */
+    margin-top:0 !important;        /* hold ydre margin i ro */
+  }
+}
     </style>
   </head>
   <body>
