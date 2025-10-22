@@ -31,11 +31,11 @@
       .flight-inner { max-width:440px; padding:18px; }
       .journey-title { font-family:'TeX Gyre Termes','Times New Roman',serif; font-size:16px; font-weight:700; text-transform:uppercase; color:#9d8665; margin:0 0 12px; }
       .chip {
-        display:inline-block;        /* desktop/tablet: piller på linje */
+        display:inline-block;
         padding:3px 10px;
         border:1px solid #d7cbbb;
         border-radius:999px;
-        background:#f9f6f0;          /* samme som datochip */
+        background:#f9f6f0;
         font-size:12px;
         line-height:18px;
         font-weight:700;
@@ -94,74 +94,65 @@
       .sp-chips-hero{ margin-top:8px !important; }  /* DATO -> HERO (desktop) */
 
       /* ------- Galleri / Karussel ------- */
-      .gallery{ position:relative; margin-top:12px; overflow:hidden; border-radius:12px; }
+      .gallery{
+        position:relative; margin-top:12px; overflow:hidden; border-radius:12px;
+      }
       .gallery-strip{
-        display:flex;
-        transition:transform 0.6s ease;
-        will-change:transform;
-        position:relative;
-        z-index:1;
+        display:flex; transition:transform 0.6s ease; will-change:transform; position:relative; z-index:1;
       }
       .gallery-strip a{ flex:0 0 100%; }
       .gallery-strip img{
-        display:block;
-        width:100%;
-        height:280px;
-        object-fit:cover;
-        border-radius:12px;
-        border:1px solid #e7e2da;
+        display:block; width:100%; height:280px; object-fit:cover;
+        border-radius:12px; border:1px solid #e7e2da;
       }
 
-      /* >>> INDSAT: desktop-hero billede skal følge kortets bredde */
-      .gallery-desktop img{
-        display:block;
-        width:100%;
-        height:auto;
-        border:1px solid #e7e2da;
-        border-radius:12px;
-      }
-
-      /* >>> INDSAT: Ens højder for FLY-HERO (matcher hotel-hero) + flush mod ramme */
-      .hero-img{
-        display:block;
-        width:100%;
+      /* Fly HERO – desktop default 280px + ingen kant */
+      .gallery.fly-hero{ margin:0; border-radius:12px 12px 0 0; overflow:hidden; }
+      .gallery.fly-hero .gallery-strip img{
+        width:100% !important;
         height:280px !important;
         object-fit:cover;
         border:0 !important;
-        border-radius:12px 12px 0 0;
+        border-radius:12px 12px 0 0 !important;
       }
+
+      /* Pile */
+      .gallery .prev, .gallery .next{
+        position:absolute; top:50%; transform:translateY(-50%);
+        display:flex; align-items:center; justify-content:center;
+        width:36px; height:36px; cursor:pointer; font-size:18px; text-align:center;
+        background:rgba(255,255,255,0.85); color:#9d8665; border:1px solid #d7cbbb;
+        border-radius:50%; box-shadow:0 2px 4px rgba(0,0,0,0.1); z-index:5;
+      }
+      .gallery .prev{ left:10px; } .gallery .next{ right:10px; }
+      .gallery .prev:hover, .gallery .next:hover{ filter:brightness(0.97); }
+      .gallery .prev:focus-visible, .gallery .next:focus-visible{ outline:2px solid #9d8665; outline-offset:2px; }
+
+      /* Hint-tekst (skjult som standard) */
+      .scroll-hint{ display:none; font-size:12px; color:#6a6a6a; margin-top:2px; text-align:left; }
+
+      /* ---------- MOBIL (≤600px) ---------- */
       @media only screen and (max-width:600px){
-        .hero-img{
+        .gallery-strip{
+          display:block; white-space:nowrap; overflow-x:auto; -webkit-overflow-scrolling:touch; transition:none;
+        }
+        .gallery-strip a{ display:inline-block; width:auto; margin-right:8px; flex:none; }
+        .gallery-strip img{ height:180px !important; width:auto; } /* almindelige gallerier */
+        .gallery .prev, .gallery .next{ display:none !important; }
+        .scroll-hint{ display:block !important; margin-top:6px !important; line-height:18px !important; }
+
+        /* Fly-hero specifikt på mobil – 180px */
+        .gallery.fly-hero{ padding-bottom:6px !important; }
+        .gallery.fly-hero .gallery-strip img{
+          width:100% !important;
           height:180px !important;
-          width:auto;
+          border:0 !important;
+          border-radius:12px 12px 0 0 !important;
+        }
+        .gallery.fly-hero .scroll-hint{
+          padding-left:18px !important; padding-right:18px !important; text-align:left !important;
         }
       }
-
-      /* Desktop: vis lokasjon/dato side om side */
-      @media only screen and (min-width:601px){
-        .hotel-loc{ margin-right:6px; display:inline-block; }
-        .hotel-dates{ display:inline-block; }
-      }
-
-.gallery .prev, .gallery .next{
-  position:absolute; top:50%; transform:translateY(-50%);
-  display:flex; align-items:center; justify-content:center;
-  width:36px; height:36px; cursor:pointer; font-size:18px; text-align:center;
-  background:rgba(255,255,255,0.85);
-  color:#9d8665; border:1px solid #d7cbbb;
-  border-radius:50%;
-  box-shadow:0 2px 4px rgba(0,0,0,0.1);
-  z-index:5;
-}
-
-.gallery .prev:hover, .gallery .next:hover { filter:brightness(0.97); }
-.gallery .prev:focus-visible, .gallery .next:focus-visible {
-  outline:2px solid #9d8665; outline-offset:2px;
-}
-      .gallery .prev{ left:10px; }
-      .gallery .next{ right:10px; }
-
-      .scroll-hint{ display:none; font-size:12px; color:#6a6a6a; margin-top:2px; text-align:left; }
 
       /* --- HERO → DIVIDER → VILLATYPE (mail-safe) --- */
       .sp-hero-divider{
@@ -235,63 +226,44 @@
       .extras-list li{ margin:0; padding:0; }
       .extras-more{ margin:8px 0 0; font-size:12px; line-height:18px; color:#6a6a6a; }
       .extras-more a{ color:#9d8665; text-decoration:underline; }
-      /* ---------- INKLUDERER – forbedret kort (GENINDSAT) ---------- */
-.includes-card{
-  border:1px solid #e7e2da; border-radius:12px; background:#f9f6f0;
-  border-collapse:separate !important; /* overstyr globalt collapse */
-  overflow:hidden;                     /* klip til afrundede hjørner */
-}
-.includes-inner{ padding:14px 18px; }
 
-.people-pill{
-  display:inline-block; padding:3px 10px;
-  border:1px solid #d7cbbb; border-radius:999px;
-  font-size:12px; line-height:16px; font-weight:700; color:#1c1c1c;
-  background:#fff; white-space:nowrap;
-}
-.people-pill:before{
-  content:""; display:inline-block; width:6px; height:6px; margin-right:6px;
-  border-radius:999px; background:#9d8665; vertical-align:middle;
-}
+      /* ---------- INKLUDERER – forbedret kort ---------- */
+      .includes-card{
+        border:1px solid #e7e2da; border-radius:12px; background:#f9f6f0;
+        border-collapse:separate !important;
+        overflow:hidden;
+      }
+      .includes-inner{ padding:14px 18px; }
 
-.inc-list{ width:100%; margin-top:8px; }
-.inc-list td{ width:50%; vertical-align:top; }
+      .people-pill{
+        display:inline-block; padding:3px 10px;
+        border:1px solid #d7cbbb; border-radius:999px;
+        font-size:12px; line-height:16px; font-weight:700; color:#1c1c1c;
+        background:#fff; white-space:nowrap;
+      }
+      .people-pill:before{
+        content:""; display:inline-block; width:6px; height:6px; margin-right:6px;
+        border-radius:999px; background:#9d8665; vertical-align:middle;
+      }
 
-.inc-item{
-  font-family:'TeX Gyre Termes','Times New Roman',serif;
-  font-size:14px; line-height:22px; color:#1c1c1c; padding:3px 0;
-}
-.inc-item .tick{ font-weight:700; color:#9d8665; margin-right:8px; }
+      .inc-list{ width:100%; margin-top:8px; }
+      .inc-list td{ width:50%; vertical-align:top; }
+
+      .inc-item{
+        font-family:'TeX Gyre Termes','Times New Roman',serif;
+        font-size:14px; line-height:22px; color:#1c1c1c; padding:3px 0;
+      }
+      .inc-item .tick{ font-weight:700; color:#9d8665; margin-right:8px; }
 
       /* ---------------------------
          MOBIL (≤600px)
          --------------------------- */
       @media only screen and (max-width:600px){
 
-        .gallery-strip{
-          display:block;
-          white-space:nowrap;
-          overflow-x:auto;
-          -webkit-overflow-scrolling:touch;
-          transition:none;
-        }
-        .gallery-strip a{
-          display:inline-block;
-          width:auto;
-          margin-right:8px;
-          flex:none;
-        }
-        .gallery-strip img{ height:180px !important; width:auto; }
-        .gallery .prev, .gallery .next{ display:none !important; }
-        .scroll-hint{ display:block !important; margin-top:2px !important; }
-
         .sp-gap-chips{ margin-top:6px !important; }
         .sp-chips-hero{ margin-top:12px !important; }
 
-        .sp-hero-divider{
-          margin-top:12px !important;
-          padding-top:8px !important;
-        }
+        .sp-hero-divider{ margin-top:12px !important; padding-top:8px !important; }
 
         .chip{ display:block !important; }
 
@@ -360,36 +332,62 @@
       @media only screen and (min-width:601px){
         .hotel-loc{ display:inline-block; margin:6px 6px 4px 0; }
         .hotel-dates{ display:inline-block; margin:6px 0 8px 0; }
-
-        /* (andre desktop-regler beholdt) */
-        .sp-hero-divider{ margin-top:0 !important; } /* padding-top styres inline nu */
+        .sp-hero-divider{ margin-top:0 !important; }
         .hotel-long .rate-list tr:first-child td{ padding-top:12px !important; }
         .gallery-mobile{ display:none !important; }
       }
-
-      /* (FJERNET: tidligere .gallery-pdf spacing-regler – nu styres det inline) */
-      /* =========================================
-/* ===== MOBILE FIX (≤600px) — genskab stram spacing ===== */
+/* ===== MOBIL (≤600px) — KUN de to ønskede steder. Sæt DENNE blok HELT TIL SIDST ===== */
 @media only screen and (max-width:600px){
-  /* Galleri → PDF-link */
-  .gallery.sp-chips-hero{ padding-bottom:6px !important; }  /* var blevet for høj */
 
-  /* PDF-linkets typografi + afstand (som før) */
-  .gallery-pdf{
-    margin-top:1px !important;
-    font-size:12px !important;
-    line-height:0px !important;
-    color:#6a6a6a !important;
-  }
-  .gallery-pdf a{
-    color:#9d8665 !important;
-    text-decoration:underline !important;
-    font-size:12px !important;
-    line-height:1px !important;
+  /* 1) Hotel: Billede → "Swipe for flere billeder"
+     - Giv selve galleriet lidt bund-padding (ellers bliver teksten “klemt” af overflow:hidden)
+     - Finjustér tekstens afstand/linjehøjde */
+  .hotel-long .gallery.sp-chips-hero{ padding-bottom:8px !important; }
+  .hotel-long .gallery .scroll-hint{
+    margin-top:4px !important;
+    line-height:18px !important;
+    display:block !important;
   }
 
-  /* PDF-link → divider */
-  .gallery-pdf + .sp-hero-divider{ padding-top:4px !important; }
+  /* 2) Hotel: "Se flere billeder fra paradis her" → divider
+     Din +-selector ramte ikke, fordi der ligger en spacer-div imellem.
+     Sænk højden på den spacer på mobil, og nul stil divider-padding. */
+  /* sænk spacer lige EFTER PDF-linket (10px-varianten) */
+  .hotel-long .gallery-pdf + div[style*="height:10px"]{
+    height:6px !important; line-height:6px !important;
+  }
+  /* sænk spacer lige FØR .sp-hero-divider (14px-varianten) */
+  .hotel-long .gallery-pdf + div[style*="height:14px"]{
+    height:6px !important; line-height:6px !important;
+  }
+  /* og sørg for at selve divideren ikke lægger ekstra luft oveni */
+  .hotel-long .gallery-pdf + div + .sp-hero-divider{
+    padding-top:0 !important; margin-top:0 !important;
+  }
+
+  /* (bevarer dit eksisterende fix for sidste slide, hvis det ikke allerede står sidst) */
+  .gallery-strip a:last-child{ margin-right:0 !important; }
+}
+      /* MOBIL (≤600px) – læg dette SIDST */
+@media only screen and (max-width:600px){
+  .hotel-long .gallery.sp-chips-hero{ padding-bottom:4px !important; }
+  .hotel-long .gallery .scroll-hint{ margin-top:2px !important; line-height:14px !important; }
+
+  /* Giv PDF-linket en bund-margin og lad spacere/divider være */
+  .hotel-long .gallery-pdf{ margin-bottom:10px !important; }
+}
+      /* MOBIL (≤600px) — Divider ned til første villatype (KUN i hoteller) */
+@media only screen and (max-width:600px){
+  /* Reducér/øge luft i selve divideren efter PDF’en */
+  .hotel-long .gallery-pdf + div + .sp-hero-divider{
+    padding-top: 6px !important;   /* ← justér fx 4–12px */
+    margin-top: 0 !important;
+  }
+
+  /* Finjustér top-padding på første række i rate-list */
+  .hotel-long .rate-list tr:first-child{
+    padding-top: 6px !important;   /* ← justér fx 4–12px */
+  }
 }
     </style>
   </head>
@@ -427,8 +425,48 @@
             <!-- HERO -->
             <tr>
               <td style="padding:36px 40px 0;" class="px">
-                <div class="heading" style="font-size:28px; font-weight:700;">DIT EVENTYR TIL MALDIVERNE</div>
+                <div class="heading" style="font-size:28px;font-weight:700;line-height:1.15;">
+  <span class="gold" style="color:#9d8665;">DIN PAKKEREJSE TIL</span><br>
+  <span class="gold" style="color:#9d8665;">MALDIVERNE</span>
+</div>
                 <div class="text" style="margin-top:6px; color:#6a6a6a;">07. februar – 15. februar 2026 &nbsp;•&nbsp; 7 nætter / 9 dage</div>
+              </td>
+            </tr>
+
+                        <!-- INKLUDERER -->
+            <tr><td style="padding:10px 40px 10px;" class="px"><div class="section-title">Din rejse inkluderer</div></td></tr>
+            <tr>
+              <td style="padding:0 40px 4px;" class="px">
+                <table role="presentation" width="100%" class="includes-card" style="border-collapse:separate;">
+                  <tr>
+                    <td class="includes-inner">
+                      <table role="presentation" width="100%">
+                        <tr>
+                          <td align="left" style="padding-bottom:6px;">
+                            <span class="people-pill">Tilbuddet gælder for: 5 voksne + 4 teenagere</span>
+                          </td>
+                        </tr>
+                      </table>
+
+                      <table role="presentation" class="inc-list">
+                        <tr>
+                          <td>
+                            <div class="inc-item"><span class="tick">✓</span>Fly til/fra Malé (T/R - Economy Class)</div>
+                            <div class="inc-item"><span class="tick">✓</span>Vandfly-transfer til/fra resortet</div>
+                            <div class="inc-item"><span class="tick">✓</span>7 nætter på det valgte resort</div>
+                          </td>
+                          <td>
+                            <div class="inc-item"><span class="tick">✓</span>All-Inclusive (Dine Around)</div>
+                            <div class="inc-item"><span class="tick">✓</span>Green Tax og alle skatter/afgifter</div>
+                          </td>
+                        </tr>
+                      </table>
+<div class="muted" style="margin-top:6px;">
+  Maldivia er medlem af Rejsegarantifonden (Reg. 2688).
+</div>
+                    </td>
+                  </tr>
+                </table>
               </td>
             </tr>
             
@@ -679,13 +717,13 @@
       <div class="leg">
         <div class="chip">HAM → FRA</div>
         <div class="times">15:00 – 16:15</div>
-        <span class="flight-meta">Lufthansa • LH23</span>
+        <span class="flight-meta">Lufthansa • LH23 • Economy Class</span>
       </div>
       <div class="layover"><span>Mellemlanding i Frankfurt • 2 t 55 m</span></div>
       <div class="leg">
         <div class="chip">FRA → MLE</div>
         <div class="times">19:10 – 08:55<sup class="plus1">+1</sup></div>
-        <span class="flight-meta">Discover Airlines • LH4312 (4Y)</span>
+        <span class="flight-meta">Discover Airlines • LH4312 (4Y) • Economy Class</span>
       </div>
       <div class="journey-foot">Total rejsetid • 13 t 55 m</div>
 
@@ -696,13 +734,13 @@
       <div class="leg">
         <div class="chip">MLE → FRA</div>
         <div class="times">10:45 – 17:40</div>
-        <span class="flight-meta">Discover Airlines • LH4313 (4Y)</span>
+        <span class="flight-meta">Discover Airlines • LH4313 (4Y) • Economy Class</span>
       </div>
       <div class="layover"><span>Mellemlanding i Frankfurt • 1 t 20 m</span></div>
       <div class="leg">
         <div class="chip">FRA → HAM</div>
         <div class="times">19:00 – 20:05</div>
-        <span class="flight-meta">Lufthansa • LH30</span>
+        <span class="flight-meta">Lufthansa • LH30 • Economy Class</span>
       </div>
       <div class="journey-foot">Total rejsetid • 13 t 20 m</div>
 
@@ -727,41 +765,6 @@
     <!-- /card -->
   </td>
 </tr>
-
-            <!-- INKLUDERER -->
-            <tr><td style="padding:10px 40px 10px;" class="px"><div class="section-title">Din rejse inkluderer</div></td></tr>
-            <tr>
-              <td style="padding:0 40px 24px;" class="px">
-                <table role="presentation" width="100%" class="includes-card" style="border-collapse:separate;">
-                  <tr>
-                    <td class="includes-inner">
-                      <table role="presentation" width="100%">
-                        <tr>
-                          <td align="left" style="padding-bottom:6px;">
-                            <span class="people-pill">Tilbuddet gælder for: 5 voksne / 4 teenagere</span>
-                          </td>
-                        </tr>
-                      </table>
-
-                      <table role="presentation" class="inc-list">
-                        <tr>
-                          <td>
-                            <div class="inc-item"><span class="tick">✓</span>Fly ml. Hamborg-Malé (T/R - Economy)</div>
-                            <div class="inc-item"><span class="tick">✓</span>Vandfly-transfer til/fra resortet</div>
-                            <div class="inc-item"><span class="tick">✓</span>7 nætter på det valgte resort</div>
-                          </td>
-                          <td>
-                            <div class="inc-item"><span class="tick">✓</span>Meal Plan som angivet ved hvert resort</div>
-                            <div class="inc-item"><span class="tick">✓</span>Green Tax og alle skatter/afgifter</div>
-                          </td>
-                        </tr>
-                      </table>
-
-                    </td>
-                  </tr>
-                </table>
-              </td>
-            </tr>
 
             <!-- VILKÅR-BOKS – hvid m. ramme -->
 <tr>
