@@ -423,6 +423,20 @@
     padding-right:18px !important;
     text-align:left !important;
   }
+        /* Desktop (default) */
+.gallery.fly-hero .gallery-strip img{
+  width:100% !important;
+  height:280px !important;
+  object-fit:cover;
+  border:0 !important;
+  border-radius:12px 12px 0 0 !important;
+}
+
+/* Mobil ≤600px */
+@media only screen and (max-width:600px){
+  .gallery.fly-hero .gallery-strip img{
+    height:180px !important;      /* kun mobil */
+  }
         }
     </style>
   </head>
