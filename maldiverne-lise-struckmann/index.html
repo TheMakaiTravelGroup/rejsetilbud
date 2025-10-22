@@ -376,6 +376,19 @@
   /* Giv PDF-linket en bund-margin og lad spacere/divider være */
   .hotel-long .gallery-pdf{ margin-bottom:10px !important; }
 }
+      /* MOBIL (≤600px) — Divider ned til første villatype (KUN i hoteller) */
+@media only screen and (max-width:600px){
+  /* Reducér/øge luft i selve divideren efter PDF’en */
+  .hotel-long .gallery-pdf + div + .sp-hero-divider{
+    padding-top: 6px !important;   /* ← justér fx 4–12px */
+    margin-top: 0 !important;
+  }
+
+  /* Finjustér top-padding på første række i rate-list */
+  .hotel-long .rate-list tr:first-child{
+    padding-top: 6px !important;   /* ← justér fx 4–12px */
+  }
+}
     </style>
   </head>
   <body>
