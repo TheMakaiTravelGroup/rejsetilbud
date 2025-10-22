@@ -336,6 +336,16 @@
         .hotel-long .rate-list tr:first-child td{ padding-top:12px !important; }
         .gallery-mobile{ display:none !important; }
       }
+      /* ===== MOBIL-FIX (læg nederst) ===== */
+@media only screen and (max-width:600px){
+  /* 1) Hotel-hint: stop klip ved bund (overflow) + lidt luft i linjen */
+  .gallery.sp-chips-hero{ overflow:visible !important; }            /* gør at teksten ikke klippes */
+  .gallery.sp-chips-hero .scroll-hint{
+    display:block !important;
+    line-height:18px !important;
+    padding-bottom:2px !important;                                   /* sikrer baseline ikke rammer kanten */
+    margin-top:6px !important;
+  }
       @media only screen and (max-width:600px){
   /* Fjern højre-gutter på sidste slide, så den flugter med kanten */
   .gallery-strip a:last-child{ margin-right:0 !important; }
