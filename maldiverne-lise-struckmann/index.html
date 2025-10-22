@@ -31,11 +31,11 @@
       .flight-inner { max-width:440px; padding:18px; }
       .journey-title { font-family:'TeX Gyre Termes','Times New Roman',serif; font-size:16px; font-weight:700; text-transform:uppercase; color:#9d8665; margin:0 0 12px; }
       .chip {
-        display:inline-block;        /* desktop/tablet: piller på linje */
+        display:inline-block;
         padding:3px 10px;
         border:1px solid #d7cbbb;
         border-radius:999px;
-        background:#f9f6f0;          /* samme som datochip */
+        background:#f9f6f0;
         font-size:12px;
         line-height:18px;
         font-weight:700;
@@ -93,59 +93,66 @@
       .sp-gap-chips{ margin-top:6px !important; }   /* DESTINATION -> DATO (desktop) */
       .sp-chips-hero{ margin-top:8px !important; }  /* DATO -> HERO (desktop) */
 
-/* ------- Galleri / Karussel ------- */
-.gallery{
-  position:relative; margin-top:12px; overflow:hidden; border-radius:12px;
-}
-.gallery-strip{
-  display:flex; transition:transform 0.6s ease; will-change:transform; position:relative; z-index:1;
-}
-.gallery-strip a{ flex:0 0 100%; }
-.gallery-strip img{
-  display:block; width:100%; height:280px; object-fit:cover;
-  border-radius:12px; border:1px solid #e7e2da;
-}
+      /* ------- Galleri / Karussel ------- */
+      .gallery{
+        position:relative; margin-top:12px; overflow:hidden; border-radius:12px;
+      }
+      .gallery-strip{
+        display:flex; transition:transform 0.6s ease; will-change:transform; position:relative; z-index:1;
+      }
+      .gallery-strip a{ flex:0 0 100%; }
+      .gallery-strip img{
+        display:block; width:100%; height:280px; object-fit:cover;
+        border-radius:12px; border:1px solid #e7e2da;
+      }
 
-/* Fly HERO — 280px på desktop + ingen kant */
-.gallery.fly-hero{
-  margin:0; border-radius:12px 12px 0 0; overflow:hidden;
-}
+      /* Fly HERO – desktop default 280px + ingen kant */
+      .gallery.fly-hero{ margin:0; border-radius:12px 12px 0 0; overflow:hidden; }
+      .gallery.fly-hero .gallery-strip img{
+        width:100% !important;
+        height:280px !important;
+        object-fit:cover;
+        border:0 !important;
+        border-radius:12px 12px 0 0 !important;
+      }
 
-/* Pile */
-.gallery .prev, .gallery .next{
-  position:absolute; top:50%; transform:translateY(-50%);
-  display:flex; align-items:center; justify-content:center;
-  width:36px; height:36px; cursor:pointer; font-size:18px; text-align:center;
-  background:rgba(255,255,255,0.85); color:#9d8665; border:1px solid #d7cbbb;
-  border-radius:50%; box-shadow:0 2px 4px rgba(0,0,0,0.1); z-index:5;
-}
-.gallery .prev{ left:10px; } .gallery .next{ right:10px; }
-.gallery .prev:hover, .gallery .next:hover{ filter:brightness(0.97); }
-.gallery .prev:focus-visible, .gallery .next:focus-visible{ outline:2px solid #9d8665; outline-offset:2px; }
+      /* Pile */
+      .gallery .prev, .gallery .next{
+        position:absolute; top:50%; transform:translateY(-50%);
+        display:flex; align-items:center; justify-content:center;
+        width:36px; height:36px; cursor:pointer; font-size:18px; text-align:center;
+        background:rgba(255,255,255,0.85); color:#9d8665; border:1px solid #d7cbbb;
+        border-radius:50%; box-shadow:0 2px 4px rgba(0,0,0,0.1); z-index:5;
+      }
+      .gallery .prev{ left:10px; } .gallery .next{ right:10px; }
+      .gallery .prev:hover, .gallery .next:hover{ filter:brightness(0.97); }
+      .gallery .prev:focus-visible, .gallery .next:focus-visible{ outline:2px solid #9d8665; outline-offset:2px; }
 
-/* Hint-tekst (skjult som standard) */
-.scroll-hint{ display:none; font-size:12px; color:#6a6a6a; margin-top:2px; text-align:left; }
+      /* Hint-tekst (skjult som standard) */
+      .scroll-hint{ display:none; font-size:12px; color:#6a6a6a; margin-top:2px; text-align:left; }
 
-/* Mobil ≤600px — 180px */
-@media only screen and (max-width:600px){
-  .gallery-strip img{ height:180px !important; width:auto; } /* almindelige gallerier */
-  .gallery .prev, .gallery .next{ display:none !important; }
-  .scroll-hint{ display:block !important; margin-top:6px !important; line-height:18px !important; }
+      /* ---------- MOBIL (≤600px) ---------- */
+      @media only screen and (max-width:600px){
+        .gallery-strip{
+          display:block; white-space:nowrap; overflow-x:auto; -webkit-overflow-scrolling:touch; transition:none;
+        }
+        .gallery-strip a{ display:inline-block; width:auto; margin-right:8px; flex:none; }
+        .gallery-strip img{ height:180px !important; width:auto; } /* almindelige gallerier */
+        .gallery .prev, .gallery .next{ display:none !important; }
+        .scroll-hint{ display:block !important; margin-top:6px !important; line-height:18px !important; }
 
-  /* Fly-hero specifikt */
-  .gallery.fly-hero{ padding-bottom:6px !important; }
-  .gallery.fly-hero .gallery-strip img{
-    width:100% !important;
-    height:180px !important;
-    border:0 !important;
-    border-radius:12px 12px 0 0 !important;
-  }
-  .gallery.fly-hero .scroll-hint{
-    padding-left:18px !important;
-    padding-right:18px !important;
-    text-align:left !important;
-  }
-}
+        /* Fly-hero specifikt på mobil – 180px */
+        .gallery.fly-hero{ padding-bottom:6px !important; }
+        .gallery.fly-hero .gallery-strip img{
+          width:100% !important;
+          height:180px !important;
+          border:0 !important;
+          border-radius:12px 12px 0 0 !important;
+        }
+        .gallery.fly-hero .scroll-hint{
+          padding-left:18px !important; padding-right:18px !important; text-align:left !important;
+        }
+      }
 
       /* --- HERO → DIVIDER → VILLATYPE (mail-safe) --- */
       .sp-hero-divider{
@@ -219,63 +226,44 @@
       .extras-list li{ margin:0; padding:0; }
       .extras-more{ margin:8px 0 0; font-size:12px; line-height:18px; color:#6a6a6a; }
       .extras-more a{ color:#9d8665; text-decoration:underline; }
-      /* ---------- INKLUDERER – forbedret kort (GENINDSAT) ---------- */
-.includes-card{
-  border:1px solid #e7e2da; border-radius:12px; background:#f9f6f0;
-  border-collapse:separate !important; /* overstyr globalt collapse */
-  overflow:hidden;                     /* klip til afrundede hjørner */
-}
-.includes-inner{ padding:14px 18px; }
 
-.people-pill{
-  display:inline-block; padding:3px 10px;
-  border:1px solid #d7cbbb; border-radius:999px;
-  font-size:12px; line-height:16px; font-weight:700; color:#1c1c1c;
-  background:#fff; white-space:nowrap;
-}
-.people-pill:before{
-  content:""; display:inline-block; width:6px; height:6px; margin-right:6px;
-  border-radius:999px; background:#9d8665; vertical-align:middle;
-}
+      /* ---------- INKLUDERER – forbedret kort ---------- */
+      .includes-card{
+        border:1px solid #e7e2da; border-radius:12px; background:#f9f6f0;
+        border-collapse:separate !important;
+        overflow:hidden;
+      }
+      .includes-inner{ padding:14px 18px; }
 
-.inc-list{ width:100%; margin-top:8px; }
-.inc-list td{ width:50%; vertical-align:top; }
+      .people-pill{
+        display:inline-block; padding:3px 10px;
+        border:1px solid #d7cbbb; border-radius:999px;
+        font-size:12px; line-height:16px; font-weight:700; color:#1c1c1c;
+        background:#fff; white-space:nowrap;
+      }
+      .people-pill:before{
+        content:""; display:inline-block; width:6px; height:6px; margin-right:6px;
+        border-radius:999px; background:#9d8665; vertical-align:middle;
+      }
 
-.inc-item{
-  font-family:'TeX Gyre Termes','Times New Roman',serif;
-  font-size:14px; line-height:22px; color:#1c1c1c; padding:3px 0;
-}
-.inc-item .tick{ font-weight:700; color:#9d8665; margin-right:8px; }
+      .inc-list{ width:100%; margin-top:8px; }
+      .inc-list td{ width:50%; vertical-align:top; }
+
+      .inc-item{
+        font-family:'TeX Gyre Termes','Times New Roman',serif;
+        font-size:14px; line-height:22px; color:#1c1c1c; padding:3px 0;
+      }
+      .inc-item .tick{ font-weight:700; color:#9d8665; margin-right:8px; }
 
       /* ---------------------------
          MOBIL (≤600px)
          --------------------------- */
       @media only screen and (max-width:600px){
 
-        .gallery-strip{
-          display:block;
-          white-space:nowrap;
-          overflow-x:auto;
-          -webkit-overflow-scrolling:touch;
-          transition:none;
-        }
-        .gallery-strip a{
-          display:inline-block;
-          width:auto;
-          margin-right:8px;
-          flex:none;
-        }
-        .gallery-strip img{ height:180px !important; width:auto; }
-        .gallery .prev, .gallery .next{ display:none !important; }
-        .scroll-hint{ display:block !important; margin-top:2px !important; }
-
         .sp-gap-chips{ margin-top:6px !important; }
         .sp-chips-hero{ margin-top:12px !important; }
 
-        .sp-hero-divider{
-          margin-top:12px !important;
-          padding-top:8px !important;
-        }
+        .sp-hero-divider{ margin-top:12px !important; padding-top:8px !important; }
 
         .chip{ display:block !important; }
 
@@ -335,12 +323,6 @@
         .gallery-desktop{ display:none !important; }
       }
 
-/* Mobilhøjde + behold top-radius (vigtig: INGEN radius:0) */
-.gallery.fly-hero .gallery-strip img{
-  height:180px !important;
-  border-radius:12px 12px 0 0 !important;
-}
-
       /* Mobil: INKLUDERER-liste i én kolonne */
       @media only screen and (max-width:600px){
         .inc-list, .inc-list tr, .inc-list td{ display:block !important; width:100% !important; }
@@ -350,92 +332,10 @@
       @media only screen and (min-width:601px){
         .hotel-loc{ display:inline-block; margin:6px 6px 4px 0; }
         .hotel-dates{ display:inline-block; margin:6px 0 8px 0; }
-
-        /* (andre desktop-regler beholdt) */
-        .sp-hero-divider{ margin-top:0 !important; } /* padding-top styres inline nu */
+        .sp-hero-divider{ margin-top:0 !important; }
         .hotel-long .rate-list tr:first-child td{ padding-top:12px !important; }
         .gallery-mobile{ display:none !important; }
       }
-
-      /* (FJERNET: tidligere .gallery-pdf spacing-regler – nu styres det inline) */
-      /* =========================================
-/* ===== MOBILE FIX (≤600px) — genskab stram spacing ===== */
-@media only screen and (max-width:600px){
-  /* Galleri → PDF-link */
-  .gallery.sp-chips-hero{ padding-bottom:6px !important; }  /* var blevet for høj */
-
-  /* Giv fly-hero samme luft som hotellerne */
-.gallery.fly-hero{ padding-bottom:6px !important; }
-
-/* Tving korrekt linjehøjde på swipe-hint,
-   så den ikke arver line-height:0 fra <td> */
-.gallery .scroll-hint{
-  line-height:18px !important;
-  margin-top:6px !important; /* lidt mere luft så det matcher hotellerne */
-}
-
-  /* PDF-linkets typografi + afstand (som før) */
-  .gallery-pdf{
-    margin-top:1px !important;
-    font-size:12px !important;
-    line-height:0px !important;
-    color:#6a6a6a !important;
-  }
-  .gallery-pdf a{
-    color:#9d8665 !important;
-    text-decoration:underline !important;
-    font-size:12px !important;
-    line-height:1px !important;
-  }
-  /* FLYREJSE: gør galleriet til "hero" med samme højde/afrunding som hero-img */
-.gallery.fly-hero .gallery-strip img{
-  height:280px !important;
-  width:100%;
-  object-fit:cover;
-  border:0 !important;
-  border-radius:12px 12px 0 0; /* top-only, så det smelter ind i kortet */
-}
-@media only screen and (max-width:600px){
-  .gallery.fly-hero .gallery-strip img{ height:180px !important; border-radius:0 !important; }
-}
-  /* PDF-link → divider */
-  .gallery-pdf + .sp-hero-divider{ padding-top:4px !important; }
-}
-      @media only screen and (max-width:600px){
-  /* mobilhøjde */
-  .gallery.fly-hero .gallery-strip img{
-    height:180px !important;
-    border-radius:12px 12px 0 0 !important;  /* ikke 0 */
-  }
-
-  /* samme luft som hotellerne */
-  .gallery.fly-hero{ padding-bottom:6px !important; }
-
-  /* indryk “Swipe for flere billeder” så den flugter med flight-indholdet (flight-inner har 18px) */
-  .gallery .scroll-hint{
-    line-height:18px !important;
-    margin-top:6px !important;
-  }
-  .gallery.fly-hero .scroll-hint{
-    padding-left:18px !important;
-    padding-right:18px !important;
-    text-align:left !important;
-  }
-/* Desktop (default) — 280px */
-.gallery.fly-hero .gallery-strip img{
-  width:100% !important;
-  height:280px !important;
-  object-fit:cover;
-  border:0 !important;
-  border-radius:12px 12px 0 0 !important;
-}
-
-/* Mobil ≤600px */
-@media only screen and (max-width:600px){
-  .gallery.fly-hero .gallery-strip img{
-    height:180px !important;      /* kun mobil */
-  }
-        }
     </style>
   </head>
   <body>
