@@ -112,17 +112,18 @@
         border:1px solid #e7e2da;
       }
       
-      /* FLY HERO — flush med kortets top og uden 1px kant */
-.gallery.fly-hero{ 
-  margin:0; 
-  border-radius:12px 12px 0 0; 
-  overflow:hidden; 
+/* FLY HERO — fuld bredde, ingen 1px kant, 280px desktop-højde */
+.gallery.fly-hero{
+  margin:0;
+  border-radius:12px 12px 0 0;
+  overflow:hidden;
 }
 .gallery.fly-hero .gallery-strip img{
-  border:0 !important;                     /* fjerner den “guldramme” du ser */
-  border-radius:12px 12px 0 0 !important;  /* matcher kortets top-radius */
   width:100%;
+  height:280px !important;          /* tving 280px på desktop */
   object-fit:cover;
+  border:0 !important;               /* fjerner “guldrammen” */
+  border-radius:12px 12px 0 0 !important;
 }
       
       /* >>> INDSAT: desktop-hero billede skal følge kortets bredde */
@@ -444,6 +445,26 @@
   /* PDF-link → divider */
   .gallery-pdf + .sp-hero-divider{ padding-top:4px !important; }
 }
+      @media only screen and (max-width:600px){
+  /* mobilhøjde */
+  .gallery.fly-hero .gallery-strip img{
+    height:180px !important;
+    border-radius:12px 12px 0 0 !important;  /* ikke 0 */
+  }
+
+  /* samme luft som hotellerne */
+  .gallery.fly-hero{ padding-bottom:6px !important; }
+
+  /* indryk “Swipe for flere billeder” så den flugter med flight-indholdet (flight-inner har 18px) */
+  .gallery .scroll-hint{
+    line-height:18px !important;
+    margin-top:6px !important;
+  }
+  .gallery.fly-hero .scroll-hint{
+    padding-left:18px !important;
+    padding-right:18px !important;
+    text-align:left !important;
+  }
     </style>
   </head>
   <body>
