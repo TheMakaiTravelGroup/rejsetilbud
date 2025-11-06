@@ -1,0 +1,939 @@
+<!doctype html>
+<html lang="da" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Rejsetilbud til eventyrlige Maldiverne | Maldivia - Beyond Excellence</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&display=swap');
+      body, table, td, a { -webkit-text-size-adjust:100%; -ms-text-size-adjust:100%; }
+      body { margin:0; padding:0; background:#faf7f2; }
+      table { border-collapse:collapse; }
+      a { color:#1c1c1c; text-decoration:none; }
+
+      .heading { font-family:'Playfair Display', Georgia, serif; color:#1c1c1c; }
+      .text { font-family:'TeX Gyre Termes','Times New Roman',serif; color:#1c1c1c; font-size:15px; line-height:24px; }
+      .gold { color:#9d8665; }
+
+      .card { border:1px solid #e7e2da; border-radius:12px; background:#fff; }
+      .col { vertical-align:top; }
+      .muted { color:#6a6a6a; font-size:12px; line-height:18px; }
+
+      /* Seksjonstitler (klassisk linje over) */
+      .section-title{
+        font-family:'TeX Gyre Termes','Times New Roman',serif;
+        font-size:18px; font-weight:700; text-transform:uppercase; color:#9d8665;
+        position:relative; margin:16px 0 16px; padding-top:16px;
+      }
+      .section-title:before{ content:""; position:absolute; top:0; left:0; width:56px; height:2px; background:#9d8665; }
+
+      /* Fly */
+      .flight-inner { max-width:440px; padding:18px; }
+      .journey-title { font-family:'TeX Gyre Termes','Times New Roman',serif; font-size:16px; font-weight:700; text-transform:uppercase; color:#9d8665; margin:0 0 12px; }
+      .chip {
+        display:inline-block;
+        padding:3px 10px;
+        border:1px solid #d7cbbb;
+        border-radius:999px;
+        background:#f9f6f0;
+        font-size:12px;
+        line-height:18px;
+        font-weight:700;
+        color:#1c1c1c;
+        margin:0 0 6px 0;
+      }
+      .leg { margin:0 0 14px 0; }
+      .times { display:block; font-weight:700; font-size:15px; line-height:1.4; font-variant-numeric: tabular-nums; margin:0; }
+      .flight-meta { display:block; font-family:'TeX Gyre Termes','Times New Roman',serif; font-size:13px; line-height:20px; color:#6a6a6a; margin-top:2px; }
+
+      /* Layover */
+      .layover { position:relative; margin:0 0 14px 0; }
+      .leg + .layover { margin-top:0; }
+      .layover:before { content:""; position:absolute; left:0; right:0; top:50%; border-top:1px dashed #e9e2d6; }
+      .layover span { position:relative; background:#fff; padding:0 10px 0 0; font-size:12px; color:#6a6a6a; white-space:nowrap; }
+
+      .journey-sep { margin:14px 0; border-top:1px solid #f0ece4; }
+      .journey-foot { font-size:12px; color:#6a6a6a; margin-top:6px; }
+      .plus1 { font-size:10px; vertical-align:super; color:#9d8665; font-weight:700; margin-left:2px; }
+
+      /* Global “tight” rader */
+      .tight td { padding:6px 0; border-top:1px solid #f0ece4; }
+
+      /* Hoteller — LITT MER LUFT */
+      .hotel-long { padding:18px 20px; }
+      .hotel-cap { font-family:'TeX Gyre Termes','Times New Roman',serif; font-size:16px; font-weight:700; color:#9d8665; letter-spacing:.2px; }
+
+      /* --------- DESTINATIONSCHIP + DATOCHIP --------- */
+      .hotel-loc{ margin:6px 0 4px; }
+      .hotel-dates{ margin:0 0 8px; }
+      .loc{
+        display:inline-block; padding:3px 10px;
+        border:1px solid #e7e2da; border-radius:999px;
+        font-size:12px; line-height:16px; font-weight:700;
+        color:#1c1c1c; background:#fff; white-space:nowrap;
+      }
+      .loc:before{
+        content:""; display:inline-block; width:6px; height:6px;
+        border-radius:999px; background:#9d8665;
+        margin-right:6px; vertical-align:middle;
+      }
+      .stay{
+        display:inline-block; padding:3px 10px;
+        border:1px solid #d7cbbb; border-radius:999px;
+        font-size:12px; line-height:16px; font-weight:700;
+        color:#1c1c1c; background:#f9f6f0; white-space:nowrap;
+      }
+      .stay:before{
+        content:""; display:inline-block; width:6px; height:6px;
+        border-radius:999px; background:#9d8665;
+        margin-right:6px; vertical-align:middle;
+      }
+      
+      /* Easy spacing knobs for chips */
+      .sp-gap-chips{ margin-top:6px !important; }   /* DESTINATION -> DATO (desktop) */
+      .sp-chips-hero{ margin-top:8px !important; }  /* DATO -> HERO (desktop) */
+
+      /* ------- Galleri / Karussel ------- */
+      .gallery{
+        position:relative; margin-top:12px; overflow:hidden; border-radius:12px;
+      }
+      .gallery-strip{
+        display:flex; transition:transform 0.6s ease; will-change:transform; position:relative; z-index:1;
+      }
+      .gallery-strip a{ flex:0 0 100%; }
+      .gallery-strip img{
+        display:block; width:100%; height:280px; object-fit:cover;
+        border-radius:12px; border:1px solid #e7e2da;
+      }
+
+      /* Fly HERO – desktop default 280px + ingen kant */
+      .gallery.fly-hero{ margin:0; border-radius:12px 12px 0 0; overflow:hidden; }
+      .gallery.fly-hero .gallery-strip img{
+        width:100% !important;
+        height:280px !important;
+        object-fit:cover;
+        border:0 !important;
+        border-radius:12px 12px 0 0 !important;
+      }
+
+      /* Pile */
+      .gallery .prev, .gallery .next{
+        position:absolute; top:50%; transform:translateY(-50%);
+        display:flex; align-items:center; justify-content:center;
+        width:36px; height:36px; cursor:pointer; font-size:18px; text-align:center;
+        background:rgba(255,255,255,0.85); color:#9d8665; border:1px solid #d7cbbb;
+        border-radius:50%; box-shadow:0 2px 4px rgba(0,0,0,0.1); z-index:5;
+      }
+      .gallery .prev{ left:10px; } .gallery .next{ right:10px; }
+      .gallery .prev:hover, .gallery .next:hover{ filter:brightness(0.97); }
+      .gallery .prev:focus-visible, .gallery .next:focus-visible{ outline:2px solid #9d8665; outline-offset:2px; }
+
+      /* Hint-tekst (skjult som standard) */
+      .scroll-hint{ display:none; font-size:12px; color:#6a6a6a; margin-top:2px; text-align:left; }
+
+      /* ---------- MOBIL (≤600px) ---------- */
+      @media only screen and (max-width:600px){
+        .gallery-strip{
+          display:block; white-space:nowrap; overflow-x:auto; -webkit-overflow-scrolling:touch; transition:none;
+        }
+        .gallery-strip a{ display:inline-block; width:auto; margin-right:8px; flex:none; }
+        .gallery-strip img{ height:180px !important; width:auto; } /* almindelige gallerier */
+        .gallery .prev, .gallery .next{ display:none !important; }
+        .scroll-hint{ display:block !important; margin-top:6px !important; line-height:18px !important; }
+
+        /* Fly-hero specifikt på mobil – 180px */
+        .gallery.fly-hero{ padding-bottom:6px !important; }
+        .gallery.fly-hero .gallery-strip img{
+          width:100% !important;
+          height:180px !important;
+          border:0 !important;
+          border-radius:12px 12px 0 0 !important;
+        }
+        .gallery.fly-hero .scroll-hint{
+          padding-left:18px !important; padding-right:18px !important; text-align:left !important;
+        }
+      }
+
+      /* --- HERO → DIVIDER → VILLATYPE (mail-safe) --- */
+      .sp-hero-divider{
+        border-top:1px solid #f0ece4;
+        margin-top:20px;
+        padding-top:20px;
+      }
+
+      .rate-list { width:100%; margin-top:8px; }
+      .rate-list td { vertical-align:top; }
+      .rate-list td:first-child { padding-right:12px; }
+      .rate-list tr:first-child td { border-top:0; padding-top:8px; padding-bottom:16px; }
+
+      /* Enhetlig vertikal rytme i hotellrader */
+      .hotel-long .tight td { padding:12px 0 16px; border-top:1px solid #f0ece4; }
+      .rate-list tr:last-child td{ padding-bottom:8px !important; }
+
+      /* Meal plan chip */
+      .mp{
+        display:inline-block;
+        padding:3px 10px;
+        margin:10px 0 0;
+        border:1px solid #9d8665;
+        border-radius:999px;
+        font-size:12px;
+        line-height:16px;
+        font-weight:700;
+        color:#1c1c1c;
+        background:#c4dad6;
+        white-space:nowrap;
+      }
+
+      .hotel-link a { color:#9d8665; text-decoration:underline; }
+      .hotel-link { margin-top:10px; }
+      .hotel-long + .hotel-long { margin-top:18px; }
+
+      /* Transfer-badge */
+      .hotel-meta{ margin-top:14px; }
+      .tr{
+        display:inline-block; padding:3px 10px;
+        border:1px solid #e7e2da; border-radius:999px;
+        font-size:12px; line-height:16px; font-weight:700;
+        color:#1c1c1c; background:#fff; white-space:nowrap;
+      }
+      .tr:before{
+        content:""; display:inline-block; width:6px; height:6px;
+        border-radius:999px; background:#9d8665;
+        margin-right:6px; vertical-align:middle;
+      }
+
+      .room-link{ margin-top:4px; font-size:12px; line-height:18px; color:#6a6a6a; }
+      .room-link a{ color:#9d8665; text-decoration:underline; }
+
+      /* Høydepunkter-boks */
+      .extras{
+        margin-top:8px;
+        margin-bottom:8px;
+        padding:12px 12px 12px;
+        border:1px solid #e7e2da;
+        border-radius:10px;
+        background:#f9f6f0;
+      }
+      .extras-title{
+        margin:0 0 6px;
+        font-size:13px;
+        font-weight:700;
+        color:#9d8665;
+        line-height:18px;
+      }
+      .extras-list{ margin:0; padding:0; list-style:none; font-size:13px; line-height:20px; color:#1c1c1c; }
+      .extras-list li{ margin:0; padding:0; }
+      .extras-more{ margin:8px 0 0; font-size:12px; line-height:18px; color:#6a6a6a; }
+      .extras-more a{ color:#9d8665; text-decoration:underline; }
+
+      /* ---------- INKLUDERER – forbedret kort ---------- */
+      .includes-card{
+        border:1px solid #e7e2da; border-radius:12px; background:#f9f6f0;
+        border-collapse:separate !important;
+        overflow:hidden;
+      }
+      .includes-inner{ padding:14px 18px; }
+
+      .people-pill{
+        display:inline-block; padding:3px 10px;
+        border:1px solid #d7cbbb; border-radius:999px;
+        font-size:12px; line-height:16px; font-weight:700; color:#1c1c1c;
+        background:#fff; white-space:nowrap;
+      }
+      .people-pill:before{
+        content:""; display:inline-block; width:6px; height:6px; margin-right:6px;
+        border-radius:999px; background:#9d8665; vertical-align:middle;
+      }
+
+      .inc-list{ width:100%; margin-top:8px; }
+      .inc-list td{ width:50%; vertical-align:top; }
+
+      .inc-item{
+        font-family:'TeX Gyre Termes','Times New Roman',serif;
+        font-size:14px; line-height:22px; color:#1c1c1c; padding:3px 0;
+      }
+      .inc-item .tick{ font-weight:700; color:#9d8665; margin-right:8px; }
+
+      /* ---------------------------
+         MOBIL (≤600px)
+         --------------------------- */
+      @media only screen and (max-width:600px){
+
+        .sp-gap-chips{ margin-top:6px !important; }
+        .sp-chips-hero{ margin-top:12px !important; }
+
+        .sp-hero-divider{ margin-top:12px !important; padding-top:8px !important; }
+
+        .chip{ display:block !important; }
+
+        .rate-list tr:last-child{ padding-bottom:6px !important; }
+        .rate-list tr:last-child td{ padding-bottom:0 !important; }
+
+        .rate-list::after{
+          content:"";
+          display:block;
+          width:100%;
+          height:1px;
+          background:#f0ece4;
+          margin:8px 0 22px;
+        }
+        .rate-list tr:not(:first-child){ padding-top:16px !important; }
+        .extras{ margin-top:2px !important; }
+
+        .rate-list tr:only-child{ margin-bottom:-12px !important; }
+        .rate-list tr:only-child td{ padding-bottom:0 !important; }
+
+        .wrap { width:100% !important; max-width:100% !important; }
+        .px { padding-left:18px !important; padding-right:18px !important; }
+
+        .heading{ font-size:24px !important; }
+        .section-title{ font-size:16px !important; }
+        .text{ font-size:15px !important; line-height:23px !important; }
+        .journey-title{ font-size:15px !important; }
+        .times{ font-size:15px !important; }
+        .chip{ font-size:11px !important; }
+        .hotel-cap{ font-size:15px !important; }
+        .hotel-long{ padding:18px 18px !important; }
+
+        .rate-list, .rate-list tr, .rate-list td{ display:block !important; width:100% !important; }
+        .hotel-long .tight td{ padding:0 !important; border:none !important; }
+        .rate-list tr{ padding:12px 0 16px !important; border-top:1px solid #f0ece4 !important; }
+        .rate-list tr:first-child{ border-top:0 !important; padding-top:8px !important; padding-bottom:16px !important; }
+
+        .rate-list td:first-child{ padding-right:0 !important; }
+        .rate-list td:last-child{ text-align:left !important; padding-top:8px !important; }
+        .rate-list td:last-child strong{ display:inline-block !important; font-size:15px !important; line-height:22px !important; }
+
+        .room-link{ margin-top:4px !important; line-height:18px !important; }
+        .mp{ white-space:normal !important; margin-top:10px !important; line-height:16px !important; }
+
+        .extras{ padding:12px 16px 12px !important; }
+        .extras-title{ line-height:18px !important; }
+        .extras-more{ line-height:18px !important; }
+
+        .hotel-meta{ margin-top:14px !important; }
+        .hotel-link{ margin-top:10px !important; }
+
+        img{ max-width:100% !important; height:auto !important; }
+        body, table, td{ max-width:100% !important; }
+
+        .total-amt{ font-size:15px !important; }
+
+        .gallery-desktop{ display:none !important; }
+      }
+
+      /* Mobil: INKLUDERER-liste i én kolonne */
+      @media only screen and (max-width:600px){
+        .inc-list, .inc-list tr, .inc-list td{ display:block !important; width:100% !important; }
+      }
+
+      /* Desktop: destination + dato side om side + korrekt hero-divider spacing */
+      @media only screen and (min-width:601px){
+        .hotel-loc{ display:inline-block; margin:6px 6px 4px 0; }
+        .hotel-dates{ display:inline-block; margin:6px 0 8px 0; }
+        .sp-hero-divider{ margin-top:0 !important; }
+        .hotel-long .rate-list tr:first-child td{ padding-top:12px !important; }
+        .gallery-mobile{ display:none !important; }
+      }
+/* ===== MOBIL (≤600px) — KUN de to ønskede steder. Sæt DENNE blok HELT TIL SIDST ===== */
+@media only screen and (max-width:600px){
+
+  /* 1) Hotel: Billede → "Swipe for flere billeder"
+     - Giv selve galleriet lidt bund-padding (ellers bliver teksten “klemt” af overflow:hidden)
+     - Finjustér tekstens afstand/linjehøjde */
+  .hotel-long .gallery.sp-chips-hero{ padding-bottom:8px !important; }
+  .hotel-long .gallery .scroll-hint{
+    margin-top:4px !important;
+    line-height:18px !important;
+    display:block !important;
+  }
+
+  /* 2) Hotel: "Se flere billeder fra paradis her" → divider
+     Din +-selector ramte ikke, fordi der ligger en spacer-div imellem.
+     Sænk højden på den spacer på mobil, og nul stil divider-padding. */
+  /* sænk spacer lige EFTER PDF-linket (10px-varianten) */
+  .hotel-long .gallery-pdf + div[style*="height:10px"]{
+    height:6px !important; line-height:6px !important;
+  }
+  /* sænk spacer lige FØR .sp-hero-divider (14px-varianten) */
+  .hotel-long .gallery-pdf + div[style*="height:14px"]{
+    height:6px !important; line-height:6px !important;
+  }
+  /* og sørg for at selve divideren ikke lægger ekstra luft oveni */
+  .hotel-long .gallery-pdf + div + .sp-hero-divider{
+    padding-top:0 !important; margin-top:0 !important;
+  }
+
+  /* (bevarer dit eksisterende fix for sidste slide, hvis det ikke allerede står sidst) */
+  .gallery-strip a:last-child{ margin-right:0 !important; }
+}
+      /* MOBIL (≤600px) – læg dette SIDST */
+@media only screen and (max-width:600px){
+  .hotel-long .gallery.sp-chips-hero{ padding-bottom:4px !important; }
+  .hotel-long .gallery .scroll-hint{ margin-top:2px !important; line-height:14px !important; }
+
+  /* Giv PDF-linket en bund-margin og lad spacere/divider være */
+  .hotel-long .gallery-pdf{ margin-bottom:10px !important; }
+}
+      /* MOBIL (≤600px) — Divider ned til første villatype (KUN i hoteller) */
+@media only screen and (max-width:600px){
+  /* Reducér/øge luft i selve divideren efter PDF’en */
+  .hotel-long .gallery-pdf + div + .sp-hero-divider{
+    padding-top: 6px !important;   /* ← justér fx 4–12px */
+    margin-top: 0 !important;
+  }
+
+  /* Finjustér top-padding på første række i rate-list */
+  .hotel-long .rate-list tr:first-child{
+    padding-top: 6px !important;   /* ← justér fx 4–12px */
+  }
+}
+    </style>
+  </head>
+  <body>
+    <!-- (resten af dokumentet uændret) -->
+    <table role="presentation" width="100%" bgcolor="#faf7f2">
+      <tr>
+        <td align="center" style="padding:32px 16px;">
+          <table role="presentation" width="680" class="wrap" bgcolor="#ffffff" style="border:1px solid #d7cbbb; border-radius:14px; overflow:hidden;">
+
+            <!-- HEADER -->
+            <tr>
+              <td style="padding:24px 28px; border-bottom:1px solid #e7e2da;">
+                <table role="presentation" width="100%">
+                  <tr>
+                    <td align="left" style="line-height:0;">
+                      <a href="https://www.maldivia.dk" target="_blank" style="display:inline-block; text-decoration:none;">
+                        <img
+                          src="https://maldivia.dk/wp-content/uploads/2025/10/LOGO-PNG-04-scaled.png"
+                          width="130"
+                          alt="Maldivia – Beyond Excellence"
+                          style="display:block; border:0; outline:none; text-decoration:none; height:auto;">
+                      </a>
+                    </td>
+                    <td align="right" class="center" style="font-family:'TeX Gyre Termes','Times New Roman',serif; font-size:13px; color:#6a6a6a;">
+                      <span style="font-family:'Playfair Display',serif; color:#9d8665; font-size:13.5px; letter-spacing:1px; text-transform:uppercase;">Rejsespecialist</span><br>Rasmus Kirketerp<br>
+                      <a href="mailto:rk@maldivia.dk" style="color:#9d8665; text-decoration:underline;">rk@maldivia.dk</a><br>
+                      <a href="tel:+4571747270" style="color:#9d8665; text-decoration:underline;">+45&nbsp;71&nbsp;74&nbsp;72&nbsp;70</a>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+
+            <!-- HERO -->
+            <tr>
+              <td style="padding:36px 40px 0;" class="px">
+                <div class="heading" style="font-size:28px;font-weight:700;line-height:1.15;">
+  <span class="gold" style="color:#9d8665;">DIN PAKKEREJSE TIL</span><br>
+  <span class="gold" style="color:#9d8665;">MALDIVERNE</span>
+</div>
+                <div class="text" style="margin-top:6px; color:#6a6a6a;">19. januar – 27. januar 2026 &nbsp;•&nbsp; 7 nætter / 9 dage</div>
+              </td>
+            </tr>
+
+                        <!-- INKLUDERER -->
+            <tr><td style="padding:10px 40px 10px;" class="px"><div class="section-title">Din rejse inkluderer</div></td></tr>
+            <tr>
+              <td style="padding:0 40px 4px;" class="px">
+                <table role="presentation" width="100%" class="includes-card" style="border-collapse:separate;">
+                  <tr>
+                    <td class="includes-inner">
+                      <table role="presentation" width="100%">
+                        <tr>
+                          <td align="left" style="padding-bottom:6px;">
+                            <span class="people-pill">Tilbuddet gælder for: 2 voksne</span>
+                          </td>
+                        </tr>
+                      </table>
+
+                      <table role="presentation" class="inc-list">
+                        <tr>
+                          <td>
+                            <div class="inc-item"><span class="tick">✓</span>Fly til/fra Malé (T/R - Economy Class)</div>
+                            <div class="inc-item"><span class="tick">✓</span>Transfer til/fra resortet</div>
+                            <div class="inc-item"><span class="tick">✓</span>7 nætter på det valgte resort</div>
+                          </td>
+                          <td>
+                            <div class="inc-item"><span class="tick">✓</span>Måltider som angivet ved hvert resort</div>
+                            <div class="inc-item"><span class="tick">✓</span>Green Tax og alle skatter/afgifter</div>
+                          </td>
+                        </tr>
+                      </table>
+<div class="muted" style="margin-top:6px;">
+  Maldivia er medlem af Rejsegarantifonden (Reg. 2688).
+</div>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+            
+            <!-- HOTELLER -->
+            <tr><td style="padding:10px 40px 10px;" class="px"><div class="section-title">Resorts & Priser</div></td></tr>
+            <tr>
+              <td style="padding:0 40px 0;" class="px">
+                <table role="presentation" width="100%">
+                  <tr>
+                    <td class="stack col">
+
+                      <!-- Hotel 1 -->
+                      <div class="hotel-long card text">
+                        <div class="hotel-cap">NH Collection Havodda 4+★</div>
+                        <div class="hotel-loc"><span class="loc">Maldiverne • Gaafu Dhaalu Atoll</span></div>
+                        <div class="hotel-dates sp-gap-chips"><span class="stay">20. januar – 27. januar 2026 • 7 nætter</span></div>
+
+<!-- Galleri -->
+<div class="gallery sp-chips-hero" style="padding-bottom:0;"><!-- desktop spacing flyttes til spacer -->
+  <button class="prev" aria-label="Forrige">‹</button>
+  <button class="next" aria-label="Neste">›</button>
+  <div class="gallery-strip">
+    <a href="https://maldivia.dk/wp-content/uploads/2025/11/HERO-TILBUD.jpg" target="_blank"><img src="https://maldivia.dk/wp-content/uploads/2025/11/HERO-TILBUD.jpg" alt="Cora Cora - Pool"></a>
+    <a href="https://maldivia.dk/wp-content/uploads/2025/11/upload-1720166057454-305-1.jpeg" target="_blank"><img src="https://maldivia.dk/wp-content/uploads/2025/11/upload-1720166057454-305-1.jpeg" alt="Cora Cora - Lagoon Villas"></a>
+    <a href="https://maldivia.dk/wp-content/uploads/2025/11/510790015_751838150707631_2190592771462959509_n.jpg" target="_blank"><img src="https://maldivia.dk/wp-content/uploads/2025/11/510790015_751838150707631_2190592771462959509_n.jpg" alt="Cora Cora - Restaurant"></a>
+    <a href="https://maldivia.dk/wp-content/uploads/2025/11/nh_collection_maldives_havodda_resort_10_over_water_villa_hammock_1920x1137.jpg" target="_blank"><img src="https://maldivia.dk/wp-content/uploads/2025/11/nh_collection_maldives_havodda_resort_10_over_water_villa_hammock_1920x1137.jpg" alt="Cora Cora - Sunset"></a>
+    <a href="https://maldivia.dk/wp-content/uploads/2025/11/497575640_3069127333262269_6379824588069092015_n.jpg" target="_blank"><img src="https://maldivia.dk/wp-content/uploads/2025/11/497575640_3069127333262269_6379824588069092015_n.jpg" alt="Cora Cora - Beach"></a>
+  </div>
+  <div class="scroll-hint mobile-only">Swipe for flere billeder →</div>
+</div>
+
+<!-- SPACER: Billede → PDF-link (10px) -->
+<div style="height:10px; line-height:10px; font-size:0;">&nbsp;</div>
+
+<!-- PDF-link under galleriet – matcher "Se villaen" -->
+<div class="room-link gallery-pdf" style="margin-top:0;">
+  <a href="https://maldivia.dk/wp-content/uploads/2025/11/NH-Collection-Havodda-Maldiverne.pdf" target="_blank">
+    Se flere billeder fra paradis her (PDF) →
+  </a>
+</div>
+
+<!-- SPACER: PDF-link → divider (14px) -->
+<div style="height:14px; line-height:14px; font-size:0;">&nbsp;</div>
+
+<!-- ENKELT rate-list for begge rækker (FIXER SPACING) -->
+<table class="rate-list sp-hero-divider"><!-- ingen padding-top her; spacer gør jobbet -->
+  <tr class="tight">
+    <td>
+      Overwater Villa
+      <div class="room-link">
+        <a href="https://world.nh-hotels.com/en/nh-collection-maldives-havodda/villas/over-water-villa" target="_blank">Se din villa her →</a>
+      </div>
+      <span class="mp">All-Inclusive</span>
+    </td>
+    <td align="right"><strong>DKK 59.900,-</strong></td>
+  </tr>
+</table>
+
+                        <div class="extras">
+                          <div class="extras-title">Højdepunkter & fordele</div>
+                          <ul class="extras-list">
+<li>Afslappet luksus og ægte ø-paradis</li>
+<li>Magisk husrev – snorkling i verdensklasse</li>
+<li>Smukke strand- og vandvillaer</li>
+<li>Rolig atmosfære og skøn personlig service</li>
+<li>Himmelsk lagune og fremragende beliggenhed</li>
+                          </ul>
+                          <div class="extras-more"><a href="https://maldivia.dk/wp-content/uploads/2025/11/Havodda.pdf" target="_blank">Se factsheet (PDF) →</a></div>
+                        </div>
+
+                        <div class="hotel-meta"><span class="tr">Transfer: Vandfly (ca. 75 min.)</span></div>
+                        <div class="hotel-link"><a href="https://world.nh-hotels.com/en/nh-collection-maldives-havodda" target="_blank">Udforsk Havodda her →</a></div>
+                      </div>
+
+                      <!-- Hotel 2 -->
+                      <div class="hotel-long card text">
+                        <div class="hotel-cap">Cora Cora Maldives 4+★</div>
+                        <div class="hotel-loc"><span class="loc">Maldiverne • Raa Atoll</span></div>
+                        <div class="hotel-dates sp-gap-chips"><span class="stay">20. januar – 27. januar 2026 • 7 nætter</span></div>
+
+<!-- Galleri -->
+<div class="gallery sp-chips-hero" style="padding-bottom:0;"><!-- desktop spacing flyttes til spacer -->
+  <button class="prev" aria-label="Forrige">‹</button>
+  <button class="next" aria-label="Neste">›</button>
+  <div class="gallery-strip">
+    <a href="https://maldivia.no/wp-content/uploads/sites/2/2025/10/Cora-Cora-5.webp" target="_blank"><img src="https://maldivia.no/wp-content/uploads/sites/2/2025/10/Cora-Cora-5.webp" alt="Cora Cora - Pool"></a>
+    <a href="https://maldivia.no/wp-content/uploads/sites/2/2025/10/Cora-Cora-1.jpg" target="_blank"><img src="https://maldivia.no/wp-content/uploads/sites/2/2025/10/Cora-Cora-1.jpg" alt="Cora Cora - Lagoon Villas"></a>
+    <a href="https://maldivia.no/wp-content/uploads/sites/2/2025/10/Cora-Cora-6.jpg" target="_blank"><img src="https://maldivia.no/wp-content/uploads/sites/2/2025/10/Cora-Cora-6.jpg" alt="Cora Cora - Restaurant"></a>
+    <a href="https://maldivia.no/wp-content/uploads/sites/2/2025/10/Cora-Cora-2.jpg" target="_blank"><img src="https://maldivia.no/wp-content/uploads/sites/2/2025/10/Cora-Cora-2.jpg" alt="Cora Cora - Sunset"></a>
+    <a href="https://maldivia.no/wp-content/uploads/sites/2/2025/10/Cora-Cora-4.jpg" target="_blank"><img src="https://maldivia.no/wp-content/uploads/sites/2/2025/10/Cora-Cora-4.jpg" alt="Cora Cora - Beach"></a>
+  </div>
+  <div class="scroll-hint mobile-only">Swipe for flere billeder →</div>
+</div>
+
+<!-- SPACER: Billede → PDF-link (10px) -->
+<div style="height:10px; line-height:10px; font-size:0;">&nbsp;</div>
+
+<!-- PDF-link under galleriet – matcher "Se villaen" -->
+<div class="room-link gallery-pdf" style="margin-top:0;">
+  <a href="https://maldivia.dk/wp-content/uploads/2025/10/Cora-Cora-Maldives-Maldiverne.pdf" target="_blank">
+    Se flere billeder fra paradis her (PDF) →
+  </a>
+</div>
+
+<!-- SPACER: PDF-link → divider (14px) -->
+<div style="height:14px; line-height:14px; font-size:0;">&nbsp;</div>
+
+<!-- ENKELT rate-list for begge rækker (FIXER SPACING) -->
+<table class="rate-list sp-hero-divider"><!-- ingen padding-top her; spacer gør jobbet -->
+  <tr class="tight">
+    <td>
+      Lagoon Villa
+      <div class="room-link">
+        <a href="https://www.coracoraresorts.com/villas/lagoon-villa/" target="_blank">Se din villa her →</a>
+      </div>
+      <span class="mp">Premium All-Inclusive (Dine Around)</span>
+    </td>
+    <td align="right"><strong>DKK 67.500,-</strong></td>
+  </tr>
+</table>
+
+                        <div class="extras">
+                          <div class="extras-title">Højdepunkter & fordele</div>
+                          <ul class="extras-list">
+<li>Friskt og farverigt premium all-inclusive-koncept</li>
+<li>Strålende turkis lagune og kridhvide strande</li>
+<li>Fire à la carte-restauranter</li>
+<li>MOKSHA® Spa & Wellbeing med yoga</li>
+<li>Unikt kunstgalleri, der hylder Maldivernes kultur</li>
+                          </ul>
+                          <div class="extras-more"><a href="https://maldivia.no/wp-content/uploads/sites/2/2025/10/Cora-Cora-Maldives.pdf" target="_blank">Se factsheet (PDF) →</a></div>
+                        </div>
+
+                        <div class="hotel-meta"><span class="tr">Transfer: Vandfly (ca. 40 min.)</span></div>
+                        <div class="hotel-link"><a href="https://www.coracoraresorts.com/" target="_blank">Udforsk Cora Cora her →</a></div>
+                      </div>
+
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+
+            <!-- FLY -->
+<tr>
+  <td style="padding:10px 40px 10px;" class="px">
+    <div class="section-title">Fly til/fra Maldiverne</div>
+  </td>
+</tr>
+
+<tr>
+  <td style="padding:0 40px 6px;" class="px">
+    <!-- Card som DIV (samme som HOTELLER) -->
+    <div class="card" style="border:1px solid #e7e2da; border-radius:12px; background:#fff; overflow:hidden;">
+      <!-- Indholdsramme som table -->
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:separate; border-spacing:0;">
+        <!-- HERO -->
+<tr>
+  <td style="padding:0; line-height:0;">
+    <!-- FLYREJSE HERO-GALLERI -->
+    <div class="gallery fly-hero" style="margin:0; border-radius:12px 12px 0 0;">
+      <button class="prev" aria-label="Forrige">‹</button>
+      <button class="next" aria-label="Neste">›</button>
+      <div class="gallery-strip">
+        <!-- Du kan tilføje/slette billeder herunder -->
+        <a href="https://maldivia.dk/wp-content/uploads/2025/11/Condor-HERO-2-1.jpg" target="_blank">
+          <img src="https://maldivia.dk/wp-content/uploads/2025/11/Condor-HERO-2-1.jpg" alt="Condor">
+        </a>
+        <a href="https://maldivia.dk/wp-content/uploads/2025/11/Condor-HERO-1.jpeg" target="_blank">
+          <img src="https://maldivia.dk/wp-content/uploads/2025/11/Condor-HERO-1.jpeg" alt="Condor">
+          </a>
+        <a href="https://maldivia.dk/wp-content/uploads/2025/11/Condor.jpg" target="_blank">
+          <img src="https://maldivia.dk/wp-content/uploads/2025/11/Condor.jpg" alt="Condor">
+        </a>
+      </div>
+      <div class="scroll-hint mobile-only">Swipe for flere billeder →</div>
+    </div>
+  </td>
+</tr>
+
+<!-- INDHOLD -->
+<tr>
+  <td>
+    <div class="flight-inner">
+
+      <!-- REJSE 1: Billund -> Malé (1 mellemlanding) -->
+      <div class="journey-title">Billund til Malé – 19.01.2026</div>
+      <div class="leg">
+        <div class="chip">BLL → FRA</div>
+        <div class="times">14:15 – 16:05</div>
+        <span class="flight-meta">Lufthansa • LH839 • Economy Class</span>
+      </div>
+      <div class="layover"><span>Mellemlanding i Frankfurt • 3 t 35 m</span></div>
+      <div class="leg">
+        <div class="chip">FRA → MLE</div>
+        <div class="times">19:40 – 09:55<sup class="plus1">+1</sup></div>
+        <span class="flight-meta">Condor • DE2320 • Economy Class</span>
+      </div>
+      <div class="journey-foot">Total rejsetid • 15 t 40 m</div>
+
+      <div class="journey-sep"></div>
+
+      <!-- REJSE 2: Malé -> Billund (1 mellemlanding) -->
+      <div class="journey-title">Malé til Billund – 27.01.2026</div>
+      <div class="leg">
+        <div class="chip">MLE → FRA</div>
+        <div class="times">12:00 – 18:30</div>
+        <span class="flight-meta">Condor • DE2321 • Economy Class</span>
+      </div>
+      <div class="layover"><span>Mellemlanding i Frankfurt • 3 t 25 m</span></div>
+      <div class="leg">
+        <div class="chip">FRA → BLL</div>
+        <div class="times">21:55 – 23:20</div>
+        <span class="flight-meta">Lufthansa • DE4179 • Economy Class</span>
+      </div>
+      <div class="journey-foot">Total rejsetid • 15 t 20 m</div>
+
+    </div>
+  </td>
+</tr>
+
+        <!-- Logo-strip nederst (valgfri) -->
+        <tr>
+          <td style="padding:10px 18px 16px;">
+            <table role="presentation" cellpadding="0" cellspacing="0">
+              <tr>
+                <td style="padding-right:12px;">
+                  <img src="https://maldivia.dk/wp-content/uploads/2025/11/Condor-Logo-scaled.png" alt="Condor" width="64" style="display:block;">
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <!-- /card -->
+  </td>
+</tr>
+
+<!-- FLYOPPGRADERING -->
+<tr>
+  <td style="padding:10px 40px 10px;" class="px">
+    <div class="section-title">Oppgrader flyreisen</div>
+  </td>
+</tr>
+
+<tr>
+  <td style="padding:0 40px 23px;" class="px">
+
+    <!-- CARD 1: Premium Economy -->
+    <div class="card" style="border:1px solid #e7e2da; border-radius:12px; background:#fff; overflow:hidden; margin-bottom:20px;">
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:separate; border-spacing:0;">
+        <tr>
+          <td style="padding:0; line-height:0;">
+            <div class="gallery fly-hero" style="margin:0; border-radius:12px 12px 0 0;">
+              <button class="prev" aria-label="Forrige">‹</button>
+              <button class="next" aria-label="Neste">›</button>
+              <div class="gallery-strip">
+        <!-- Læg dine billeder her (tilføj/flere links efter behov) -->
+        <a href="https://maldivia.no/wp-content/uploads/sites/2/2025/10/Condor-Premium-Economy-1.jpeg" target="_blank">
+          <img src="https://maldivia.no/wp-content/uploads/sites/2/2025/10/Condor-Premium-Economy-1.jpeg" alt="Qatar Airways - Economy - 1">
+        </a>
+        <a href="https://maldivia.no/wp-content/uploads/sites/2/2025/10/Condor-Premium-Economy-12.jpeg" target="_blank">
+          <img src="https://maldivia.no/wp-content/uploads/sites/2/2025/10/Condor-Premium-Economy-12.jpeg" alt="Qatar Airways - Economy - 2">
+        </a>
+      </div>
+      <div class="scroll-hint mobile-only">Swipe for flere billeder →</div>
+    </div>
+  </td>
+</tr>
+
+        <!-- Indhold -->
+        <tr>
+          <td style="padding:8px 18px 10px;">
+            <table role="presentation" width="100%" class="text" style="border-collapse:separate; border-spacing:0; line-height:20px;">
+              <tr>
+                <td width="70%" style="padding:4px 0;">
+                  <span class="gold" style="font-weight:700;">Economy Class (2 stop)</span> – Qatar Airways
+                </td>
+                <td width="30%" align="right" style="padding:4px 0;">
+                  <strong>Samme pris</strong>
+                </td>
+              </tr>
+            </table>
+            <div class="muted" style="margin:6px 0 2px;">
+              Beløbet ovenfor er den totale merpris for 2 voksne. Pris og tilgængelighed kan ændres frem til endelig bestilling.
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- CARD 1: Premium Economy -->
+    <div class="card" style="border:1px solid #e7e2da; border-radius:12px; background:#fff; overflow:hidden; margin-bottom:20px;">
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:separate; border-spacing:0;">
+        <tr>
+          <td style="padding:0; line-height:0;">
+            <div class="gallery fly-hero" style="margin:0; border-radius:12px 12px 0 0;">
+              <button class="prev" aria-label="Forrige">‹</button>
+              <button class="next" aria-label="Neste">›</button>
+              <div class="gallery-strip">
+        <!-- Læg dine billeder her (tilføj/flere links efter behov) -->
+        <a href="https://maldivia.no/wp-content/uploads/sites/2/2025/10/Condor-Premium-Economy-1.jpeg" target="_blank">
+          <img src="https://maldivia.no/wp-content/uploads/sites/2/2025/10/Condor-Premium-Economy-1.jpeg" alt="Condor - Premium Economy - 1">
+        </a>
+        <a href="https://maldivia.no/wp-content/uploads/sites/2/2025/10/Condor-Premium-Economy-12.jpeg" target="_blank">
+          <img src="https://maldivia.no/wp-content/uploads/sites/2/2025/10/Condor-Premium-Economy-12.jpeg" alt="Condor - Premium Economy - 2">
+        </a>
+      </div>
+      <div class="scroll-hint mobile-only">Swipe for flere billeder →</div>
+    </div>
+  </td>
+</tr>
+
+        <!-- Indhold -->
+        <tr>
+          <td style="padding:8px 18px 10px;">
+            <table role="presentation" width="100%" class="text" style="border-collapse:separate; border-spacing:0; line-height:20px;">
+              <tr>
+                <td width="70%" style="padding:4px 0;">
+                  <span class="gold" style="font-weight:700;">Premium Economy</span> – Condor
+                </td>
+                <td width="30%" align="right" style="padding:4px 0;">
+                  <strong>DKK&nbsp;5.000,-</strong>
+                </td>
+              </tr>
+            </table>
+            <div class="muted" style="margin:6px 0 2px;">
+              Beløbet ovenfor er den totale merpris for 2 voksne. Pris og tilgængelighed kan ændres frem til endelig bestilling.
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </td>
+</tr>
+
+            <!-- VILKÅR-BOKS – hvid m. ramme -->
+<tr>
+  <td style="padding:0 40px 24px;" class="px">
+    <table role="presentation" width="100%" style="border:1px solid #e7e2da; border-radius:12px; background:#ffffff; border-collapse:separate;">
+      <tr>
+        <td style="padding:14px 18px;">
+          <div style="font-family:'TeX Gyre Termes','Times New Roman',serif; font-size:13px; line-height:20px; color:#1c1c1c;">
+Ved skriftlig eller mundtlig accept samt ved indbetaling af depositum bekræfter I samtidig, at I har læst og forstået rejsebetingelserne,  
+som I <a href="https://maldivia.dk/information/" target="_blank" style="color:#9d8665; text-decoration:underline;">finder her →</a>.
+          </div>
+        </td>
+      </tr>
+    </table>
+  </td>
+</tr>
+
+            <!-- CTA -->
+            <tr>
+              <td align="center" style="padding:0 40px 28px;" class="px">
+
+                <!--[if mso]>
+                  <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" href="mailto:rk@maldivia.dk?subject=Rejsetilbud%20til%20Maldiverne%20%7C%20Maldivia%20-%20Beyond%20Excellence"
+                    style="height:44px;v-text-anchor:middle;width:360px;" arcsize="50%" strokeweight="1px" strokecolor="#9d8665" fillcolor="#e7e2da">
+                    <w:anchorlock/>
+                    <center style="color:#1c1c1c;font-family:'TeX Gyre Termes','Times New Roman',serif;font-size:13px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;">
+                      Bekræft / tilpas rejsen
+                    </center>
+                  </v:roundrect>
+                <![endif]-->
+
+                <!--[if !mso]><!-- -->
+                  <a href="mailto:rk@maldivia.dk?subject=Rejsetilbud%20til%20Maldiverne%20%7C%20Maldivia%20-%20Beyond%20Excellence"
+                     style="background:#e7e2da;border:1px solid #9d8665;border-radius:999px;color:#1c1c1c;display:inline-block;font-family:'TeX Gyre Termes','Times New Roman',serif;font-size:13px;font-weight:700;letter-spacing:.6px;line-height:16px;text-transform:uppercase;text-decoration:none;padding:14px 24px;">
+                    Bekræft / tilpas rejsen
+                  </a>
+                <!--<![endif]-->
+
+                <div class="muted mobile-only" style="margin-top:8px;">
+                  Fungerer knappen ikke? Skriv til
+                  <a href="mailto:rk@maldivia.dk">rk@maldivia.dk</a>.
+                </div>
+              </td>
+            </tr>
+
+            <!-- FOOTER -->
+            <tr>
+              <td align="center" class="text"
+                  style="padding:18px 18px; border-top:1px solid #e7e2da; color:#6a6a6a; font-size:12px; line-height:18px;">
+
+                <!-- Indre tabel for sikker stacking i e-mailklienter -->
+                <table role="presentation" width="100%" style="border-collapse:collapse;">
+                  <tr>
+                    <td align="center" style="padding:0 0 8px 0;">
+                      <!-- TRUSTPILOT (øverst) -->
+                      <a href="https://dk.trustpilot.com/review/maldivia.dk?languages=all" target="_blank" style="text-decoration:none; line-height:0; display:block;">
+                        <img src="https://maldivia.dk/wp-content/uploads/2025/10/Trustpilot.png"
+                             width="120" alt="Trustpilot – 5-stjernede anmeldelser"
+                             style="display:block; border:0; outline:none; height:auto;">
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td align="center" style="padding:0 0 8px 0;">
+                      <!-- MALDIVIA logo -->
+                      <a href="https://www.maldivia.dk" target="_blank" style="text-decoration:none; line-height:0; display:block;">
+                        <img src="https://maldivia.dk/wp-content/uploads/2025/10/LOGO-PNG-04-scaled.png"
+                             width="130" alt="Maldivia – Beyond Excellence"
+                             style="display:block; border:0; outline:none; height:auto;">
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td align="center" style="padding:0 0 14px 0;">
+                      <!-- Rejsegarantifonden -->
+                      <a href="https://www.rejsegarantifonden.dk/medlem?s=2688" target="_blank" style="text-decoration:none; line-height:0; display:block;">
+                        <img src="https://maldivia.dk/wp-content/uploads/2025/10/Rejsegarantifonden.png"
+                             width="110" alt="Medlem af Rejsegarantifonden"
+                             style="display:block; border:0; outline:none; height:auto;">
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td align="center" style="padding:0;">
+                      © Maldivia – En del af The Makai Travel Group
+                    </td>
+                  </tr>
+                </table>
+
+                <!-- Let, email-safe JS til desktop-karussel (ignoreres af mailklienter) -->
+                <script>
+                  (function(){
+                    if (typeof window === 'undefined') return;
+
+                    function initGallery(g){
+                      const strip = g.querySelector('.gallery-strip');
+                      const slides = strip ? strip.querySelectorAll('a') : [];
+                      if (!strip || !slides.length) return;
+
+                      let index = 0;
+                      const prev = g.querySelector('.prev');
+                      const next = g.querySelector('.next');
+
+                      function update(){
+                        if (window.matchMedia('(max-width:600px)').matches){
+                          strip.style.transform = ''; // ingen transform i mobil-swipe
+                          return;
+                        }
+                        strip.style.transform = 'translateX(' + (-index * 100) + '%)';
+                      }
+
+                      function go(delta){
+                        index = (index + delta + slides.length) % slides.length;
+                        update();
+                      }
+
+                      prev && prev.addEventListener('click', function(e){ e.preventDefault(); go(-1); });
+                      next && next.addEventListener('click', function(e){ e.preventDefault(); go(1); });
+
+                      window.addEventListener('resize', update);
+                      update();
+                    }
+
+                    document.querySelectorAll('.gallery').forEach(initGallery);
+                  })();
+                </script>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>
