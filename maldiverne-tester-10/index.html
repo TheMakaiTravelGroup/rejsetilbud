@@ -377,12 +377,12 @@ header{
 }
 
 /* ── HOTEL TABS ── */
+.hotels-outer{position:relative;margin-bottom:80px;}
 .hotels-wrap{
   background:var(--white);
   border:1px solid var(--sand-deep);
   border-radius:6px;
   overflow:hidden;
-  margin-bottom:80px;
   box-shadow:0 30px 60px -30px rgba(26,23,20,0.12), 0 1px 3px rgba(26,23,20,0.04);
 }
 
@@ -420,19 +420,19 @@ header{
 }
 .hotels-nav::-webkit-scrollbar{display:none;}
 
-/* Scroll arrows — positioned INSIDE the nav area, vertically centered on tab content */
+/* Scroll arrows — placed OUTSIDE the nav on desktop */
 .hotels-nav-arrow{
   position:absolute;
   top:50%;
   transform:translateY(-50%);
   width:40px;height:40px;border-radius:50%;
-  background:var(--white);
+  background:var(--sand);
   border:1px solid var(--sand-deep);
   color:var(--ink);
   display:flex;align-items:center;justify-content:center;
   font-size:18px;cursor:pointer;
   z-index:5;font-family:var(--ff-display);font-weight:400;
-  box-shadow:0 8px 20px -6px rgba(26,23,20,0.25), 0 0 0 4px rgba(245,240,232,0.6);
+  box-shadow:0 6px 16px -4px rgba(26,23,20,0.15);
   transition:opacity 0.3s var(--ease-out),background 0.25s var(--ease-out),color 0.25s var(--ease-out),transform 0.25s var(--ease-out),box-shadow 0.25s var(--ease-out);
   opacity:0;pointer-events:none;
   line-height:1;padding-bottom:2px;
@@ -441,11 +441,12 @@ header{
 .hotels-nav-arrow:hover{
   background:var(--ink);
   color:var(--gold-lt);
-  transform:translateY(-50%) scale(1.06);
-  box-shadow:0 10px 24px -6px rgba(26,23,20,0.4), 0 0 0 4px rgba(245,240,232,0.7);
+  transform:translateY(-50%) scale(1.08);
+  box-shadow:0 8px 22px -4px rgba(26,23,20,0.35);
 }
-.hotels-nav-arrow.prev{left:14px;}
-.hotels-nav-arrow.next{right:14px;}
+/* OUTSIDE the box on desktop */
+.hotels-nav-arrow.prev{left:-22px;}
+.hotels-nav-arrow.next{right:-22px;}
 
 .hotel-tab{
   flex:0 0 auto;min-width:168px;
@@ -841,18 +842,14 @@ footer::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;back
 .footer-logos a:hover{opacity:1;transform:translateY(-2px);}
 .footer-logos a img{display:block;width:auto;position:relative;z-index:1;}
 
-/* Trustpilot logo — elegant warm glow makes black text readable */
+/* Trustpilot — inline SVG, no background */
 .footer-logos a.tp-logo{
-  padding:10px 18px;
-  border-radius:6px;
-  background:rgba(253,252,249,0.95);
-  opacity:0.92;
+  opacity:0.85;
 }
-.footer-logos a.tp-logo:hover{
-  opacity:1;
-  background:rgba(253,252,249,1);
+.footer-logos a.tp-logo:hover{opacity:1;}
+.footer-logos a.tp-logo .tp-svg{
+  height:30px;width:auto;display:block;
 }
-.footer-logos a.tp-logo img{height:24px;}
 
 /* Inverted logos (turned white via filter) — Maldivia and Rejsegarantifonden */
 .footer-logos a.invert img{filter:brightness(0) invert(1);}
@@ -919,6 +916,9 @@ footer::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;back
   .hero-logo-reveal{left:48px;}
   .hero-scroll{right:48px;}
   .container{padding:0 32px;}
+  /* Move arrows slightly inward on tablet to stay in viewport */
+  .hotels-nav-arrow.prev{left:-18px;}
+  .hotels-nav-arrow.next{right:-18px;}
   .hotel-body{padding:36px 36px 40px;}
   .hotel-cols{gap:36px;}
   .price-box{padding:40px 40px;}
@@ -1066,7 +1066,7 @@ footer::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;back
   /* FOOTER */
   footer{padding:40px 20px;}
   .footer-logos{gap:24px;margin-bottom:24px;}
-  .footer-logos a.tp-logo img{height:20px;}
+  .footer-logos a.tp-logo .tp-svg{height:24px;}
   .footer-logos a.invert img{height:22px;}
   .footer-logos a.invert[aria-label="Maldivia"] img{height:30px !important;}
   .footer-copy{font-size:10px;letter-spacing:0.08em;line-height:1.6;}
@@ -1178,9 +1178,11 @@ footer::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;back
 
 <!-- HOTEL TABS -->
 <div class="container">
-<div class="hotels-wrap reveal">
+<div class="hotels-outer reveal">
+<button type="button" class="hotels-nav-arrow prev" aria-label="Vis tidligere hoteller">‹</button>
+<button type="button" class="hotels-nav-arrow next" aria-label="Vis flere hoteller">›</button>
+<div class="hotels-wrap">
   <div class="hotels-nav-wrap" id="hotelsNavWrap">
-    <button type="button" class="hotels-nav-arrow prev" aria-label="Vis tidligere hoteller">‹</button>
     <div class="hotels-nav" id="hotelsNav">
 
     <button type="button" aria-label="Vælg hotel" class="hotel-tab active" data-panel="0">
@@ -1244,7 +1246,6 @@ footer::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;back
     </button>
 
   </div><!-- /hotels-nav -->
-    <button type="button" class="hotels-nav-arrow next" aria-label="Vis flere hoteller">›</button>
   </div><!-- /hotels-nav-wrap -->
 
   <div id="hotelPanels">
@@ -1563,6 +1564,7 @@ footer::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;back
 
   </div><!-- /hotel-panels -->
 </div><!-- /hotels-wrap -->
+</div><!-- /hotels-outer -->
 </div><!-- /container -->
 
 <div class="container">
@@ -1724,8 +1726,27 @@ footer::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;back
 <!-- FOOTER -->
 <footer>
   <div class="footer-logos">
-    <a href="https://dk.trustpilot.com/review/maldivia.dk" target="_blank" class="tp-logo" aria-label="Trustpilot anmeldelser">
-      <img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2026/05/TEST.png" alt="Trustpilot">
+    <a href="https://dk.trustpilot.com/review/maldivia.dk" target="_blank" class="tp-logo" aria-label="Trustpilot 5-stjernet rating">
+      <svg class="tp-svg" viewBox="0 0 140 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <!-- Trustpilot wordmark with star icon — white -->
+        <g fill="#ffffff">
+          <polygon points="6,4 7.6,8.3 12,8.3 8.4,11 9.8,15.3 6,12.7 2.2,15.3 3.6,11 0,8.3 4.4,8.3"/>
+          <text x="16" y="13.5" font-family="Jost,sans-serif" font-size="11" font-weight="600" letter-spacing="-0.2">Trustpilot</text>
+        </g>
+        <!-- 5 green stars row -->
+        <g transform="translate(0,18)">
+          <rect x="0" y="0" width="13" height="13" fill="#00b67a"/>
+          <polygon points="6.5,2.5 7.6,5.6 11,5.6 8.3,7.5 9.3,10.6 6.5,8.7 3.7,10.6 4.7,7.5 2,5.6 5.4,5.6" fill="#ffffff"/>
+          <rect x="15" y="0" width="13" height="13" fill="#00b67a"/>
+          <polygon points="21.5,2.5 22.6,5.6 26,5.6 23.3,7.5 24.3,10.6 21.5,8.7 18.7,10.6 19.7,7.5 17,5.6 20.4,5.6" fill="#ffffff"/>
+          <rect x="30" y="0" width="13" height="13" fill="#00b67a"/>
+          <polygon points="36.5,2.5 37.6,5.6 41,5.6 38.3,7.5 39.3,10.6 36.5,8.7 33.7,10.6 34.7,7.5 32,5.6 35.4,5.6" fill="#ffffff"/>
+          <rect x="45" y="0" width="13" height="13" fill="#00b67a"/>
+          <polygon points="51.5,2.5 52.6,5.6 56,5.6 53.3,7.5 54.3,10.6 51.5,8.7 48.7,10.6 49.7,7.5 47,5.6 50.4,5.6" fill="#ffffff"/>
+          <rect x="60" y="0" width="13" height="13" fill="#00b67a"/>
+          <polygon points="66.5,2.5 67.6,5.6 71,5.6 68.3,7.5 69.3,10.6 66.5,8.7 63.7,10.6 64.7,7.5 62,5.6 65.4,5.6" fill="#ffffff"/>
+        </g>
+      </svg>
     </a>
     <a href="https://www.maldivia.dk" target="_blank" class="invert" aria-label="Maldivia">
       <img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2025/10/LOGO-PNG-04-scaled.png" alt="Maldivia" style="height:36px;">
