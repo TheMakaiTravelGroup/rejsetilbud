@@ -261,51 +261,83 @@ header{
   box-shadow:0 30px 60px -30px rgba(26,23,20,0.12), 0 1px 3px rgba(26,23,20,0.04);
 }
 
-/* ── HOTEL TABS — refined editorial style ── */
+/* ── HOTEL TABS — refined editorial style with thumbnails ── */
 .hotels-nav{
   display:flex;gap:0;
   border-bottom:1px solid var(--sand-mid);
   overflow-x:auto;scrollbar-width:none;
   background:linear-gradient(to bottom, var(--white) 0%, var(--sand) 100%);
+  padding:4px 0 0;
 }
 .hotels-nav::-webkit-scrollbar{display:none;}
 .hotel-tab{
-  flex:1 1 auto;min-width:0;
+  flex:1 1 0;min-width:140px;
   cursor:none;border:none;background:none;
   position:relative;
   transition:background 0.3s var(--ease-out);
   padding:0;
 }
 .hotel-tab:not(:last-child)::after{
-  content:'';position:absolute;right:0;top:25%;bottom:25%;
+  content:'';position:absolute;right:0;top:18%;bottom:18%;
   width:1px;background:var(--sand-deep);
-  opacity:0.6;
+  opacity:0.5;
 }
 .hotel-tab-inner{
   display:flex;flex-direction:column;align-items:center;
-  padding:22px 18px 20px;gap:8px;
+  padding:18px 14px 16px;gap:10px;
   position:relative;
 }
-.hotel-tab-number{
-  font-family:var(--ff-display);
-  font-size:13px;font-style:italic;font-weight:400;
-  color:var(--ink-lt);
-  transition:color 0.3s var(--ease-out);
-  letter-spacing:0.02em;
+.hotel-tab-thumb{
+  width:64px;height:64px;border-radius:50%;
+  overflow:hidden;
+  border:1px solid var(--sand-deep);
+  transition:border-color 0.4s var(--ease-out),transform 0.4s var(--ease-out),box-shadow 0.4s var(--ease-out);
+  flex-shrink:0;
+  position:relative;
+}
+.hotel-tab-thumb::after{
+  content:'';position:absolute;inset:0;
+  border-radius:50%;
+  box-shadow:inset 0 0 0 2px rgba(253,252,249,0.7);
+  pointer-events:none;
+}
+.hotel-tab-thumb img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform 0.6s var(--ease-out);
+}
+.hotel-tab-meta{
+  display:flex;flex-direction:column;align-items:center;gap:2px;
 }
 .hotel-tab-name{
-  font-family:var(--ff-ui);font-size:10px;font-weight:500;
-  letter-spacing:0.14em;text-transform:uppercase;
-  color:var(--ink-lt);
+  font-family:var(--ff-display);
+  font-size:14px;font-weight:600;font-style:italic;
+  color:var(--ink-mid);
   white-space:nowrap;text-align:center;
+  letter-spacing:0;line-height:1.1;
+  transition:color 0.3s var(--ease-out);
+}
+.hotel-tab-atoll{
+  font-family:var(--ff-ui);font-size:8.5px;font-weight:400;
+  letter-spacing:0.16em;text-transform:uppercase;
+  color:var(--ink-lt);
+  white-space:nowrap;
   transition:color 0.3s var(--ease-out);
 }
 .hotel-tab:hover{background:rgba(255,255,255,0.5);}
-.hotel-tab:hover .hotel-tab-number,
+.hotel-tab:hover .hotel-tab-thumb{
+  transform:scale(1.05);
+  border-color:var(--gold-lt);
+  box-shadow:0 4px 12px -4px rgba(157,134,101,0.3);
+}
+.hotel-tab:hover .hotel-tab-thumb img{transform:scale(1.1);}
 .hotel-tab:hover .hotel-tab-name{color:var(--ink);}
 .hotel-tab.active{background:var(--white);}
-.hotel-tab.active .hotel-tab-number{color:var(--gold);}
-.hotel-tab.active .hotel-tab-name{color:var(--gold-dk);}
+.hotel-tab.active .hotel-tab-thumb{
+  border-color:var(--gold);
+  box-shadow:0 6px 16px -4px rgba(157,134,101,0.35);
+}
+.hotel-tab.active .hotel-tab-name{color:var(--ink);}
+.hotel-tab.active .hotel-tab-atoll{color:var(--gold);}
 .hotel-tab.active::before{
   content:'';position:absolute;left:0;right:0;bottom:-1px;height:2px;
   background:var(--gold);
@@ -446,7 +478,65 @@ header{
 .alt-flight-price{font-family:var(--ff-display);font-size:24px;font-weight:600;color:var(--gold-dk);flex-shrink:0;}
 .alt-note{font-family:var(--ff-ui);font-size:12px;font-weight:300;line-height:1.7;color:var(--ink-lt);}
 
-/* ── TERMS ── */
+/* ── LIGHTBOX ── */
+.lightbox{
+  position:fixed;inset:0;z-index:9000;
+  background:rgba(15,12,9,0.95);
+  display:none;
+  align-items:center;justify-content:center;
+  opacity:0;transition:opacity 0.4s var(--ease-out);
+}
+.lightbox.open{display:flex;opacity:1;}
+.lightbox-img{
+  max-width:92vw;max-height:88vh;
+  object-fit:contain;
+  box-shadow:0 30px 80px rgba(0,0,0,0.5);
+  opacity:0;transform:scale(0.97);
+  transition:opacity 0.5s var(--ease-out),transform 0.5s var(--ease-out);
+}
+.lightbox.open .lightbox-img{opacity:1;transform:scale(1);}
+.lightbox-close{
+  position:absolute;top:24px;right:28px;
+  width:44px;height:44px;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(253,252,249,0.1);
+  backdrop-filter:blur(10px);
+  border:1px solid rgba(253,252,249,0.2);
+  border-radius:50%;
+  color:var(--white);font-size:20px;cursor:none;
+  transition:background 0.2s;
+  font-family:var(--ff-ui);font-weight:300;line-height:1;
+}
+.lightbox-close:hover{background:rgba(253,252,249,0.2);}
+.lightbox-nav{
+  position:absolute;top:50%;transform:translateY(-50%);
+  width:56px;height:56px;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(253,252,249,0.1);
+  backdrop-filter:blur(10px);
+  border:1px solid rgba(253,252,249,0.2);
+  border-radius:50%;
+  color:var(--white);font-size:24px;cursor:none;
+  transition:background 0.2s,transform 0.2s;
+}
+.lightbox-nav:hover{background:rgba(253,252,249,0.2);transform:translateY(-50%) scale(1.05);}
+.lightbox-prev{left:32px;}
+.lightbox-next{right:32px;}
+.lightbox-counter{
+  position:absolute;bottom:32px;left:50%;
+  transform:translateX(-50%);
+  font-family:var(--ff-ui);font-size:11px;
+  letter-spacing:0.2em;text-transform:uppercase;
+  color:rgba(253,252,249,0.6);
+}
+.lightbox-counter .current{color:var(--gold-lt);}
+@media(max-width:640px){
+  .lightbox-nav{width:44px;height:44px;font-size:18px;}
+  .lightbox-prev{left:12px;}
+  .lightbox-next{right:12px;}
+  .lightbox-close{top:16px;right:16px;width:38px;height:38px;}
+  .lightbox-counter{bottom:20px;font-size:10px;}
+}
 .terms-box{
   background:var(--white);border:1px solid var(--sand-deep);
   border-radius:6px;padding:26px 34px;margin-top:72px;
@@ -505,8 +595,57 @@ footer::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;back
 
 /* ── RESPONSIVE ── */
 /* ─────────────────────────────────────
-   TABLET (1024px and down)
+   PRINT STYLES — turn into elegant PDF
 ───────────────────────────────────── */
+@media print {
+  *{-webkit-print-color-adjust:exact !important;print-color-adjust:exact !important;color-adjust:exact !important;}
+  body{background:#fff !important;font-size:11pt;cursor:auto;}
+  body::before, #cursor, #cursor-ring, .sticky-cta,
+  .gallery-btn, .gallery-dots, .hero-scroll,
+  .lightbox, .cta-section, .scroll-line{display:none !important;}
+  header{position:static !important;background:transparent !important;backdrop-filter:none !important;border-bottom:1px solid #ddd !important;padding:8mm 0 !important;}
+  .hero{height:auto !important;min-height:0 !important;padding:30mm 0 20mm !important;page-break-after:avoid;}
+  .hero-parallax{background-attachment:scroll !important;transform:none !important;}
+  .hero-parallax::after{background:rgba(26,23,20,0.7) !important;}
+  .hero-content{padding:0 15mm !important;}
+  .hero-title{font-size:36pt !important;color:#fff !important;}
+  .hero-meta{color:rgba(255,255,255,0.85) !important;}
+  .container{max-width:100% !important;padding:0 12mm !important;}
+  .section-header{padding-top:14mm !important;page-break-after:avoid;}
+  .includes-card, .price-box, .hotels-wrap, .flight-card, .terms-box{
+    page-break-inside:avoid;
+    box-shadow:none !important;
+    border:1px solid #ddd !important;
+    margin-bottom:6mm !important;
+  }
+  .hotels-nav{display:none !important;}
+  .hotel-panel{display:block !important;page-break-inside:avoid;border-top:1px solid #ddd;animation:none !important;}
+  .hotel-panel:first-child{border-top:0;}
+  .hotel-gallery{height:60mm !important;}
+  .hotel-gallery-track{transform:none !important;}
+  .hotel-gallery-track a{flex:0 0 100% !important;}
+  .hotel-gallery-track a:not(:first-child){display:none !important;}
+  .flight-hero{aspect-ratio:auto !important;height:50mm !important;}
+  .flight-hero-track{transform:none !important;}
+  .flight-hero-track a{flex:0 0 100% !important;}
+  .flight-hero-track a:not(:first-child){display:none !important;}
+  .reveal{opacity:1 !important;transform:none !important;}
+  a{color:inherit !important;text-decoration:none !important;}
+  footer{background:#fff !important;color:#000 !important;page-break-inside:avoid;padding:10mm 0 !important;}
+  .footer-logos a.invert img{filter:none !important;}
+  .footer-copy{color:#888 !important;}
+  .hotel-cols{display:block !important;}
+  .hotel-cols > div + div{margin-top:6mm;}
+  .price-main-num{
+    -webkit-text-fill-color:initial !important;
+    background:none !important;
+    color:#9d8665 !important;
+    animation:none !important;
+  }
+  .price-box, .price-box::before, .price-box::after{background:#1a1714 !important;}
+  .price-box{color:#fff !important;}
+  @page{margin:10mm;size:A4;}
+}
 @media(max-width:1024px){
   header{padding:14px 32px;}
   .hero-content{padding:0 48px 72px;}
@@ -587,18 +726,13 @@ footer::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;back
   .price-alt{font-size:14.5px;margin-bottom:22px;}
   .price-note{font-size:12px;line-height:1.65;}
 
-  /* HOTEL TABS — keep names visible */
-  .hotels-nav{padding:8px 0;}
-  .hotel-tab-inner{padding:8px 12px;gap:6px;}
-  .hotel-tab-name{
-    display:block;
-    font-size:8.5px;
-    letter-spacing:0.08em;
-    max-width:64px;
-    overflow:hidden;
-    text-overflow:ellipsis;
-    text-align:center;
-  }
+  /* HOTEL TABS — mobile refined */
+  .hotels-nav{padding:6px 0 0;}
+  .hotel-tab{min-width:110px;}
+  .hotel-tab-inner{padding:14px 10px 12px;gap:8px;}
+  .hotel-tab-thumb{width:52px;height:52px;}
+  .hotel-tab-name{font-size:12px;}
+  .hotel-tab-atoll{font-size:7.5px;letter-spacing:0.14em;}
 
   /* HOTEL BODY */
   .hotel-body{padding:28px 22px 32px;}
@@ -671,7 +805,10 @@ footer::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;back
   .hero-content{padding:0 20px 40px;}
   .hero-logo-reveal{left:20px;}
   .hero-logo-reveal img{height:26px;}
-  .hotel-tab-name{font-size:8px;max-width:54px;}
+  .hotel-tab{min-width:96px;}
+  .hotel-tab-thumb{width:44px;height:44px;}
+  .hotel-tab-name{font-size:11px;}
+  .hotel-tab-atoll{font-size:7px;}
   .hotel-gallery{height:200px;}
   .price-box{padding:28px 20px;}
   .includes-card{padding:22px 18px;}
@@ -748,7 +885,7 @@ footer::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;back
     <div class="price-box-label">Samlet rejsepris inkl. fly, hotel &amp; transfers</div>
     <div class="price-main">
       <span class="price-main-dkk">DKK</span>
-      <span class="price-main-num">94.000</span>
+      <span class="price-main-num" data-target="94000">94.000</span>
     </div>
     <div class="price-alt">Alternativ pris uden flyrejse (hotel + transfers): <strong>DKK 65.500</strong></div>
     <div class="price-divider"></div>
@@ -771,43 +908,61 @@ footer::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;back
 
     <button class="hotel-tab active" data-panel="0">
       <div class="hotel-tab-inner">
-        <div class="hotel-tab-number">I</div>
-        <div class="hotel-tab-name">JA Manafaru</div>
+        <div class="hotel-tab-thumb"><img src="https://maldivia.no/wp-content/uploads/sites/2/2025/10/Manafaru-1.jpg" alt=""></div>
+        <div class="hotel-tab-meta">
+          <div class="hotel-tab-name">JA Manafaru</div>
+          <div class="hotel-tab-atoll">Haa Alifu</div>
+        </div>
       </div>
     </button>
 
     <button class="hotel-tab" data-panel="1">
       <div class="hotel-tab-inner">
-        <div class="hotel-tab-number">II</div>
-        <div class="hotel-tab-name">Meyyafushi</div>
+        <div class="hotel-tab-thumb"><img src="https://maldivia.no/wp-content/uploads/sites/2/2026/01/MM-Pool.jpg" alt=""></div>
+        <div class="hotel-tab-meta">
+          <div class="hotel-tab-name">Meyyafushi</div>
+          <div class="hotel-tab-atoll">Lhaviyani</div>
+        </div>
       </div>
     </button>
 
     <button class="hotel-tab" data-panel="2">
       <div class="hotel-tab-inner">
-        <div class="hotel-tab-number">III</div>
-        <div class="hotel-tab-name">Emerald Maldives</div>
+        <div class="hotel-tab-thumb"><img src="https://maldivia.dk/wp-content/uploads/2026/01/EM-13.jpg" alt=""></div>
+        <div class="hotel-tab-meta">
+          <div class="hotel-tab-name">Emerald</div>
+          <div class="hotel-tab-atoll">Raa Atoll</div>
+        </div>
       </div>
     </button>
 
     <button class="hotel-tab" data-panel="3">
       <div class="hotel-tab-inner">
-        <div class="hotel-tab-number">IV</div>
-        <div class="hotel-tab-name">Alila Kothaifaru</div>
+        <div class="hotel-tab-thumb"><img src="https://maldivia.dk/wp-content/uploads/2025/10/Alila-Kothaifaru-Maldives-Infinity-Pool-Sunset-Aerial-Shoot.jpg" alt=""></div>
+        <div class="hotel-tab-meta">
+          <div class="hotel-tab-name">Alila Kothaifaru</div>
+          <div class="hotel-tab-atoll">Raa Atoll</div>
+        </div>
       </div>
     </button>
 
     <button class="hotel-tab" data-panel="4">
       <div class="hotel-tab-inner">
-        <div class="hotel-tab-number">V</div>
-        <div class="hotel-tab-name">Emerald Faarufushi</div>
+        <div class="hotel-tab-thumb"><img src="https://maldivia.dk/wp-content/uploads/2025/10/Emerald-Faarufushi-7-scaled.jpg" alt=""></div>
+        <div class="hotel-tab-meta">
+          <div class="hotel-tab-name">Faarufushi</div>
+          <div class="hotel-tab-atoll">Raa Atoll</div>
+        </div>
       </div>
     </button>
 
     <button class="hotel-tab" data-panel="5">
       <div class="hotel-tab-inner">
-        <div class="hotel-tab-number">VI</div>
-        <div class="hotel-tab-name">Six Senses</div>
+        <div class="hotel-tab-thumb"><img src="https://maldivia.dk/wp-content/uploads/2026/03/SSK-2.webp" alt=""></div>
+        <div class="hotel-tab-meta">
+          <div class="hotel-tab-name">Six Senses</div>
+          <div class="hotel-tab-atoll">Lhaviyani</div>
+        </div>
       </div>
     </button>
 
@@ -1303,6 +1458,15 @@ footer::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;back
   <div class="footer-copy">© Maldivia — En del af The Makai Travel Group</div>
 </footer>
 
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
+  <button class="lightbox-close" id="lbClose" aria-label="Luk">✕</button>
+  <button class="lightbox-nav lightbox-prev" id="lbPrev" aria-label="Forrige">‹</button>
+  <img class="lightbox-img" id="lbImg" alt="">
+  <button class="lightbox-nav lightbox-next" id="lbNext" aria-label="Næste">›</button>
+  <div class="lightbox-counter"><span class="current" id="lbCurrent">1</span> / <span id="lbTotal">1</span></div>
+</div>
+
 <script>
 /* ── CUSTOM CURSOR ── */
 (function(){
@@ -1326,6 +1490,33 @@ footer::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;back
     const y = window.scrollY;
     bg.style.transform = 'translateY('+y*0.38+'px)';
   },{passive:true});
+})();
+
+/* ── ANIMATED PRICE COUNTER ── */
+(function(){
+  const formatNum = n => Math.round(n).toLocaleString('da-DK').replace(/,/g,'.');
+  const ease = t => 1 - Math.pow(1 - t, 3);
+  function animate(el){
+    const target = parseInt(el.dataset.target, 10);
+    if(!target) return;
+    const dur = 1800;
+    const start = performance.now();
+    function step(now){
+      const t = Math.min((now - start) / dur, 1);
+      el.textContent = formatNum(target * ease(t));
+      if(t < 1) requestAnimationFrame(step);
+      else el.textContent = formatNum(target);
+    }
+    el.textContent = '0';
+    requestAnimationFrame(step);
+  }
+  const els = document.querySelectorAll('[data-target]');
+  const io = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){animate(e.target);io.unobserve(e.target);}
+    });
+  },{threshold:0.5});
+  els.forEach(el=>io.observe(el));
 })();
 
 /* ── SCROLL REVEAL ── */
@@ -1352,13 +1543,69 @@ footer::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;back
   });
 })();
 
-/* ── GALLERIES ── */
+/* ── GALLERIES + LIGHTBOX ── */
 (function(){
+  /* Lightbox state */
+  const lb = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lbImg');
+  const lbCurrent = document.getElementById('lbCurrent');
+  const lbTotal = document.getElementById('lbTotal');
+  let currentList = [];
+  let currentIdx = 0;
+
+  function openLightbox(list, idx){
+    currentList = list;
+    currentIdx = idx;
+    updateLightbox();
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox(){
+    lb.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function updateLightbox(){
+    lbImg.src = currentList[currentIdx];
+    lbCurrent.textContent = currentIdx + 1;
+    lbTotal.textContent = currentList.length;
+  }
+  function navLightbox(delta){
+    currentIdx = (currentIdx + delta + currentList.length) % currentList.length;
+    updateLightbox();
+  }
+  document.getElementById('lbClose').addEventListener('click', closeLightbox);
+  document.getElementById('lbPrev').addEventListener('click', ()=>navLightbox(-1));
+  document.getElementById('lbNext').addEventListener('click', ()=>navLightbox(1));
+  lb.addEventListener('click', e=>{ if(e.target === lb) closeLightbox(); });
+  document.addEventListener('keydown', e=>{
+    if(!lb.classList.contains('open')) return;
+    if(e.key === 'Escape') closeLightbox();
+    if(e.key === 'ArrowRight') navLightbox(1);
+    if(e.key === 'ArrowLeft') navLightbox(-1);
+  });
+  /* Lightbox touch swipe */
+  let lbStartX = 0;
+  lb.addEventListener('touchstart', e=>{lbStartX = e.touches[0].clientX;}, {passive:true});
+  lb.addEventListener('touchend', e=>{
+    const dx = e.changedTouches[0].clientX - lbStartX;
+    if(Math.abs(dx) > 40) navLightbox(dx < 0 ? 1 : -1);
+  }, {passive:true});
+
   function init(root){
     const track = root.querySelector('.hotel-gallery-track,.flight-hero-track');
     if(!track) return;
     const slides = track.querySelectorAll('a');
     if(!slides.length) return;
+
+    /* Lightbox integration — intercept clicks on slide anchors */
+    const urls = Array.from(slides).map(a => a.getAttribute('href'));
+    slides.forEach((a, i)=>{
+      a.addEventListener('click', e=>{
+        e.preventDefault();
+        openLightbox(urls, i);
+      });
+    });
+
     const dotsWrap = root.querySelector('.gallery-dots');
     const dots=[];
     let idx=0;
@@ -1366,7 +1613,7 @@ footer::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;back
       slides.forEach((_,i)=>{
         const d=document.createElement('div');
         d.className='gallery-dot'+(i===0?' active':'');
-        d.addEventListener('click',()=>go(i-idx));
+        d.addEventListener('click',(e)=>{e.stopPropagation();go(i-idx);});
         dotsWrap.appendChild(d);dots.push(d);
       });
     }
@@ -1377,8 +1624,8 @@ footer::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;back
     function go(delta){idx=(idx+delta+slides.length)%slides.length;update();}
     const prev=root.querySelector('.gallery-btn.prev,.prev');
     const next=root.querySelector('.gallery-btn.next,.next');
-    if(prev)prev.addEventListener('click',e=>{e.preventDefault();go(-1);});
-    if(next)next.addEventListener('click',e=>{e.preventDefault();go(1);});
+    if(prev)prev.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();go(-1);});
+    if(next)next.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();go(1);});
     let sx=0;
     track.addEventListener('touchstart',e=>{sx=e.touches[0].clientX;},{passive:true});
     track.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-sx;if(Math.abs(dx)>40)go(dx<0?1:-1);},{passive:true});
