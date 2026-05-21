@@ -422,11 +422,11 @@ header{
 }
 .hotels-nav::-webkit-scrollbar{display:none;}
 
-/* Scroll arrows — placed OUTSIDE the nav on desktop */
+/* Scroll arrows — placed OUTSIDE the nav on desktop, aligned to TAB STRIP only */
 .hotels-nav-arrow{
   position:absolute;
-  top:50%;
-  transform:translateY(-50%);
+  top:50px; /* aligned with thumbnail center in tab strip */
+  transform:translateY(0);
   width:40px;height:40px;border-radius:50%;
   background:var(--sand);
   border:1px solid var(--sand-deep);
@@ -443,10 +443,9 @@ header{
 .hotels-nav-arrow:hover{
   background:var(--ink);
   color:var(--gold-lt);
-  transform:translateY(-50%) scale(1.08);
+  transform:translateY(0) scale(1.08);
   box-shadow:0 8px 22px -4px rgba(26,23,20,0.35);
 }
-/* OUTSIDE the box on desktop */
 .hotels-nav-arrow.prev{left:-22px;}
 .hotels-nav-arrow.next{right:-22px;}
 
@@ -1788,7 +1787,7 @@ footer::after{
   <div class="footer-inner">
   <div class="footer-logos">
     <a href="https://dk.trustpilot.com/review/maldivia.dk" target="_blank" class="tp-logo" aria-label="Trustpilot 5-stjernet rating">
-      <svg class="tp-svg" viewBox="0 0 140 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <svg class="tp-svg" viewBox="0 0 80 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <!-- Trustpilot wordmark with star icon — white -->
         <g fill="#ffffff">
           <polygon points="6,4 7.6,8.3 12,8.3 8.4,11 9.8,15.3 6,12.7 2.2,15.3 3.6,11 0,8.3 4.4,8.3"/>
@@ -2016,10 +2015,14 @@ footer::after{
   window.addEventListener('load', updateScrollIndicators);
 
   if(prevBtn) prevBtn.addEventListener('click', ()=>{
-    nav.scrollBy({left: -200, behavior: 'smooth'});
+    const tab = nav.querySelector('.hotel-tab');
+    const step = tab ? tab.offsetWidth * 2 : 336;
+    nav.scrollBy({left: -step, behavior: 'smooth'});
   });
   if(nextBtn) nextBtn.addEventListener('click', ()=>{
-    nav.scrollBy({left: 200, behavior: 'smooth'});
+    const tab = nav.querySelector('.hotel-tab');
+    const step = tab ? tab.offsetWidth * 2 : 336;
+    nav.scrollBy({left: step, behavior: 'smooth'});
   });
 
   nav.querySelectorAll('.hotel-tab').forEach(tab=>{
