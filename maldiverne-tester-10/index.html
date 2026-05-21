@@ -169,16 +169,18 @@ header{
 .sticky-cta{
   position:fixed;right:0;top:50%;transform:translateY(-50%) translateX(110%);
   z-index:400;writing-mode:vertical-rl;text-orientation:mixed;
-  background:var(--ink);color:var(--white);
+  background:linear-gradient(180deg, #221d18 0%, #1a1714 100%);
+  color:var(--white);
   font-family:var(--ff-ui);font-size:10.5px;font-weight:500;
   letter-spacing:0.22em;text-transform:uppercase;
   padding:24px 12px;
   border-radius:6px 0 0 6px;
   transition:transform 0.6s var(--ease-out),background 0.3s var(--ease-out),padding 0.3s var(--ease-out),box-shadow 0.3s var(--ease-out);
   text-decoration:none;
-  box-shadow:-4px 0 16px -6px rgba(26,23,20,0.25);
+  box-shadow:-6px 0 20px -6px rgba(26,23,20,0.3);
   display:flex;align-items:center;gap:14px;
   opacity:0;
+  border-left:1px solid rgba(157,134,101,0.2);
 }
 .sticky-cta.visible{transform:translateY(-50%) translateX(0);opacity:1;}
 .sticky-cta::after{
@@ -830,31 +832,88 @@ header{
 .cta-fallback a{color:var(--gold);}
 
 /* ── FOOTER ── */
-footer{background:var(--ink);padding:52px 48px;text-align:center;position:relative;}
-footer::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);}
-.footer-logos{display:flex;align-items:center;justify-content:center;gap:48px;margin-bottom:28px;flex-wrap:wrap;}
+footer{
+  background:linear-gradient(180deg, #1a1714 0%, #221d18 50%, #1a1714 100%);
+  padding:64px 48px 52px;
+  text-align:center;
+  position:relative;
+}
+footer::before{
+  content:'';
+  position:absolute;
+  top:0;left:0;right:0;
+  height:1px;
+  background:linear-gradient(90deg,transparent 10%,var(--gold) 50%,transparent 90%);
+}
+/* Subtle radial warm glow in center */
+footer::after{
+  content:'';
+  position:absolute;
+  top:-40%;
+  left:50%;
+  transform:translateX(-50%);
+  width:60%;
+  height:120%;
+  background:radial-gradient(ellipse at center, rgba(157,134,101,0.06) 0%, transparent 60%);
+  pointer-events:none;
+}
+.footer-inner{position:relative;z-index:1;}
+.footer-copy{
+  font-family:var(--ff-ui);
+  font-size:10.5px;
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  color:rgba(253,252,249,0.35);
+  font-weight:300;
+}
+.footer-copy::before{
+  content:'✦';
+  display:inline-block;
+  margin-right:14px;
+  color:var(--gold);
+  opacity:0.6;
+  font-size:9px;
+  vertical-align:middle;
+}
+.footer-copy::after{
+  content:'✦';
+  display:inline-block;
+  margin-left:14px;
+  color:var(--gold);
+  opacity:0.6;
+  font-size:9px;
+  vertical-align:middle;
+}
+.footer-logos{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:56px;
+  margin-bottom:32px;
+  flex-wrap:wrap;
+}
 .footer-logos a{
   opacity:0.7;
   transition:opacity 0.25s,transform 0.25s;
-  display:inline-flex;align-items:center;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
   position:relative;
+  height:36px;
 }
 .footer-logos a:hover{opacity:1;transform:translateY(-2px);}
-.footer-logos a img{display:block;width:auto;position:relative;z-index:1;}
+.footer-logos a img{display:block;width:auto;max-height:100%;position:relative;z-index:1;}
 
 /* Trustpilot — inline SVG, no background */
-.footer-logos a.tp-logo{
-  opacity:0.85;
-}
+.footer-logos a.tp-logo{opacity:0.85;}
 .footer-logos a.tp-logo:hover{opacity:1;}
-.footer-logos a.tp-logo .tp-svg{
-  height:30px;width:auto;display:block;
-}
+.footer-logos a.tp-logo .tp-svg{height:32px;width:auto;display:block;}
 
 /* Inverted logos (turned white via filter) — Maldivia and Rejsegarantifonden */
-.footer-logos a.invert img{filter:brightness(0) invert(1);}
 .footer-logos a.invert{opacity:0.55;}
 .footer-logos a.invert:hover{opacity:1;}
+.footer-logos a.invert img{filter:brightness(0) invert(1);max-height:32px;}
+.footer-logos a.invert[aria-label="Maldivia"] img{max-height:36px;}
 .footer-copy{font-family:var(--ff-ui);font-size:10.5px;letter-spacing:0.1em;color:rgba(253,252,249,0.25);}
 
 /* ── RESPONSIVE ── */
@@ -1725,6 +1784,7 @@ footer::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;back
 
 <!-- FOOTER -->
 <footer>
+  <div class="footer-inner">
   <div class="footer-logos">
     <a href="https://dk.trustpilot.com/review/maldivia.dk" target="_blank" class="tp-logo" aria-label="Trustpilot 5-stjernet rating">
       <svg class="tp-svg" viewBox="0 0 140 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -1749,13 +1809,14 @@ footer::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;back
       </svg>
     </a>
     <a href="https://www.maldivia.dk" target="_blank" class="invert" aria-label="Maldivia">
-      <img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2025/10/LOGO-PNG-04-scaled.png" alt="Maldivia" style="height:36px;">
+      <img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2025/10/LOGO-PNG-04-scaled.png" alt="Maldivia">
     </a>
     <a href="https://www.rejsegarantifonden.dk/medlem?s=2688" target="_blank" class="invert" aria-label="Rejsegarantifonden">
-      <img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2025/10/Rejsegarantifonden.png" alt="Rejsegarantifonden" style="height:26px;">
+      <img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2025/10/Rejsegarantifonden.png" alt="Rejsegarantifonden">
     </a>
   </div>
   <div class="footer-copy">© Maldivia — En del af The Makai Travel Group</div>
+  </div><!-- /footer-inner -->
 </footer>
 
 <!-- LIGHTBOX -->
