@@ -884,36 +884,37 @@ footer::after{
   font-size:9px;
   vertical-align:middle;
 }
+/* ── FOOTER LOGOS — optically balanced ── */
 .footer-logos{
   display:flex;
   align-items:center;
   justify-content:center;
-  gap:56px;
+  gap:64px;
   margin-bottom:32px;
   flex-wrap:wrap;
 }
 .footer-logos a{
-  opacity:0.7;
   transition:opacity 0.25s,transform 0.25s;
   display:inline-flex;
   align-items:center;
   justify-content:center;
   position:relative;
-  height:36px;
+  /* No fixed height — each logo sized individually */
 }
-.footer-logos a:hover{opacity:1;transform:translateY(-2px);}
-.footer-logos a img{display:block;width:auto;max-height:100%;position:relative;z-index:1;}
+.footer-logos a:hover{transform:translateY(-2px);}
+.footer-logos a img{display:block;width:auto;}
 
-/* Trustpilot — inline SVG, no background */
-.footer-logos a.tp-logo{opacity:0.85;}
+/* Trustpilot — biggest visually due to text + stars stack */
+.footer-logos a.tp-logo{opacity:0.9;}
 .footer-logos a.tp-logo:hover{opacity:1;}
-.footer-logos a.tp-logo .tp-svg{height:32px;width:auto;display:block;}
+.footer-logos a.tp-logo .tp-svg{height:36px;width:auto;display:block;}
 
-/* Inverted logos (turned white via filter) — Maldivia and Rejsegarantifonden */
-.footer-logos a.invert{opacity:0.55;}
-.footer-logos a.invert:hover{opacity:1;}
-.footer-logos a.invert img{filter:brightness(0) invert(1);max-height:32px;}
-.footer-logos a.invert[aria-label="Maldivia"] img{max-height:36px;}
+/* Maldivia logo — larger to compensate for PNG whitespace */
+.footer-logos a.invert{opacity:0.5;}
+.footer-logos a.invert:hover{opacity:0.95;}
+.footer-logos a.invert img{filter:brightness(0) invert(1);}
+.footer-logos a.invert[aria-label="Maldivia"] img{height:46px;}
+.footer-logos a.invert[aria-label="Rejsegarantifonden"] img{height:36px;}
 .footer-copy{font-family:var(--ff-ui);font-size:10.5px;letter-spacing:0.1em;color:rgba(253,252,249,0.25);}
 
 /* ── RESPONSIVE ── */
@@ -1125,9 +1126,9 @@ footer::after{
   /* FOOTER */
   footer{padding:40px 20px;}
   .footer-logos{gap:24px;margin-bottom:24px;}
-  .footer-logos a.tp-logo .tp-svg{height:24px;}
-  .footer-logos a.invert img{height:22px;}
-  .footer-logos a.invert[aria-label="Maldivia"] img{height:30px !important;}
+  .footer-logos a.tp-logo .tp-svg{height:28px;}
+  .footer-logos a.invert[aria-label="Maldivia"] img{height:36px;}
+  .footer-logos a.invert[aria-label="Rejsegarantifonden"] img{height:28px;}
   .footer-copy{font-size:10px;letter-spacing:0.08em;line-height:1.6;}
 }
 
@@ -1992,8 +1993,10 @@ footer::after{
   const panels = document.getElementById('hotelPanels');
   if(!nav||!panels||!wrap) return;
 
-  const prevBtn = wrap.querySelector('.hotels-nav-arrow.prev');
-  const nextBtn = wrap.querySelector('.hotels-nav-arrow.next');
+  // Arrows are now siblings of .hotels-wrap inside .hotels-outer
+  const outer = nav.closest('.hotels-outer') || wrap.parentElement;
+  const prevBtn = outer ? outer.querySelector('.hotels-nav-arrow.prev') : null;
+  const nextBtn = outer ? outer.querySelector('.hotels-nav-arrow.next') : null;
 
   function updateScrollIndicators(){
     const scrollLeft = nav.scrollLeft;
