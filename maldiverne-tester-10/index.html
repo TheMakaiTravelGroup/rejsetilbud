@@ -27,9 +27,9 @@
 <meta name="twitter:description" content="Skræddersyet rejsetilbud · 10 nætter · 6 udvalgte 5-stjernede resorts">
 <meta name="twitter:image" content="https://maldivia.no/wp-content/uploads/sites/2/2023/12/Alila-Kothaifaru-Maldives-Infinity-Pool-Sunset-Aerial-Shoot-1.jpg">
 
-<!-- Favicon (fallback to existing logo) -->
-<link rel="icon" type="image/png" href="https://maldivia.dk/wp-content/uploads/2025/10/LOGO-PNG-04-scaled.png">
-<link rel="apple-touch-icon" href="https://maldivia.dk/wp-content/uploads/2025/10/LOGO-PNG-04-scaled.png">
+<!-- Favicon -->
+<link rel="icon" type="image/png" href="https://maldivia.dk/wp-content/uploads/2026/05/SYMBOL-PNG-03.png">
+<link rel="apple-touch-icon" href="https://maldivia.dk/wp-content/uploads/2026/05/SYMBOL-PNG-03.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -253,6 +253,8 @@ header{
   color:rgba(253,252,249,0.65);text-transform:uppercase;
   opacity:0;animation:fadeUp 1s var(--ease-out) 0.85s forwards;
 }
+.hero-meta .nowrap{white-space:nowrap;}
+.hero-meta .hero-meta-sep{margin:0 6px;opacity:0.7;}
 @keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
 
 .hero-scroll{
@@ -351,10 +353,21 @@ header{
 /* Alt price row */
 .price-alt{
   font-family:var(--ff-body);font-size:16px;
-  color:rgba(253,252,249,0.5);  /* lighter for legibility */
+  color:rgba(253,252,249,0.5);
   margin-bottom:28px;line-height:1.5;
 }
-.price-alt strong{color:rgba(253,252,249,0.85);font-weight:600;}
+.price-alt strong{
+  color:rgba(253,252,249,0.9);
+  font-weight:600;
+  white-space:nowrap;
+  font-family:var(--ff-display);
+  font-variant-numeric:tabular-nums;
+  letter-spacing:0.01em;
+}
+.mobile-only-br{display:none;}
+@media(max-width:640px){
+  .mobile-only-br{display:inline;}
+}
 .price-divider{width:44px;height:1px;background:var(--gold);margin-bottom:24px;}
 /* KEY FIX: note text is now clearly readable */
 .price-note{
@@ -381,17 +394,17 @@ header{
 }
 .hotels-nav-wrap::before,
 .hotels-nav-wrap::after{
-  content:'';position:absolute;top:0;bottom:1px;width:40px;
+  content:'';position:absolute;top:0;bottom:1px;width:48px;
   pointer-events:none;z-index:2;
-  opacity:0;transition:opacity 0.25s var(--ease-out);
+  opacity:0;transition:opacity 0.3s var(--ease-out);
 }
 .hotels-nav-wrap::before{
   left:0;
-  background:linear-gradient(to right, var(--white), transparent);
+  background:linear-gradient(to right, var(--white) 0%, rgba(255,255,255,0.85) 50%, transparent 100%);
 }
 .hotels-nav-wrap::after{
   right:0;
-  background:linear-gradient(to left, var(--sand), transparent);
+  background:linear-gradient(to left, var(--sand) 0%, rgba(245,240,232,0.85) 50%, transparent 100%);
 }
 .hotels-nav-wrap.scroll-left::before{opacity:1;}
 .hotels-nav-wrap.scroll-right::after{opacity:1;}
@@ -407,18 +420,20 @@ header{
 }
 .hotels-nav::-webkit-scrollbar{display:none;}
 
-/* Scroll arrows */
+/* Scroll arrows — positioned INSIDE the nav area, vertically centered on tab content */
 .hotels-nav-arrow{
-  position:absolute;top:50%;transform:translateY(-50%);
-  width:38px;height:38px;border-radius:50%;
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  width:40px;height:40px;border-radius:50%;
   background:var(--white);
   border:1px solid var(--sand-deep);
-  color:var(--gold-dk);
+  color:var(--ink);
   display:flex;align-items:center;justify-content:center;
   font-size:18px;cursor:pointer;
-  z-index:3;font-family:var(--ff-display);font-weight:400;
-  box-shadow:0 6px 16px -4px rgba(26,23,20,0.18);
-  transition:opacity 0.3s var(--ease-out),background 0.25s var(--ease-out),transform 0.25s var(--ease-out),box-shadow 0.25s var(--ease-out);
+  z-index:5;font-family:var(--ff-display);font-weight:400;
+  box-shadow:0 8px 20px -6px rgba(26,23,20,0.25), 0 0 0 4px rgba(245,240,232,0.6);
+  transition:opacity 0.3s var(--ease-out),background 0.25s var(--ease-out),color 0.25s var(--ease-out),transform 0.25s var(--ease-out),box-shadow 0.25s var(--ease-out);
   opacity:0;pointer-events:none;
   line-height:1;padding-bottom:2px;
 }
@@ -426,11 +441,11 @@ header{
 .hotels-nav-arrow:hover{
   background:var(--ink);
   color:var(--gold-lt);
-  transform:translateY(-50%) scale(1.08);
-  box-shadow:0 8px 20px -4px rgba(26,23,20,0.3);
+  transform:translateY(-50%) scale(1.06);
+  box-shadow:0 10px 24px -6px rgba(26,23,20,0.4), 0 0 0 4px rgba(245,240,232,0.7);
 }
-.hotels-nav-arrow.prev{left:12px;}
-.hotels-nav-arrow.next{right:12px;}
+.hotels-nav-arrow.prev{left:14px;}
+.hotels-nav-arrow.next{right:14px;}
 
 .hotel-tab{
   flex:0 0 auto;min-width:168px;
@@ -817,12 +832,29 @@ header{
 footer{background:var(--ink);padding:52px 48px;text-align:center;position:relative;}
 footer::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);}
 .footer-logos{display:flex;align-items:center;justify-content:center;gap:48px;margin-bottom:28px;flex-wrap:wrap;}
-.footer-logos a{opacity:0.7;transition:opacity 0.25s,transform 0.25s;display:inline-flex;align-items:center;}
+.footer-logos a{
+  opacity:0.7;
+  transition:opacity 0.25s,transform 0.25s;
+  display:inline-flex;align-items:center;
+  position:relative;
+}
 .footer-logos a:hover{opacity:1;transform:translateY(-2px);}
-.footer-logos a img{display:block;width:auto;}
-/* Trustpilot logo — already white from PNG, just size it */
+.footer-logos a img{display:block;width:auto;position:relative;z-index:1;}
+
+/* Trustpilot logo — elegant warm glow makes black text readable */
+.footer-logos a.tp-logo{
+  padding:10px 18px;
+  border-radius:6px;
+  background:rgba(253,252,249,0.95);
+  opacity:0.92;
+}
+.footer-logos a.tp-logo:hover{
+  opacity:1;
+  background:rgba(253,252,249,1);
+}
 .footer-logos a.tp-logo img{height:24px;}
-/* Inverted (turned white via filter) — Maldivia and Rejsegarantifonden */
+
+/* Inverted logos (turned white via filter) — Maldivia and Rejsegarantifonden */
 .footer-logos a.invert img{filter:brightness(0) invert(1);}
 .footer-logos a.invert{opacity:0.55;}
 .footer-logos a.invert:hover{opacity:1;}
@@ -936,6 +968,9 @@ footer::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;back
   .hero-title{margin-bottom:18px;}
   .hero-eyebrow{font-size:9.5px;letter-spacing:0.18em;margin-bottom:14px;}
   .hero-eyebrow::before{width:28px;}
+  .hero-meta{font-size:11px;letter-spacing:0.12em;line-height:1.8;}
+  .hero-meta .hero-meta-sep{display:none;}
+  .hero-meta .nowrap{display:block;}
   .hero-scroll{display:none;}
 
   /* CONTAINER */
@@ -1089,7 +1124,7 @@ footer::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;back
   <div class="hero-content">
     <div class="hero-eyebrow">Skræddersyet rejsetilbud</div>
     <h1 class="hero-title">Maldiverne<br><em>i oktober 2026</em></h1>
-    <div class="hero-meta">08. oktober — 19. oktober 2026 &nbsp;·&nbsp; 10 nætter / 12 dage</div>
+    <div class="hero-meta"><span class="nowrap">08. oktober — 19. oktober 2026</span> <span class="hero-meta-sep">·</span> <span class="nowrap">10 nætter / 12 dage</span></div>
   </div>
   <div class="hero-scroll">
     <div class="scroll-line"></div>
@@ -1127,7 +1162,7 @@ footer::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;back
       <span class="price-main-dkk">DKK</span>
       <span class="price-main-num" data-target="94000">94.000</span>
     </div>
-    <div class="price-alt">Alternativ pris uden flyrejse (hotel + transfers): <strong>DKK 65.500</strong></div>
+    <div class="price-alt">Alternativ pris uden flyrejse (hotel + transfers):<br class="mobile-only-br"> <strong>DKK 65.500</strong></div>
     <div class="price-divider"></div>
     <div class="price-note">Rejseforslaget er baseret på udvalgte flyrejse, hotel og transfers for 2 voksne og 1 barn. Den samlede pris inkluderer den nedenfor viste flyrejse, baseret på dagspriser. Mange gæster vælger selv at booke flyrejsen. Pris og tilgængelighed kan ændre sig frem til endelig bekræftelse.</div>
   </div>
@@ -1690,7 +1725,7 @@ footer::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;back
 <footer>
   <div class="footer-logos">
     <a href="https://dk.trustpilot.com/review/maldivia.dk" target="_blank" class="tp-logo" aria-label="Trustpilot anmeldelser">
-      <img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2026/05/Trustpilot-USE.png" alt="Trustpilot">
+      <img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2026/05/TEST.png" alt="Trustpilot">
     </a>
     <a href="https://www.maldivia.dk" target="_blank" class="invert" aria-label="Maldivia">
       <img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2025/10/LOGO-PNG-04-scaled.png" alt="Maldivia" style="height:36px;">
