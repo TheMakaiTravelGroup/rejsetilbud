@@ -1,0 +1,1658 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Luksusrejse til Maldiverne — Maldivia</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Cormorant:ital,wght@0,700;1,700&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+/* ===================================================
+   DESIGN TOKENS
+=================================================== */
+:root {
+  --sand:     #f5f0e8;
+  --sand-mid: #ece5d6;
+  --sand-deep:#d6ccb8;
+  --gold:     #9d8665;
+  --gold-lt:  #c4b49a;
+  --gold-dk:  #7a6445;
+  --ink:      #1a1714;
+  --ink-mid:  #3d3630;
+  --ink-lt:   #6e6558;
+  --white:    #fdfcf9;
+  --card-bg:  #ffffff;
+
+  --ff-display: 'Cormorant', Georgia, serif;
+  --ff-body:    'Cormorant Garamond', Georgia, serif;
+  --ff-ui:      'Jost', sans-serif;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+/* ===================================================
+   RESET & BASE
+=================================================== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--sand);
+  color: var(--ink);
+  font-family: var(--ff-body);
+  font-size: 17px;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+a { color: var(--gold); text-decoration: none; }
+a:hover { color: var(--gold-dk); }
+img { display: block; max-width: 100%; }
+
+/* ===================================================
+   NOISE TEXTURE OVERLAY
+=================================================== */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.5;
+}
+
+/* ===================================================
+   SCROLL ANIMATIONS
+=================================================== */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+
+/* ===================================================
+   HEADER
+=================================================== */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(245,240,232,0.88);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-bottom: 1px solid var(--sand-deep);
+  padding: 14px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.header-logo img { height: 36px; width: auto; }
+.header-contact {
+  text-align: right;
+  font-family: var(--ff-ui);
+  font-size: 11.5px;
+  letter-spacing: 0.04em;
+  color: var(--ink-lt);
+  line-height: 1.6;
+}
+.header-contact .specialist {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--gold);
+  font-weight: 500;
+}
+.header-contact a { color: var(--ink-mid); }
+.header-contact a:hover { color: var(--gold); }
+
+/* ===================================================
+   HERO
+=================================================== */
+.hero {
+  position: relative;
+  min-height: 86vh;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background: url('https://maldivia.no/wp-content/uploads/sites/2/2023/12/Alila-Kothaifaru-Maldives-Infinity-Pool-Sunset-Aerial-Shoot-1.jpg') center/cover no-repeat;
+}
+.hero-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(26,23,20,0.05) 0%,
+    rgba(26,23,20,0.1) 40%,
+    rgba(26,23,20,0.72) 100%
+  );
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 0 64px 72px;
+  max-width: 760px;
+}
+.hero-eyebrow {
+  font-family: var(--ff-ui);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold-lt);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.hero-eyebrow::before {
+  content: '';
+  width: 36px;
+  height: 1px;
+  background: var(--gold-lt);
+  flex-shrink: 0;
+}
+.hero-title {
+  font-family: var(--ff-display);
+  font-size: clamp(44px, 6vw, 80px);
+  font-weight: 700;
+  font-style: italic;
+  color: var(--white);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  margin-bottom: 20px;
+}
+.hero-title em { font-style: normal; color: var(--gold-lt); }
+.hero-meta {
+  font-family: var(--ff-ui);
+  font-size: 12.5px;
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  color: rgba(253,252,249,0.7);
+  text-transform: uppercase;
+}
+
+/* Scroll indicator */
+.hero-scroll {
+  position: absolute;
+  bottom: 32px;
+  right: 64px;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  opacity: 0.6;
+}
+.hero-scroll span {
+  font-family: var(--ff-ui);
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--white);
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
+.scroll-line {
+  width: 1px;
+  height: 48px;
+  background: linear-gradient(to bottom, rgba(253,252,249,0.6), transparent);
+  animation: scrollDrop 2s var(--ease-in-out) infinite;
+}
+@keyframes scrollDrop {
+  0%   { transform: scaleY(0); transform-origin: top; }
+  50%  { transform: scaleY(1); transform-origin: top; }
+  50.01% { transform: scaleY(1); transform-origin: bottom; }
+  100% { transform: scaleY(0); transform-origin: bottom; }
+}
+
+/* ===================================================
+   LAYOUT WRAPPER
+=================================================== */
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+/* ===================================================
+   SECTION HEADERS
+=================================================== */
+.section-header {
+  display: flex;
+  align-items: baseline;
+  gap: 20px;
+  margin-bottom: 36px;
+  padding-top: 72px;
+}
+.section-num {
+  font-family: var(--ff-display);
+  font-size: 13px;
+  font-style: italic;
+  color: var(--gold);
+  flex-shrink: 0;
+  padding-top: 2px;
+}
+.section-title {
+  font-family: var(--ff-ui);
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-lt);
+}
+.section-rule {
+  flex: 1;
+  height: 1px;
+  background: var(--sand-deep);
+}
+
+/* ===================================================
+   INCLUDES CARD
+=================================================== */
+.includes-card {
+  background: var(--card-bg);
+  border: 1px solid var(--sand-deep);
+  border-radius: 4px;
+  padding: 36px 40px;
+  margin-bottom: 12px;
+}
+.includes-person-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  border: 1px solid var(--sand-deep);
+  border-radius: 999px;
+  font-family: var(--ff-ui);
+  font-size: 11.5px;
+  letter-spacing: 0.05em;
+  color: var(--ink-mid);
+  margin-bottom: 28px;
+}
+.includes-person-pill::before {
+  content: '';
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--gold);
+  flex-shrink: 0;
+}
+.includes-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+}
+.inc-item {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--sand-mid);
+  font-family: var(--ff-body);
+  font-size: 16px;
+  color: var(--ink-mid);
+}
+.inc-item:nth-last-child(-n+2) { border-bottom: 0; }
+.inc-tick {
+  color: var(--gold);
+  font-size: 13px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.includes-note {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid var(--sand-mid);
+  font-family: var(--ff-ui);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--ink-lt);
+}
+
+/* ===================================================
+   PRICE BOX
+=================================================== */
+.price-box {
+  position: relative;
+  background: var(--ink);
+  border-radius: 4px;
+  padding: 36px 40px;
+  overflow: hidden;
+  margin-bottom: 72px;
+}
+.price-box::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gold-dk), var(--gold-lt), var(--gold-dk));
+}
+.price-box-label {
+  font-family: var(--ff-ui);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold-lt);
+  margin-bottom: 16px;
+}
+.price-main {
+  font-family: var(--ff-display);
+  font-size: clamp(36px, 5vw, 54px);
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: -0.02em;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.price-main sup {
+  font-size: 0.45em;
+  vertical-align: super;
+  color: var(--gold-lt);
+  font-family: var(--ff-ui);
+  font-weight: 300;
+  letter-spacing: 0.08em;
+}
+.price-alt {
+  font-family: var(--ff-body);
+  font-size: 15px;
+  color: rgba(253,252,249,0.55);
+  margin-bottom: 24px;
+}
+.price-alt strong { color: rgba(253,252,249,0.85); }
+.price-divider {
+  width: 40px;
+  height: 1px;
+  background: var(--gold);
+  margin-bottom: 20px;
+}
+.price-note {
+  font-family: var(--ff-ui);
+  font-size: 11.5px;
+  font-weight: 300;
+  line-height: 1.7;
+  color: rgba(253,252,249,0.45);
+  max-width: 560px;
+}
+
+/* ===================================================
+   HOTEL TABS
+=================================================== */
+.hotels-nav {
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid var(--sand-deep);
+  margin-bottom: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.hotels-nav::-webkit-scrollbar { display: none; }
+.hotel-tab {
+  flex-shrink: 0;
+  padding: 14px 22px;
+  font-family: var(--ff-ui);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-lt);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  transition: color 0.25s, border-color 0.25s;
+  white-space: nowrap;
+  background: none;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+}
+.hotel-tab:hover { color: var(--ink); }
+.hotel-tab.active {
+  color: var(--gold-dk);
+  border-bottom-color: var(--gold);
+}
+
+/* Hotel panels */
+.hotel-panels { position: relative; }
+.hotel-panel {
+  display: none;
+  background: var(--card-bg);
+  border: 1px solid var(--sand-deep);
+  border-top: 0;
+  border-radius: 0 0 4px 4px;
+}
+.hotel-panel.active { display: block; }
+
+/* Gallery */
+.hotel-gallery {
+  position: relative;
+  height: 340px;
+  overflow: hidden;
+}
+.hotel-gallery-track {
+  display: flex;
+  height: 100%;
+  transition: transform 0.7s var(--ease-out);
+}
+.hotel-gallery-track a {
+  flex: 0 0 100%;
+  height: 100%;
+}
+.hotel-gallery-track img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.gallery-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 5;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(253,252,249,0.15);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(253,252,249,0.25);
+  border-radius: 50%;
+  color: var(--white);
+  font-size: 20px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.gallery-btn:hover { background: rgba(253,252,249,0.28); }
+.gallery-btn.prev { left: 16px; }
+.gallery-btn.next { right: 16px; }
+.gallery-dots {
+  position: absolute;
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 6px;
+  z-index: 5;
+}
+.gallery-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgba(253,252,249,0.4);
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+.gallery-dot.active {
+  background: var(--white);
+  transform: scale(1.3);
+}
+
+/* Hotel body */
+.hotel-body {
+  padding: 36px 40px 40px;
+}
+.hotel-stars {
+  font-family: var(--ff-ui);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: var(--gold);
+  margin-bottom: 6px;
+}
+.hotel-name {
+  font-family: var(--ff-display);
+  font-size: 30px;
+  font-weight: 700;
+  font-style: italic;
+  color: var(--ink);
+  line-height: 1.1;
+  margin-bottom: 8px;
+}
+.hotel-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 28px;
+}
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 5px 14px;
+  border: 1px solid var(--sand-deep);
+  border-radius: 999px;
+  font-family: var(--ff-ui);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--ink-mid);
+}
+.chip::before {
+  content: '';
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--gold);
+  flex-shrink: 0;
+}
+
+/* Hotel columns */
+.hotel-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  margin-bottom: 32px;
+}
+
+/* Room rates */
+.rates-title {
+  font-family: var(--ff-ui);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-lt);
+  margin-bottom: 16px;
+}
+.rate-row {
+  padding: 18px 0;
+  border-top: 1px solid var(--sand-mid);
+}
+.rate-row:last-child { border-bottom: 1px solid var(--sand-mid); }
+.rate-room {
+  font-family: var(--ff-body);
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+.rate-links {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-bottom: 8px;
+}
+.rate-links a {
+  font-family: var(--ff-ui);
+  font-size: 11px;
+  color: var(--gold);
+  letter-spacing: 0.03em;
+}
+.rate-links a:hover { color: var(--gold-dk); }
+.meal-pill {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-family: var(--ff-ui);
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  background: #d6e8e4;
+  border: 1px solid #a8c9c3;
+  color: var(--ink-mid);
+  margin-bottom: 10px;
+}
+.rate-price {
+  font-family: var(--ff-display);
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--gold-dk);
+}
+.rate-price.included {
+  font-size: 15px;
+  font-family: var(--ff-ui);
+  font-weight: 500;
+  color: var(--ink-mid);
+  letter-spacing: 0.02em;
+}
+
+/* Highlights */
+.highlights-title {
+  font-family: var(--ff-ui);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-lt);
+  margin-bottom: 16px;
+}
+.highlight-item {
+  display: flex;
+  gap: 12px;
+  align-items: baseline;
+  padding: 9px 0;
+  border-top: 1px solid var(--sand-mid);
+  font-family: var(--ff-body);
+  font-size: 15.5px;
+  color: var(--ink-mid);
+  line-height: 1.5;
+}
+.highlight-item:last-child { border-bottom: 1px solid var(--sand-mid); }
+.hl-bullet {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--gold);
+  flex-shrink: 0;
+  margin-top: 8px;
+}
+
+/* Hotel footer row */
+.hotel-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding-top: 24px;
+  border-top: 1px solid var(--sand-mid);
+}
+.transfer-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 16px;
+  border: 1px solid var(--sand-deep);
+  border-radius: 999px;
+  font-family: var(--ff-ui);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--ink-mid);
+}
+.transfer-badge::before {
+  content: '✦';
+  font-size: 8px;
+  color: var(--gold);
+}
+.hotel-cta-link {
+  font-family: var(--ff-ui);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: gap 0.2s;
+}
+.hotel-cta-link:hover { gap: 10px; color: var(--gold-dk); }
+.hotel-cta-link::after { content: '→'; }
+
+/* PDF link */
+.pdf-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--ff-ui);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--ink-lt);
+  margin-top: 12px;
+  border-bottom: 1px solid var(--sand-deep);
+  padding-bottom: 2px;
+  transition: color 0.2s, border-color 0.2s;
+}
+.pdf-link:hover { color: var(--gold); border-color: var(--gold-lt); }
+
+/* ===================================================
+   FLIGHTS
+=================================================== */
+.flight-card {
+  background: var(--card-bg);
+  border: 1px solid var(--sand-deep);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+.flight-hero {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+}
+.flight-hero-track {
+  display: flex;
+  height: 100%;
+  transition: transform 0.7s var(--ease-out);
+}
+.flight-hero-track a {
+  flex: 0 0 100%;
+  height: 100%;
+}
+.flight-hero-track img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.flight-hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 40%, rgba(26,23,20,0.55) 100%);
+}
+.flight-body {
+  padding: 32px 36px 36px;
+}
+
+.journey {
+  margin-bottom: 32px;
+}
+.journey:last-child { margin-bottom: 0; }
+.journey-header {
+  font-family: var(--ff-ui);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.journey-header::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--sand-deep);
+}
+.flight-leg {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 0 20px;
+  align-items: start;
+  margin-bottom: 6px;
+}
+.leg-code {
+  font-family: var(--ff-ui);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  color: var(--white);
+  background: var(--ink-mid);
+  padding: 4px 10px;
+  border-radius: 3px;
+}
+.leg-times {
+  font-family: var(--ff-display);
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1;
+  margin-bottom: 3px;
+}
+.leg-times .plus1 {
+  font-size: 11px;
+  vertical-align: super;
+  color: var(--gold);
+  font-family: var(--ff-ui);
+  font-weight: 500;
+}
+.leg-meta {
+  font-family: var(--ff-ui);
+  font-size: 11px;
+  color: var(--ink-lt);
+  letter-spacing: 0.03em;
+}
+.flight-connector {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 10px 0 14px 0;
+  padding-left: 0;
+}
+.connector-line {
+  flex: 1;
+  height: 1px;
+  background: repeating-linear-gradient(90deg, var(--sand-deep) 0, var(--sand-deep) 5px, transparent 5px, transparent 10px);
+}
+.connector-label {
+  font-family: var(--ff-ui);
+  font-size: 10.5px;
+  color: var(--ink-lt);
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+.journey-total {
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid var(--sand-mid);
+  font-family: var(--ff-ui);
+  font-size: 11px;
+  color: var(--ink-lt);
+  letter-spacing: 0.06em;
+}
+.journey-sep {
+  border: 0;
+  border-top: 1px solid var(--sand-mid);
+  margin: 28px 0;
+}
+
+/* Alt flight */
+.alt-flight-body {
+  padding: 28px 36px 32px;
+}
+.alt-flight-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 10px;
+}
+.alt-flight-name {
+  font-family: var(--ff-body);
+  font-size: 18px;
+  color: var(--ink);
+}
+.alt-flight-price {
+  font-family: var(--ff-display);
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--gold-dk);
+  flex-shrink: 0;
+}
+.alt-note {
+  font-family: var(--ff-ui);
+  font-size: 11.5px;
+  font-weight: 300;
+  line-height: 1.65;
+  color: var(--ink-lt);
+}
+
+/* ===================================================
+   TERMS + CTA
+=================================================== */
+.terms-box {
+  background: var(--card-bg);
+  border: 1px solid var(--sand-deep);
+  border-radius: 4px;
+  padding: 24px 32px;
+  margin-top: 72px;
+  font-family: var(--ff-ui);
+  font-size: 12px;
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--ink-lt);
+}
+.terms-box a { border-bottom: 1px solid var(--sand-deep); padding-bottom: 1px; }
+.terms-box a:hover { color: var(--gold-dk); border-color: var(--gold-lt); }
+
+.cta-section {
+  text-align: center;
+  padding: 72px 0 96px;
+}
+.cta-eyebrow {
+  font-family: var(--ff-ui);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-lt);
+  margin-bottom: 16px;
+}
+.cta-title {
+  font-family: var(--ff-display);
+  font-size: clamp(28px, 4vw, 42px);
+  font-style: italic;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 32px;
+  line-height: 1.15;
+}
+.cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 18px 40px;
+  background: var(--ink);
+  color: var(--white);
+  border-radius: 999px;
+  font-family: var(--ff-ui);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  transition: background 0.25s, gap 0.25s;
+  position: relative;
+  overflow: hidden;
+}
+.cta-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(157,134,101,0.15), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.5s var(--ease-out);
+}
+.cta-btn:hover::before { transform: translateX(100%); }
+.cta-btn:hover { background: var(--ink-mid); gap: 14px; color: var(--white); }
+.cta-btn-arrow { font-size: 18px; }
+.cta-fallback {
+  margin-top: 14px;
+  font-family: var(--ff-ui);
+  font-size: 11px;
+  color: var(--ink-lt);
+}
+.cta-fallback a { color: var(--gold); border-bottom: 1px solid var(--sand-deep); }
+
+/* ===================================================
+   FOOTER
+=================================================== */
+footer {
+  background: var(--ink);
+  padding: 48px 40px;
+  text-align: center;
+  position: relative;
+}
+footer::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+.footer-logos {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+}
+.footer-logos img { filter: brightness(0) invert(1); opacity: 0.5; height: 28px; width: auto; }
+.footer-logos img:hover { opacity: 0.8; }
+.footer-copy {
+  font-family: var(--ff-ui);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: rgba(253,252,249,0.3);
+}
+
+/* ===================================================
+   RESPONSIVE
+=================================================== */
+@media (max-width: 700px) {
+  header { padding: 12px 20px; }
+  .header-logo img { height: 28px; }
+  .hero-content { padding: 0 24px 56px; }
+  .hero-scroll { right: 24px; }
+  .container { padding: 0 20px; }
+  .section-header { padding-top: 56px; }
+  .includes-card { padding: 24px 20px; }
+  .includes-grid { grid-template-columns: 1fr; }
+  .price-box { padding: 28px 24px; }
+  .hotel-body { padding: 24px 20px 28px; }
+  .hotel-cols { grid-template-columns: 1fr; gap: 32px; }
+  .hotel-gallery { height: 220px; }
+  .hotels-nav { gap: 0; }
+  .hotel-tab { padding: 12px 16px; font-size: 10px; }
+  .flight-body { padding: 24px 20px 28px; }
+  .alt-flight-body { padding: 20px; }
+  .terms-box { padding: 20px; }
+  .cta-section { padding: 56px 0 72px; }
+  footer { padding: 40px 20px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ======================== HEADER ======================== -->
+<header>
+  <div class="header-logo">
+    <a href="https://www.maldivia.dk" target="_blank">
+      <img src="https://maldivia.dk/wp-content/uploads/2025/10/LOGO-PNG-04-scaled.png" alt="Maldivia" height="36">
+    </a>
+  </div>
+  <div class="header-contact">
+    <div class="specialist">Rejsespecialist</div>
+    Rasmus Kirketerp<br>
+    <a href="mailto:rk@maldivia.dk">rk@maldivia.dk</a> &nbsp;·&nbsp;
+    <a href="tel:+4571747270">+45 71 74 72 70</a>
+  </div>
+</header>
+
+<!-- ======================== HERO ======================== -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow reveal">Skræddersyet rejsetilbud</div>
+    <h1 class="hero-title reveal reveal-delay-1">
+      Maldiverne<br><em>i oktober 2026</em>
+    </h1>
+    <div class="hero-meta reveal reveal-delay-2">08. oktober — 19. oktober 2026 &nbsp;·&nbsp; 10 nætter / 12 dage</div>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- ======================== MAIN ======================== -->
+<main>
+<div class="container">
+
+  <!-- ---- INCLUDES ---- -->
+  <div class="section-header reveal">
+    <span class="section-num">01</span>
+    <span class="section-title">Rejsen inkluderer</span>
+    <div class="section-rule"></div>
+  </div>
+
+  <div class="includes-card reveal">
+    <div class="includes-person-pill">Gælder for: 2 voksne og 1 barn</div>
+    <div class="includes-grid">
+      <div class="inc-item"><span class="inc-tick">✓</span>Fly mellem København og Malé (T/R)</div>
+      <div class="inc-item"><span class="inc-tick">✓</span>Ophold i villatype som angivet</div>
+      <div class="inc-item"><span class="inc-tick">✓</span>Transfer til/fra resortet</div>
+      <div class="inc-item"><span class="inc-tick">✓</span>Meal plan (forplejning) som angivet</div>
+      <div class="inc-item"><span class="inc-tick">✓</span>10 nætter på det valgte resort</div>
+      <div class="inc-item"><span class="inc-tick">✓</span>Obligatoriske skatter og afgifter</div>
+    </div>
+    <div class="includes-note">Maldivia er medlem af Rejsegarantifonden (Reg. 2688)</div>
+  </div>
+
+  <!-- ---- PRICE BOX ---- -->
+  <div class="price-box reveal">
+    <div class="price-box-label">Samlet rejsepris inkl. fly, hotel & transfers</div>
+    <div class="price-main"><sup>DKK</sup> 94.000</div>
+    <div class="price-alt">Alternativ pris uden flyrejse (hotel + transfers): <strong>DKK 65.500</strong></div>
+    <div class="price-divider"></div>
+    <div class="price-note">Rejseforslaget er baseret på udvalgte flyrejse, hotel og transfers for 2 voksne og 1 barn. Den samlede pris inkluderer den nedenfor viste flyrejse, baseret på dagspriser. Mange gæster vælger selv at booke flyrejsen. Pris og tilgængelighed kan ændre sig frem til endelig bekræftelse.</div>
+  </div>
+
+  <!-- ---- HOTELS ---- -->
+  <div class="section-header reveal">
+    <span class="section-num">02</span>
+    <span class="section-title">Udvalgte kvalitetshoteller</span>
+    <div class="section-rule"></div>
+  </div>
+
+</div><!-- /container -->
+
+<!-- Hotels — full width tabs -->
+<div class="container">
+  <div class="reveal">
+    <div class="hotels-nav" id="hotelsNav">
+      <button class="hotel-tab active" data-panel="0">JA Manafaru</button>
+      <button class="hotel-tab" data-panel="1">Meyyafushi</button>
+      <button class="hotel-tab" data-panel="2">Emerald Maldives</button>
+      <button class="hotel-tab" data-panel="3">Alila Kothaifaru</button>
+      <button class="hotel-tab" data-panel="4">Emerald Faarufushi</button>
+      <button class="hotel-tab" data-panel="5">Six Senses Kanuhura</button>
+    </div>
+    <div class="hotel-panels" id="hotelPanels">
+
+      <!-- ======= HOTEL 0: JA Manafaru ======= -->
+      <div class="hotel-panel active" data-panel="0">
+        <div class="hotel-gallery" data-gallery>
+          <button class="gallery-btn prev">‹</button>
+          <button class="gallery-btn next">›</button>
+          <div class="hotel-gallery-track">
+            <a href="https://maldivia.no/wp-content/uploads/sites/2/2025/10/Manafaru-1.jpg" target="_blank"><img src="https://maldivia.no/wp-content/uploads/sites/2/2025/10/Manafaru-1.jpg" alt="JA Manafaru"></a>
+            <a href="https://maldivia.no/wp-content/uploads/sites/2/2025/10/Manafaru-2.jpg" target="_blank"><img src="https://maldivia.no/wp-content/uploads/sites/2/2025/10/Manafaru-2.jpg" alt="JA Manafaru"></a>
+            <a href="https://maldivia.no/wp-content/uploads/sites/2/2025/10/Manafaru-4-scaled.jpeg" target="_blank"><img src="https://maldivia.no/wp-content/uploads/sites/2/2025/10/Manafaru-4-scaled.jpeg" alt="JA Manafaru"></a>
+            <a href="https://maldivia.no/wp-content/uploads/sites/2/2025/10/Manafaru-3.jpg" target="_blank"><img src="https://maldivia.no/wp-content/uploads/sites/2/2025/10/Manafaru-3.jpg" alt="JA Manafaru"></a>
+            <a href="https://maldivia.no/wp-content/uploads/sites/2/2025/10/Manafaru-5.jpg" target="_blank"><img src="https://maldivia.no/wp-content/uploads/sites/2/2025/10/Manafaru-5.jpg" alt="JA Manafaru"></a>
+          </div>
+          <div class="gallery-dots"></div>
+        </div>
+        <div class="hotel-body">
+          <div class="hotel-stars">★★★★★</div>
+          <div class="hotel-name">JA Manafaru</div>
+          <div class="hotel-chips">
+            <span class="chip">Maldiverne · Haa Alifu Atoll</span>
+            <span class="chip">09. okt — 19. okt 2026 · 10 nætter</span>
+            <a href="https://maldivia.dk/wp-content/uploads/2026/01/JA-Manafaru-Maldiverne.pdf" target="_blank" class="pdf-link">Se flere billeder (PDF) →</a>
+          </div>
+          <div class="hotel-cols">
+            <div>
+              <div class="rates-title">Villatyper & Priser</div>
+              <div class="rate-row">
+                <div class="rate-room">Beach Pool Villa</div>
+                <div class="rate-links">
+                  <a href="https://www.jaresortshotels.com/accommodation-detail/maldives/ja-manafaru/beach-villa-with-private-pool" target="_blank">Se villaen →</a>
+                </div>
+                <div class="meal-pill">Halvpension (Dine Around)</div>
+                <div class="rate-price included">Inkluderet i rejsens pris</div>
+              </div>
+              <div class="rate-row">
+                <div class="rate-room">Beach Pool Villa</div>
+                <div class="rate-links">
+                  <a href="https://www.jaresortshotels.com/maldives/ja-manafaru" target="_blank">Se villaen →</a>
+                  <a href="https://maldivia.dk/wp-content/uploads/2026/05/JAM-AI.pdf" target="_blank">Se meal plan →</a>
+                </div>
+                <div class="meal-pill">All-Inclusive (Dine Around)</div>
+                <div class="rate-price">DKK 31.000 <small style="font-size:12px;font-family:var(--ff-ui);color:var(--ink-lt);">tillæg</small></div>
+              </div>
+            </div>
+            <div>
+              <div class="highlights-title">Højdepunkter</div>
+              <div class="highlight-item"><span class="hl-bullet"></span>Smuk og frodig paradisø i Haa Alifu</div>
+              <div class="highlight-item"><span class="hl-bullet"></span>Udforsk øen på cykel mellem palmer og laguner</div>
+              <div class="highlight-item"><span class="hl-bullet"></span>Hvide sandstrande og krystalklart hav</div>
+              <div class="highlight-item"><span class="hl-bullet"></span>Prisvindende restauranter og vinkælder</div>
+              <div class="highlight-item"><span class="hl-bullet"></span>Maldivisk luksus med tennis i paradis</div>
+            </div>
+          </div>
+          <div class="hotel-footer">
+            <span class="transfer-badge">Vandfly · ca. 75 min.</span>
+            <a href="https://www.jaresortshotels.com/maldives/ja-manafaru" target="_blank" class="hotel-cta-link">Udforsk Manafaru</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ======= HOTEL 1: Meyyafushi ======= -->
+      <div class="hotel-panel" data-panel="1">
+        <div class="hotel-gallery" data-gallery>
+          <button class="gallery-btn prev">‹</button>
+          <button class="gallery-btn next">›</button>
+          <div class="hotel-gallery-track">
+            <a href="https://maldivia.no/wp-content/uploads/sites/2/2026/01/MM-Pool.jpg" target="_blank"><img src="https://maldivia.no/wp-content/uploads/sites/2/2026/01/MM-Pool.jpg" alt="Meyyafushi"></a>
+            <a href="https://maldivia.dk/wp-content/uploads/2025/10/BPV-Bedroom.1.jpg" target="_blank"><img src="https://maldivia.dk/wp-content/uploads/2025/10/BPV-Bedroom.1.jpg" alt="Meyyafushi"></a>
+            <a href="https://maldivia.dk/wp-content/uploads/2025/10/P1-V2.png" target="_blank"><img src="https://maldivia.dk/wp-content/uploads/2025/10/P1-V2.png" alt="Meyyafushi"></a>
+            <a href="https://maldivia.no/wp-content/uploads/sites/2/2026/01/MM-Bubble.webp" target="_blank"><img src="https://maldivia.no/wp-content/uploads/sites/2/2026/01/MM-Bubble.webp" alt="Meyyafushi"></a>
+            <a href="https://maldivia.dk/wp-content/uploads/2025/10/Alif-–-Asian-Restaurant-1.png" target="_blank"><img src="https://maldivia.dk/wp-content/uploads/2025/10/Alif-–-Asian-Restaurant-1.png" alt="Meyyafushi"></a>
+          </div>
+          <div class="gallery-dots"></div>
+        </div>
+        <div class="hotel-body">
+          <div class="hotel-stars">★★★★★</div>
+          <div class="hotel-name">Meyyafushi Maldives</div>
+          <div class="hotel-chips">
+            <span class="chip">Maldiverne · Lhaviyani Atoll</span>
+            <span class="chip">09. okt — 19. okt 2026 · 10 nætter</span>
+            <a href="https://maldivia.no/wp-content/uploads/sites/2/2025/10/Meyyafushi-Maldives-Maldivene.pdf" target="_blank" class="pdf-link">Se flere billeder (PDF) →</a>
+          </div>
+          <div class="hotel-cols">
+            <div>
+              <div class="rates-title">Villatyper & Priser</div>
+              <div class="rate-row">
+                <div class="rate-room">Beach Pool Villa</div>
+                <div class="rate-links">
+                  <a href="https://www.meyyafushi.com/villas-suites/#beach-pool-villa" target="_blank">Se villaen →</a>
+                  <a href="https://maldivia.no/wp-content/uploads/sites/2/2026/04/Meyyafushi-Meal-Plan.pdf" target="_blank">Se meal plan →</a>
+                </div>
+                <div class="meal-pill">All-Inclusive (Dine Around)</div>
+                <div class="rate-price">DKK 12.500 <small style="font-size:12px;font-family:var(--ff-ui);color:var(--ink-lt);">tillæg</small></div>
+              </div>
+              <div class="rate-row">
+                <div class="rate-room">Water Pool Villa with Slide</div>
+                <div class="rate-links">
+                  <a href="https://www.meyyafushi.com/villa/water-pool-villa-with-slide/" target="_blank">Se villaen →</a>
+                  <a href="https://maldivia.no/wp-content/uploads/sites/2/2026/04/Meyyafushi-Meal-Plan.pdf" target="_blank">Se meal plan →</a>
+                </div>
+                <div class="meal-pill">All-Inclusive (Dine Around)</div>
+                <div class="rate-price">DKK 36.500 <small style="font-size:12px;font-family:var(--ff-ui);color:var(--ink-lt);">tillæg</small></div>
+              </div>
+            </div>
+            <div>
+              <div class="highlights-title">Højdepunkter</div>
+              <div class="highlight-item"><span class="hl-bullet"></span>Helt nyt Premium All-Inclusive resort</div>
+              <div class="highlight-item"><span class="hl-bullet"></span>Exceptionelt design og moderne poolvillaer</div>
+              <div class="highlight-item"><span class="hl-bullet"></span>Maldivernes første overwater padel-bane</div>
+              <div class="highlight-item"><span class="hl-bullet"></span>60 min. spa (+18) og 3 ekskursioner per pers.</div>
+              <div class="highlight-item"><span class="hl-bullet"></span>Unikke features: undervandsrestaurant</div>
+            </div>
+          </div>
+          <div class="hotel-footer">
+            <span class="transfer-badge">Vandfly · ca. 35 min.</span>
+            <a href="https://www.meyyafushi.com/" target="_blank" class="hotel-cta-link">Udforsk Meyyafushi</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ======= HOTEL 2: Emerald Maldives ======= -->
+      <div class="hotel-panel" data-panel="2">
+        <div class="hotel-gallery" data-gallery>
+          <button class="gallery-btn prev">‹</button>
+          <button class="gallery-btn next">›</button>
+          <div class="hotel-gallery-track">
+            <a href="https://maldivia.dk/wp-content/uploads/2026/01/EM-13.jpg" target="_blank"><img src="https://maldivia.dk/wp-content/uploads/2026/01/EM-13.jpg" alt="Emerald Maldives"></a>
+            <a href="https://maldivia.dk/wp-content/uploads/2026/01/EM-14.jpg" target="_blank"><img src="https://maldivia.dk/wp-content/uploads/2026/01/EM-14.jpg" alt="Emerald Maldives"></a>
+            <a href="https://maldivia.dk/wp-content/uploads/2026/01/EM-19.jpg" target="_blank"><img src="https://maldivia.dk/wp-content/uploads/2026/01/EM-19.jpg" alt="Emerald Maldives"></a>
+            <a href="https://maldivia.dk/wp-content/uploads/2026/01/EM-8.jpg" target="_blank"><img src="https://maldivia.dk/wp-content/uploads/2026/01/EM-8.jpg" alt="Emerald Maldives"></a>
+            <a href="https://maldivia.dk/wp-content/uploads/2026/01/EM-15.jpg" target="_blank"><img src="https://maldivia.dk/wp-content/uploads/2026/01/EM-15.jpg" alt="Emerald Maldives"></a>
+          </div>
+          <div class="gallery-dots"></div>
+        </div>
+        <div class="hotel-body">
+          <div class="hotel-stars">★★★★★</div>
+          <div class="hotel-name">Emerald Maldives</div>
+          <div class="hotel-chips">
+            <span class="chip">Maldiverne · Raa Atoll</span>
+            <span class="chip">09. okt — 19. okt 2026 · 10 nætter</span>
+            <a href="https://maldivia.dk/wp-content/uploads/2026/01/Emerald-Maldives-Maldiverne.pdf" target="_blank" class="pdf-link">Se flere billeder (PDF) →</a>
+          </div>
+          <div class="hotel-cols">
+            <div>
+              <div class="rates-title">Villatyper & Priser</div>
+              <div class="rate-row">
+                <div class="rate-room">Beach Villa with Pool</div>
+                <div class="rate-links">
+                  <a href="https://www.emerald-maldives.com/villas/b-pool" target="_blank">Se villaen →</a>
+                  <a href="https://maldivia.no/wp-content/uploads/sites/2/2026/04/Emerald-Deluxe-All-Inclusive.pdf" target="_blank">Se meal plan →</a>
+                </div>
+                <div class="meal-pill">Deluxe All-Inclusive (Dine Around)</div>
+                <div class="rate-price">DKK 20.500 <small style="font-size:12px;font-family:var(--ff-ui);color:var(--ink-lt);">tillæg</small></div>
+              </div>
+            </div>
+            <div>
+              <div class="highlights-title">Højdepunkter</div>
+              <div class="highlight-item"><span class="hl-bullet"></span>Deluxe All Inclusive med gode restauranter</div>
+              <div class="highlight-item"><span class="hl-bullet"></span>Fantastiske aktiviteter som tennis og padel</div>
+              <div class="highlight-item"><span class="hl-bullet"></span>Store og rummelige villaer – mange med pool</div>
+              <div class="highlight-item"><span class="hl-bullet"></span>Del af Leading Hotels of the World</div>
+              <div class="highlight-item"><span class="hl-bullet"></span>Dykning, vandsport og sublim Kids Club</div>
+            </div>
+          </div>
+          <div class="hotel-footer">
+            <span class="transfer-badge">Vandfly · ca. 40 min.</span>
+            <a href="https://www.emerald-maldives.com/" target="_blank" class="hotel-cta-link">Udforsk Emerald Maldives</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ======= HOTEL 3: Alila Kothaifaru ======= -->
+      <div class="hotel-panel" data-panel="3">
+        <div class="hotel-gallery" data-gallery>
+          <button class="gallery-btn prev">‹</button>
+          <button class="gallery-btn next">›</button>
+          <div class="hotel-gallery-track">
+            <a href="https://maldivia.dk/wp-content/uploads/2025/10/Alila-Kothaifaru-Maldives-Infinity-Pool-Sunset-Aerial-Shoot.jpg" target="_blank"><img src="https://maldivia.dk/wp-content/uploads/2025/10/Alila-Kothaifaru-Maldives-Infinity-Pool-Sunset-Aerial-Shoot.jpg" alt="Alila Kothaifaru"></a>
+            <a href="https://maldivia.dk/wp-content/uploads/2025/10/Alila-Kothaifaru-Maldives-Water-Villa-Aerial-Shot.jpg" target="_blank"><img src="https://maldivia.dk/wp-content/uploads/2025/10/Alila-Kothaifaru-Maldives-Water-Villa-Aerial-Shot.jpg" alt="Alila Kothaifaru"></a>
+            <a href="https://maldivia.dk/wp-content/uploads/2025/10/Alila-Kothaifaru-Maldives-SPA-Alila-Treatment-Room-Wide-Angle.jpg" target="_blank"><img src="https://maldivia.dk/wp-content/uploads/2025/10/Alila-Kothaifaru-Maldives-SPA-Alila-Treatment-Room-Wide-Angle.jpg" alt="Alila Kothaifaru"></a>
+            <a href="https://maldivia.dk/wp-content/uploads/2025/10/Alila-Kothaifaru-Maldives-Beach-Villa-Exterior-Pool-View.jpg" target="_blank"><img src="https://maldivia.dk/wp-content/uploads/2025/10/Alila-Kothaifaru-Maldives-Beach-Villa-Exterior-Pool-View.jpg" alt="Alila Kothaifaru"></a>
+            <a href="https://maldivia.dk/wp-content/uploads/2025/10/Alila-Kothaifaru-Maldives-Hero-Shot.jpg" target="_blank"><img src="https://maldivia.dk/wp-content/uploads/2025/10/Alila-Kothaifaru-Maldives-Hero-Shot.jpg" alt="Alila Kothaifaru"></a>
+          </div>
+          <div class="gallery-dots"></div>
+        </div>
+        <div class="hotel-body">
+          <div class="hotel-stars">★★★★★</div>
+          <div class="hotel-name">Alila Kothaifaru</div>
+          <div class="hotel-chips">
+            <span class="chip">Maldiverne · Raa Atoll</span>
+            <span class="chip">09. okt — 19. okt 2026 · 10 nætter</span>
+            <a href="https://maldivia.dk/wp-content/uploads/2025/10/Alila-Kothaifaru-Maldiverne.pdf" target="_blank" class="pdf-link">Se flere billeder (PDF) →</a>
+          </div>
+          <div class="hotel-cols">
+            <div>
+              <div class="rates-title">Villatyper & Priser</div>
+              <div class="rate-row">
+                <div class="rate-room">Beach Pool Villa</div>
+                <div class="rate-links">
+                  <a href="https://www.hyatt.com/alila-hotels-and-resorts/en-US/mldal-alila-kothaifaru-maldives/rooms/BV1X?slideNum=0" target="_blank">Se villaen →</a>
+                </div>
+                <div class="meal-pill">Halvpension (Dine Around)</div>
+                <div class="rate-price">DKK 24.000 <small style="font-size:12px;font-family:var(--ff-ui);color:var(--ink-lt);">tillæg</small></div>
+              </div>
+            </div>
+            <div>
+              <div class="highlights-title">Højdepunkter</div>
+              <div class="highlight-item"><span class="hl-bullet"></span>Designperle med skandinavisk-japansk æstetik</div>
+              <div class="highlight-item"><span class="hl-bullet"></span>Private poolvillaer med fremragende udsigt</div>
+              <div class="highlight-item"><span class="hl-bullet"></span>Spektakulært marineliv og turkisblå lagune</div>
+              <div class="highlight-item"><span class="hl-bullet"></span>Prisvindende Alila Spa i junglen</div>
+              <div class="highlight-item"><span class="hl-bullet"></span>Ét af Maldivernes smukkeste poolområder</div>
+            </div>
+          </div>
+          <div class="hotel-footer">
+            <span class="transfer-badge">Vandfly · ca. 40 min.</span>
+            <a href="https://www.hyatt.com/alila-hotels-and-resorts/en-US/mldal-alila-kothaifaru-maldives#" target="_blank" class="hotel-cta-link">Udforsk Alila Kothaifaru</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ======= HOTEL 4: Emerald Faarufushi ======= -->
+      <div class="hotel-panel" data-panel="4">
+        <div class="hotel-gallery" data-gallery>
+          <button class="gallery-btn prev">‹</button>
+          <button class="gallery-btn next">›</button>
+          <div class="hotel-gallery-track">
+            <a href="https://maldivia.dk/wp-content/uploads/2025/10/Emerald-Faarufushi-7-scaled.jpg" target="_blank"><img src="https://maldivia.dk/wp-content/uploads/2025/10/Emerald-Faarufushi-7-scaled.jpg" alt="Emerald Faarufushi"></a>
+            <a href="https://maldivia.dk/wp-content/uploads/2025/10/Emerald-Faarufushi-3.jpg" target="_blank"><img src="https://maldivia.dk/wp-content/uploads/2025/10/Emerald-Faarufushi-3.jpg" alt="Emerald Faarufushi"></a>
+            <a href="https://maldivia.dk/wp-content/uploads/2025/10/Emerald-Faarufushi-2.jpg" target="_blank"><img src="https://maldivia.dk/wp-content/uploads/2025/10/Emerald-Faarufushi-2.jpg" alt="Emerald Faarufushi"></a>
+            <a href="https://maldivia.dk/wp-content/uploads/2025/10/Emerald-Faarufushi-6.jpg" target="_blank"><img src="https://maldivia.dk/wp-content/uploads/2025/10/Emerald-Faarufushi-6.jpg" alt="Emerald Faarufushi"></a>
+            <a href="https://maldivia.dk/wp-content/uploads/2025/10/Emerald-Faarufushi-10.jpg" target="_blank"><img src="https://maldivia.dk/wp-content/uploads/2025/10/Emerald-Faarufushi-10.jpg" alt="Emerald Faarufushi"></a>
+          </div>
+          <div class="gallery-dots"></div>
+        </div>
+        <div class="hotel-body">
+          <div class="hotel-stars">★★★★★</div>
+          <div class="hotel-name">Emerald Faarufushi</div>
+          <div class="hotel-chips">
+            <span class="chip">Maldiverne · Raa Atoll</span>
+            <span class="chip">09. okt — 19. okt 2026 · 10 nætter</span>
+            <a href="https://maldivia.dk/wp-content/uploads/2025/12/Emerald-Faarufushi-Maldiverne.pdf" target="_blank" class="pdf-link">Se flere billeder (PDF) →</a>
+          </div>
+          <div class="hotel-cols">
+            <div>
+              <div class="rates-title">Villatyper & Priser</div>
+              <div class="rate-row">
+                <div class="rate-room">Beach Villa with Pool</div>
+                <div class="rate-links">
+                  <a href="https://www.emerald-faarufushi.com/villas/beach-villas-with-pool" target="_blank">Se villaen →</a>
+                  <a href="https://maldivia.dk/wp-content/uploads/2026/04/Faarufushi-MealPlan.pdf" target="_blank">Se meal plan →</a>
+                </div>
+                <div class="meal-pill">Deluxe All-Inclusive (Dine Around)</div>
+                <div class="rate-price">DKK 25.000 <small style="font-size:12px;font-family:var(--ff-ui);color:var(--ink-lt);">tillæg</small></div>
+              </div>
+              <div class="rate-row">
+                <div class="rate-room">Water Villa with Pool</div>
+                <div class="rate-links">
+                  <a href="https://www.emerald-faarufushi.com/villas/water-villas-with-pool" target="_blank">Se villaen →</a>
+                  <a href="https://maldivia.dk/wp-content/uploads/2026/04/Faarufushi-MealPlan.pdf" target="_blank">Se meal plan →</a>
+                </div>
+                <div class="meal-pill">Deluxe All-Inclusive (Dine Around)</div>
+                <div class="rate-price">DKK 34.000 <small style="font-size:12px;font-family:var(--ff-ui);color:var(--ink-lt);">tillæg</small></div>
+              </div>
+            </div>
+            <div>
+              <div class="highlights-title">Højdepunkter</div>
+              <div class="highlight-item"><span class="hl-bullet"></span>Elegant luksusresort på frodig, naturlig ø</div>
+              <div class="highlight-item"><span class="hl-bullet"></span>Padel, tennis og vandsport i topklasse</div>
+              <div class="highlight-item"><span class="hl-bullet"></span>Moderne villaer med privat pool</div>
+              <div class="highlight-item"><span class="hl-bullet"></span>Deluxe All-Inclusive med fem restauranter</div>
+              <div class="highlight-item"><span class="hl-bullet"></span>Sublim lagune og godt husrev</div>
+            </div>
+          </div>
+          <div class="hotel-footer">
+            <span class="transfer-badge">Vandfly · ca. 40 min.</span>
+            <a href="https://www.emerald-faarufushi.com/" target="_blank" class="hotel-cta-link">Udforsk Faarufushi</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ======= HOTEL 5: Six Senses Kanuhura ======= -->
+      <div class="hotel-panel" data-panel="5">
+        <div class="hotel-gallery" data-gallery>
+          <button class="gallery-btn prev">‹</button>
+          <button class="gallery-btn next">›</button>
+          <div class="hotel-gallery-track">
+            <a href="https://maldivia.dk/wp-content/uploads/2026/03/SSK-2.webp" target="_blank"><img src="https://maldivia.dk/wp-content/uploads/2026/03/SSK-2.webp" alt="Six Senses Kanuhura"></a>
+            <a href="https://maldivia.dk/wp-content/uploads/2026/03/SSK-1.jpg" target="_blank"><img src="https://maldivia.dk/wp-content/uploads/2026/03/SSK-1.jpg" alt="Six Senses Kanuhura"></a>
+            <a href="https://maldivia.dk/wp-content/uploads/2026/03/SSK-4.jpg" target="_blank"><img src="https://maldivia.dk/wp-content/uploads/2026/03/SSK-4.jpg" alt="Six Senses Kanuhura"></a>
+            <a href="https://maldivia.dk/wp-content/uploads/2026/03/SSK-7.webp" target="_blank"><img src="https://maldivia.dk/wp-content/uploads/2026/03/SSK-7.webp" alt="Six Senses Kanuhura"></a>
+            <a href="https://maldivia.dk/wp-content/uploads/2026/03/SSK-8.jpg" target="_blank"><img src="https://maldivia.dk/wp-content/uploads/2026/03/SSK-8.jpg" alt="Six Senses Kanuhura"></a>
+          </div>
+          <div class="gallery-dots"></div>
+        </div>
+        <div class="hotel-body">
+          <div class="hotel-stars">★★★★★+</div>
+          <div class="hotel-name">Six Senses Kanuhura</div>
+          <div class="hotel-chips">
+            <span class="chip">Maldiverne · Lhaviyani Atoll</span>
+            <span class="chip">09. okt — 19. okt 2026 · 10 nætter</span>
+            <a href="https://maldivia.dk/wp-content/uploads/2026/03/Six-Senses-Kanuhura-Maldiverne.pdf" target="_blank" class="pdf-link">Se flere billeder (PDF) →</a>
+          </div>
+          <div class="hotel-cols">
+            <div>
+              <div class="rates-title">Villatyper & Priser</div>
+              <div class="rate-row">
+                <div class="rate-room">Beach Pool Villa</div>
+                <div class="rate-links">
+                  <a href="https://www.sixsenses.com/en/hotels-resorts/asia-the-pacific/maldives/kanuhura/accommodation/beach-villa-with-pool/" target="_blank">Se villaen →</a>
+                </div>
+                <div class="meal-pill">Halvpension (Dine Around)</div>
+                <div class="rate-price">DKK 32.000 <small style="font-size:12px;font-family:var(--ff-ui);color:var(--ink-lt);">tillæg</small></div>
+              </div>
+            </div>
+            <div>
+              <div class="highlights-title">Højdepunkter</div>
+              <div class="highlight-item"><span class="hl-bullet"></span>Nogle af Maldivernes smukkeste strande</div>
+              <div class="highlight-item"><span class="hl-bullet"></span>Elegant Six Senses-design og ø-luksus</div>
+              <div class="highlight-item"><span class="hl-bullet"></span>Store, elegante villaer med private pools</div>
+              <div class="highlight-item"><span class="hl-bullet"></span>Vaskeægte barfodsluksus i Maldiverne</div>
+              <div class="highlight-item"><span class="hl-bullet"></span>Fantastisk spa og exceptionel gastronomi</div>
+            </div>
+          </div>
+          <div class="hotel-footer">
+            <span class="transfer-badge">Vandfly · ca. 45 min.</span>
+            <a href="https://www.sixsenses.com/en/hotels-resorts/asia-the-pacific/maldives/kanuhura/" target="_blank" class="hotel-cta-link">Udforsk Six Senses Kanuhura</a>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /hotel-panels -->
+  </div><!-- /reveal -->
+</div><!-- /container -->
+
+<div class="container">
+
+  <!-- ---- FLIGHTS ---- -->
+  <div class="section-header reveal">
+    <span class="section-num">03</span>
+    <span class="section-title">Flyrejse til Maldiverne</span>
+    <div class="section-rule"></div>
+  </div>
+
+  <!-- Main flight -->
+  <div class="flight-card reveal">
+    <div class="flight-hero">
+      <button class="gallery-btn prev">‹</button>
+      <button class="gallery-btn next">›</button>
+      <div class="flight-hero-track">
+        <a href="https://maldivia.dk/wp-content/uploads/2025/10/Emirates.jpg" target="_blank"><img src="https://maldivia.dk/wp-content/uploads/2025/10/Emirates.jpg" alt="Emirates"></a>
+        <a href="https://maldivia.dk/wp-content/uploads/2025/10/Emirates-2-1.png" target="_blank"><img src="https://maldivia.dk/wp-content/uploads/2025/10/Emirates-2-1.png" alt="Emirates"></a>
+      </div>
+    </div>
+    <div class="flight-body">
+      <div class="journey">
+        <div class="journey-header">København til Malé — 08.10.2026</div>
+        <div class="flight-leg">
+          <span class="leg-code">CPH → DXB</span>
+          <div>
+            <div class="leg-times">14:45 – 00:10<span class="plus1">+1</span></div>
+            <div class="leg-meta">Emirates · Economy Class</div>
+          </div>
+        </div>
+        <div class="flight-connector">
+          <div class="connector-line"></div>
+          <span class="connector-label">Mellemlanding i Dubai · 2 t 20 m</span>
+          <div class="connector-line"></div>
+        </div>
+        <div class="flight-leg">
+          <span class="leg-code">DXB → MLE</span>
+          <div>
+            <div class="leg-times">02:30 – 07:35</div>
+            <div class="leg-meta">Emirates · Economy Class</div>
+          </div>
+        </div>
+        <div class="journey-total">Total rejsetid · 12 t 50 m</div>
+      </div>
+
+      <hr class="journey-sep">
+
+      <div class="journey">
+        <div class="journey-header">Malé til København — 19.10.2026</div>
+        <div class="flight-leg">
+          <span class="leg-code">MLE → DXB</span>
+          <div>
+            <div class="leg-times">09:05 – 12:20</div>
+            <div class="leg-meta">Emirates · Economy Class</div>
+          </div>
+        </div>
+        <div class="flight-connector">
+          <div class="connector-line"></div>
+          <span class="connector-label">Mellemlanding i Dubai · 2 t 30 m</span>
+          <div class="connector-line"></div>
+        </div>
+        <div class="flight-leg">
+          <span class="leg-code">DXB → CPH</span>
+          <div>
+            <div class="leg-times">14:50 – 18:50</div>
+            <div class="leg-meta">Emirates · Economy Class</div>
+          </div>
+        </div>
+        <div class="journey-total">Total rejsetid · 13 t 45 m</div>
+      </div>
+
+      <div style="margin-top:24px;">
+        <img src="https://maldivia.no/wp-content/uploads/sites/2/2025/10/Emirats-1.png" alt="Emirates" style="height:28px;width:auto;opacity:0.7;">
+      </div>
+    </div>
+  </div>
+
+  <!-- Alt flight -->
+  <div class="section-header reveal" style="padding-top:40px;">
+    <span class="section-num">04</span>
+    <span class="section-title">Alternativ flyrejse (via Europa)</span>
+    <div class="section-rule"></div>
+  </div>
+
+  <div class="flight-card reveal">
+    <div class="flight-hero" style="height:160px;">
+      <button class="gallery-btn prev">‹</button>
+      <button class="gallery-btn next">›</button>
+      <div class="flight-hero-track">
+        <a href="https://maldivia.dk/wp-content/uploads/2025/12/Edelweiss-2.webp" target="_blank"><img src="https://maldivia.dk/wp-content/uploads/2025/12/Edelweiss-2.webp" alt="Edelweiss"></a>
+        <a href="https://maldivia.dk/wp-content/uploads/2025/12/Edelweiss-1.jpg" target="_blank"><img src="https://maldivia.dk/wp-content/uploads/2025/12/Edelweiss-1.jpg" alt="Edelweiss"></a>
+        <a href="https://maldivia.dk/wp-content/uploads/2025/12/Edelweiss-3.jpg" target="_blank"><img src="https://maldivia.dk/wp-content/uploads/2025/12/Edelweiss-3.jpg" alt="Edelweiss"></a>
+      </div>
+    </div>
+    <div class="alt-flight-body">
+      <div class="alt-flight-row">
+        <div class="alt-flight-name"><strong>Economy Class</strong> — Edelweiss & Austrian</div>
+        <div class="alt-flight-price">DKK 7.500</div>
+      </div>
+      <div class="alt-note">Beløbet er den totale merpris for 2 voksne og 1 barn. Denne alternative flyrejse går via Zürich på udrejsen (total rejsetid ca. 14 t 30 m), og via Wien på hjemrejsen (total rejsetid ca. 12 t 40 m). Pris og tilgængelighed kan ændres frem til endelig bestilling.</div>
+    </div>
+  </div>
+
+  <!-- Terms -->
+  <div class="terms-box reveal">
+    Ved skriftlig eller mundtlig accept samt ved indbetaling af depositum bekræfter I samtidig, at I har læst og forstået rejsebetingelserne, som I <a href="https://maldivia.dk/information/" target="_blank">finder her →</a>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-section reveal">
+    <div class="cta-eyebrow">Klar til at booke?</div>
+    <div class="cta-title">Bestil eller tilpas<br>jeres rejse</div>
+    <a href="mailto:rk@maldivia.dk?subject=Rejsetilbud%20til%20Maldiverne%20%7C%20Maldivia" class="cta-btn">
+      Skriv til os
+      <span class="cta-btn-arrow">→</span>
+    </a>
+    <div class="cta-fallback">
+      Fungerer knappen ikke? Skriv direkte til <a href="mailto:rk@maldivia.dk">rk@maldivia.dk</a>
+    </div>
+  </div>
+
+</div><!-- /container -->
+</main>
+
+<!-- ======================== FOOTER ======================== -->
+<footer>
+  <div class="footer-logos">
+    <a href="https://dk.trustpilot.com/review/maldivia.dk" target="_blank">
+      <img src="https://maldivia.dk/wp-content/uploads/2025/10/Trustpilot.png" alt="Trustpilot" style="height:22px;">
+    </a>
+    <a href="https://www.maldivia.dk" target="_blank">
+      <img src="https://maldivia.dk/wp-content/uploads/2025/10/LOGO-PNG-04-scaled.png" alt="Maldivia" style="height:28px;">
+    </a>
+    <a href="https://www.rejsegarantifonden.dk/medlem?s=2688" target="_blank">
+      <img src="https://maldivia.dk/wp-content/uploads/2025/10/Rejsegarantifonden.png" alt="Rejsegarantifonden" style="height:22px;">
+    </a>
+  </div>
+  <div class="footer-copy">© Maldivia — En del af The Makai Travel Group</div>
+</footer>
+
+<script>
+/* ============================================================
+   SCROLL REVEAL
+============================================================ */
+(function () {
+  const els = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.08 });
+  els.forEach(el => io.observe(el));
+})();
+
+/* ============================================================
+   HOTEL TABS
+============================================================ */
+(function () {
+  const nav = document.getElementById('hotelsNav');
+  const panels = document.getElementById('hotelPanels');
+  if (!nav || !panels) return;
+
+  nav.querySelectorAll('.hotel-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      const idx = tab.dataset.panel;
+      nav.querySelectorAll('.hotel-tab').forEach(t => t.classList.remove('active'));
+      panels.querySelectorAll('.hotel-panel').forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      panels.querySelector('[data-panel="' + idx + '"]').classList.add('active');
+    });
+  });
+})();
+
+/* ============================================================
+   GALLERY (hotel + flight)
+============================================================ */
+(function () {
+  function initGallery(root) {
+    const track = root.querySelector('.hotel-gallery-track, .flight-hero-track');
+    if (!track) return;
+    const slides = track.querySelectorAll('a');
+    if (!slides.length) return;
+
+    const dotsContainer = root.querySelector('.gallery-dots');
+    const dots = [];
+    let idx = 0;
+
+    if (dotsContainer) {
+      slides.forEach((_, i) => {
+        const d = document.createElement('div');
+        d.className = 'gallery-dot' + (i === 0 ? ' active' : '');
+        d.addEventListener('click', () => go(i - idx));
+        dotsContainer.appendChild(d);
+        dots.push(d);
+      });
+    }
+
+    function update() {
+      track.style.transform = 'translateX(' + (-idx * 100) + '%)';
+      dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+    }
+
+    function go(delta) {
+      idx = (idx + delta + slides.length) % slides.length;
+      update();
+    }
+
+    const prev = root.querySelector('.gallery-btn.prev, .prev');
+    const next = root.querySelector('.gallery-btn.next, .next');
+    if (prev) prev.addEventListener('click', e => { e.preventDefault(); go(-1); });
+    if (next) next.addEventListener('click', e => { e.preventDefault(); go(1); });
+
+    /* Touch swipe */
+    let startX = 0;
+    track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+    track.addEventListener('touchend', e => {
+      const dx = e.changedTouches[0].clientX - startX;
+      if (Math.abs(dx) > 40) go(dx < 0 ? 1 : -1);
+    }, { passive: true });
+
+    update();
+  }
+
+  document.querySelectorAll('.hotel-gallery, .flight-hero').forEach(initGallery);
+})();
+</script>
+</body>
+</html>
