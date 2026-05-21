@@ -588,28 +588,33 @@ header{
 .rate-links a{font-family:var(--ff-ui);font-size:10.5px;color:var(--gold);letter-spacing:0.03em;transition:color 0.2s;}
 .rate-links a:hover{color:var(--gold-dk);}
 .meal-pill{
-  display:block;
-  padding:0;
-  margin:10px 0 0;
-  background:none;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:5px 14px 6px;
+  margin:12px 0 0;
+  border-radius:999px;
+  background:rgba(157,134,101,0.07);
   border:none;
-  font-family:var(--ff-ui);
-  font-size:10px;
+  font-family:var(--ff-display);
+  font-size:13px;
+  font-style:italic;
   font-weight:500;
-  letter-spacing:0.18em;
-  text-transform:uppercase;
-  color:var(--ink-lt);
-  position:relative;
-  padding-top:10px;
+  letter-spacing:0;
+  text-transform:none;
+  color:var(--ink-mid);
+  line-height:1.2;
+  white-space:nowrap;
+  vertical-align:middle;
 }
 .meal-pill::before{
   content:'';
-  position:absolute;
-  top:0;
-  left:0;
-  width:28px;
-  height:1px;
+  display:inline-block;
+  width:5px;
+  height:5px;
+  border-radius:50%;
   background:var(--gold);
+  flex-shrink:0;
 }
 .rate-price{
   font-family:var(--ff-display);
