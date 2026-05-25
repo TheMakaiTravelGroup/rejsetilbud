@@ -341,16 +341,6 @@ header{
 }
 .price-main-num{
   color:var(--white);
-  background:linear-gradient(135deg,#fff 30%,var(--gold-lt) 100%);
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-}
-/* Shimmer animation */
-@keyframes shimmer{0%{background-position:200% center;}100%{background-position:-200% center;}}
-.price-main-num{
-  background:linear-gradient(90deg, #fff 20%, var(--gold-lt) 50%, #fff 80%);
-  background-size:200% auto;
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-  animation:shimmer 4s linear infinite;
 }
 /* Alt price row */
 .price-alt{
@@ -658,13 +648,32 @@ header{
   font-size:10px;
   font-style:normal;
 }
+.rate-total{
+  font-family:var(--ff-ui);
+  font-size:10.5px;
+  font-weight:400;
+  letter-spacing:0.05em;
+  color:var(--ink-lt);
+  margin-top:5px;
+  line-height:1.3;
+  font-style:italic;
+}
+.rate-total strong{
+  font-family:var(--ff-display);
+  font-style:normal;
+  font-weight:600;
+  color:var(--ink-mid);
+  letter-spacing:0;
+  font-variant-numeric:tabular-nums;
+}
 
 .highlight-item{display:flex;gap:12px;align-items:baseline;padding:9px 0;border-top:1px solid var(--sand-mid);font-family:var(--ff-body);font-size:15.5px;color:var(--ink-mid);line-height:1.5;}
 .highlight-item:last-child{border-bottom:1px solid var(--sand-mid);}
 .hl-bullet{width:4px;height:4px;border-radius:50%;background:var(--gold);flex-shrink:0;margin-top:8px;}
 
 .hotel-footer{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;padding-top:24px;border-top:1px solid var(--sand-mid);}
-.transfer-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;border:1px solid var(--sand-deep);border-radius:999px;font-family:var(--ff-ui);font-size:10.5px;letter-spacing:0.04em;color:var(--ink-mid);}
+.hotel-badges{display:flex;flex-wrap:wrap;gap:8px;align-items:center;}
+.transfer-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;border:1px solid var(--sand-deep);border-radius:999px;font-family:var(--ff-ui);font-size:10.5px;letter-spacing:0.04em;color:var(--ink-mid);white-space:nowrap;}
 .transfer-badge::before{content:'✦';font-size:8px;color:var(--gold);}
 .hotel-cta-link{font-family:var(--ff-ui);font-size:10.5px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:7px;transition:gap 0.2s,color 0.2s;}
 .hotel-cta-link:hover{gap:12px;color:var(--gold-dk);}
@@ -930,6 +939,93 @@ footer::after{
 .footer-logos a.invert[aria-label="Rejsegarantifonden"] img{height:36px;}
 .footer-copy{font-family:var(--ff-ui);font-size:10.5px;letter-spacing:0.1em;color:rgba(253,252,249,0.25);}
 
+/* ═════════════════════════════════════════════════════
+   CURATOR'S NOTE — Rasmus' personal reflection per hotel
+   ═════════════════════════════════════════════════════ */
+.curator-note{
+  position:relative;
+  display:grid;
+  grid-template-columns:auto 1fr;
+  gap:32px;
+  align-items:start;
+  background:linear-gradient(135deg, #faf6ee 0%, #f5f0e8 100%);
+  border:1px solid var(--sand-deep);
+  border-radius:6px;
+  padding:36px 40px 36px 36px;
+  margin:32px 0 28px;
+  box-shadow:0 16px 32px -24px rgba(26,23,20,0.12), 0 1px 2px rgba(26,23,20,0.03);
+  overflow:hidden;
+}
+.curator-note::before{
+  content:'"';
+  position:absolute;top:-14px;right:24px;
+  font-family:var(--ff-display);font-style:italic;font-weight:700;
+  font-size:120px;line-height:1;
+  color:var(--gold);opacity:0.12;
+  pointer-events:none;user-select:none;
+}
+.curator-note::after{
+  content:'';position:absolute;top:0;left:0;
+  width:60px;height:2px;
+  background:linear-gradient(90deg, var(--gold) 0%, transparent 100%);
+}
+.curator-portrait{
+  display:flex;flex-direction:column;align-items:center;gap:12px;
+  flex-shrink:0;position:relative;z-index:1;
+}
+.curator-portrait-img{
+  width:84px;height:84px;border-radius:50%;
+  overflow:hidden;
+  border:1px solid var(--sand-deep);
+  box-shadow:0 6px 16px -6px rgba(26,23,20,0.2);
+  position:relative;
+}
+.curator-portrait-img::after{
+  content:'';position:absolute;inset:0;
+  border-radius:50%;
+  box-shadow:inset 0 0 0 2px rgba(253,252,249,0.8);
+  pointer-events:none;
+}
+.curator-portrait-img img{
+  width:100%;height:100%;
+  object-fit:cover;object-position:center 22%;
+  display:block;
+}
+.curator-name{
+  font-family:var(--ff-display);
+  font-size:14px;font-weight:600;font-style:italic;
+  color:var(--ink);line-height:1;
+  white-space:nowrap;text-align:center;
+}
+.curator-role{
+  font-family:var(--ff-ui);
+  font-size:8.5px;font-weight:500;
+  letter-spacing:0.18em;text-transform:uppercase;
+  color:var(--gold);
+  text-align:center;white-space:nowrap;
+}
+.curator-body{position:relative;z-index:1;}
+.curator-eyebrow{
+  font-family:var(--ff-ui);
+  font-size:9.5px;font-weight:500;
+  letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--gold);
+  margin-bottom:12px;
+  display:flex;align-items:center;gap:10px;
+}
+.curator-eyebrow::before{
+  content:'✦';font-size:8px;color:var(--gold);
+}
+.curator-quote{
+  font-family:var(--ff-body);
+  font-size:18px;font-style:italic;font-weight:400;
+  line-height:1.55;color:var(--ink-mid);
+  letter-spacing:0.005em;margin:0;
+}
+.curator-quote em{
+  font-style:normal;color:var(--ink);font-weight:500;
+}
+
 /* ── RESPONSIVE ── */
 /* ─────────────────────────────────────
    PRINT STYLES — turn into elegant PDF
@@ -973,14 +1069,16 @@ footer::after{
   .footer-copy{color:#888 !important;}
   .hotel-cols{display:block !important;}
   .hotel-cols > div + div{margin-top:6mm;}
-  .price-main-num{
-    -webkit-text-fill-color:initial !important;
-    background:none !important;
-    color:#9d8665 !important;
-    animation:none !important;
-  }
+  .price-main-num{color:#fff !important;}
   .price-box, .price-box::before, .price-box::after{background:#1a1714 !important;}
   .price-box{color:#fff !important;}
+  .curator-note{
+    background:#fafafa !important;
+    box-shadow:none !important;
+    border:1px solid #ddd !important;
+    page-break-inside:avoid;
+  }
+  .curator-note::before{display:none !important;}
   @page{margin:10mm;size:A4;}
 }
 @media(max-width:1024px){
@@ -1009,6 +1107,9 @@ footer::after{
   .hotel-cols{grid-template-columns:1fr;gap:36px;}
   .hotel-gallery{height:300px;}
   .route-iata{font-size:26px;}
+  .curator-note{padding:28px 28px 30px;gap:24px;}
+  .curator-note::before{font-size:96px;right:18px;top:-10px;}
+  .curator-quote{font-size:17px;}
 }
 
 /* ─────────────────────────────────────
@@ -1099,9 +1200,11 @@ footer::after{
   .meal-pill{font-size:10px;padding:3px 10px;align-self:flex-start;}
   .rate-price{font-size:20px;}
   .rate-price small{font-size:9px;letter-spacing:0.1em;}
+  .rate-total{font-size:10px;margin-top:3px;}
 
   .highlight-item{font-size:14.5px;padding:8px 0;}
   .hotel-footer{padding-top:20px;gap:10px;}
+  .hotel-badges{gap:6px;}
   .transfer-badge{font-size:9.5px;padding:5px 12px;}
   .hotel-cta-link{font-size:9.5px;letter-spacing:0.08em;}
 
@@ -1143,6 +1246,26 @@ footer::after{
   .footer-logos a.invert[aria-label="Maldivia"] img{height:36px;}
   .footer-logos a.invert[aria-label="Rejsegarantifonden"] img{height:28px;}
   .footer-copy{font-size:10px;letter-spacing:0.08em;line-height:1.6;}
+
+  /* CURATOR NOTE — stack vertically on mobile */
+  .curator-note{
+    grid-template-columns:1fr;
+    gap:18px;
+    padding:24px 22px 26px;
+    margin:24px 0 22px;
+  }
+  .curator-note::before{font-size:80px;right:14px;top:-6px;}
+  .curator-portrait{
+    flex-direction:row;
+    align-items:center;
+    gap:14px;
+    justify-content:flex-start;
+  }
+  .curator-portrait-img{width:64px;height:64px;}
+  .curator-name{font-size:15px;text-align:left;}
+  .curator-role{text-align:left;margin-top:2px;}
+  .curator-quote{font-size:16px;line-height:1.6;}
+  .curator-eyebrow{font-size:9px;letter-spacing:0.18em;}
 }
 
 /* ─────────────────────────────────────
@@ -1182,7 +1305,7 @@ footer::after{
 <header>
   <div class="header-logo">
     <a href="https://www.maldivia.dk" target="_blank">
-      <img loading="eager" decoding="async" src="https://maldivia.dk/wp-content/uploads/2026/05/LOGO-PNG-06.png" alt="Maldivia" height="50" fetchpriority="high">
+      <img loading="eager" decoding="async" src="https://maldivia.dk/wp-content/uploads/2025/10/LOGO-PNG-04-scaled.png" alt="Maldivia" height="50" fetchpriority="high">
     </a>
   </div>
   <div class="header-contact">
@@ -1323,6 +1446,7 @@ footer::after{
               </div>
               <span class="meal-pill">All-Inclusive — Dine Around</span>
               <div class="rate-price"><span class="rate-currency">DKK</span> 3.000 <small>tillæg</small></div>
+              <div class="rate-total">i alt <strong>DKK 81.500</strong></div>
             </div>
           </div>
           <div>
@@ -1334,8 +1458,31 @@ footer::after{
             <div class="highlight-item"><span class="hl-bullet"></span>Rolig ø-stemning og afslappet atmosfære</div>
           </div>
         </div>
+
+        <!-- ═══ Rasmus' refleksion — Furaveri ═══ -->
+        <div class="curator-note">
+          <div class="curator-portrait">
+            <div class="curator-portrait-img">
+              <img src="https://maldivia.dk/wp-content/uploads/2026/05/RK-HERO-1.jpg" alt="Rasmus Kirketerp">
+            </div>
+            <div>
+              <div class="curator-name">Rasmus Kirketerp</div>
+              <div class="curator-role">Rejsespecialist</div>
+            </div>
+          </div>
+          <div class="curator-body">
+            <div class="curator-eyebrow">Rasmus' refleksion</div>
+            <p class="curator-quote">
+              Furaveri er det resort jeg sender folk til, når de vil føle Maldiverne som et helt rigtigt ø-paradis — <em>frodigt, autentisk og tæt på naturen</em>. Husrevet er noget af det bedste jeg har snorklet i hele Maldiverne, og atmosfæren på øen er præcis dén afslappede ro, de fleste drømmer om når de booker en rejse hertil.
+            </p>
+          </div>
+        </div>
+
         <div class="hotel-footer">
-          <span class="transfer-badge">Vandfly · ca. 35 min.</span>
+          <div class="hotel-badges">
+            <span class="transfer-badge">Vandfly · ca. 35 min.</span>
+            <span class="transfer-badge">156 villaer</span>
+          </div>
           <a href="https://furaveri.com/" target="_blank" class="hotel-cta-link">Udforsk Furaveri</a>
         </div>
       </div>
@@ -1372,6 +1519,7 @@ footer::after{
               </div>
               <span class="meal-pill">All-Inclusive</span>
               <div class="rate-price"><span class="rate-currency">DKK</span> 10.000 <small>tillæg</small></div>
+              <div class="rate-total">i alt <strong>DKK 88.500</strong></div>
             </div>
           </div>
           <div>
@@ -1383,8 +1531,31 @@ footer::after{
             <div class="highlight-item"><span class="hl-bullet"></span>Eventyrligt poolområde ved stranden</div>
           </div>
         </div>
+
+        <!-- ═══ Rasmus' refleksion — Angsana Velavaru ═══ -->
+        <div class="curator-note">
+          <div class="curator-portrait">
+            <div class="curator-portrait-img">
+              <img src="https://maldivia.dk/wp-content/uploads/2026/05/RK-HERO-1.jpg" alt="Rasmus Kirketerp">
+            </div>
+            <div>
+              <div class="curator-name">Rasmus Kirketerp</div>
+              <div class="curator-role">Rejsespecialist</div>
+            </div>
+          </div>
+          <div class="curator-body">
+            <div class="curator-eyebrow">Rasmus' refleksion</div>
+            <p class="curator-quote">
+              Angsana Velavaru er et af de eneste steder i Maldiverne hvor man oplever <em>to øer i én rejse</em> — den primære ø med strandvillaer og InOcean-villaerne, der ligger en kort båd-tur ude i lagunen. Det giver en helt unik dynamik, og InOcean-villaerne med deres egen infinity-pool over vandet er noget af det smukkeste arkitektur jeg har set i Maldiverne.
+            </p>
+          </div>
+        </div>
+
         <div class="hotel-footer">
-          <span class="transfer-badge">Vandfly · ca. 35 min.</span>
+          <div class="hotel-badges">
+            <span class="transfer-badge">Vandfly · ca. 35 min.</span>
+            <span class="transfer-badge">113 villaer</span>
+          </div>
           <a href="https://www.angsana.com/maldives/velavaru" target="_blank" class="hotel-cta-link">Udforsk Velavaru</a>
         </div>
       </div>
@@ -1716,33 +1887,6 @@ footer::after{
     lastY = window.scrollY;
     if(!ticking){ requestAnimationFrame(update); ticking = true; }
   },{passive:true});
-})();
-
-/* ── ANIMATED PRICE COUNTER ── */
-(function(){
-  const formatNum = n => Math.round(n).toLocaleString('da-DK').replace(/,/g,'.');
-  const ease = t => 1 - Math.pow(1 - t, 3);
-  function animate(el){
-    const target = parseInt(el.dataset.target, 10);
-    if(!target) return;
-    const dur = 1800;
-    const start = performance.now();
-    function step(now){
-      const t = Math.min((now - start) / dur, 1);
-      el.textContent = formatNum(target * ease(t));
-      if(t < 1) requestAnimationFrame(step);
-      else el.textContent = formatNum(target);
-    }
-    el.textContent = '0';
-    requestAnimationFrame(step);
-  }
-  const els = document.querySelectorAll('[data-target]');
-  const io = new IntersectionObserver(entries=>{
-    entries.forEach(e=>{
-      if(e.isIntersecting){animate(e.target);io.unobserve(e.target);}
-    });
-  },{threshold:0.5});
-  els.forEach(el=>io.observe(el));
 })();
 
 /* ── SCROLL REVEAL ── */
