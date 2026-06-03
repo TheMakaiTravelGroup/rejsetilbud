@@ -3156,9 +3156,9 @@ body{overflow-x:clip;}
           <div class="hlrow">Elegant barfodsluksus med afslappet atmosfære</div>
         </div>
         <div class="v129-villa-box">
-          <div class="vlbl">Villatyper på dette hotel</div>
+          <div class="vlbl">Værelsestyper på dette hotel</div>
           <div class="v129-vrow incl">
-            <div class="vinfo"><span class="vname">Beach Front Villa</span><span class="vtag">Inkluderet</span><span class="vmeal">All-Inclusive</span></div>
+            <div class="vinfo"><span class="vname">Beach Front Villa</span><span class="vmeal">All-Inclusive</span></div>
             <span class="vprice">DKK 51.000</span>
           </div>
           <div class="v129-vrow">
@@ -3622,7 +3622,7 @@ body{overflow-x:clip;}
   <div class="v129-cta reveal" id="section-bookning">
     <div class="v129-cta-eyebrow">Næste skridt</div>
     <h3 class="v129-cta-title">Klar til at udleve drømmerejsen?</h3>
-    <div class="v129-cta-body">Skriv til os eller send en bookingforespørgsel med ønsket hotel, villatype og forplejning — så tjekker vi tilgængelighed og endelig pris før vi bekræfter rejsen.</div>
+    <div class="v129-cta-body">Skriv til os eller send en bookingforespørgsel med ønsket hotel, værelsestype og forplejning — så tjekker vi tilgængelighed og endelig pris før vi bekræfter rejsen.</div>
     <div class="v129-cta-btns">
       <button type="button" class="v129-cta-btn primary" onclick="if(window.mldvOpenBooking)mldvOpenBooking()">Send booking-anmodning →</button>
       <a href="tel:+4571747270" class="v129-cta-btn secondary">Ring +45 71 74 72 70</a>
@@ -3678,7 +3678,7 @@ body{overflow-x:clip;}
             <select name="hotel" id="mldv-hotel-select" onchange="mldvUpdateVillaOptions(this.value)"></select>
           </div>
           <div class="mldv-bm-field">
-            <label>Villatype</label>
+            <label>Værelsestype</label>
             <select name="villa" id="mldv-villa-select"></select>
           </div>
         </div>
@@ -3860,7 +3860,8 @@ body{overflow-x:clip;}
       var hotel = trip.hotels[hotelIdx];
       var villa = hotel.rates[villaIdx];
       lines.push("Hotel: " + hotel.name + (hotel.location ? " (" + hotel.location + ")" : ""));
-      lines.push("Villatype: " + villa.room + (villa.mealPlan ? " — " + villa.mealPlan : ""));
+      var villaTypeLbl = DATA.language === "no" ? "Romtype" : (DATA.language === "en" ? "Room type" : "Værelsestype");
+      lines.push(villaTypeLbl + ": " + villa.room + (villa.mealPlan ? " — " + villa.mealPlan : ""));
       lines.push("Pris: " + trip.currency + " " + (villa.totalFmt || villa.total));
       emailHotelTag = hotel.name;
     }
