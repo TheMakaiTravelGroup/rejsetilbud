@@ -2271,7 +2271,8 @@ html{scroll-behavior:smooth;}
 .v129-alt-pricebox .lbl{font-family:var(--ff-ui);font-size:9.5px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;}
 .v129-alt-pricebox .pr{font-family:var(--ff-display);font-size:22px;font-weight:500;font-weight:500;color:var(--ink);line-height:1;letter-spacing:-0.005em;font-variant-numeric:lining-nums tabular-nums;font-feature-settings:"lnum","tnum";}
 .v129-alt-pricebox .pr .cur{font-family:var(--ff-ui);font-size:12px;color:var(--gold);letter-spacing:0.06em;margin-right:5px;font-weight:500;vertical-align:5px;}
-.v129-alt-pricebox .vname{font-family:var(--ff-body);font-size:13px;color:var(--ink-lt);margin-top:6px;}
+.v129-alt-pricebox .vname{font-family:var(--ff-body);font-size:13px;color:var(--ink-lt);margin-top:6px;line-height:1.25;}
+.v129-alt-pricebox .vmeal{font-family:var(--ff-body);font-size:12px;color:var(--ink-lt);opacity:0.78;margin-top:2px;line-height:1.25;}
 .v129-alt-pricebox .diff{font-family:var(--ff-ui);font-size:10.5px;color:var(--gold);letter-spacing:0.08em;margin-top:6px;text-transform:uppercase;font-weight:500;}
 .v129-alt-btns{display:flex;flex-direction:column;align-items:center;gap:14px;margin-top:4px;}
 .v129-alt-btn-book{width:100%;text-align:center;font-family:var(--ff-ui);font-size:11px;font-weight:500;color:var(--white);background:var(--gold);padding:13px 18px;border-radius:99px;text-decoration:none;letter-spacing:0.16em;text-transform:uppercase;border:none;cursor:pointer;transition:all 0.2s;white-space:nowrap;}
@@ -2559,6 +2560,50 @@ html[lang="en"] .v133-hp-villa.included .v133-hp-villa-name::before{content:'★
   white-space:nowrap;
 }
 .v133-hp.compact .v145-incl-tag{margin:0;}
+
+/* V147.51 — Rundrejse villa-stay block. Replaces empty "Inkluderet"-tag
+   with proper stop-stay info: big nights number + date range + tiny tag.
+   Mirrors per-hotel price-column visual weight so rundrejse villa-boxes
+   no longer look anemic compared to per-hotel boxes. */
+.v133-hp-villa-stay{
+  grid-column:2;grid-row:1/3;
+  align-self:center;justify-self:end;
+  text-align:right;
+  padding:0 0 0 24px;
+}
+.v133-hp-villa-stay .stay-nights{
+  display:flex;align-items:baseline;justify-content:flex-end;gap:6px;
+  margin-bottom:6px;
+}
+.v133-hp-villa-stay .stay-nights .num{
+  font-family:var(--ff-display);font-size:34px;font-weight:500;
+  color:var(--ink);line-height:1;letter-spacing:-0.01em;
+  font-variant-numeric:lining-nums tabular-nums;
+}
+.v133-hp-villa-stay .stay-nights .lbl{
+  font-family:var(--ff-ui);font-size:10px;font-weight:500;
+  letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);
+}
+.v133-hp-villa-stay .stay-dates{
+  font-family:var(--ff-body);font-size:12.5px;color:var(--ink-mid);
+  margin-bottom:10px;letter-spacing:0;
+}
+.v133-hp-villa-stay .stay-incl{
+  font-family:var(--ff-ui);font-size:9px;font-weight:500;
+  color:var(--gold);letter-spacing:0.18em;text-transform:uppercase;
+  display:inline-block;
+  padding:5px 11px;
+  background:linear-gradient(135deg,#fdfcf9 0%,#faf6ed 100%);
+  border:1px solid var(--gold-lt);
+  border-radius:99px;
+  line-height:1.1;white-space:nowrap;
+}
+@media (max-width:600px){
+  .v133-hp-villa-stay{
+    text-align:left;justify-self:start;padding:0;margin-top:8px;
+  }
+  .v133-hp-villa-stay .stay-nights{justify-content:flex-start;}
+}
 /* BOOK button — gradient gold for headline (matches V145 favorit CTA),
    outlined gold for alternatives (lighter visual weight). */
 .v133-hp-villa-book{
@@ -3096,7 +3141,7 @@ body{overflow-x:clip;}
       <div class="v138-trust-card">
         <span class="ck">✓</span>
         <div class="ttext">
-          <div class="ttitle">Privat lufthavnstransfer</div>
+          <div class="ttitle">Transfer til/fra resortet</div>
           <div class="tsub">Du bliver mødt af vores samarbejdspartner ved ankomst</div>
         </div>
       </div>
@@ -3188,7 +3233,8 @@ body{overflow-x:clip;}
           <div class="v129-alt-pricebox">
             <div class="lbl">Fra</div>
             <div class="pr"><span class="cur">DKK</span>85.000</div>
-            <div class="vname">Water Villa with Pool · All-Inclusive</div>
+            <div class="vname">Water Villa with Pool</div>
+            <div class="vmeal">All-Inclusive</div>
           </div>
           <div class="v129-alt-btns">
             <button type="button" class="v129-alt-btn-book" onclick="if(window.mldvOpenBooking)mldvOpenBooking({trip:0,hotel:1,rate:0})">Bestil →</button>
@@ -3213,7 +3259,8 @@ body{overflow-x:clip;}
           <div class="v129-alt-pricebox">
             <div class="lbl">Fra</div>
             <div class="pr"><span class="cur">DKK</span>100.000</div>
-            <div class="vname">Lagoon Villa · All-Inclusive</div>
+            <div class="vname">Lagoon Villa</div>
+            <div class="vmeal">All-Inclusive</div>
           </div>
           <div class="v129-alt-btns">
             <button type="button" class="v129-alt-btn-book" onclick="if(window.mldvOpenBooking)mldvOpenBooking({trip:0,hotel:2,rate:0})">Bestil →</button>
@@ -3238,7 +3285,8 @@ body{overflow-x:clip;}
           <div class="v129-alt-pricebox">
             <div class="lbl">Fra</div>
             <div class="pr"><span class="cur">DKK</span>101.000</div>
-            <div class="vname">Water Villa with Pool · Deluxe All-Inclusive — Dine Around</div>
+            <div class="vname">Water Villa with Pool</div>
+            <div class="vmeal">Deluxe All-Inclusive — Dine Around</div>
           </div>
           <div class="v129-alt-btns">
             <button type="button" class="v129-alt-btn-book" onclick="if(window.mldvOpenBooking)mldvOpenBooking({trip:0,hotel:3,rate:0})">Bestil →</button>
