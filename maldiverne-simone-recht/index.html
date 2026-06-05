@@ -2168,6 +2168,15 @@ html{scroll-behavior:smooth;}
 .v138-range-price{font-family:var(--ff-display);font-size:26px;font-weight:500;color:var(--ink);line-height:1;letter-spacing:-0.005em;margin-bottom:8px;font-variant-numeric:lining-nums tabular-nums;font-feature-settings:"lnum","tnum";}
 .v138-range-price .cur{font-family:var(--ff-ui);font-size:10px;color:var(--gold);font-weight:500;letter-spacing:0.06em;margin-right:3px;vertical-align:4px;}
 .v138-range-detail{font-family:var(--ff-body);font-size:12.5px;color:var(--ink-mid);line-height:1.35;}
+/* V147.63: meal plan as a separate sub-line below hotel + villa. Lighter
+   weight + small letter-spacing eyebrow vibe so it reads as a category
+   (board basis) rather than another item in the chain — visually attached
+   to the hotel/villa line above. */
+.v138-range-meal{font-family:var(--ff-body);font-size:12px;color:var(--ink-lt);line-height:1.35;margin-top:3px;font-style:italic;}
+/* V148.3: hotel-name within range detail — bold + gold so the eye lands on
+   the actual hotel (the meaningful info) rather than getting lost in the
+   villa-name sub-detail that follows after "·". */
+.v138-range-hotel{font-weight:600;color:var(--gold-dk);}
 .v138-range-arrow{font-family:var(--ff-display);font-size:24px;color:var(--gold);opacity:0.55;line-height:1;}
 .v138-range-foot{text-align:center;font-family:var(--ff-ui);font-size:11px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-lt);margin:0 auto 32px;}
 .v138-range-foot a{color:var(--gold);text-decoration:none;border-bottom:1px solid var(--sand-deep);transition:border-color 0.2s;}
@@ -2271,7 +2280,8 @@ html{scroll-behavior:smooth;}
 .v129-alt-pricebox .lbl{font-family:var(--ff-ui);font-size:9.5px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;}
 .v129-alt-pricebox .pr{font-family:var(--ff-display);font-size:22px;font-weight:500;font-weight:500;color:var(--ink);line-height:1;letter-spacing:-0.005em;font-variant-numeric:lining-nums tabular-nums;font-feature-settings:"lnum","tnum";}
 .v129-alt-pricebox .pr .cur{font-family:var(--ff-ui);font-size:12px;color:var(--gold);letter-spacing:0.06em;margin-right:5px;font-weight:500;vertical-align:5px;}
-.v129-alt-pricebox .vname{font-family:var(--ff-body);font-size:13px;color:var(--ink-lt);margin-top:6px;}
+.v129-alt-pricebox .vname{font-family:var(--ff-body);font-size:13px;color:var(--ink-lt);margin-top:6px;line-height:1.25;}
+.v129-alt-pricebox .vmeal{font-family:var(--ff-body);font-size:12px;color:var(--ink-lt);opacity:0.78;margin-top:2px;line-height:1.25;}
 .v129-alt-pricebox .diff{font-family:var(--ff-ui);font-size:10.5px;color:var(--gold);letter-spacing:0.08em;margin-top:6px;text-transform:uppercase;font-weight:500;}
 .v129-alt-btns{display:flex;flex-direction:column;align-items:center;gap:14px;margin-top:4px;}
 .v129-alt-btn-book{width:100%;text-align:center;font-family:var(--ff-ui);font-size:11px;font-weight:500;color:var(--white);background:var(--gold);padding:13px 18px;border-radius:99px;text-decoration:none;letter-spacing:0.16em;text-transform:uppercase;border:none;cursor:pointer;transition:all 0.2s;white-space:nowrap;}
@@ -2318,9 +2328,11 @@ html{scroll-behavior:smooth;}
 .v129-rs-stop .step{font-family:var(--ff-display);font-size:24px;color:var(--gold);font-weight:400;line-height:1;letter-spacing:0.02em;}
 .v129-rs-stop .thumb{width:110px;height:80px;background:var(--sand-deep);border-radius:2px;overflow:hidden;position:relative;}
 .v129-rs-stop .thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+.v129-rs-stop .info .hdest{font-family:var(--ff-ui);font-size:9.5px;font-weight:500;color:var(--gold);letter-spacing:0.22em;text-transform:uppercase;margin-bottom:6px;}
 .v129-rs-stop .info .hname{font-family:var(--ff-display);font-weight:500;font-size:18px;color:var(--ink);line-height:1.15;margin-bottom:4px;}
 .v129-rs-stop .info .hloc{font-family:var(--ff-ui);font-size:10.5px;color:var(--gold);letter-spacing:0.12em;text-transform:uppercase;font-weight:500;}
 .v129-rs-stop .info .hnights{font-family:var(--ff-body);font-size:13px;color:var(--ink-mid);margin-top:6px;}
+.v129-rs-stop .info .hdates{font-family:var(--ff-body);font-size:13px;color:var(--ink-mid);margin-top:6px;letter-spacing:0;}
 .v129-rs-stop .seelink{font-family:var(--ff-ui);font-size:10.5px;color:var(--gold);text-decoration:none;letter-spacing:0.14em;text-transform:uppercase;font-weight:500;white-space:nowrap;}
 .v129-rs-stop .seelink:hover{color:var(--gold-dk);text-decoration:underline;text-underline-offset:3px;}
 .v129-rs-foot{padding:24px 36px;border-top:1px solid var(--sand-deep);background:#faf6ed;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;}
@@ -2341,6 +2353,11 @@ html{scroll-behavior:smooth;}
    floating in page background. */
 .v133-hp{background:var(--white);border:1px solid var(--sand-deep);border-radius:3px;overflow:hidden;margin-bottom:48px;}
 .v133-hp .v133-hp-body{padding:36px 40px 28px;}
+/* V147.72: tighter bottom padding on rundrejse panels — without per-villa
+   BOOK buttons + alt-rate cards, there's less content in the booking
+   column and 28px felt floaty between "Se innkvartering" and the panel
+   border. 14px keeps clean breathing room without dead space. */
+.v133-hp--rundrejse .v133-hp-body{padding-bottom:14px;}
 .v133-hp .v133-hp-info{margin:0;padding:22px 40px;background:var(--sand);border-top:1px solid var(--sand-deep);}
 .v133-hp-hero{position:relative;height:380px;overflow:hidden;border-radius:4px;background:var(--sand-deep);}
 .v133-hp-hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
@@ -2478,6 +2495,10 @@ html{scroll-behavior:smooth;}
 }
 html[lang="no"] .v133-hp-villa.included .v133-hp-villa-name::before{content:'★ Dette er vår pris';}
 html[lang="en"] .v133-hp-villa.included .v133-hp-villa-name::before{content:'★ This is our price';}
+/* V147.60: rundrejse hotels suppress the "★ Dette er vår pris" eyebrow —
+   the villa is just one of N stops in a packaged journey, not a chosen
+   basis villa, so the marker creates the wrong expectation. */
+.v133-hp--rundrejse .v133-hp-villa.included .v133-hp-villa-name::before{content:none !important;display:none;}
 .v133-hp-villa-name{
   grid-column:1;grid-row:1;
   font-family:var(--ff-display);
@@ -2486,6 +2507,13 @@ html[lang="en"] .v133-hp-villa.included .v133-hp-villa-name::before{content:'★
   color:var(--ink);
   letter-spacing:-0.005em;
   margin:0;max-width:22ch;
+}
+/* V147.61: rundrejse villa-name gets full row width (no 22ch cap) — there's
+   only ONE villa per stop, no alternatives competing for space, so the name
+   can breathe. Also slightly smaller so it doesn't compete with dates. */
+.v133-hp--rundrejse .v133-hp-villa-name{
+  max-width:none;
+  font-size:22px;
 }
 .v133-hp-villa-meta{
   grid-column:1;grid-row:2;
@@ -2559,6 +2587,104 @@ html[lang="en"] .v133-hp-villa.included .v133-hp-villa-name::before{content:'★
   white-space:nowrap;
 }
 .v133-hp.compact .v145-incl-tag{margin:0;}
+
+/* V147.66 — Rundrejse villa-stay: COMPLETELY redesigned per Rasmus.
+   No card chrome, no grid, no big competing typography. Just a clean
+   editorial single-column block: small serif villa name, italic
+   metadata line (meal · nights · dates), small uppercase links below.
+   Replaces the previous "v133-hp-villa.included grid with stay-info
+   right column" which kept breaking awkwardly on long names. */
+.v133-hp-villa--stay{
+  background:transparent;
+  border:0;
+  padding:6px 0 0;
+  margin:0;
+  display:block;
+  position:static;
+}
+.v133-hp-villa--stay::before{display:none;}
+.v133-hp-villa--stay .stay-name{
+  font-family:var(--ff-display);
+  font-weight:500;font-size:19px;
+  color:var(--ink);line-height:1.3;
+  letter-spacing:-0.005em;
+  margin:0 0 5px;
+}
+/* V147.71: meal plan on its own line, slightly heavier than meta-line below
+   so it reads as part of the villa identity (room type + board basis pair)
+   rather than as a separate metadata point. */
+.v133-hp-villa--stay .stay-meal{
+  font-family:var(--ff-body);
+  font-size:13px;font-style:italic;
+  color:var(--ink-mid);line-height:1.4;
+  margin:0 0 3px;
+}
+.v133-hp-villa--stay .stay-meta{
+  font-family:var(--ff-body);
+  font-size:13px;font-style:italic;
+  color:var(--ink-mid);line-height:1.4;
+  margin:0;
+}
+.v133-hp-villa--stay .stay-links{
+  display:flex;gap:16px;flex-wrap:wrap;
+  margin-top:10px;padding-top:8px;
+  border-top:1px solid var(--sand-deep);
+}
+.v133-hp-villa--stay .stay-links a{
+  font-family:var(--ff-ui);font-size:9px;
+  color:var(--gold);text-decoration:none;
+  letter-spacing:0.14em;text-transform:uppercase;
+  font-weight:500;
+  transition:color 0.15s;
+}
+.v133-hp-villa--stay .stay-links a:hover{
+  color:var(--gold-dk);
+  text-decoration:underline;text-underline-offset:3px;
+}
+.v133-hp-villa--stay .stay-links a:not(:last-child){
+  padding-right:16px;
+  border-right:1px solid var(--sand-deep);
+}
+
+/* V147.71/72/73 — Alt villa upgrade rows. Compact "upgrade option" below
+   the headline with discrete gold "+ NOK X tillegg" tag on the right.
+   V147.73: more breathing room AFTER the divider (padding-top up to 22px)
+   so the upgrade villa feels like a deliberate second offering rather than
+   bumped right against the line. More exclusive editorial pacing. */
+.v133-hp-villa--alt{
+  margin-top:10px;padding-top:22px;
+  border-top:1px solid var(--sand-deep);
+}
+.v133-hp-villa--alt .stay-name{font-size:17px;}
+.v133-hp-villa--alt .stay-row{
+  display:flex;align-items:flex-start;justify-content:space-between;
+  gap:24px;
+}
+.v133-hp-villa--alt .stay-row-info{flex:1;min-width:0;}
+.v133-hp-villa--alt .stay-surcharge{
+  flex:0 0 auto;text-align:right;
+  display:flex;flex-direction:column;align-items:flex-end;gap:1px;
+}
+.v133-hp-villa--alt .surcharge-amt{
+  font-family:var(--ff-display);
+  font-size:13px;font-weight:500;
+  color:var(--gold-dk);line-height:1.2;
+  letter-spacing:0;
+  font-variant-numeric:lining-nums tabular-nums;
+}
+.v133-hp-villa--alt .surcharge-lbl{
+  font-family:var(--ff-ui);font-size:8px;
+  font-weight:500;color:var(--gold);
+  letter-spacing:0.18em;text-transform:uppercase;
+  opacity:0.85;
+}
+@media (max-width:600px){
+  .v133-hp-villa--stay .stay-name{font-size:17px;}
+  .v133-hp-villa--stay .stay-meal{font-size:12.5px;}
+  .v133-hp-villa--stay .stay-meta{font-size:12.5px;}
+  .v133-hp-villa--alt .stay-row{flex-direction:column;gap:6px;}
+  .v133-hp-villa--alt .stay-surcharge{text-align:left;align-items:flex-start;}
+}
 /* BOOK button — gradient gold for headline (matches V145 favorit CTA),
    outlined gold for alternatives (lighter visual weight). */
 .v133-hp-villa-book{
@@ -3029,7 +3155,7 @@ body{overflow-x:clip;}
     <div class="hero-content">
       <div class="hero-eyebrow">Skræddersyet rejsetilbud</div>
       <h1 class="hero-title">Maldiverne<br><em>maj 2027</em></h1>
-      <div class="hero-meta"><span class="nowrap">02. maj 2027 — 11. maj 2027</span> <span class="hero-meta-sep">·</span> <span class="nowrap">7 nætter / 9 dage</span></div>
+      <div class="hero-meta"><span class="nowrap">12. maj 2027 — 20. maj 2027</span> <span class="hero-meta-sep">·</span> <span class="nowrap">7 nætter / 9 dage</span></div>
     </div>
     <div class="hero-scroll">
       <div class="scroll-line"></div>
@@ -3050,38 +3176,40 @@ body{overflow-x:clip;}
     <h2 class="v129-pr-title">Skræddersyede rejsetilbud til Simone — <span class="accent">2 hoteller</span></h2>
     <p class="v129-pre-intro">Jeg har foreslået dig de 2 hoteller baseret på høj kvalitet, favorable specialtilbud og value for money.</p>
     <div class="v145-favorit">
-      <div class="v145-favorit-image" style="background-image:url('https://maldivia.dk/wp-content/uploads/2025/10/Kuramathi-5.jpg')">
+      <div class="v145-favorit-image" style="background-image:url('https://maldivia.dk/wp-content/uploads/2025/12/Ananea.jpg')">
         <div class="v145-favorit-loc">North Ari Atoll</div>
       </div>
       <div class="v145-favorit-content">
-        <div class="v145-favorit-stars">★★★★+</div>
-        <h3 class="v145-favorit-name">Niva Kuramathi</h3>
-        <div class="v145-favorit-villa">Water Bungalow with Pool · All-Inclusive</div>
+        <div class="v145-favorit-stars">★★★★★</div>
+        <h3 class="v145-favorit-name">Ananea Madivaru</h3>
+        <div class="v145-favorit-villa">Water Pool Villa · All-Inclusive — Dine Around</div>
         <div class="v145-favorit-quote">
           <span class="qlbl">Hvorfor vi anbefaler dette</span>
-          Kuramathi Maldives er et af de mest ikoniske resorts i Maldiverne. Jeg elsker øen med sin utrolige flora og fauna i junglen, fantastiske snorkling ved husrevet, nogle af de bedste dykkersteder i…
-          <a href="#hotel-niva-kuramathi" class="v145-favorit-readmore">Læs hele anbefalingen →</a>
+          Ananea Madivaru er et af de mest gennemførte nye resorts på Maldiverne — <em>kendt for sit elegante design, store udvalg af restauranter i verdensklasse og store private pools i alle villaer</em>…
+          <a href="#hotel-ananea-madivaru" class="v145-favorit-readmore">Læs hele anbefalingen →</a>
         </div>
         <div class="v145-favorit-divider"></div>
         <div class="v145-favorit-meta"><span>7 nætter</span><span class="sep">·</span><span>2 voksne</span><span class="sep">·</span><span>Maldiverne</span></div>
         <div class="v145-favorit-price-row">
-          <div class="v145-favorit-price-lbl">Pris fra</div>
-          <div class="v145-favorit-price-num"><span class="v145-favorit-price-cur">DKK</span>57.500</div>
+          <div class="v145-favorit-price-lbl">Rejsens pris</div>
+          <div class="v145-favorit-price-num"><span class="v145-favorit-price-cur">DKK</span>68.500</div>
         </div>
-        <button type="button" class="v145-favorit-book" onclick="if(window.mldvOpenBooking)mldvOpenBooking({trip:0,hotel:1,rate:1})">Bestil →</button>
+        <button type="button" class="v145-favorit-book" onclick="if(window.mldvOpenBooking)mldvOpenBooking({trip:0,hotel:1,rate:0})">Bestil →</button>
       </div>
     </div>
     <div class="v138-range">
       <div class="v138-range-col">
         <div class="v138-range-lbl">Fra</div>
-        <div class="v138-range-price"><span class="cur">DKK</span>51.000</div>
-        <div class="v138-range-detail">Diamonds Thudufushi · Beach Front Villa</div>
+        <div class="v138-range-price"><span class="cur">DKK</span>56.000</div>
+        <div class="v138-range-detail"><span class="v138-range-hotel">Niva Kuramathi</span> · Water Bungalow with Pool</div>
+        <div class="v138-range-meal">All-Inclusive</div>
       </div>
       <div class="v138-range-arrow">→</div>
       <div class="v138-range-col">
         <div class="v138-range-lbl">Op til</div>
-        <div class="v138-range-price"><span class="cur">DKK</span>66.500</div>
-        <div class="v138-range-detail">Niva Kuramathi · Water Bungalow with Pool</div>
+        <div class="v138-range-price"><span class="cur">DKK</span>68.500</div>
+        <div class="v138-range-detail"><span class="v138-range-hotel">Ananea Madivaru</span> · Water Pool Villa</div>
+        <div class="v138-range-meal">All-Inclusive — Dine Around</div>
       </div>
     </div>
     <div class="v138-range-foot">2 hoteller · <a href="#section-hoteller">se alle nedenfor ↓</a></div>
@@ -3090,13 +3218,13 @@ body{overflow-x:clip;}
         <span class="ck">✓</span>
         <div class="ttext">
           <div class="ttitle">Fly med 1 mellemlanding</div>
-          <div class="tsub">Etihad Airways · Forplejning (mad og drikke) og bagage inkluderet</div>
+          <div class="tsub">Emirates · Forplejning (mad og drikke) og bagage inkluderet</div>
         </div>
       </div>
       <div class="v138-trust-card">
         <span class="ck">✓</span>
         <div class="ttext">
-          <div class="ttitle">Privat lufthavnstransfer</div>
+          <div class="ttitle">Transfer til/fra resortet</div>
           <div class="tsub">Du bliver mødt af vores samarbejdspartner ved ankomst</div>
         </div>
       </div>
@@ -3141,38 +3269,34 @@ body{overflow-x:clip;}
     <div class="v129-featured">
       <span class="v129-pill-badge">★ Fantastisk værdi</span>
       <div class="v129-feat-img">
-        <img loading="eager" decoding="async" src="https://maldivia.dk/wp-content/uploads/2025/10/Diamonds-3.webp" alt="">
+        <img loading="eager" decoding="async" src="https://maldivia.dk/wp-content/uploads/2025/10/Kuramathi-5.jpg" alt="">
         <div class="v129-img-meta">
-          <div class="loc">South Ari Atoll</div>
+          <div class="loc">North Ari Atoll</div>
           <div class="meta">★★★★+</div>
         </div>
       </div>
       <div class="v129-feat-body">
-        <h3 class="v129-feat-name">Diamonds Thudufushi</h3>
-        <div class="v129-feat-stars">★★★★+ · South Ari Atoll</div>
+        <h3 class="v129-feat-name">Niva Kuramathi</h3>
+        <div class="v129-feat-stars">★★★★+ · North Ari Atoll</div>
         <div class="v129-feat-hl">
-          <div class="hlrow">Snorkling blandt hvalhajer og manta rays</div>
-          <div class="hlrow">Dykning i verdensklasse direkte fra resortet</div>
-          <div class="hlrow">Elegant barfodsluksus med afslappet atmosfære</div>
+          <div class="hlrow">Frodig, tropisk ø med en ikonisk sandbanke</div>
+          <div class="hlrow">Stor, frodig ø omgivet af et enestående husrev</div>
+          <div class="hlrow">Spektakulære pools og smukt designede villaer</div>
         </div>
         <div class="v129-villa-box">
           <div class="vlbl">Værelsestyper på dette hotel</div>
           <div class="v129-vrow incl">
-            <div class="vinfo"><span class="vname">Beach Front Villa</span><span class="vmeal">All-Inclusive</span></div>
-            <span class="vprice">DKK 51.000</span>
+            <div class="vinfo"><span class="vname">Water Bungalow with Pool</span><span class="vmeal">All-Inclusive</span></div>
+            <span class="vprice">DKK 56.000</span>
           </div>
           <div class="v129-vrow">
-            <div class="vinfo"><span class="vname">Water Villa</span><span class="vmeal">All-Inclusive — Dine Around</span></div>
-            <span class="vprice">DKK 54.500</span>
-          </div>
-          <div class="v129-vrow">
-            <div class="vinfo"><span class="vname">Jacuzzi Water Villa</span><span class="vmeal">All-Inclusive — Dine Around</span></div>
-            <span class="vprice">DKK 58.000</span>
+            <div class="vinfo"><span class="vname">Water Bungalow with Pool</span><span class="vmeal">All-Inclusive — Dine Around</span></div>
+            <span class="vprice">DKK 65.000</span>
           </div>
         </div>
         <div class="v129-feat-btns">
           <button type="button" class="v129-feat-btn-book" onclick="if(window.mldvOpenBooking)mldvOpenBooking({trip:0,hotel:0,rate:0})">Bestil →</button>
-          <a href="#hotel-diamonds-thudufushi" class="v129-feat-btn-detail">Læs mere om rejseforslaget ↓</a>
+          <a href="#hotel-niva-kuramathi" class="v129-feat-btn-detail">Læs mere om rejseforslaget ↓</a>
         </div>
       </div>
     </div>
@@ -3181,26 +3305,27 @@ body{overflow-x:clip;}
       <div class="v129-alt recommended">
         <span class="v129-pill-badge green">Rasmus&#39; anbefaling</span>
         <div class="v129-alt-img">
-          <img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2025/10/Kuramathi-5.jpg" alt="">
+          <img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2025/12/Ananea.jpg" alt="">
         </div>
         <div class="v129-alt-body">
-          <h4 class="v129-alt-name">Niva Kuramathi</h4>
+          <h4 class="v129-alt-name">Ananea Madivaru</h4>
           <div class="v129-alt-loc-row">
             <span class="v129-alt-loc">North Ari Atoll</span>
-            <span class="v129-alt-stars-inline">★★★★+</span>
+            <span class="v129-alt-stars-inline">★★★★★</span>
           </div>
           <div class="v129-alt-hl">
-            <div class="hlrow">Frodig, tropisk ø med en ikonisk sandbanke</div>
-            <div class="hlrow">Stor, frodig ø omgivet af et enestående husrev</div>
+            <div class="hlrow">Eventyrlige villaer med 10 meter lange pools</div>
+            <div class="hlrow">Padel, pickleball, beach club, infinity-pools m.m.</div>
           </div>
           <div class="v129-alt-pricebox">
             <div class="lbl">Fra</div>
-            <div class="pr"><span class="cur">DKK</span>55.500</div>
-            <div class="vname">Deluxe Water Villa · All-Inclusive</div>
+            <div class="pr"><span class="cur">DKK</span>68.500</div>
+            <div class="vname">Water Pool Villa</div>
+            <div class="vmeal">All-Inclusive — Dine Around</div>
           </div>
           <div class="v129-alt-btns">
             <button type="button" class="v129-alt-btn-book" onclick="if(window.mldvOpenBooking)mldvOpenBooking({trip:0,hotel:1,rate:0})">Bestil →</button>
-            <a href="#hotel-niva-kuramathi" class="v129-alt-btn-link">Se rejseforslag →</a>
+            <a href="#hotel-ananea-madivaru" class="v129-alt-btn-link">Se rejseforslag →</a>
           </div>
         </div>
       </div>
@@ -3270,8 +3395,8 @@ body{overflow-x:clip;}
       <div class="v136-jump-inner">
         <span class="v136-jump-lbl">Hop til</span>
         <div class="v136-jump-pills">
-          <a href="#hotel-diamonds-thudufushi" class="v136-jump-pill" data-target="hotel-diamonds-thudufushi">Diamonds Thudufushi</a>
           <a href="#hotel-niva-kuramathi" class="v136-jump-pill" data-target="hotel-niva-kuramathi">Niva Kuramathi</a>
+          <a href="#hotel-ananea-madivaru" class="v136-jump-pill" data-target="hotel-ananea-madivaru">Ananea Madivaru</a>
         </div>
       </div>
     </nav>
@@ -3338,109 +3463,7 @@ body{overflow-x:clip;}
     })();
     </script>
 
-    <div class="hotel-panel v133-hp" data-panel="0" id="hotel-diamonds-thudufushi">
-      <div class="v133-hp-hero">
-        <img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2025/10/Diamonds-3.webp" alt="Diamonds Thudufushi">
-        <div class="v133-hp-hero-content">
-          <div class="loc">South Ari Atoll</div>
-          <h2 class="name">Diamonds Thudufushi</h2>
-          <div class="meta">★★★★+ <span class="sep">·</span> 72 villaer</div>
-        </div>
-      </div>
-      <div class="v133-hp-gallery">
-        <a href="https://maldivia.dk/wp-content/uploads/2026/03/DT-1.webp" target="_blank"><img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2026/03/DT-1.webp" alt=""></a>
-        <a href="https://maldivia.dk/wp-content/uploads/2025/10/Diamonds-4.jpg" target="_blank"><img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2025/10/Diamonds-4.jpg" alt=""></a>
-        <a href="https://maldivia.dk/wp-content/uploads/2025/10/Diamonds-6-scaled.jpg" target="_blank"><img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2025/10/Diamonds-6-scaled.jpg" alt=""></a>
-        <a href="https://maldivia.dk/wp-content/uploads/2025/10/Diamonds-2.jpg" target="_blank"><img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2025/10/Diamonds-2.jpg" alt=""></a>
-      </div>
-      <div class="v133-hp-body">
-        <div class="v133-hp-booking">
-          <div class="v133-hp-eyebrow">Vælg værelsestype &amp; forplejning</div>
-          <div class="v133-hp-villa">
-            <div class="v133-hp-villa-info">
-              <div class="v133-hp-villa-name">Beach Front Villa</div>
-              <div class="v133-hp-villa-meta">
-                <span class="meal">All-Inclusive</span>
-              </div>
-            </div>
-            <div class="v133-hp-villa-action">
-              <div class="v133-hp-villa-price"><span class="cur">DKK</span>51.000</div>
-              <button type="button" class="v133-hp-villa-book" onclick="if(window.mldvOpenBooking)mldvOpenBooking({trip:0,hotel:0,rate:0})">Bestil →</button>
-            </div>
-            <div class="v133-hp-villa-links">
-              <a href="https://thudufushibeach.diamondsresorts.com/beach-villa/" target="_blank" rel="noopener">Se indkvartering →</a>
-              <a href="https://maldivia.no/wp-content/uploads/sites/2/2026/04/Thudufushi-MealPlan.pdf" target="_blank" rel="noopener">Se forplejning →</a>
-            </div>
-          </div>
-          <div class="v133-hp-villa">
-            <div class="v133-hp-villa-info">
-              <div class="v133-hp-villa-name">Water Villa</div>
-              <div class="v133-hp-villa-meta">
-                <span class="meal">All-Inclusive — Dine Around</span>
-              </div>
-            </div>
-            <div class="v133-hp-villa-action">
-              <div class="v133-hp-villa-price"><span class="cur">DKK</span>54.500</div>
-              <button type="button" class="v133-hp-villa-book" onclick="if(window.mldvOpenBooking)mldvOpenBooking({trip:0,hotel:0,rate:1})">Bestil →</button>
-            </div>
-            <div class="v133-hp-villa-links">
-              <a href="https://thudufushibeach.diamondsresorts.com/water-villa/" target="_blank" rel="noopener">Se indkvartering →</a>
-              <a href="https://maldivia.no/wp-content/uploads/sites/2/2026/04/Thudufushi-MealPlan.pdf" target="_blank" rel="noopener">Se forplejning →</a>
-            </div>
-          </div>
-          <div class="v133-hp-villa">
-            <div class="v133-hp-villa-info">
-              <div class="v133-hp-villa-name">Jacuzzi Water Villa</div>
-              <div class="v133-hp-villa-meta">
-                <span class="meal">All-Inclusive — Dine Around</span>
-              </div>
-            </div>
-            <div class="v133-hp-villa-action">
-              <div class="v133-hp-villa-price"><span class="cur">DKK</span>58.000</div>
-              <button type="button" class="v133-hp-villa-book" onclick="if(window.mldvOpenBooking)mldvOpenBooking({trip:0,hotel:0,rate:2})">Bestil →</button>
-            </div>
-            <div class="v133-hp-villa-links">
-              <a href="https://thudufushibeach.diamondsresorts.com/water-villa/" target="_blank" rel="noopener">Se indkvartering →</a>
-              <a href="https://maldivia.no/wp-content/uploads/sites/2/2026/04/Thudufushi-MealPlan.pdf" target="_blank" rel="noopener">Se forplejning →</a>
-            </div>
-          </div>
-        </div>
-        <div class="v133-hp-highlights">
-          <div class="v133-hp-eyebrow">Højdepunkter</div>
-          <div class="v133-hp-hl-item">Snorkling blandt hvalhajer og manta rays</div>
-          <div class="v133-hp-hl-item">Dykning i verdensklasse direkte fra resortet</div>
-          <div class="v133-hp-hl-item">Elegant barfodsluksus med afslappet atmosfære</div>
-          <div class="v133-hp-hl-item">Gastronomi og vine på højt niveau</div>
-          <div class="v133-hp-hl-item">Intim bounty-ø med rolig stemning</div>
-          <div class="v133-hp-curator-mini">
-            <div class="ceyebrow">Rasmus&#39; anbefaling</div>
-            <p class="cquote">Diamonds Thudufushi er en lille perle i den famøse South Ari Atoll, hvor I kan se frem til forrygende dykning og snorkling, en helt særlig, hyggelig atmosfære, elegante men simple villaer, samt mad og drikke på et meget højt niveau. Jeg elsker resortet, fordi det formår at kombinere afslappet barfodsluksus med italiensk-inspireret elegance.</p>
-            <div class="csign">
-              <img src="https://maldivia.dk/wp-content/uploads/2026/05/RK-HERO-1.jpg" alt="Rasmus Kirketerp">
-              <div class="ctext">
-                <div class="cname">Rasmus Kirketerp</div>
-                <div class="crole">Travel Designer · Maldivia</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="v133-hp-info">
-        <div class="v133-hp-info-col">
-          <div class="ilbl">Lokation</div>
-          <div class="ival">South Ari Atoll</div>
-        </div>
-        <div class="v133-hp-info-col">
-          <div class="ilbl">Transfer</div>
-          <div class="ival">Vandfly · ca. 25 min.</div>
-        </div>
-        <div class="v133-hp-info-col">
-          <div class="ilbl">Website</div>
-          <div class="ival"><a href="https://thudufushibeach.diamondsresorts.com/" target="_blank">Udforsk Thudufushi</a></div>
-        </div>
-      </div>
-    </div>
-    <div class="hotel-panel v133-hp" data-panel="1" id="hotel-niva-kuramathi">
+    <div class="hotel-panel v133-hp" data-panel="0" id="hotel-niva-kuramathi">
       <div class="v133-hp-hero">
         <img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2025/10/Kuramathi-5.jpg" alt="Niva Kuramathi">
         <div class="v133-hp-hero-content">
@@ -3460,30 +3483,14 @@ body{overflow-x:clip;}
           <div class="v133-hp-eyebrow">Vælg værelsestype &amp; forplejning</div>
           <div class="v133-hp-villa">
             <div class="v133-hp-villa-info">
-              <div class="v133-hp-villa-name">Deluxe Water Villa</div>
-              <div class="v133-hp-villa-meta">
-                <span class="meal">All-Inclusive</span>
-              </div>
-            </div>
-            <div class="v133-hp-villa-action">
-              <div class="v133-hp-villa-price"><span class="cur">DKK</span>55.500</div>
-              <button type="button" class="v133-hp-villa-book" onclick="if(window.mldvOpenBooking)mldvOpenBooking({trip:0,hotel:1,rate:0})">Bestil →</button>
-            </div>
-            <div class="v133-hp-villa-links">
-              <a href="https://www.nivakuramathi.com/rooms-villas/deluxe-water-villa/" target="_blank" rel="noopener">Se indkvartering →</a>
-              <a href="https://maldivia.dk/wp-content/uploads/2026/05/Kuramathi-MP.pdf" target="_blank" rel="noopener">Se forplejning →</a>
-            </div>
-          </div>
-          <div class="v133-hp-villa">
-            <div class="v133-hp-villa-info">
               <div class="v133-hp-villa-name">Water Bungalow with Pool</div>
               <div class="v133-hp-villa-meta">
                 <span class="meal">All-Inclusive</span>
               </div>
             </div>
             <div class="v133-hp-villa-action">
-              <div class="v133-hp-villa-price"><span class="cur">DKK</span>57.500</div>
-              <button type="button" class="v133-hp-villa-book" onclick="if(window.mldvOpenBooking)mldvOpenBooking({trip:0,hotel:1,rate:1})">Bestil →</button>
+              <div class="v133-hp-villa-price"><span class="cur">DKK</span>56.000</div>
+              <button type="button" class="v133-hp-villa-book" onclick="if(window.mldvOpenBooking)mldvOpenBooking({trip:0,hotel:0,rate:0})">Bestil →</button>
             </div>
             <div class="v133-hp-villa-links">
               <a href="https://www.nivakuramathi.com/rooms-villas/water-bungalow-with-pool/" target="_blank" rel="noopener">Se indkvartering →</a>
@@ -3492,30 +3499,14 @@ body{overflow-x:clip;}
           </div>
           <div class="v133-hp-villa">
             <div class="v133-hp-villa-info">
-              <div class="v133-hp-villa-name">Deluxe Water Villa</div>
-              <div class="v133-hp-villa-meta">
-                <span class="meal">All-Inclusive — Dine Around</span>
-              </div>
-            </div>
-            <div class="v133-hp-villa-action">
-              <div class="v133-hp-villa-price"><span class="cur">DKK</span>64.500</div>
-              <button type="button" class="v133-hp-villa-book" onclick="if(window.mldvOpenBooking)mldvOpenBooking({trip:0,hotel:1,rate:2})">Bestil →</button>
-            </div>
-            <div class="v133-hp-villa-links">
-              <a href="https://www.nivakuramathi.com/rooms-villas/deluxe-water-villa/" target="_blank" rel="noopener">Se indkvartering →</a>
-              <a href="https://maldivia.dk/wp-content/uploads/2026/05/Kuramathi-MP.pdf" target="_blank" rel="noopener">Se forplejning →</a>
-            </div>
-          </div>
-          <div class="v133-hp-villa">
-            <div class="v133-hp-villa-info">
               <div class="v133-hp-villa-name">Water Bungalow with Pool</div>
               <div class="v133-hp-villa-meta">
                 <span class="meal">All-Inclusive — Dine Around</span>
               </div>
             </div>
             <div class="v133-hp-villa-action">
-              <div class="v133-hp-villa-price"><span class="cur">DKK</span>66.500</div>
-              <button type="button" class="v133-hp-villa-book" onclick="if(window.mldvOpenBooking)mldvOpenBooking({trip:0,hotel:1,rate:3})">Bestil →</button>
+              <div class="v133-hp-villa-price"><span class="cur">DKK</span>65.000</div>
+              <button type="button" class="v133-hp-villa-book" onclick="if(window.mldvOpenBooking)mldvOpenBooking({trip:0,hotel:0,rate:1})">Bestil →</button>
             </div>
             <div class="v133-hp-villa-links">
               <a href="https://www.nivakuramathi.com/rooms-villas/water-bungalow-with-pool/" target="_blank" rel="noopener">Se indkvartering →</a>
@@ -3558,6 +3549,76 @@ body{overflow-x:clip;}
         </div>
       </div>
     </div>
+    <div class="hotel-panel v133-hp" data-panel="1" id="hotel-ananea-madivaru">
+      <div class="v133-hp-hero">
+        <img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2025/12/Ananea.jpg" alt="Ananea Madivaru">
+        <div class="v133-hp-hero-content">
+          <div class="loc">North Ari Atoll</div>
+          <h2 class="name">Ananea Madivaru</h2>
+          <div class="meta">★★★★★ <span class="sep">·</span> 111 villaer</div>
+        </div>
+      </div>
+      <div class="v133-hp-gallery">
+        <a href="https://maldivia.dk/wp-content/uploads/2025/02/ananea-Madivaru-280.jpg" target="_blank"><img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2025/02/ananea-Madivaru-280.jpg" alt=""></a>
+        <a href="https://maldivia.dk/wp-content/uploads/2025/02/ananea-Madivaru-309.jpg" target="_blank"><img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2025/02/ananea-Madivaru-309.jpg" alt=""></a>
+        <a href="https://maldivia.dk/wp-content/uploads/2025/03/ananea-Madivaru-255.jpg" target="_blank"><img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2025/03/ananea-Madivaru-255.jpg" alt=""></a>
+        <a href="https://maldivia.dk/wp-content/uploads/2025/02/ananea-Madivaru-191-1.jpg" target="_blank"><img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2025/02/ananea-Madivaru-191-1.jpg" alt=""></a>
+      </div>
+      <div class="v133-hp-body">
+        <div class="v133-hp-booking">
+          <div class="v133-hp-eyebrow">Vælg værelsestype &amp; forplejning</div>
+          <div class="v133-hp-villa">
+            <div class="v133-hp-villa-info">
+              <div class="v133-hp-villa-name">Water Pool Villa</div>
+              <div class="v133-hp-villa-meta">
+                <span class="meal">All-Inclusive — Dine Around</span>
+              </div>
+            </div>
+            <div class="v133-hp-villa-action">
+              <div class="v133-hp-villa-price"><span class="cur">DKK</span>68.500</div>
+              <button type="button" class="v133-hp-villa-book" onclick="if(window.mldvOpenBooking)mldvOpenBooking({trip:0,hotel:1,rate:0})">Bestil →</button>
+            </div>
+            <div class="v133-hp-villa-links">
+              <a href="https://www.ananeamadivaru.com/villas/water-pool-villas" target="_blank" rel="noopener">Se indkvartering →</a>
+              <a href="https://maldivia.dk/wp-content/uploads/2026/04/Ananea-MP.pdf" target="_blank" rel="noopener">Se forplejning →</a>
+            </div>
+          </div>
+        </div>
+        <div class="v133-hp-highlights">
+          <div class="v133-hp-eyebrow">Højdepunkter</div>
+          <div class="v133-hp-hl-item">Eventyrlige villaer med 10 meter lange pools</div>
+          <div class="v133-hp-hl-item">Padel, pickleball, beach club, infinity-pools m.m.</div>
+          <div class="v133-hp-hl-item">Flot husrev og eventyrligt marineliv</div>
+          <div class="v133-hp-hl-item">Sublim All-Inclusive med Dine Around</div>
+          <div class="v133-hp-hl-item">10 restauranter i særklasse fordelt over 2 øer</div>
+          <div class="v133-hp-curator-mini">
+            <div class="ceyebrow">Rasmus&#39; anbefaling</div>
+            <p class="cquote">Ananea Madivaru er et af de mest gennemførte nye resorts på Maldiverne — <em>kendt for sit elegante design, store udvalg af restauranter i verdensklasse og store private pools i alle villaer</em>. Resortet strækker sig over to sammenkoblede øer i den smukke North Ari-atol og kombinerer spektakulære laguner, moderne poolvillaer og et fantastisk udvalg af sportsaktiviteter – fra padel til pickleball. En favorit hos Maldivia.</p>
+            <div class="csign">
+              <img src="https://maldivia.dk/wp-content/uploads/2026/05/RK-HERO-1.jpg" alt="Rasmus Kirketerp">
+              <div class="ctext">
+                <div class="cname">Rasmus Kirketerp</div>
+                <div class="crole">Travel Designer · Maldivia</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="v133-hp-info">
+        <div class="v133-hp-info-col">
+          <div class="ilbl">Lokation</div>
+          <div class="ival">North Ari Atoll</div>
+        </div>
+        <div class="v133-hp-info-col">
+          <div class="ilbl">Transfer</div>
+          <div class="ival">Vandfly · ca. 20 min.</div>
+        </div>
+        <div class="v133-hp-info-col">
+          <div class="ilbl">Website</div>
+          <div class="ival"><a href="https://www.ananeamadivaru.com/" target="_blank">Udforsk Ananea Madivaru</a></div>
+        </div>
+      </div>
+    </div>
 
   </div>
 </div>
@@ -3575,22 +3636,22 @@ body{overflow-x:clip;}
     <div class="flight-hero">
       <button type="button" class="gallery-btn prev">‹</button><button type="button" class="gallery-btn next">›</button>
       <div class="flight-hero-track">
-        <a href="https://maldivia.no/wp-content/uploads/sites/2/2025/10/Etihad-HERO-1.webp" target="_blank"><img loading="lazy" decoding="async" src="https://maldivia.no/wp-content/uploads/sites/2/2025/10/Etihad-HERO-1.webp" alt="Etihad Airways"></a>
-        <a href="https://maldivia.no/wp-content/uploads/sites/2/2025/10/Etihad-HERO-3.jpg" target="_blank"><img loading="lazy" decoding="async" src="https://maldivia.no/wp-content/uploads/sites/2/2025/10/Etihad-HERO-3.jpg" alt="Etihad Airways"></a>
+        <a href="https://maldivia.dk/wp-content/uploads/2025/10/Emirates.jpg" target="_blank"><img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2025/10/Emirates.jpg" alt="Emirates"></a>
+        <a href="https://maldivia.dk/wp-content/uploads/2025/10/Emirates-2-1.png" target="_blank"><img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2025/10/Emirates-2-1.png" alt="Emirates"></a>
       </div>
     </div>
     <div class="flight-body">
 
       <div class="route-graphic">
         <div class="route-airport">
-          <div class="route-iata">CPH</div>
-          <div class="route-city">København</div>
+          <div class="route-iata">HAM</div>
+          <div class="route-city">Hamborg</div>
         </div>
         <div class="route-line" style="flex:1;margin:0 20px;position:relative;display:flex;align-items:center;">
           <div style="flex:1;height:1px;background:repeating-linear-gradient(90deg,var(--sand-deep) 0,var(--sand-deep) 5px,transparent 5px,transparent 10px);"></div>
           <div style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);background:var(--sand);padding:0 8px;display:flex;flex-direction:column;align-items:center;gap:4px;">
             <div style="width:8px;height:8px;border-radius:50%;background:var(--gold);border:2px solid var(--white);box-shadow:0 0 0 1px var(--gold);"></div>
-            <div style="font-family:var(--ff-ui);font-size:8px;letter-spacing:0.1em;color:var(--ink-lt);text-transform:uppercase;white-space:nowrap;">Via Abu Dhabi</div>
+            <div style="font-family:var(--ff-ui);font-size:8px;letter-spacing:0.1em;color:var(--ink-lt);text-transform:uppercase;white-space:nowrap;">Via Dubai</div>
           </div>
         </div>
         <div class="route-airport">
@@ -3599,27 +3660,27 @@ body{overflow-x:clip;}
         </div>
       </div>
       <div class="journey">
-        <div class="journey-header">København til Malé — 02.05.2027</div>
+        <div class="journey-header">Hamborg til Malé — 12.05.2027</div>
         <div class="flight-leg">
-          <span class="leg-code">CPH→AUH</span>
+          <span class="leg-code">HAM→DXB</span>
           <div>
-            <div class="leg-times">11:10 – 19:25</div>
-            <div class="leg-meta">Etihad Airways · Economy Class</div>
+            <div class="leg-times">15:30 – 23:50</div>
+            <div class="leg-meta">Emirates · Economy Class</div>
           </div>
         </div>
         <div class="flight-connector">
           <div class="connector-line"></div>
-          <span class="connector-label">Mellemlanding Abu Dhabi · 4 t 30 m</span>
+          <span class="connector-label">Mellemlanding Dubai · 2 t 40 m</span>
           <div class="connector-line"></div>
         </div>
         <div class="flight-leg">
-          <span class="leg-code">AUH→MLE</span>
+          <span class="leg-code">DXB→MLE</span>
           <div>
-            <div class="leg-times">23:55 – 05:05<span class="plus1">+1 (næste dag)</span></div>
-            <div class="leg-meta">Etihad Airways · Economy Class</div>
+            <div class="leg-times">02:30<span class="plus1">+1 (næste dag)</span> – 07:40</div>
+            <div class="leg-meta">Emirates · Economy Class</div>
           </div>
         </div>
-        <div class="journey-total">Total rejsetid · 14 t 55 m</div>
+        <div class="journey-total">Total rejsetid · 13 t 10 m</div>
       </div>
 
       <hr class="journey-sep">
@@ -3633,41 +3694,67 @@ body{overflow-x:clip;}
           <div style="flex:1;height:1px;background:repeating-linear-gradient(90deg,var(--sand-deep) 0,var(--sand-deep) 5px,transparent 5px,transparent 10px);"></div>
           <div style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);background:var(--sand);padding:0 8px;display:flex;flex-direction:column;align-items:center;gap:4px;">
             <div style="width:8px;height:8px;border-radius:50%;background:var(--gold);border:2px solid var(--white);box-shadow:0 0 0 1px var(--gold);"></div>
-            <div style="font-family:var(--ff-ui);font-size:8px;letter-spacing:0.1em;color:var(--ink-lt);text-transform:uppercase;white-space:nowrap;">Via Abu Dhabi</div>
+            <div style="font-family:var(--ff-ui);font-size:8px;letter-spacing:0.1em;color:var(--ink-lt);text-transform:uppercase;white-space:nowrap;">Via Dubai</div>
           </div>
         </div>
         <div class="route-airport">
-          <div class="route-iata">CPH</div>
-          <div class="route-city">København</div>
+          <div class="route-iata">HAM</div>
+          <div class="route-city">Hamborg</div>
         </div>
       </div>
       <div class="journey">
-        <div class="journey-header">Malé til København — 10.05.2027</div>
+        <div class="journey-header">Malé til Hamborg — 20.05.2027</div>
         <div class="flight-leg">
-          <span class="leg-code">MLE→AUH</span>
+          <span class="leg-code">MLE→DXB</span>
           <div>
-            <div class="leg-times">19:30 – 23:05</div>
-            <div class="leg-meta">Etihad Airways · Economy Class</div>
+            <div class="leg-times">09:15 – 12:15</div>
+            <div class="leg-meta">Emirates · Economy Class</div>
           </div>
         </div>
         <div class="flight-connector">
           <div class="connector-line"></div>
-          <span class="connector-label">Mellemlanding Abu Dhabi · 3 t 10 m</span>
+          <span class="connector-label">Mellemlanding Dubai · 2 t 40 m</span>
           <div class="connector-line"></div>
         </div>
         <div class="flight-leg">
-          <span class="leg-code">AUH→CPH</span>
+          <span class="leg-code">DXB→HAM</span>
           <div>
-            <div class="leg-times">02:15<span class="plus1">+1 (næste dag)</span> – 07:00</div>
-            <div class="leg-meta">Etihad Airways · Economy Class</div>
+            <div class="leg-times">14:55 – 19:45</div>
+            <div class="leg-meta">Emirates · Economy Class</div>
           </div>
         </div>
-        <div class="journey-total">Total rejsetid · 15 t 30 m</div>
+        <div class="journey-total">Total rejsetid · 13 t 30 m</div>
       </div>
 
       <div style="margin-top:28px;padding-top:24px;border-top:1px solid var(--sand-mid);">
-        <img loading="lazy" decoding="async" src="https://maldivia.no/wp-content/uploads/sites/2/2025/10/Etihad-Logo-1-scaled.png" alt="Etihad Airways" style="height:26px;width:auto;opacity:0.55;">
+        <img loading="lazy" decoding="async" src="https://maldivia.no/wp-content/uploads/sites/2/2025/10/Emirats-1.png" alt="Emirates" style="height:26px;width:auto;opacity:0.55;">
       </div>
+    </div>
+  </div>
+
+  <div class="section-header reveal" style="padding-top:48px;">
+    <span class="section-num">04</span>
+    <span class="section-title-label">Alternativ flyreise (fra Billund)</span>
+    <div class="section-rule"></div>
+  </div>
+
+  <div class="flight-card reveal">
+    <div class="flight-hero" style="aspect-ratio:21/8;">
+      <button type="button" class="gallery-btn prev">‹</button><button type="button" class="gallery-btn next">›</button>
+      <div class="flight-hero-track">
+        <a href="https://maldivia.no/wp-content/uploads/sites/2/2025/10/QR-2.jpg" target="_blank"><img loading="lazy" decoding="async" src="https://maldivia.no/wp-content/uploads/sites/2/2025/10/QR-2.jpg" alt="Qatar Airways"></a>
+        <a href="https://maldivia.no/wp-content/uploads/sites/2/2025/10/QR-3.jpg" target="_blank"><img loading="lazy" decoding="async" src="https://maldivia.no/wp-content/uploads/sites/2/2025/10/QR-3.jpg" alt="Qatar Airways"></a>
+      </div>
+    </div>
+    <div class="alt-flight-body">
+      <div class="alt-flight-row">
+        <div class="alt-flight-name"><strong>Economy Class</strong> — Qatar Airways</div>
+        <div class="alt-flight-price"><span class="rate-currency">DKK</span> 4.500</div>
+      </div>
+      <div class="alt-note">Ovenstående pris er den totale merpris for den alternative flyrejse. Pris og tilgængelighed kan ændre sig frem til endelig bestilling.</div>
+    </div>
+    <div style="margin-top:0;padding:24px 28px 24px;border-top:1px solid var(--sand-mid);">
+      <img loading="lazy" decoding="async" src="https://maldivia.no/wp-content/uploads/sites/2/2025/10/QR-Logo.png" alt="Qatar Airways" style="height:26px;width:auto;opacity:0.55;">
     </div>
   </div>
 
@@ -3699,7 +3786,7 @@ body{overflow-x:clip;}
 
 </section><!-- /trip-section #maldiverne -->
 
-<script type="application/json" id="mldv-booking-data">{"customerName":"Simone Recht","customerEmail":"simone@grafikgaarden.dk","customerPhone":"","adults":2,"teenagers":0,"children":0,"infants":0,"teenagerAges":"","childrenAges":"","infantAges":"","sigName":"Rasmus Kirketerp","sigEmail":"rk@maldivia.dk","sigPhone":"+45 71 74 72 70","language":"da","bookingEndpoint":"https://formspree.io/f/meewjdoz","trips":[{"idx":0,"destination":"Maldiverne","monthYear":"maj 2027","dateRange":"02. maj 2027 — 11. maj 2027","nights":"7 nætter / 9 dage","currency":"DKK","isRoundTrip":false,"priceTotal":"51.000","priceTotalFmt":"51.000","route":[],"hotels":[{"id":"hotel-1780514139775-dk7k5","name":"Diamonds Thudufushi","location":"South Ari Atoll","rates":[{"idx":0,"room":"Beach Front Villa","mealPlan":"All-Inclusive","total":"51000","totalFmt":"51.000","included":true},{"idx":1,"room":"Water Villa","mealPlan":"All-Inclusive — Dine Around","total":"54500","totalFmt":"54.500","included":false},{"idx":2,"room":"Jacuzzi Water Villa","mealPlan":"All-Inclusive — Dine Around","total":"58000","totalFmt":"58.000","included":false}]},{"id":"hotel-1780522084436-ht8wk","name":"Niva Kuramathi","location":"North Ari Atoll","rates":[{"idx":0,"room":"Deluxe Water Villa","mealPlan":"All-Inclusive","total":"55500","totalFmt":"55.500","included":false},{"idx":1,"room":"Water Bungalow with Pool","mealPlan":"All-Inclusive","total":"57500","totalFmt":"57.500","included":false},{"idx":2,"room":"Deluxe Water Villa","mealPlan":"All-Inclusive — Dine Around","total":"64500","totalFmt":"64.500","included":false},{"idx":3,"room":"Water Bungalow with Pool","mealPlan":"All-Inclusive — Dine Around","total":"66500","totalFmt":"66.500","included":false}]}]}]}</script>
+<script type="application/json" id="mldv-booking-data">{"customerName":"Simone Recht","customerEmail":"simone@grafikgaarden.dk","customerPhone":"","adults":2,"teenagers":0,"children":0,"infants":0,"teenagerAges":"","childrenAges":"","infantAges":"","sigName":"Rasmus Kirketerp","sigEmail":"rk@maldivia.dk","sigPhone":"+45 71 74 72 70","language":"da","bookingEndpoint":"https://formspree.io/f/meewjdoz","trips":[{"idx":0,"destination":"Maldiverne","monthYear":"maj 2027","dateRange":"12. maj 2027 — 20. maj 2027","nights":"7 nætter / 9 dage","currency":"DKK","isRoundTrip":false,"priceTotal":"56.000","priceTotalFmt":"56.000","route":[],"hotels":[{"id":"hotel-1780522084436-ht8wk","name":"Niva Kuramathi","location":"North Ari Atoll","rates":[{"idx":0,"room":"Water Bungalow with Pool","mealPlan":"All-Inclusive","total":"56000","totalFmt":"56.000","included":true},{"idx":1,"room":"Water Bungalow with Pool","mealPlan":"All-Inclusive — Dine Around","total":"65000","totalFmt":"65.000","included":false}]},{"id":"hotel-1780664410675-ym8ow","name":"Ananea Madivaru","location":"North Ari Atoll","rates":[{"idx":0,"room":"Water Pool Villa","mealPlan":"All-Inclusive — Dine Around","total":"68500","totalFmt":"68.500","included":false}]}]}]}</script>
 
 <!-- ════ V130 BOOKING MODAL ════ -->
 <div id="mldv-booking-modal" class="mldv-bm" hidden role="dialog" aria-modal="true" aria-labelledby="mldv-bm-title">
