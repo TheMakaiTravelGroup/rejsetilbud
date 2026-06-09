@@ -2432,6 +2432,11 @@ html{scroll-behavior:smooth;}
 
 .v133-hp-body{display:grid;grid-template-columns:1.4fr 1fr;gap:48px;margin-top:48px;}
 .v133-hp-eyebrow{font-family:var(--ff-ui);font-size:10.5px;font-weight:500;letter-spacing:0.26em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;}
+/* V149: stay-dates linje parallel til ratesTitle eyebrow */
+.v133-hp-eyebrow-row{display:flex;align-items:baseline;justify-content:space-between;gap:18px;flex-wrap:wrap;margin-bottom:20px;}
+.v133-hp-eyebrow-row .v133-hp-eyebrow{margin-bottom:0;}
+.v133-hp-stay{font-family:var(--ff-display);font-size:14px;font-weight:400;color:var(--ink-mid);line-height:1;letter-spacing:0.01em;}
+@media (max-width:640px){.v133-hp-stay{font-size:12.5px;letter-spacing:0;}}
 
 .v133-hp-booking{}
 /* V136: villa cards restructured as 2x2 grid using display:contents on
@@ -3102,9 +3107,15 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
 
 /* Prevent horizontal overflow caused by very long unbreakable text
    (hotel/villa names with concatenated words). Allows break-word as a
-   last resort. */
+   last resort.
+   V148.28: removed hyphens:auto — Rasmus reported "Water Pool Villa -
+   La-goon view" being split mid-word. Browser was auto-hyphenating
+   "Lagoon" → "La-goon". Now we ONLY allow break at natural whitespace
+   (the space after "-" or between words). Mid-word break still possible
+   via overflow-wrap:break-word if a word is wider than container, but
+   no more hyphenation. */
 .v133-hp-villa-name,.v145-favorit-name,.v129-feat-name,.v129-ph-hotel,
-.v133-hp-hero-content .name,.v129-alt-name{overflow-wrap:break-word;word-break:break-word;hyphens:auto;}
+.v133-hp-hero-content .name,.v129-alt-name{overflow-wrap:break-word;word-break:normal;hyphens:none;}
 
 /* Container — ensure no element bleeds outside viewport horizontally.
    V147.24 FIX: only apply overflow-x:clip to body level (which catches
@@ -3187,47 +3198,31 @@ body{overflow-x:clip;}
   </div>
 
   <div class="v129-price-overview reveal">
-    <h2 class="v129-pr-title">Skræddersyede rejsetilbud til Tina — <span class="accent">4 hoteller</span></h2>
-    <p class="v129-pre-intro">Jeg har foreslået dig de 4 hoteller baseret på høj kvalitet, favorable specialtilbud og value for money.</p>
+    <h2 class="v129-pr-title">Skræddersyede rejsetilbud til Tina — <span class="accent">1 hotel</span></h2>
+    <p class="v129-pre-intro">Jeg har foreslået dig hotellet baseret på høj kvalitet, favorable specialtilbud og value for money.</p>
     <div class="v145-favorit">
-      <div class="v145-favorit-image" style="background-image:url('https://maldivia.no/wp-content/uploads/sites/2/2026/02/KIM-2.jpg')">
-        <div class="v145-favorit-loc">North Malé Atoll</div>
+      <div class="v145-favorit-image" style="background-image:url('https://maldivia.no/wp-content/uploads/sites/2/2026/05/VIR-1.jpg')">
+        <div class="v145-favorit-loc">North Ari Atoll</div>
       </div>
       <div class="v145-favorit-content">
         <div class="v145-favorit-stars">★★★★+</div>
-        <h3 class="v145-favorit-name">Kagi Island Maldives</h3>
-        <div class="v145-favorit-villa">Ocean Pool Villa · All-Inclusive</div>
+        <h3 class="v145-favorit-name">Veligandu Maldives</h3>
+        <div class="v145-favorit-villa">Sunset Ocean Villa · All-Inclusive</div>
         <div class="v145-favorit-quote">
           <span class="qlbl">Hvorfor vi anbefaler dette</span>
-          Kagi Maldives er et intimt, femstjernet voksen-resort (12+), der har 100% fokus på rendyrket wellness, ro og velvære. Jeg elsker øen for dens gennemtænkte &quot;Wellness Island&quot;-koncept, hvor alt fra den…
-          <a href="#hotel-kagi-island-maldives" class="v145-favorit-readmore">Læs hele anbefalingen →</a>
+          Veligandu Island Maldives er en af de absolutte klassikere, som for nylig er genåbnet i en fuldstændig gennemrenoveret og ultra-skarp version. Jeg elsker øen for dens verdenskendte, kridhvide…
+          <a href="#hotel-veligandu-maldives" class="v145-favorit-readmore">Læs hele anbefalingen →</a>
         </div>
         <div class="v145-favorit-divider"></div>
         <div class="v145-favorit-meta"><span>7 nætter</span><span class="sep">·</span><span>2 voksne</span></div>
         <div class="v145-favorit-destination">Maldiverne</div>
         <div class="v145-favorit-price-row">
           <div class="v145-favorit-price-lbl">Rejsens pris</div>
-          <div class="v145-favorit-price-num"><span class="v145-favorit-price-cur">DKK</span>79.500</div>
+          <div class="v145-favorit-price-num"><span class="v145-favorit-price-cur">DKK</span>80.500</div>
         </div>
-        <button type="button" class="v145-favorit-book" onclick="if(window.mldvOpenBooking)mldvOpenBooking({trip:0,hotel:1,rate:0})">Bestil →</button>
+        <button type="button" class="v145-favorit-book" onclick="if(window.mldvOpenBooking)mldvOpenBooking({trip:0,hotel:0,rate:0})">Bestil →</button>
       </div>
     </div>
-    <div class="v138-range">
-      <div class="v138-range-col">
-        <div class="v138-range-lbl">Fra</div>
-        <div class="v138-range-price"><span class="cur">DKK</span>76.000</div>
-        <div class="v138-range-detail"><span class="v138-range-hotel">Le Méridien Maldives</span> · Sunset Overwater Villa</div>
-        <div class="v138-range-meal">All-Inclusive</div>
-      </div>
-      <div class="v138-range-arrow">→</div>
-      <div class="v138-range-col">
-        <div class="v138-range-lbl">Op til</div>
-        <div class="v138-range-price"><span class="cur">DKK</span>92.500</div>
-        <div class="v138-range-detail"><span class="v138-range-hotel">Ananea Madivaru</span> · Water Pool Villa - Lagoon View</div>
-        <div class="v138-range-meal">All-Inclusive — Dine Around</div>
-      </div>
-    </div>
-    <div class="v138-range-foot">4 hoteller · <a href="#section-hoteller">se alle nedenfor ↓</a></div>
     <div class="v138-trust-row">
       <div class="v138-trust-card">
         <span class="ck">✓</span>
@@ -3274,127 +3269,6 @@ body{overflow-x:clip;}
     </div>
   </div>
 
-  <div class="section-header reveal">
-    <span class="section-num">02</span>
-    <span class="section-title-label">De udvalgte hoteller</span>
-    <div class="section-rule"></div>
-  </div>
-
-  <div class="v129-hotel-grid-wrap reveal">
-    <div class="v129-featured">
-      <span class="v129-pill-badge">★ Fantastisk værdi</span>
-      <div class="v129-feat-img">
-        <img loading="eager" decoding="async" src="https://maldivia.no/wp-content/uploads/sites/2/2026/01/LM-4.jpg" alt="">
-        <div class="v129-img-meta">
-          <div class="loc">Lhaviyani Atoll</div>
-          <div class="meta">★★★★★</div>
-        </div>
-      </div>
-      <div class="v129-feat-body">
-        <h3 class="v129-feat-name">Le Méridien Maldives</h3>
-        <div class="v129-feat-stars">★★★★★ · Lhaviyani Atoll</div>
-        <div class="v129-feat-hl">
-          <div class="hlrow">The Greenhouse – et af Maldivernes største hydroponiske landbrug, som leverer ultralokale, friske råvarer direkte til restauranterne</div>
-          <div class="hlrow">Fantastisk husrev med nem adgang direkte fra stranden, hvor du svømmer blandt havskildpadder og farverige fisk</div>
-          <div class="hlrow">To smukke poolområder – herunder Velaa Bar + Grill med en fabelagtig infinity-pool kun for voksne</div>
-        </div>
-        <div class="v129-villa-box">
-          <div class="vlbl">Værelsestyper på dette hotel</div>
-          <div class="v129-vrow incl">
-            <div class="vinfo"><span class="vname">Sunset Overwater Villa</span><span class="vmeal">All-Inclusive</span></div>
-            <span class="vprice">DKK 76.000</span>
-          </div>
-        </div>
-        <div class="v129-feat-btns">
-          <button type="button" class="v129-feat-btn-book" onclick="if(window.mldvOpenBooking)mldvOpenBooking({trip:0,hotel:0,rate:0})">Bestil →</button>
-          <a href="#hotel-le-m-ridien-maldives" class="v129-feat-btn-detail">Læs mere om rejseforslaget ↓</a>
-        </div>
-      </div>
-    </div>
-    <div class="v129-alts-lbl">Eller vælg et alternativ</div>
-    <div class="v129-alts-grid">
-      <div class="v129-alt recommended">
-        <span class="v129-pill-badge green">Rasmus&#39; anbefaling</span>
-        <div class="v129-alt-img">
-          <img loading="lazy" decoding="async" src="https://maldivia.no/wp-content/uploads/sites/2/2026/02/KIM-2.jpg" alt="">
-        </div>
-        <div class="v129-alt-body">
-          <h4 class="v129-alt-name">Kagi Island Maldives</h4>
-          <div class="v129-alt-loc-row">
-            <span class="v129-alt-loc">North Malé Atoll</span>
-            <span class="v129-alt-stars-inline">★★★★+</span>
-          </div>
-          <div class="v129-alt-hl">
-            <div class="hlrow">Baani Spa – en ikonisk, svævende spa-pavillon bygget i en perfekt cirkel over lagunen</div>
-            <div class="hlrow">Privat plunge pool i samtlige af øens smukke villaer - både på stranden og over havet</div>
-          </div>
-          <div class="v129-alt-pricebox">
-            <div class="lbl">Fra</div>
-            <div class="pr"><span class="cur">DKK</span>79.500</div>
-            <div class="vname">Ocean Pool Villa</div>
-            <div class="vmeal">All-Inclusive</div>
-          </div>
-          <div class="v129-alt-btns">
-            <button type="button" class="v129-alt-btn-book" onclick="if(window.mldvOpenBooking)mldvOpenBooking({trip:0,hotel:1,rate:0})">Bestil →</button>
-            <a href="#hotel-kagi-island-maldives" class="v129-alt-btn-link">Se rejseforslag →</a>
-          </div>
-        </div>
-      </div>
-      <div class="v129-alt">
-        <div class="v129-alt-img">
-          <img loading="lazy" decoding="async" src="https://maldivia.no/wp-content/uploads/sites/2/2026/05/VIR-1.jpg" alt="">
-        </div>
-        <div class="v129-alt-body">
-          <h4 class="v129-alt-name">Veligandu Maldives</h4>
-          <div class="v129-alt-loc-row">
-            <span class="v129-alt-loc">North Ari Atoll</span>
-            <span class="v129-alt-stars-inline">★★★★+</span>
-          </div>
-          <div class="v129-alt-hl">
-            <div class="hlrow">Verdenskendt, kilometerlang sandbanke med det fineste, kridhvide puddersand</div>
-            <div class="hlrow">Fantastisk og lettilgængeligt husrev fyldt med levende marineliv</div>
-          </div>
-          <div class="v129-alt-pricebox">
-            <div class="lbl">Fra</div>
-            <div class="pr"><span class="cur">DKK</span>80.500</div>
-            <div class="vname">Sunset Ocean Villa</div>
-            <div class="vmeal">All-Inclusive</div>
-          </div>
-          <div class="v129-alt-btns">
-            <button type="button" class="v129-alt-btn-book" onclick="if(window.mldvOpenBooking)mldvOpenBooking({trip:0,hotel:2,rate:0})">Bestil →</button>
-            <a href="#hotel-veligandu-maldives" class="v129-alt-btn-link">Se rejseforslag →</a>
-          </div>
-        </div>
-      </div>
-      <div class="v129-alt">
-        <div class="v129-alt-img">
-          <img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2025/12/Ananea.jpg" alt="">
-        </div>
-        <div class="v129-alt-body">
-          <h4 class="v129-alt-name">Ananea Madivaru</h4>
-          <div class="v129-alt-loc-row">
-            <span class="v129-alt-loc">North Ari Atoll</span>
-            <span class="v129-alt-stars-inline">★★★★★</span>
-          </div>
-          <div class="v129-alt-hl">
-            <div class="hlrow">Minimalistiske, store villaer med 10-meter lang privat pool</div>
-            <div class="hlrow">Fede aktiviteter såsom padel, pickleball og alverdens vandsport</div>
-          </div>
-          <div class="v129-alt-pricebox">
-            <div class="lbl">Fra</div>
-            <div class="pr"><span class="cur">DKK</span>92.500</div>
-            <div class="vname">Water Pool Villa - Lagoon View</div>
-            <div class="vmeal">All-Inclusive — Dine Around</div>
-          </div>
-          <div class="v129-alt-btns">
-            <button type="button" class="v129-alt-btn-book" onclick="if(window.mldvOpenBooking)mldvOpenBooking({trip:0,hotel:3,rate:0})">Bestil →</button>
-            <a href="#hotel-ananea-madivaru" class="v129-alt-btn-link">Se rejseforslag →</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <div class="section-header reveal" id="section-inkludert">
     <span class="section-num">03</span>
     <span class="section-title-label">Inkluderet i rejsen</span>
@@ -3414,31 +3288,31 @@ body{overflow-x:clip;}
       <div class="v129-incl-item">
         <div class="num">02</div>
         <div class="body">
-          <h3 class="ititle">Transfer til/fra resortet</h3>
+          <h3 class="ititle">Vandfly-transfer til/fra resortet</h3>
         </div>
       </div>
       <div class="v129-incl-item">
         <div class="num">03</div>
         <div class="body">
-          <h3 class="ititle">7 nætter på det valgte resort</h3>
+          <h3 class="ititle">7 nætter på Veligandu Island Resort</h3>
         </div>
       </div>
       <div class="v129-incl-item">
         <div class="num">04</div>
         <div class="body">
-          <h3 class="ititle">Ophold i villatype som angivet</h3>
+          <h3 class="ititle">Ophold i en Sunset Ocean Villa</h3>
         </div>
       </div>
       <div class="v129-incl-item">
         <div class="num">05</div>
         <div class="body">
-          <h3 class="ititle">Forplejning (meal plan) som angivet</h3>
+          <h3 class="ititle">All-Inclusive</h3>
         </div>
       </div>
       <div class="v129-incl-item">
         <div class="num">06</div>
         <div class="body">
-          <h3 class="ititle">Obligatoriske skatter og afgifter</h3>
+          <h3 class="ititle">Alle obligatoriske skatter/afgifter</h3>
         </div>
       </div>
     </div>
@@ -3454,221 +3328,7 @@ body{overflow-x:clip;}
 <div class="v129-hotel-details-wrap reveal">
   <div class="v129-hotel-details">
 
-    <nav class="v136-hotel-jump" aria-label="Hop til hotell">
-      <div class="v136-jump-inner">
-        <span class="v136-jump-lbl">Hop til</span>
-        <div class="v136-jump-pills">
-          <a href="#hotel-le-m-ridien-maldives" class="v136-jump-pill" data-target="hotel-le-m-ridien-maldives">Le Méridien Maldives</a>
-          <a href="#hotel-kagi-island-maldives" class="v136-jump-pill" data-target="hotel-kagi-island-maldives">Kagi Island Maldives</a>
-          <a href="#hotel-veligandu-maldives" class="v136-jump-pill" data-target="hotel-veligandu-maldives">Veligandu Maldives</a>
-          <a href="#hotel-ananea-madivaru" class="v136-jump-pill" data-target="hotel-ananea-madivaru">Ananea Madivaru</a>
-        </div>
-      </div>
-    </nav>
-
-    <script>
-    (function(){
-      var nav = document.querySelector(".v136-hotel-jump");
-      if (!nav) return;
-      var pills = nav.querySelectorAll(".v136-jump-pill");
-      if (!pills.length) return;
-      // Smooth scroll with offset for sticky header
-      pills.forEach(function(pill){
-        pill.addEventListener("click", function(e){
-          var href = pill.getAttribute("href");
-          if (!href || href.charAt(0) !== "#") return;
-          var target = document.getElementById(href.slice(1));
-          if (!target) return;
-          e.preventDefault();
-          var navH = nav.offsetHeight;
-          var y = target.getBoundingClientRect().top + window.pageYOffset - navH - 16;
-          window.scrollTo({ top: y, behavior: "smooth" });
-          history.replaceState(null, "", href);
-        });
-      });
-      // Active state via IntersectionObserver
-      if (!("IntersectionObserver" in window)) return;
-      var panels = nav.parentNode.querySelectorAll(".hotel-panel");
-      if (!panels.length) return;
-      var pillByHref = {};
-      pills.forEach(function(p){ pillByHref[p.getAttribute("href")] = p; });
-      var active = null;
-      var observer = new IntersectionObserver(function(entries){
-        var visible = [];
-        entries.forEach(function(e){
-          if (e.isIntersecting) visible.push({ id: e.target.id, ratio: e.intersectionRatio, top: e.boundingClientRect.top });
-        });
-        // Pick the topmost visible panel
-        panels.forEach(function(p){
-          var rect = p.getBoundingClientRect();
-          if (rect.top < window.innerHeight * 0.4 && rect.bottom > window.innerHeight * 0.2) {
-            if (!visible.find(function(v){ return v.id === p.id; })) visible.push({ id: p.id, ratio: 0.5, top: rect.top });
-          }
-        });
-        if (!visible.length) return;
-        visible.sort(function(a,b){ return a.top - b.top; });
-        var topId = visible[0].id;
-        if (topId === active) return;
-        active = topId;
-        pills.forEach(function(p){ p.classList.remove("active"); });
-        var ap = pillByHref["#" + topId];
-        if (ap) {
-          ap.classList.add("active");
-          // Auto-scroll the nav horizontally to keep active pill visible
-          var inner = nav.querySelector(".v136-jump-inner");
-          if (inner && ap.offsetLeft != null) {
-            var pillLeft = ap.offsetLeft - inner.offsetLeft;
-            var pillRight = pillLeft + ap.offsetWidth;
-            if (pillLeft < inner.scrollLeft) inner.scrollTo({ left: pillLeft - 20, behavior: "smooth" });
-            else if (pillRight > inner.scrollLeft + inner.clientWidth) inner.scrollTo({ left: pillRight - inner.clientWidth + 20, behavior: "smooth" });
-          }
-        }
-      }, { rootMargin: "-20% 0% -40% 0%", threshold: [0, 0.25, 0.5, 0.75, 1] });
-      panels.forEach(function(p){ observer.observe(p); });
-    })();
-    </script>
-
-    <div class="hotel-panel v133-hp" data-panel="0" id="hotel-le-m-ridien-maldives">
-      <div class="v133-hp-hero">
-        <img loading="lazy" decoding="async" src="https://maldivia.no/wp-content/uploads/sites/2/2026/01/LM-4.jpg" alt="Le Méridien Maldives">
-        <div class="v133-hp-hero-content">
-          <div class="loc">Lhaviyani Atoll</div>
-          <h2 class="name">Le Méridien Maldives</h2>
-          <div class="meta">★★★★★ <span class="sep">·</span> 134 villaer</div>
-        </div>
-      </div>
-      <div class="v133-hp-gallery">
-        <a href="https://maldivia.no/wp-content/uploads/sites/2/2026/01/LM-7.jpg" target="_blank"><img loading="lazy" decoding="async" src="https://maldivia.no/wp-content/uploads/sites/2/2026/01/LM-7.jpg" alt=""></a>
-        <a href="https://maldivia.no/wp-content/uploads/sites/2/2026/01/LM-5-scaled.webp" target="_blank"><img loading="lazy" decoding="async" src="https://maldivia.no/wp-content/uploads/sites/2/2026/01/LM-5-scaled.webp" alt=""></a>
-        <a href="https://maldivia.no/wp-content/uploads/sites/2/2026/01/LM-2.webp" target="_blank"><img loading="lazy" decoding="async" src="https://maldivia.no/wp-content/uploads/sites/2/2026/01/LM-2.webp" alt=""></a>
-        <a href="https://maldivia.no/wp-content/uploads/sites/2/2026/01/LM-3.webp" target="_blank"><img loading="lazy" decoding="async" src="https://maldivia.no/wp-content/uploads/sites/2/2026/01/LM-3.webp" alt=""></a>
-      </div>
-      <div class="v133-hp-body">
-        <div class="v133-hp-booking">
-          <div class="v133-hp-eyebrow">Vælg værelsestype &amp; forplejning</div>
-          <div class="v133-hp-villa">
-            <div class="v133-hp-villa-info">
-              <div class="v133-hp-villa-name">Sunset Overwater Villa</div>
-              <div class="v133-hp-villa-meta">
-                <span class="meal">All-Inclusive</span>
-              </div>
-            </div>
-            <div class="v133-hp-villa-action">
-              <div class="v133-hp-villa-price"><span class="cur">DKK</span>76.000</div>
-              <button type="button" class="v133-hp-villa-book" onclick="if(window.mldvOpenBooking)mldvOpenBooking({trip:0,hotel:0,rate:0})">Bestil →</button>
-            </div>
-            <div class="v133-hp-villa-links">
-              <a href="https://www.marriott.com/en-us/hotels/mlemd-le-meridien-maldives-resort-and-spa/rooms/#roomPoolCode=DSUN" target="_blank" rel="noopener">Se indkvartering →</a>
-              <a href="https://maldivia.dk/wp-content/uploads/2026/05/LM-AI.pdf" target="_blank" rel="noopener">Se forplejning →</a>
-            </div>
-          </div>
-        </div>
-        <div class="v133-hp-highlights">
-          <div class="v133-hp-eyebrow">Højdepunkter</div>
-          <div class="v133-hp-hl-item">The Greenhouse – et af Maldivernes største hydroponiske landbrug, som leverer ultralokale, friske råvarer direkte til restauranterne</div>
-          <div class="v133-hp-hl-item">Fantastisk husrev med nem adgang direkte fra stranden, hvor du svømmer blandt havskildpadder og farverige fisk</div>
-          <div class="v133-hp-hl-item">To smukke poolområder – herunder Velaa Bar + Grill med en fabelagtig infinity-pool kun for voksne</div>
-          <div class="v133-hp-hl-item">Bodu Finolhu – resortets helt egen, private og uberørte sandbanke, der ligger blot en kort bådtur væk</div>
-          <div class="v133-hp-hl-item">Minimalistiske og elegance villaer samt fede faciliteter såsom resortets oceanfront padelbane</div>
-          <div class="v133-hp-curator-mini">
-            <div class="ceyebrow">Rasmus&#39; anbefaling</div>
-            <p class="cquote">Le Méridien Maldives Resort &amp; Spa er en sand designperle i den smukke Lhaviyani-atol, som perfekt kombinerer mid-century moderne æstetik med klassisk maldivisk idyl. Jeg elsker øen for dens kompromisløse fokus på kunst, kultur og marinelivet, hvilket giver resortet en helt særlig, cool og europæisk inspireret jetset-vibe. Det er et fantastisk retreat for par, der vil have kridhvide strande, et skønt husrev og en følelse af ubesværet, moderne luksus.</p>
-            <div class="csign">
-              <img src="https://maldivia.dk/wp-content/uploads/2026/05/RK-HERO-1.jpg" alt="Rasmus Kirketerp">
-              <div class="ctext">
-                <div class="cname">Rasmus Kirketerp</div>
-                <div class="crole">Travel Designer · Maldivia</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="v133-hp-info">
-        <div class="v133-hp-info-col">
-          <div class="ilbl">Lokation</div>
-          <div class="ival">Lhaviyani Atoll</div>
-        </div>
-        <div class="v133-hp-info-col">
-          <div class="ilbl">Transfer</div>
-          <div class="ival">Vandfly · ca. 35 min.</div>
-        </div>
-        <div class="v133-hp-info-col">
-          <div class="ilbl">Website</div>
-          <div class="ival"><a href="https://www.marriott.com/en-us/hotels/mlemd-le-meridien-maldives-resort-and-spa/overview/" target="_blank">Udforsk Le Méridien</a></div>
-        </div>
-      </div>
-    </div>
-    <div class="hotel-panel v133-hp" data-panel="1" id="hotel-kagi-island-maldives">
-      <div class="v133-hp-hero">
-        <img loading="lazy" decoding="async" src="https://maldivia.no/wp-content/uploads/sites/2/2026/02/KIM-2.jpg" alt="Kagi Island Maldives">
-        <div class="v133-hp-hero-content">
-          <div class="loc">North Malé Atoll</div>
-          <h2 class="name">Kagi Island Maldives</h2>
-          <div class="meta">★★★★+ <span class="sep">·</span> 50 villaer</div>
-        </div>
-      </div>
-      <div class="v133-hp-gallery">
-        <a href="https://maldivia.no/wp-content/uploads/sites/2/2026/02/KIM-4.jpg" target="_blank"><img loading="lazy" decoding="async" src="https://maldivia.no/wp-content/uploads/sites/2/2026/02/KIM-4.jpg" alt=""></a>
-        <a href="https://maldivia.no/wp-content/uploads/sites/2/2026/02/KIM-5.webp" target="_blank"><img loading="lazy" decoding="async" src="https://maldivia.no/wp-content/uploads/sites/2/2026/02/KIM-5.webp" alt=""></a>
-        <a href="https://maldivia.no/wp-content/uploads/sites/2/2026/02/KIM-1.webp" target="_blank"><img loading="lazy" decoding="async" src="https://maldivia.no/wp-content/uploads/sites/2/2026/02/KIM-1.webp" alt=""></a>
-        <a href="https://maldivia.no/wp-content/uploads/sites/2/2026/02/KIM-3-scaled.webp" target="_blank"><img loading="lazy" decoding="async" src="https://maldivia.no/wp-content/uploads/sites/2/2026/02/KIM-3-scaled.webp" alt=""></a>
-      </div>
-      <div class="v133-hp-body">
-        <div class="v133-hp-booking">
-          <div class="v133-hp-eyebrow">Vælg værelsestype &amp; forplejning</div>
-          <div class="v133-hp-villa">
-            <div class="v133-hp-villa-info">
-              <div class="v133-hp-villa-name">Ocean Pool Villa</div>
-              <div class="v133-hp-villa-meta">
-                <span class="meal">All-Inclusive</span>
-              </div>
-            </div>
-            <div class="v133-hp-villa-action">
-              <div class="v133-hp-villa-price"><span class="cur">DKK</span>79.500</div>
-              <button type="button" class="v133-hp-villa-book" onclick="if(window.mldvOpenBooking)mldvOpenBooking({trip:0,hotel:1,rate:0})">Bestil →</button>
-            </div>
-            <div class="v133-hp-villa-links">
-              <a href="https://kagimaldives.com/elegant-living-space/ocean-pool-villa/" target="_blank" rel="noopener">Se indkvartering →</a>
-              <a href="https://maldivia.dk/wp-content/uploads/2026/02/Kagi-Maldives-Maldiverne.pdf" target="_blank" rel="noopener">Læs mere om hotellet →</a>
-            </div>
-          </div>
-        </div>
-        <div class="v133-hp-highlights">
-          <div class="v133-hp-eyebrow">Højdepunkter</div>
-          <div class="v133-hp-hl-item">Baani Spa – en ikonisk, svævende spa-pavillon bygget i en perfekt cirkel over lagunen</div>
-          <div class="v133-hp-hl-item">Privat plunge pool i samtlige af øens smukke villaer - både på stranden og over havet</div>
-          <div class="v133-hp-hl-item">Levende og lettilgængeligt husrev med fantastiske snorkelmuligheder blot få meter fra kysten</div>
-          <div class="v133-hp-hl-item">Sunde gourmetoplevelser med fokus på krop og sjæl i restauranter som Noo Faru og Ke-Un</div>
-          <div class="v133-hp-hl-item">Fuldt udstyret yogastudie og udendørs træningsfaciliteter med direkte udsigt over Det Indiske Ocean</div>
-          <div class="v133-hp-curator-mini">
-            <div class="ceyebrow">Rasmus&#39; anbefaling</div>
-            <p class="cquote">Kagi Maldives er et intimt, femstjernet voksen-resort (12+), der har 100% fokus på rendyrket wellness, ro og velvære. Jeg elsker øen for dens gennemtænkte &quot;Wellness Island&quot;-koncept, hvor alt fra den ikoniske, dråbeformede spa-pavillon over vandet til de sunde gourmetmenuer spiller perfekt sammen. Her bor du i topmoderne villaer med egen pool, og det fantastiske husrev er sprængfyldt med liv og ligger blot få svømmetag fra stranden, eller fra din villa.</p>
-            <div class="csign">
-              <img src="https://maldivia.dk/wp-content/uploads/2026/05/RK-HERO-1.jpg" alt="Rasmus Kirketerp">
-              <div class="ctext">
-                <div class="cname">Rasmus Kirketerp</div>
-                <div class="crole">Travel Designer · Maldivia</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="v133-hp-info">
-        <div class="v133-hp-info-col">
-          <div class="ilbl">Lokation</div>
-          <div class="ival">North Malé Atoll</div>
-        </div>
-        <div class="v133-hp-info-col">
-          <div class="ilbl">Transfer</div>
-          <div class="ival">Vandfly · ca. 20 min.</div>
-        </div>
-        <div class="v133-hp-info-col">
-          <div class="ilbl">Website</div>
-          <div class="ival"><a href="https://kagimaldives.com/" target="_blank">Udforsk Kagi Island</a></div>
-        </div>
-      </div>
-    </div>
-    <div class="hotel-panel v133-hp" data-panel="2" id="hotel-veligandu-maldives">
+    <div class="hotel-panel v133-hp" data-panel="0" id="hotel-veligandu-maldives">
       <div class="v133-hp-hero">
         <img loading="lazy" decoding="async" src="https://maldivia.no/wp-content/uploads/sites/2/2026/05/VIR-1.jpg" alt="Veligandu Maldives">
         <div class="v133-hp-hero-content">
@@ -3685,7 +3345,10 @@ body{overflow-x:clip;}
       </div>
       <div class="v133-hp-body">
         <div class="v133-hp-booking">
-          <div class="v133-hp-eyebrow">Vælg værelsestype &amp; forplejning</div>
+          <div class="v133-hp-eyebrow-row">
+            <div class="v133-hp-eyebrow">Vælg værelsestype &amp; forplejning</div>
+            <div class="v133-hp-stay">2. mar — 9. mar 2027 · 7 nætter</div>
+          </div>
           <div class="v133-hp-villa">
             <div class="v133-hp-villa-info">
               <div class="v133-hp-villa-name">Sunset Ocean Villa</div>
@@ -3695,7 +3358,7 @@ body{overflow-x:clip;}
             </div>
             <div class="v133-hp-villa-action">
               <div class="v133-hp-villa-price"><span class="cur">DKK</span>80.500</div>
-              <button type="button" class="v133-hp-villa-book" onclick="if(window.mldvOpenBooking)mldvOpenBooking({trip:0,hotel:2,rate:0})">Bestil →</button>
+              <button type="button" class="v133-hp-villa-book" onclick="if(window.mldvOpenBooking)mldvOpenBooking({trip:0,hotel:0,rate:0})">Bestil →</button>
             </div>
             <div class="v133-hp-villa-links">
               <a href="https://veligandu.com/villas/sunset-ocean-villas/" target="_blank" rel="noopener">Se indkvartering →</a>
@@ -3735,76 +3398,6 @@ body{overflow-x:clip;}
         <div class="v133-hp-info-col">
           <div class="ilbl">Website</div>
           <div class="ival"><a href="https://veligandu.com/" target="_blank">Udforsk Veligandu</a></div>
-        </div>
-      </div>
-    </div>
-    <div class="hotel-panel v133-hp" data-panel="3" id="hotel-ananea-madivaru">
-      <div class="v133-hp-hero">
-        <img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2025/12/Ananea.jpg" alt="Ananea Madivaru">
-        <div class="v133-hp-hero-content">
-          <div class="loc">North Ari Atoll</div>
-          <h2 class="name">Ananea Madivaru</h2>
-          <div class="meta">★★★★★ <span class="sep">·</span> 111 villaer</div>
-        </div>
-      </div>
-      <div class="v133-hp-gallery">
-        <a href="https://maldivia.dk/wp-content/uploads/2025/02/ananea-Madivaru-280.jpg" target="_blank"><img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2025/02/ananea-Madivaru-280.jpg" alt=""></a>
-        <a href="https://maldivia.dk/wp-content/uploads/2025/02/ananea-Madivaru-309.jpg" target="_blank"><img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2025/02/ananea-Madivaru-309.jpg" alt=""></a>
-        <a href="https://maldivia.dk/wp-content/uploads/2025/03/ananea-Madivaru-255.jpg" target="_blank"><img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2025/03/ananea-Madivaru-255.jpg" alt=""></a>
-        <a href="https://maldivia.dk/wp-content/uploads/2025/02/ananea-Madivaru-191-1.jpg" target="_blank"><img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2025/02/ananea-Madivaru-191-1.jpg" alt=""></a>
-      </div>
-      <div class="v133-hp-body">
-        <div class="v133-hp-booking">
-          <div class="v133-hp-eyebrow">Vælg værelsestype &amp; forplejning</div>
-          <div class="v133-hp-villa">
-            <div class="v133-hp-villa-info">
-              <div class="v133-hp-villa-name">Water Pool Villa - Lagoon View</div>
-              <div class="v133-hp-villa-meta">
-                <span class="meal">All-Inclusive — Dine Around</span>
-              </div>
-            </div>
-            <div class="v133-hp-villa-action">
-              <div class="v133-hp-villa-price"><span class="cur">DKK</span>92.500</div>
-              <button type="button" class="v133-hp-villa-book" onclick="if(window.mldvOpenBooking)mldvOpenBooking({trip:0,hotel:3,rate:0})">Bestil →</button>
-            </div>
-            <div class="v133-hp-villa-links">
-              <a href="https://www.ananeamadivaru.com/villas/water-pool-villa-lagoon-view" target="_blank" rel="noopener">Se indkvartering →</a>
-              <a href="https://maldivia.dk/wp-content/uploads/2026/04/Ananea-MP.pdf" target="_blank" rel="noopener">Se forplejning →</a>
-            </div>
-          </div>
-        </div>
-        <div class="v133-hp-highlights">
-          <div class="v133-hp-eyebrow">Højdepunkter</div>
-          <div class="v133-hp-hl-item">Minimalistiske, store villaer med 10-meter lang privat pool</div>
-          <div class="v133-hp-hl-item">Fede aktiviteter såsom padel, pickleball og alverdens vandsport</div>
-          <div class="v133-hp-hl-item">Enestående, 65 meter lang infinity-pool med udsigt over lagunen</div>
-          <div class="v133-hp-hl-item">Forrygende husrev med mulighed for at se bl.a. manta rays</div>
-          <div class="v133-hp-hl-item">Alle restauranter en del af resortets Dine Around All-Inclusive</div>
-          <div class="v133-hp-curator-mini">
-            <div class="ceyebrow">Rasmus&#39; anbefaling</div>
-            <p class="cquote">Ananea Madivaru er et spritnyt luksusresort i Raa-atollen, som åbner op for en helt ny standard af minimalistisk elegance. Jeg elsker øen for de vilde sportsfaciliteter som de fede Padel- og Pickleball-baner, og den enorme 65 meter lange infinity-pool, der strækker sig mod havet. Her er ingen kompromiser: Alle villaer har egen privat pool, og husrevet er i særklasse. Maden sidder lige i skabet med super restauranter, som du kan udforske frit takket være øens gennemførte Dine Around All Inclusive-koncept.</p>
-            <div class="csign">
-              <img src="https://maldivia.dk/wp-content/uploads/2026/05/RK-HERO-1.jpg" alt="Rasmus Kirketerp">
-              <div class="ctext">
-                <div class="cname">Rasmus Kirketerp</div>
-                <div class="crole">Travel Designer · Maldivia</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="v133-hp-info">
-        <div class="v133-hp-info-col">
-          <div class="ilbl">Lokation</div>
-          <div class="ival">North Ari Atoll</div>
-        </div>
-        <div class="v133-hp-info-col">
-          <div class="ilbl">Transfer</div>
-          <div class="ival">Vandfly · ca. 20 min.</div>
-        </div>
-        <div class="v133-hp-info-col">
-          <div class="ilbl">Website</div>
-          <div class="ival"><a href="https://www.ananeamadivaru.com/" target="_blank">Udforsk Ananea Madivaru</a></div>
         </div>
       </div>
     </div>
@@ -3975,7 +3568,7 @@ body{overflow-x:clip;}
 
 </section><!-- /trip-section #maldiverne -->
 
-<script type="application/json" id="mldv-booking-data">{"customerName":"Tina Egegaard","customerEmail":"tina.egegaard@gmail.com","customerPhone":"+4540613042","adults":2,"teenagers":0,"children":0,"infants":0,"teenagerAges":"","childrenAges":"","infantAges":"","sigName":"Rasmus Kirketerp","sigEmail":"rk@maldivia.dk","sigPhone":"+45 71 74 72 70","language":"da","bookingEndpoint":"https://formspree.io/f/meewjdoz","trips":[{"idx":0,"destination":"Maldiverne","monthYear":"marts 2027","dateRange":"01. marts 2027 — 09. marts 2027","nights":"7 nætter / 9 dage","currency":"DKK","isRoundTrip":false,"priceTotal":"76.000","priceTotalFmt":"76.000","route":[],"hotels":[{"id":"hotel-1780783743174-5ybqk","name":"Le Méridien Maldives","location":"Lhaviyani Atoll","rates":[{"idx":0,"room":"Sunset Overwater Villa","mealPlan":"All-Inclusive","total":"76000","totalFmt":"76.000","included":true}]},{"id":"hotel-1780783409081-885no","name":"Kagi Island Maldives","location":"North Malé Atoll","rates":[{"idx":0,"room":"Ocean Pool Villa","mealPlan":"All-Inclusive","total":"79500","totalFmt":"79.500","included":false}]},{"id":"hotel-1780783186103-0id3b","name":"Veligandu Maldives","location":"North Ari Atoll","rates":[{"idx":0,"room":"Sunset Ocean Villa","mealPlan":"All-Inclusive","total":"80500","totalFmt":"80.500","included":false}]},{"id":"hotel-1780783306301-pv3vz","name":"Ananea Madivaru","location":"North Ari Atoll","rates":[{"idx":0,"room":"Water Pool Villa - Lagoon View","mealPlan":"All-Inclusive — Dine Around","total":"92500","totalFmt":"92.500","included":false}]}]}]}</script>
+<script type="application/json" id="mldv-booking-data">{"customerName":"Tina Egegaard","customerEmail":"tina.egegaard@gmail.com","customerPhone":"+4540613042","adults":2,"teenagers":0,"children":0,"infants":0,"teenagerAges":"","childrenAges":"","infantAges":"","sigName":"Rasmus Kirketerp","sigEmail":"rk@maldivia.dk","sigPhone":"+45 71 74 72 70","language":"da","bookingEndpoint":"https://formspree.io/f/meewjdoz","trips":[{"idx":0,"destination":"Maldiverne","monthYear":"marts 2027","dateRange":"01. marts 2027 — 09. marts 2027","nights":"7 nætter / 9 dage","currency":"DKK","isRoundTrip":false,"priceTotal":"80.500","priceTotalFmt":"80.500","route":[],"hotels":[{"id":"hotel-1780783186103-0id3b","name":"Veligandu Maldives","location":"North Ari Atoll","rates":[{"idx":0,"room":"Sunset Ocean Villa","mealPlan":"All-Inclusive","total":"80500","totalFmt":"80.500","included":true}]}]}]}</script>
 
 <!-- ════ V130 BOOKING MODAL ════ -->
 <div id="mldv-booking-modal" class="mldv-bm" hidden role="dialog" aria-modal="true" aria-labelledby="mldv-bm-title">
