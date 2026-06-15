@@ -156,6 +156,17 @@ body::before{
 .reveal-delay-1{transition-delay:0.12s;}
 .reveal-delay-2{transition-delay:0.24s;}
 .reveal-delay-3{transition-delay:0.36s;}
+</style>
+<noscript><style>
+/* V148.41: if JavaScript is disabled, fail open — show all .reveal content
+   immediately. Without this, .reveal { opacity:0 } would leave entire
+   sections invisible to users with JS off (browser setting, broken script
+   tag, network-blocked CDN, ad blocker false positive, etc.). Critical
+   defense: a luxury travel offer must never silently hide its content. */
+.reveal{opacity:1 !important;transform:none !important;}
+</style></noscript>
+<style>
+
 
 /* ── HEADER ── */
 header{
@@ -3111,9 +3122,18 @@ html[lang="en"] .v133-hp-villa.included .v133-hp-villa-name::before{content:'★
   .v129-cta-btn{text-align:center;}
   .v138-jump-fab{bottom:78px;}
   .v138-jump-fab-btn{padding:10px 16px;font-size:10px;}
-  .v138-rr-route{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:8px;}
-  .v138-rr-route::-webkit-scrollbar{display:none;}
-  .v138-rr-stop{flex:0 0 80px;}
+  /* V148.42: removed three rules that were overriding V145.5's vertical
+     stack design for .v138-rr-route on iPhone SE (320-414px) widths:
+       .v138-rr-route{flex-wrap:nowrap;overflow-x:auto;...}
+       .v138-rr-route::-webkit-scrollbar{display:none;}
+       .v138-rr-stop{flex:0 0 80px;}
+     The override forced horizontal layout with only 80px per stop — too
+     narrow for "Koh Yao Noi" (~95px), causing text to wrap one-word-per-
+     line and city labels to overlap into adjacent stops' circles. Both
+     blocks were inside @media(max-width:480px), so the later one (this
+     one) was winning the cascade and silently breaking the timeline.
+     V145.5's vertical stack (number-left, city-center, nights-right per
+     row) at line 16741 is now the only rule and works correctly. */
   .section-num{font-size:11px;}
   .section-title-label{font-size:9px;letter-spacing:0.16em;}
   .v133-hp-villa-name{font-size:18px;}
@@ -4706,23 +4726,69 @@ body{overflow-x:clip;}
 
 /* ── SCROLL REVEAL ── */
 (function(){
-  const io = new IntersectionObserver(entries=>{
-    entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target);}});
-  },{threshold:0});
-  // V148.40: was threshold:0.07 — Rasmus reported the "04 HOTELLERNES
-  // DETALJER" section being completely invisible on mobile (just beige
-  // background, no hotels). Root cause: when a .reveal element is much
-  // taller than the viewport, the max possible intersection ratio is
-  // viewport_height / element_height. For 5 stacked hotel-panels (~8000px
-  // total) on a mobile viewport (~550px usable after URL/status bars),
-  // max ratio = 550/8000 = 0.069 — JUST below the 0.07 threshold. The
-  // observer never fires "isIntersecting:true", .visible class never
-  // gets added, opacity:0 sticks forever. Desktop viewports (~900px) hit
-  // the threshold comfortably, hence the desktop-only success.
-  // threshold:0 fires the moment ANY part of the element enters the
-  // viewport — reliable for elements of any size. The 1s opacity
-  // transition still gives a smooth fade-in feel regardless.
-  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  // V148.41: DEFENSE-IN-DEPTH against content disappearing on mobile.
+  //
+  // History: V148.40 fixed a specific symptom (threshold:0.07 unreachable
+  // for tall sections on small viewports), but the deeper architectural
+  // problem remained: .reveal { opacity:0 } means "hidden until JS fires"
+  // with NO FALLBACK. If anything goes wrong in this IIFE — observer not
+  // supported, threshold misconfig, exception thrown, JS blocked — entire
+  // sections vanish permanently and silently. Rasmus reported the "04
+  // HOTELLERNES DETALJER" section being completely invisible on mobile,
+  // and the bug had likely been shipping in customer-facing offers for
+  // an unknown time. Unacceptable.
+  //
+  // Three layers of defense now:
+  //   1. NO-JS FALLBACK: a <noscript> CSS rule (see <style> below) makes
+  //      .reveal fully visible if JS is off. Covers users with JS disabled,
+  //      blocked, or failed-to-load.
+  //   2. SAFETY-NET TIMER: regardless of observer behaviour, force all
+  //      .reveal elements visible after 2 seconds. Worst case: a slight
+  //      delay before some content appears, but it ALWAYS appears.
+  //   3. THRESHOLD:0 OBSERVER: fires the moment any pixel enters viewport,
+  //      reliable for elements of any size. This is the primary path —
+  //      gives the intended smooth fade-in for almost all visits.
+  //
+  // If steps 1+2 ever activate, content shows up. The observer (step 3)
+  // is now an ENHANCEMENT, not a requirement.
+  var revealEls = document.querySelectorAll('.reveal');
+
+  // Safety-net: unconditionally reveal everything after 2s. This catches
+  // (a) Observer not firing for any reason, (b) JS errors elsewhere that
+  // interrupt this script, (c) future regressions where someone re-breaks
+  // the threshold without realising.
+  var safetyTimer = setTimeout(function(){
+    revealEls.forEach(function(el){ el.classList.add('visible'); });
+  }, 2000);
+
+  // Primary path: IntersectionObserver with threshold:0 (any pixel visible
+  // triggers reveal). Works on iOS Safari 12.2+ and every modern browser.
+  if (!('IntersectionObserver' in window)) {
+    // Old browser without IntersectionObserver — reveal everything now,
+    // skip the animation. Cancel the safety-net (no longer needed).
+    clearTimeout(safetyTimer);
+    revealEls.forEach(function(el){ el.classList.add('visible'); });
+    return;
+  }
+
+  try {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0 });
+    revealEls.forEach(function(el){ io.observe(el); });
+  } catch (err) {
+    // Anything weird with IntersectionObserver setup — reveal everything,
+    // log so we know it happened. Safety-net would catch this too but
+    // immediate reveal is faster.
+    if (window.console && console.warn) console.warn('Reveal observer failed, falling back to immediate:', err);
+    clearTimeout(safetyTimer);
+    revealEls.forEach(function(el){ el.classList.add('visible'); });
+  }
 })();
 
 /* ── HOTEL TABS — supports multiple independent hotel-strips per page ── */
