@@ -2033,6 +2033,49 @@ html{scroll-behavior:smooth;}
   .route-stop-city{font-size:12px;}
   .route-stop-nights{font-size:8.5px;}
 }
+/* V148.39: very narrow mobile — stack stops VERTICALLY so cities never
+   collide or wrap one-word-per-line. The horizontal layout fundamentally
+   can't fit 3 multi-word city names + dot + nights labels under 520px
+   without text overlap. Switch the dashed connector line from horizontal
+   (top) to vertical (left), so stops read top-to-bottom like an itinerary. */
+@media(max-width:520px){
+  .route-timeline{
+    flex-direction:column;
+    align-items:stretch;
+    padding:6px 6px 6px 0;
+    overflow:visible;
+  }
+  .route-timeline::before{
+    top:18px;bottom:18px;
+    left:14px;right:auto;
+    width:1px;height:auto;
+    background:repeating-linear-gradient(180deg, var(--sand-deep) 0, var(--sand-deep) 5px, transparent 5px, transparent 10px);
+  }
+  .route-stop{
+    flex-direction:row;
+    align-items:center;
+    width:100%;
+    min-width:0;
+    padding:8px 8px 8px 8px;
+    gap:14px;
+  }
+  .route-stop-dot{margin-top:0;flex-shrink:0;}
+  .route-stop-city{
+    margin-top:0;
+    white-space:normal;
+    text-align:left;
+    font-size:14px;
+    flex:1 1 auto;
+    min-width:0;
+  }
+  .route-stop-nights{
+    margin-top:0;
+    margin-left:auto;
+    font-size:9px;
+    flex-shrink:0;
+    white-space:nowrap;
+  }
+}
 
 /* ════════════════════════════════════════════════════════════════
    V129 / V130 — Conversion-focused offer layout
@@ -2339,6 +2382,51 @@ html{scroll-behavior:smooth;}
 .v129-rs-stop .info .hdates{font-family:var(--ff-body);font-size:13px;color:var(--ink-mid);margin-top:6px;letter-spacing:0;}
 .v129-rs-stop .seelink{font-family:var(--ff-ui);font-size:10.5px;color:var(--gold);text-decoration:none;letter-spacing:0.14em;text-transform:uppercase;font-weight:500;white-space:nowrap;}
 .v129-rs-stop .seelink:hover{color:var(--gold-dk);text-decoration:underline;text-underline-offset:3px;}
+/* V148.39: mobile redesign for the rundrejse compact hotel cards. The
+   desktop layout (60px step + 110px thumb + 1fr info + auto seelink) blows
+   past mobile viewport width — info column gets crushed to ~30-50px, so
+   hotel names wrap one word per line, KOH YAO NOI splits across 3 lines,
+   and "Se detaljer" gets clipped at the right edge. Restructured grid:
+     row 1: [step 38px] [thumb 80px] [info 1fr]
+     row 2: [───── full-width seelink with hairline divider ─────]
+   This gives info enough room for the hotel name on 1-2 lines, location
+   stays on one line, and the see-details link becomes a proper full-width
+   tap target with a clean visual separator. Also tightens header
+   letter-spacing so "DIN SKRÆDDERSYEDE REJSE" eyebrow fits without
+   getting clipped at the right edge. */
+@media(max-width:640px){
+  .v129-rs-head{padding:22px 18px 16px;}
+  .v129-rs-eyebrow{font-size:9px;letter-spacing:0.14em;}
+  .v129-rs-title{font-size:22px;line-height:1.18;}
+  .v129-rs-meta{font-size:12.5px;}
+  .v129-rs-stops{padding:4px 0;}
+  .v129-rs-stop{
+    grid-template-columns:38px 80px 1fr;
+    grid-template-areas:
+      "step thumb info"
+      "see  see   see ";
+    column-gap:12px;
+    row-gap:6px;
+    padding:14px 18px;
+    align-items:center;
+  }
+  .v129-rs-stop .step{grid-area:step;font-size:18px;text-align:center;}
+  .v129-rs-stop .thumb{grid-area:thumb;width:80px;height:60px;}
+  .v129-rs-stop .info{grid-area:info;min-width:0;}
+  .v129-rs-stop .info .hdest{font-size:8.5px;letter-spacing:0.14em;margin-bottom:3px;}
+  .v129-rs-stop .info .hname{font-size:15px;line-height:1.18;margin-bottom:2px;}
+  .v129-rs-stop .info .hloc{font-size:9.5px;letter-spacing:0.1em;}
+  .v129-rs-stop .info .hdates{font-size:11px;margin-top:3px;}
+  .v129-rs-stop .seelink{
+    grid-area:see;
+    text-align:right;
+    font-size:9.5px;
+    letter-spacing:0.12em;
+    padding-top:8px;
+    border-top:1px solid var(--sand-mid);
+    white-space:nowrap;
+  }
+}
 .v129-rs-foot{padding:24px 36px;border-top:1px solid var(--sand-deep);background:#faf6ed;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;}
 .v129-rs-foot .total-lbl{font-family:var(--ff-ui);font-size:10px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);margin-bottom:3px;}
 .v129-rs-foot .total-pr{font-family:var(--ff-display);font-size:24px;font-weight:500;font-variant-numeric:lining-nums tabular-nums;color:var(--ink);line-height:1;}
@@ -3211,7 +3299,7 @@ body{overflow-x:clip;}
 
   <div class="v129-price-overview reveal">
     <h2 class="v129-pr-title">Skræddersyede rejsetilbud til Erik — <span class="accent">Thailand</span></h2>
-    <p class="v129-pre-intro">En skræddersyet kombinationsrejse med 3 stop på 14 nætter / 16 dage. Vi har inkluderet flyrejsen samt hotellerne til jer. Glæd dig til et fantastisk eventyr.</p>
+    <p class="v129-pre-intro">En skræddersyet kombinationsrejse med 3 stop på 14 nætter / 16 dage. Vi har inkluderet alt fra flyrejser til hoteller og transfer. Glæd dig til et fantastisk eventyr.</p>
     <div class="v145-favorit">
       <div class="v145-favorit-image" style="background-image:url('https://maldivia.dk/wp-content/uploads/2026/06/TH-3.jpg')">
         <div class="v145-favorit-loc">Krabi</div>
@@ -4315,7 +4403,20 @@ body{overflow-x:clip;}
 (function(){
   const io = new IntersectionObserver(entries=>{
     entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target);}});
-  },{threshold:0.07});
+  },{threshold:0});
+  // V148.40: was threshold:0.07 — Rasmus reported the "04 HOTELLERNES
+  // DETALJER" section being completely invisible on mobile (just beige
+  // background, no hotels). Root cause: when a .reveal element is much
+  // taller than the viewport, the max possible intersection ratio is
+  // viewport_height / element_height. For 5 stacked hotel-panels (~8000px
+  // total) on a mobile viewport (~550px usable after URL/status bars),
+  // max ratio = 550/8000 = 0.069 — JUST below the 0.07 threshold. The
+  // observer never fires "isIntersecting:true", .visible class never
+  // gets added, opacity:0 sticks forever. Desktop viewports (~900px) hit
+  // the threshold comfortably, hence the desktop-only success.
+  // threshold:0 fires the moment ANY part of the element enters the
+  // viewport — reliable for elements of any size. The 1s opacity
+  // transition still gives a smooth fade-in feel regardless.
   document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 })();
 
