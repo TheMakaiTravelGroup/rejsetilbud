@@ -2438,7 +2438,19 @@ html{scroll-behavior:smooth;}
 .v133-hp-stay{font-family:var(--ff-display);font-size:14px;font-weight:400;color:var(--ink-mid);line-height:1;letter-spacing:0.01em;}
 @media (max-width:640px){.v133-hp-stay{font-size:12.5px;letter-spacing:0;}}
 
-.v133-hp-booking{}
+.v133-hp-booking{display:flex;flex-direction:column;}
+/* V148.34/36/37/38: balance-image fills the whitespace below booking content,
+   ending at the last highlight TEXT (descender) baseline.
+   flex:1 1 0 + min-height:0: image grows to fill available space without
+   ever pushing the column past where highlights naturally end.
+   margin-bottom:17px: highlight items have margin-bottom:14px AND a
+   half-leading of ~3px below the descender (from line-height:1.6 on 15px
+   text = 24px line-box, leaving ~4.5px below the glyph, of which ~1-2px is
+   actual descender depth). 14+3 ≈ 17px lines the image up with the visible
+   text bottom of "spektakulære udkigspunkter" etc. */
+.v133-hp-whitespace-img{margin-top:28px;margin-bottom:17px;flex:1 1 0;min-height:0;overflow:hidden;border-radius:4px;background:var(--sand-deep);}
+.v133-hp-whitespace-img img{width:100%;height:100%;object-fit:cover;display:block;}
+@media (max-width:900px){.v133-hp-whitespace-img{display:none;}}
 /* V136: villa cards restructured as 2x2 grid using display:contents on
    inner wrappers. Row 1: villa-name | price. Row 2: meta (pill) | BOOK.
    This puts the meal-plan pill on the same horizontal axis as the BOOK
@@ -3199,7 +3211,7 @@ body{overflow-x:clip;}
 
   <div class="v129-price-overview reveal">
     <h2 class="v129-pr-title">Skræddersyede rejsetilbud til Erik — <span class="accent">Thailand</span></h2>
-    <p class="v129-pre-intro">En skræddersyet kombinationsrejse med 3 stop på 14 nætter / 16 dage. Vi har inkluderet flyrejsen og hotellerne. Glæd dig til et fantastisk eventyr.</p>
+    <p class="v129-pre-intro">En skræddersyet kombinationsrejse med 3 stop på 14 nætter / 16 dage. Vi har inkluderet alt fra flyrejser til hoteller og transfer. Glæd dig til et fantastisk eventyr.</p>
     <div class="v145-favorit">
       <div class="v145-favorit-image" style="background-image:url('https://maldivia.dk/wp-content/uploads/2026/06/TH-3.jpg')">
         <div class="v145-favorit-loc">Krabi</div>
@@ -3506,6 +3518,7 @@ body{overflow-x:clip;}
               <a href="https://www.layanaresort.com/" target="_blank" rel="noopener">Læs mere om hotellet →</a>
             </div>
           </div>
+          <div class="v133-hp-whitespace-img"><img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2026/06/KL-1.webp" alt=""></div>
         </div>
         <div class="v133-hp-highlights">
           <div class="v133-hp-eyebrow">Højdepunkter</div>
@@ -3561,6 +3574,7 @@ body{overflow-x:clip;}
               <a href="https://www.capekuduhotel.com/" target="_blank" rel="noopener">Læs mere om hotellet →</a>
             </div>
           </div>
+          <div class="v133-hp-whitespace-img"><img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2026/06/KN-1-scaled.jpg" alt=""></div>
         </div>
         <div class="v133-hp-highlights">
           <div class="v133-hp-eyebrow">Højdepunkter</div>
@@ -3592,7 +3606,7 @@ body{overflow-x:clip;}
         <div class="v133-hp-hero-content">
           <div class="loc">Krabi</div>
           <h2 class="name">The Tubkaak Krabi</h2>
-          <div class="meta">★★★★★ <span class="sep">·</span> 42 værelser</div>
+          <div class="meta">★★★★★ <span class="sep">·</span> 59 værelser</div>
         </div>
       </div>
       <div class="v133-hp-gallery">
@@ -3616,6 +3630,7 @@ body{overflow-x:clip;}
               <a href="https://www.tubkaakresort.com/" target="_blank" rel="noopener">Læs mere om hotellet →</a>
             </div>
           </div>
+          <div class="v133-hp-whitespace-img"><img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2026/06/KRABI-scaled.webp" alt=""></div>
         </div>
         <div class="v133-hp-highlights">
           <div class="v133-hp-eyebrow">Højdepunkter</div>
