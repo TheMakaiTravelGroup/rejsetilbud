@@ -2538,18 +2538,12 @@ html{scroll-behavior:smooth;}
 @media (max-width:640px){.v133-hp-stay{font-size:12.5px;letter-spacing:0;}}
 
 .v133-hp-booking{display:flex;flex-direction:column;}
-/* V148.34/36/37/38: balance-image fills the whitespace below booking content,
-   ending at the last highlight TEXT (descender) baseline.
-   flex:1 1 0 + min-height:0: image grows to fill available space without
-   ever pushing the column past where highlights naturally end.
-   margin-bottom:17px: highlight items have margin-bottom:14px AND a
-   half-leading of ~3px below the descender (from line-height:1.6 on 15px
-   text = 24px line-box, leaving ~4.5px below the glyph, of which ~1-2px is
-   actual descender depth). 14+3 ≈ 17px lines the image up with the visible
-   text bottom of "spektakulære udkigspunkter" etc. */
-.v133-hp-whitespace-img{margin-top:28px;margin-bottom:17px;flex:1 1 0;min-height:0;overflow:hidden;border-radius:4px;background:var(--sand-deep);}
-.v133-hp-whitespace-img img{width:100%;height:100%;object-fit:cover;display:block;}
-@media (max-width:900px){.v133-hp-whitespace-img{display:none;}}
+/* V148.43/44: .v133-hp-booking is a flex column so the curator-mini (when
+   present) can naturally stack below booking content with its own margin.
+   The V148.34 balance-image (.v133-hp-whitespace-img) feature was removed
+   in V148.44 — its role is now filled by the curator-mini for per-hotel
+   offers, and rundrejse stops intentionally leave the bottom whitespace
+   empty (trip-level curator at journey's end covers them). */
 /* V136: villa cards restructured as 2x2 grid using display:contents on
    inner wrappers. Row 1: villa-name | price. Row 2: meta (pill) | BOOK.
    This puts the meal-plan pill on the same horizontal axis as the BOOK
@@ -3696,15 +3690,6 @@ body{overflow-x:clip;}
               <a href="https://maldivia.no/wp-content/uploads/sites/2/2026/04/Meyyafushi-Meal-Plan.pdf" target="_blank" rel="noopener">Se forplejning →</a>
             </div>
           </div>
-          <div class="v133-hp-whitespace-img"><img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2026/06/MF-1-1-scaled.jpg" alt=""></div>
-        </div>
-        <div class="v133-hp-highlights">
-          <div class="v133-hp-eyebrow">Højdepunkter</div>
-          <div class="v133-hp-hl-item">Resortet introducerer Maldivernes første svævende Overwater Padel-bane, hvor du spiller direkte over lagunens turkise vand, suppleret af professionelle, oplyste tennisbaner og en førsteklasses futsal/fodboldbane integreret i den tropiske natur.</div>
-          <div class="v133-hp-hl-item">Den spektakulære undervandsrestaurant Bubble inviterer på topgastronomi i et futuristisk, glasomkranset univers under havets overflade, hvor du spiser omgivet af det omgivende marineliv.</div>
-          <div class="v133-hp-hl-item">Det sofistikerede voksenområde er centreret omkring Sky Bar &amp; Sunken Lounge, som huser den hævede Raagu sunset-pool – en arkitektonisk perle med glasbund og nedsænkede siddeområder, der svæver over stranden.</div>
-          <div class="v133-hp-hl-item">Designet og interiøret i de 95 villaer er kompromisløst minimalistisk med rene linjer, skræddersyede luksusmøbler og avancerede smart-teknologiske løsninger, der skaber en rendyrket high-end atmosfære.</div>
-          <div class="v133-hp-hl-item">Det innovative aktivitetsprogram strækker sig langt over standarden og inkluderer blandt andet en indendørs mini-bowlingbane, et overwater fitnesscenter og luksus-vandvillaer - nogle udstyret med private water slides.</div>
           <div class="v133-hp-curator-mini">
             <div class="ceyebrow">Rasmus&#39; anbefaling</div>
             <p class="cquote">Meyyafushi Maldives er et nyåbnet, arkitektonisk luksusresort i Lhaviyani-atollen, der gentænker det klassiske maldiviske koncept ved at fusionere ultra-moderne, internationalt high-end interiør med en usædvanlig dynamisk og aktiv livsstil. Her flyttes fokus væk fra den traditionelle, stillesiddende daseferie til fordel for et innovativt og levende ø-koncept, hvor luksus handler om rummelighed, banebrydende sportsfaciliteter og utraditionelle designløsninger.</p>
@@ -3716,6 +3701,14 @@ body{overflow-x:clip;}
               </div>
             </div>
           </div>
+        </div>
+        <div class="v133-hp-highlights">
+          <div class="v133-hp-eyebrow">Højdepunkter</div>
+          <div class="v133-hp-hl-item">Resortet introducerer Maldivernes første svævende Overwater Padel-bane, hvor du spiller direkte over lagunens turkise vand, suppleret af professionelle, oplyste tennisbaner og en førsteklasses futsal/fodboldbane integreret i den tropiske natur.</div>
+          <div class="v133-hp-hl-item">Den spektakulære undervandsrestaurant Bubble inviterer på topgastronomi i et futuristisk, glasomkranset univers under havets overflade, hvor du spiser omgivet af det omgivende marineliv.</div>
+          <div class="v133-hp-hl-item">Det sofistikerede voksenområde er centreret omkring Sky Bar &amp; Sunken Lounge, som huser den hævede Raagu sunset-pool – en arkitektonisk perle med glasbund og nedsænkede siddeområder, der svæver over stranden.</div>
+          <div class="v133-hp-hl-item">Designet og interiøret i de 95 villaer er kompromisløst minimalistisk med rene linjer, skræddersyede luksusmøbler og avancerede smart-teknologiske løsninger, der skaber en rendyrket high-end atmosfære.</div>
+          <div class="v133-hp-hl-item">Det innovative aktivitetsprogram strækker sig langt over standarden og inkluderer blandt andet en indendørs mini-bowlingbane, et overwater fitnesscenter og luksus-vandvillaer - nogle udstyret med private water slides.</div>
         </div>
       </div>
       <div class="v133-hp-info">
@@ -3770,15 +3763,6 @@ body{overflow-x:clip;}
               <a href="https://maldivia.dk/wp-content/uploads/2026/04/LUX-South-Ari-All-Inclusive.pdf" target="_blank" rel="noopener">Se forplejning →</a>
             </div>
           </div>
-          <div class="v133-hp-whitespace-img"><img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2026/06/LSAAAAAAAAA.webp" alt=""></div>
-        </div>
-        <div class="v133-hp-highlights">
-          <div class="v133-hp-eyebrow">Højdepunkter</div>
-          <div class="v133-hp-hl-item">Resortets beliggenhed i den sydlige Ari-atol er i absolut verdensklasse, da det ligger i et beskyttet havområde, hvor du kan svømme med hvalhajer og manta rays året rundt.</div>
-          <div class="v133-hp-hl-item">Øen er en gastronomisk legeplads med hele otte restauranter og fem barer, der spænder fra prisvændende japansk madlavning på Umami til autentiske asiatiske gademadsretter på East Market.</div>
-          <div class="v133-hp-hl-item">Gennemførte og sjove pop-up-koncepter præger øen, herunder en skjult biograf under stjernerne, hemmelige beskeder i flasker gemt i haven med præmier, og resortets eget risteri, Café LUX*.</div>
-          <div class="v133-hp-hl-item">Det store LUX ME Spa* huser 15 eksklusive behandlingsvillaer, hvoraf fire er placeret på pæle direkte over vandet med glasbunde, så du kan kigge på marinelivet under massagen.</div>
-          <div class="v133-hp-hl-item">Det enorme udvalg af gratis vandsport, to store infinity-pools, oplyste tennisbaner og et af Maldivenes mest moderne fitnesscentre sikrer, at der altid er aktiviteter for de energiske.</div>
           <div class="v133-hp-curator-mini">
             <div class="ceyebrow">Rasmus&#39; anbefaling</div>
             <p class="cquote">LUX* South Ari Atoll er en stor, levende og fantastisk luksusø, der fuldstændig gør op med forestillingen om, at Maldiverne kun er til at dase i en liggestol. Jeg elsker øen for dens sprudlende og legesyge energi, hvor du finder skjulte skatte som flaskeposter med præmier i den tropiske have, udendørs biograf på stranden og pop-up biografer og isboder. Øen ligger i et beskyttet havområde, hvilket gør den til et af verdens absolut bedste steder at svømme med hvalhajer året rundt. Det er det perfekte valg for både par og familier, der vil have high-end luksus parret med masser af aktiviteter.</p>
@@ -3790,6 +3774,14 @@ body{overflow-x:clip;}
               </div>
             </div>
           </div>
+        </div>
+        <div class="v133-hp-highlights">
+          <div class="v133-hp-eyebrow">Højdepunkter</div>
+          <div class="v133-hp-hl-item">Resortets beliggenhed i den sydlige Ari-atol er i absolut verdensklasse, da det ligger i et beskyttet havområde, hvor du kan svømme med hvalhajer og manta rays året rundt.</div>
+          <div class="v133-hp-hl-item">Øen er en gastronomisk legeplads med hele otte restauranter og fem barer, der spænder fra prisvændende japansk madlavning på Umami til autentiske asiatiske gademadsretter på East Market.</div>
+          <div class="v133-hp-hl-item">Gennemførte og sjove pop-up-koncepter præger øen, herunder en skjult biograf under stjernerne, hemmelige beskeder i flasker gemt i haven med præmier, og resortets eget risteri, Café LUX*.</div>
+          <div class="v133-hp-hl-item">Det store LUX ME Spa* huser 15 eksklusive behandlingsvillaer, hvoraf fire er placeret på pæle direkte over vandet med glasbunde, så du kan kigge på marinelivet under massagen.</div>
+          <div class="v133-hp-hl-item">Det enorme udvalg af gratis vandsport, to store infinity-pools, oplyste tennisbaner og et af Maldivenes mest moderne fitnesscentre sikrer, at der altid er aktiviteter for de energiske.</div>
         </div>
       </div>
       <div class="v133-hp-info">
@@ -3844,15 +3836,6 @@ body{overflow-x:clip;}
               <a href="https://maldivia.dk/wp-content/uploads/2026/04/Ananea-MP.pdf" target="_blank" rel="noopener">Se forplejning →</a>
             </div>
           </div>
-          <div class="v133-hp-whitespace-img"><img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2026/06/AM.jpg" alt=""></div>
-        </div>
-        <div class="v133-hp-highlights">
-          <div class="v133-hp-eyebrow">Højdepunkter</div>
-          <div class="v133-hp-hl-item">Det kulinariske niveau er helt sublimt med et gennemført Dine Around All-Inclusive-koncept, hvor I har fri adgang til at udforske samtlige af øens fantastiske restauranter og nyde gastronomiske oplevelser i særklasse uden begrænsninger.</div>
-          <div class="v133-hp-hl-item">Alle villaer på resortet er sande luksusoaser, som udover den enorme plads er udstyret med jeres helt egen private pool, der måler mindst 9 meter i længden – perfekt til både forfriskende svømmeture og uforstyrret afslapning.</div>
-          <div class="v133-hp-hl-item">Øen er velsignet med en fuldstændig magisk, lyseblå lagune og et spektakulært husrev tæt på land. Det marine liv er så unikt og rigt, at vores egne kunder har oplevet at spotte majestætiske manta rays direkte fra fitnesscenteret og under snorkelture på revet.</div>
-          <div class="v133-hp-hl-item">For de aktive er der tænkt på alle detaljer med verdensklasse sportsfaciliteter, herunder topmoderne baner til både padel og pickleball, som lader jer holde energien i top midt i det tropiske paradis.</div>
-          <div class="v133-hp-hl-item">Resortets spa over havet er et af højdepunkterne på Madivaru, hvor du kan lade dig forkæle af diverse behandlinger til lyden af Det Indiske Ocean.</div>
           <div class="v133-hp-curator-mini">
             <div class="ceyebrow">Rasmus&#39; anbefaling</div>
             <p class="cquote">Ananea Madivaru Maldives er et helt fantastisk og eksklusivt nytilkomment luksusresort i den smukke North Ari Atoll, der hylder konceptet om rendyrket &quot;barfodsluksus&quot; og moderne minimalisme. Jeg elsker dette resort for dets evne til at kombinere fremragende gastronomi med et knivskarpt, æstetisk design, hvor bæredygtighed og elegance går hånd i hånd. Her slipper I fuldstændig for hverdagens stress og jag, og kan i stedet tjekke ind i jeres egen private oase (alle villaer har egen minimum 9-meter lang pool), hvor personlig service, design og alverdens luksus blot er nogle af de ting, som venter jer.</p>
@@ -3864,6 +3847,14 @@ body{overflow-x:clip;}
               </div>
             </div>
           </div>
+        </div>
+        <div class="v133-hp-highlights">
+          <div class="v133-hp-eyebrow">Højdepunkter</div>
+          <div class="v133-hp-hl-item">Det kulinariske niveau er helt sublimt med et gennemført Dine Around All-Inclusive-koncept, hvor I har fri adgang til at udforske samtlige af øens fantastiske restauranter og nyde gastronomiske oplevelser i særklasse uden begrænsninger.</div>
+          <div class="v133-hp-hl-item">Alle villaer på resortet er sande luksusoaser, som udover den enorme plads er udstyret med jeres helt egen private pool, der måler mindst 9 meter i længden – perfekt til både forfriskende svømmeture og uforstyrret afslapning.</div>
+          <div class="v133-hp-hl-item">Øen er velsignet med en fuldstændig magisk, lyseblå lagune og et spektakulært husrev tæt på land. Det marine liv er så unikt og rigt, at vores egne kunder har oplevet at spotte majestætiske manta rays direkte fra fitnesscenteret og under snorkelture på revet.</div>
+          <div class="v133-hp-hl-item">For de aktive er der tænkt på alle detaljer med verdensklasse sportsfaciliteter, herunder topmoderne baner til både padel og pickleball, som lader jer holde energien i top midt i det tropiske paradis.</div>
+          <div class="v133-hp-hl-item">Resortets spa over havet er et af højdepunkterne på Madivaru, hvor du kan lade dig forkæle af diverse behandlinger til lyden af Det Indiske Ocean.</div>
         </div>
       </div>
       <div class="v133-hp-info">
@@ -3918,15 +3909,6 @@ body{overflow-x:clip;}
               <a href="https://maldivia.no/wp-content/uploads/sites/2/2025/10/JA-Manafaru.pdf" target="_blank" rel="noopener">Læs mere om hotellet →</a>
             </div>
           </div>
-          <div class="v133-hp-whitespace-img"><img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2026/06/JAM-1-1-scaled.webp" alt=""></div>
-        </div>
-        <div class="v133-hp-highlights">
-          <div class="v133-hp-eyebrow">Højdepunkter</div>
-          <div class="v133-hp-hl-item">Alle de fritstående villaer og suiter er ekstremt rummelige, ligger privat og har sin egen private pool. Vi elsker især resortets villaer over havet og ved revet.</div>
-          <div class="v133-hp-hl-item">Resortet har en af Maldivernes mest unikke vinkældre, The Cellar, som ligger to meter under havets overflade. Her kan du opleve eksklusive vinsmagninger og private middage i en helt speciel atmosfære.</div>
-          <div class="v133-hp-hl-item">Det kulinariske niveau er tårnhøjt med mange forskellige restauranter og barer, hvor du kan nyde alt fra traditionelle maldiviske smage på Kakuni til asiatisk-inspireret skaldyr og fisk på restauranten Ocean Grill.</div>
-          <div class="v133-hp-hl-item">Husrevet er let tilgængeligt fra især resortets Water Villas, og vrimler med liv takket være øens nordlige beliggenhed, som tiltrækker store mængder af farverige fisk, havskildpadder og harmløse revhajer.</div>
-          <div class="v133-hp-hl-item">Det prisvindende Calm Spa Sanctuary ligger gemt inde i den tætte jungle og tilbyder holistiske ayurvediske behandlinger i smukke, private udendørspavilioner præget af beroligende bassiner.</div>
           <div class="v133-hp-curator-mini">
             <div class="ceyebrow">Rasmus&#39; anbefaling</div>
             <p class="cquote">JA Manafaru er et prisvindende og skjult luksusparadis helt oppe i det nordligste Maldiverne, hvor du oplever en sjælden følelse af eksklusivitet og det ægte Maldiverne. Jeg elsker dette resort, fordi du her får en naturlig maldivisk ø, spækket med frodig natur og svajende palmer.  Strandene er brede og kridhvide, servicen i absolut verdensklasse - og det kulinariske niveau helt oppe i superligaen. Det er det ultimative retreat for isærdeleshed par, der søger sofistikeret barfodsluksus, fantastisk gastronomi og enormt privatliv i de smukkeste omgivelser.</p>
@@ -3938,6 +3920,14 @@ body{overflow-x:clip;}
               </div>
             </div>
           </div>
+        </div>
+        <div class="v133-hp-highlights">
+          <div class="v133-hp-eyebrow">Højdepunkter</div>
+          <div class="v133-hp-hl-item">Alle de fritstående villaer og suiter er ekstremt rummelige, ligger privat og har sin egen private pool. Vi elsker især resortets villaer over havet og ved revet.</div>
+          <div class="v133-hp-hl-item">Resortet har en af Maldivernes mest unikke vinkældre, The Cellar, som ligger to meter under havets overflade. Her kan du opleve eksklusive vinsmagninger og private middage i en helt speciel atmosfære.</div>
+          <div class="v133-hp-hl-item">Det kulinariske niveau er tårnhøjt med mange forskellige restauranter og barer, hvor du kan nyde alt fra traditionelle maldiviske smage på Kakuni til asiatisk-inspireret skaldyr og fisk på restauranten Ocean Grill.</div>
+          <div class="v133-hp-hl-item">Husrevet er let tilgængeligt fra især resortets Water Villas, og vrimler med liv takket være øens nordlige beliggenhed, som tiltrækker store mængder af farverige fisk, havskildpadder og harmløse revhajer.</div>
+          <div class="v133-hp-hl-item">Det prisvindende Calm Spa Sanctuary ligger gemt inde i den tætte jungle og tilbyder holistiske ayurvediske behandlinger i smukke, private udendørspavilioner præget af beroligende bassiner.</div>
         </div>
       </div>
       <div class="v133-hp-info">
