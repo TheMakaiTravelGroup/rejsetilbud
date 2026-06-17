@@ -2456,11 +2456,13 @@ html{scroll-behavior:smooth;}
    floating in page background. */
 .v133-hp{background:var(--white);border:1px solid var(--sand-deep);border-radius:3px;overflow:hidden;margin-bottom:48px;}
 .v133-hp .v133-hp-body{padding:36px 40px 28px;}
-/* V147.72: tighter bottom padding on rundrejse panels — without per-villa
-   BOOK buttons + alt-rate cards, there's less content in the booking
-   column and 28px felt floaty between "Se innkvartering" and the panel
-   border. 14px keeps clean breathing room without dead space. */
-.v133-hp--rundrejse .v133-hp-body{padding-bottom:14px;}
+/* V147.72 / V148.55: rundrejse used to have padding-bottom:14px — that was
+   set when rundrejse panels had no per-villa BOOK buttons or curator-mini
+   (just "Se innkvartering"). V148.48 brought per-stop curator-mini back,
+   and the 14px feels cramped between the curator box and the LOKATION/
+   TRANSFER/WEBSITE info row that follows. Bumped to 28px to match the
+   per-hotel default and give the curator-mini breathing room below. */
+.v133-hp--rundrejse .v133-hp-body{padding-bottom:28px;}
 .v133-hp .v133-hp-info{margin:0;padding:22px 40px;background:var(--sand);border-top:1px solid var(--sand-deep);}
 .v133-hp-hero{position:relative;height:380px;overflow:hidden;border-radius:4px;background:var(--sand-deep);}
 .v133-hp-hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
@@ -3532,7 +3534,7 @@ body.is-confirmation-mode .sticky-cta{
         <div class="v145-favorit-meta"><span>14 nætter</span><span class="sep">·</span><span>2 voksne og 2 børn</span></div>
         <div class="v145-favorit-destination">Maldiverne &amp; Abu Dhabi</div>
         <div class="v145-favorit-price-row">
-          <div class="v145-favorit-price-num"><span class="v145-favorit-price-cur">DKK</span>140.000</div>
+          <div class="v145-favorit-price-num"><span class="v145-favorit-price-cur">DKK</span>139.000</div>
         </div>
         <button type="button" class="v145-favorit-book" onclick="if(window.mldvOpenBooking)mldvOpenBooking({trip:0,hotel:2,rate:0})">Bestil →</button>
       </div>
@@ -3630,7 +3632,7 @@ body.is-confirmation-mode .sticky-cta{
     <div class="v129-rs-foot">
       <div>
         <div class="total-lbl">Hele rundrejsen</div>
-        <div class="total-pr"><span class="cur">DKK</span>140.000</div>
+        <div class="total-pr"><span class="cur">DKK</span>139.000</div>
       </div>
       <button type="button" onclick="if(window.mldvOpenBooking)mldvOpenBooking({trip:0,hotel:0,rate:0})">Bestil →</button>
     </div>
@@ -3661,19 +3663,19 @@ body.is-confirmation-mode .sticky-cta{
       <div class="v129-incl-item">
         <div class="num">03</div>
         <div class="body">
-          <h3 class="ititle">4 nætter på Conrad Abu Dhabi</h3>
+          <h3 class="ititle">5 nætter på JA Manafaru</h3>
         </div>
       </div>
       <div class="v129-incl-item">
         <div class="num">04</div>
         <div class="body">
-          <h3 class="ititle">5 nætter på JA Manafaru</h3>
+          <h3 class="ititle">5 nætter på Meyyafushi Maldives</h3>
         </div>
       </div>
       <div class="v129-incl-item">
         <div class="num">05</div>
         <div class="body">
-          <h3 class="ititle">5 nætter på Meyyafushi Maldives</h3>
+          <h3 class="ititle">4 nætter på Hilton Yas Island</h3>
         </div>
       </div>
       <div class="v129-incl-item">
@@ -3886,7 +3888,7 @@ body.is-confirmation-mode .sticky-cta{
         <div class="v133-hp-booking">
           <div class="v133-hp-eyebrow-row">
             <div class="v133-hp-eyebrow">Detaljer for opholdet</div>
-            <div class="v133-hp-stay">29. jan — 3. feb 2027 · 5 nætter</div>
+            <div class="v133-hp-stay">24. jan — 29. jan 2027 · 5 nætter</div>
           </div>
           <div class="v133-hp-villa--stay">
             <div class="stay-name">Semi-Ocean Pool Villa</div>
@@ -4159,7 +4161,7 @@ body.is-confirmation-mode .sticky-cta{
 
 </section><!-- /trip-section #maldiverne-abu-dhabi -->
 
-<script type="application/json" id="mldv-booking-data">{"customerName":"Louise Van Hauen","customerEmail":"louisevanhauen@outlook.com","customerPhone":"+4560541798","adults":2,"teenagers":0,"children":2,"infants":0,"teenagerAges":"","childrenAges":"5,6","infantAges":"","sigName":"Rasmus Kirketerp","sigEmail":"rk@maldivia.dk","sigPhone":"+45 71 74 72 70","language":"da","bookingEndpoint":"https://formspree.io/f/meewjdoz","trips":[{"idx":0,"destination":"Maldiverne & Abu Dhabi","monthYear":"jan / feb 2027","dateRange":"18. januar 2027 — 02. februar 2027","nights":"14 nætter / 16 dage","currency":"DKK","isRoundTrip":true,"priceTotal":"140.000","priceTotalFmt":"140.000","route":[{"hotel":"","city":"Haa Alifu Atoll","nights":5},{"hotel":"","city":"Lhaviyani Atoll","nights":5},{"hotel":"","city":"Abu Dhabi","nights":4}],"hotels":[{"id":"hotel-1781635729293-d0vlu","name":"JA Manafaru","location":"Haa Alifu Atoll","rates":[{"idx":0,"room":"Beach Pool Villa","mealPlan":"Halvpension — Dine Around","total":"140000","totalFmt":"140.000","included":true},{"idx":1,"room":"Sunrise Pool Water Villa","mealPlan":"Halvpension — Dine Around","total":"144500","totalFmt":"144.500","included":false}]},{"id":"hotel-1781635793469-xv6g0","name":"Meyyafushi Maldives","location":"Lhaviyani Atoll","rates":[{"idx":0,"room":"Semi-Ocean Pool Villa","mealPlan":"Premium All-Inclusive — Dine Around","total":"140000","totalFmt":"140.000","included":true}]},{"id":"hotel-1781635116215-228tb","name":"Hilton Abu Dhabi Yas Island","location":"Abu Dhabi","rates":[{"idx":0,"room":"Deluxe Pool View Room","mealPlan":"Morgenmad","total":"140000","totalFmt":"140.000","included":true}]}]}]}</script>
+<script type="application/json" id="mldv-booking-data">{"customerName":"Louise Van Hauen","customerEmail":"louisevanhauen@outlook.com","customerPhone":"+4560541798","adults":2,"teenagers":0,"children":2,"infants":0,"teenagerAges":"","childrenAges":"5,6","infantAges":"","sigName":"Rasmus Kirketerp","sigEmail":"rk@maldivia.dk","sigPhone":"+45 71 74 72 70","language":"da","bookingEndpoint":"https://formspree.io/f/meewjdoz","trips":[{"idx":0,"destination":"Maldiverne & Abu Dhabi","monthYear":"jan / feb 2027","dateRange":"18. januar 2027 — 02. februar 2027","nights":"14 nætter / 16 dage","currency":"DKK","isRoundTrip":true,"priceTotal":"139.000","priceTotalFmt":"139.000","route":[{"hotel":"","city":"Haa Alifu Atoll","nights":5},{"hotel":"","city":"Lhaviyani Atoll","nights":5},{"hotel":"","city":"Abu Dhabi","nights":4}],"hotels":[{"id":"hotel-1781635729293-d0vlu","name":"JA Manafaru","location":"Haa Alifu Atoll","rates":[{"idx":0,"room":"Beach Pool Villa","mealPlan":"Halvpension — Dine Around","total":"139000","totalFmt":"139.000","included":true},{"idx":1,"room":"Sunrise Pool Water Villa","mealPlan":"Halvpension — Dine Around","total":"143500","totalFmt":"143.500","included":false}]},{"id":"hotel-1781635793469-xv6g0","name":"Meyyafushi Maldives","location":"Lhaviyani Atoll","rates":[{"idx":0,"room":"Semi-Ocean Pool Villa","mealPlan":"Premium All-Inclusive — Dine Around","total":"139000","totalFmt":"139.000","included":true}]},{"id":"hotel-1781635116215-228tb","name":"Hilton Abu Dhabi Yas Island","location":"Abu Dhabi","rates":[{"idx":0,"room":"Deluxe Pool View Room","mealPlan":"Morgenmad","total":"139000","totalFmt":"139.000","included":true}]}]}]}</script>
 
 <!-- ════ V130 BOOKING MODAL ════ -->
 <div id="mldv-booking-modal" class="mldv-bm" hidden role="dialog" aria-modal="true" aria-labelledby="mldv-bm-title">
