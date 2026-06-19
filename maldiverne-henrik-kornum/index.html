@@ -156,6 +156,17 @@ body::before{
 .reveal-delay-1{transition-delay:0.12s;}
 .reveal-delay-2{transition-delay:0.24s;}
 .reveal-delay-3{transition-delay:0.36s;}
+</style>
+<noscript><style>
+/* V148.41: if JavaScript is disabled, fail open — show all .reveal content
+   immediately. Without this, .reveal { opacity:0 } would leave entire
+   sections invisible to users with JS off (browser setting, broken script
+   tag, network-blocked CDN, ad blocker false positive, etc.). Critical
+   defense: a luxury travel offer must never silently hide its content. */
+.reveal{opacity:1 !important;transform:none !important;}
+</style></noscript>
+<style>
+
 
 /* ── HEADER ── */
 header{
@@ -2033,6 +2044,49 @@ html{scroll-behavior:smooth;}
   .route-stop-city{font-size:12px;}
   .route-stop-nights{font-size:8.5px;}
 }
+/* V148.39: very narrow mobile — stack stops VERTICALLY so cities never
+   collide or wrap one-word-per-line. The horizontal layout fundamentally
+   can't fit 3 multi-word city names + dot + nights labels under 520px
+   without text overlap. Switch the dashed connector line from horizontal
+   (top) to vertical (left), so stops read top-to-bottom like an itinerary. */
+@media(max-width:520px){
+  .route-timeline{
+    flex-direction:column;
+    align-items:stretch;
+    padding:6px 6px 6px 0;
+    overflow:visible;
+  }
+  .route-timeline::before{
+    top:18px;bottom:18px;
+    left:14px;right:auto;
+    width:1px;height:auto;
+    background:repeating-linear-gradient(180deg, var(--sand-deep) 0, var(--sand-deep) 5px, transparent 5px, transparent 10px);
+  }
+  .route-stop{
+    flex-direction:row;
+    align-items:center;
+    width:100%;
+    min-width:0;
+    padding:8px 8px 8px 8px;
+    gap:14px;
+  }
+  .route-stop-dot{margin-top:0;flex-shrink:0;}
+  .route-stop-city{
+    margin-top:0;
+    white-space:normal;
+    text-align:left;
+    font-size:14px;
+    flex:1 1 auto;
+    min-width:0;
+  }
+  .route-stop-nights{
+    margin-top:0;
+    margin-left:auto;
+    font-size:9px;
+    flex-shrink:0;
+    white-space:nowrap;
+  }
+}
 
 /* ════════════════════════════════════════════════════════════════
    V129 / V130 — Conversion-focused offer layout
@@ -2238,7 +2292,7 @@ html{scroll-behavior:smooth;}
 
 .v129-hotel-grid-wrap{margin:0 0 56px;}
 .v129-featured{background:var(--white);border:2px solid var(--gold);border-radius:3px;overflow:hidden;display:grid;grid-template-columns:320px 1fr;position:relative;margin-bottom:32px;}
-.v129-pill-badge{position:absolute;top:16px;left:16px;z-index:4;display:inline-block;font-family:var(--ff-ui);font-size:10px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;padding:7px 14px;border-radius:99px;background:var(--gold);color:var(--white);}
+.v129-pill-badge{position:absolute;top:16px;left:16px;z-index:4;display:inline-block;font-family:var(--ff-ui);font-size:9px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;padding:4px 10px;border-radius:99px;background:var(--gold);color:var(--white);}
 .v129-pill-badge.green{background:#2c4a3e;color:var(--gold-lt);left:auto;right:16px;}
 .v129-feat-img{position:relative;overflow:hidden;background:var(--sand-deep);min-height:460px;}
 .v129-feat-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
@@ -2339,6 +2393,51 @@ html{scroll-behavior:smooth;}
 .v129-rs-stop .info .hdates{font-family:var(--ff-body);font-size:13px;color:var(--ink-mid);margin-top:6px;letter-spacing:0;}
 .v129-rs-stop .seelink{font-family:var(--ff-ui);font-size:10.5px;color:var(--gold);text-decoration:none;letter-spacing:0.14em;text-transform:uppercase;font-weight:500;white-space:nowrap;}
 .v129-rs-stop .seelink:hover{color:var(--gold-dk);text-decoration:underline;text-underline-offset:3px;}
+/* V148.39: mobile redesign for the rundrejse compact hotel cards. The
+   desktop layout (60px step + 110px thumb + 1fr info + auto seelink) blows
+   past mobile viewport width — info column gets crushed to ~30-50px, so
+   hotel names wrap one word per line, KOH YAO NOI splits across 3 lines,
+   and "Se detaljer" gets clipped at the right edge. Restructured grid:
+     row 1: [step 38px] [thumb 80px] [info 1fr]
+     row 2: [───── full-width seelink with hairline divider ─────]
+   This gives info enough room for the hotel name on 1-2 lines, location
+   stays on one line, and the see-details link becomes a proper full-width
+   tap target with a clean visual separator. Also tightens header
+   letter-spacing so "DIN SKRÆDDERSYEDE REJSE" eyebrow fits without
+   getting clipped at the right edge. */
+@media(max-width:640px){
+  .v129-rs-head{padding:22px 18px 16px;}
+  .v129-rs-eyebrow{font-size:9px;letter-spacing:0.14em;}
+  .v129-rs-title{font-size:22px;line-height:1.18;}
+  .v129-rs-meta{font-size:12.5px;}
+  .v129-rs-stops{padding:4px 0;}
+  .v129-rs-stop{
+    grid-template-columns:38px 80px 1fr;
+    grid-template-areas:
+      "step thumb info"
+      "see  see   see ";
+    column-gap:12px;
+    row-gap:6px;
+    padding:14px 18px;
+    align-items:center;
+  }
+  .v129-rs-stop .step{grid-area:step;font-size:18px;text-align:center;}
+  .v129-rs-stop .thumb{grid-area:thumb;width:80px;height:60px;}
+  .v129-rs-stop .info{grid-area:info;min-width:0;}
+  .v129-rs-stop .info .hdest{font-size:8.5px;letter-spacing:0.14em;margin-bottom:3px;}
+  .v129-rs-stop .info .hname{font-size:15px;line-height:1.18;margin-bottom:2px;}
+  .v129-rs-stop .info .hloc{font-size:9.5px;letter-spacing:0.1em;}
+  .v129-rs-stop .info .hdates{font-size:11px;margin-top:3px;}
+  .v129-rs-stop .seelink{
+    grid-area:see;
+    text-align:right;
+    font-size:9.5px;
+    letter-spacing:0.12em;
+    padding-top:8px;
+    border-top:1px solid var(--sand-mid);
+    white-space:nowrap;
+  }
+}
 .v129-rs-foot{padding:24px 36px;border-top:1px solid var(--sand-deep);background:#faf6ed;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;}
 .v129-rs-foot .total-lbl{font-family:var(--ff-ui);font-size:10px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);margin-bottom:3px;}
 .v129-rs-foot .total-pr{font-family:var(--ff-display);font-size:24px;font-weight:500;font-variant-numeric:lining-nums tabular-nums;color:var(--ink);line-height:1;}
@@ -2357,11 +2456,13 @@ html{scroll-behavior:smooth;}
    floating in page background. */
 .v133-hp{background:var(--white);border:1px solid var(--sand-deep);border-radius:3px;overflow:hidden;margin-bottom:48px;}
 .v133-hp .v133-hp-body{padding:36px 40px 28px;}
-/* V147.72: tighter bottom padding on rundrejse panels — without per-villa
-   BOOK buttons + alt-rate cards, there's less content in the booking
-   column and 28px felt floaty between "Se innkvartering" and the panel
-   border. 14px keeps clean breathing room without dead space. */
-.v133-hp--rundrejse .v133-hp-body{padding-bottom:14px;}
+/* V147.72 / V148.55: rundrejse used to have padding-bottom:14px — that was
+   set when rundrejse panels had no per-villa BOOK buttons or curator-mini
+   (just "Se innkvartering"). V148.48 brought per-stop curator-mini back,
+   and the 14px feels cramped between the curator box and the LOKATION/
+   TRANSFER/WEBSITE info row that follows. Bumped to 28px to match the
+   per-hotel default and give the curator-mini breathing room below. */
+.v133-hp--rundrejse .v133-hp-body{padding-bottom:28px;}
 .v133-hp .v133-hp-info{margin:0;padding:22px 40px;background:var(--sand);border-top:1px solid var(--sand-deep);}
 .v133-hp-hero{position:relative;height:380px;overflow:hidden;border-radius:4px;background:var(--sand-deep);}
 .v133-hp-hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
@@ -2432,8 +2533,19 @@ html{scroll-behavior:smooth;}
 
 .v133-hp-body{display:grid;grid-template-columns:1.4fr 1fr;gap:48px;margin-top:48px;}
 .v133-hp-eyebrow{font-family:var(--ff-ui);font-size:10.5px;font-weight:500;letter-spacing:0.26em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;}
+/* V149: stay-dates linje parallel til ratesTitle eyebrow */
+.v133-hp-eyebrow-row{display:flex;align-items:baseline;justify-content:space-between;gap:18px;flex-wrap:wrap;margin-bottom:20px;}
+.v133-hp-eyebrow-row .v133-hp-eyebrow{margin-bottom:0;}
+.v133-hp-stay{font-family:var(--ff-display);font-size:14px;font-weight:400;color:var(--ink-mid);line-height:1;letter-spacing:0.01em;}
+@media (max-width:640px){.v133-hp-stay{font-size:12.5px;letter-spacing:0;}}
 
-.v133-hp-booking{}
+.v133-hp-booking{display:flex;flex-direction:column;}
+/* V148.43/44: .v133-hp-booking is a flex column so the curator-mini (when
+   present) can naturally stack below booking content with its own margin.
+   The V148.34 balance-image (.v133-hp-whitespace-img) feature was removed
+   in V148.44 — its role is now filled by the curator-mini for per-hotel
+   offers, and rundrejse stops intentionally leave the bottom whitespace
+   empty (trip-level curator at journey's end covers them). */
 /* V136: villa cards restructured as 2x2 grid using display:contents on
    inner wrappers. Row 1: villa-name | price. Row 2: meta (pill) | BOOK.
    This puts the meal-plan pill on the same horizontal axis as the BOOK
@@ -3006,9 +3118,18 @@ html[lang="en"] .v133-hp-villa.included .v133-hp-villa-name::before{content:'★
   .v129-cta-btn{text-align:center;}
   .v138-jump-fab{bottom:78px;}
   .v138-jump-fab-btn{padding:10px 16px;font-size:10px;}
-  .v138-rr-route{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:8px;}
-  .v138-rr-route::-webkit-scrollbar{display:none;}
-  .v138-rr-stop{flex:0 0 80px;}
+  /* V148.42: removed three rules that were overriding V145.5's vertical
+     stack design for .v138-rr-route on iPhone SE (320-414px) widths:
+       .v138-rr-route{flex-wrap:nowrap;overflow-x:auto;...}
+       .v138-rr-route::-webkit-scrollbar{display:none;}
+       .v138-rr-stop{flex:0 0 80px;}
+     The override forced horizontal layout with only 80px per stop — too
+     narrow for "Koh Yao Noi" (~95px), causing text to wrap one-word-per-
+     line and city labels to overlap into adjacent stops' circles. Both
+     blocks were inside @media(max-width:480px), so the later one (this
+     one) was winning the cascade and silently breaking the timeline.
+     V145.5's vertical stack (number-left, city-center, nights-right per
+     row) at line 16741 is now the only rule and works correctly. */
   .section-num{font-size:11px;}
   .section-title-label{font-size:9px;letter-spacing:0.16em;}
   .v133-hp-villa-name{font-size:18px;}
@@ -3121,6 +3242,194 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
    full-width). overflow-x on body alone is the safe approach. */
 body{overflow-x:clip;}
 
+/* ════════════════════════════════════════════════════════════════════════
+   V148.50 — REJSEBEKRÆFTELSE
+   Applies when <section class="trip-section is-confirmation"> is present.
+   ════════════════════════════════════════════════════════════════════════ */
+
+/* Hide all BESTIL-style buttons in confirmation mode — customer has already
+   booked, so the call-to-action is gone. We hide rather than removing in
+   the generator to keep the generator output simpler and let CSS handle
+   the visibility per mode. The :not(.v148-confirm-close) keeps the new
+   "Tak fordi I valgte Maldivia" closing block visible — it reuses
+   .cta-section styling but is NOT the offer's bestil-CTA. */
+.trip-section.is-confirmation .v133-hp-villa-book,
+.trip-section.is-confirmation .v129-book-btn,
+.trip-section.is-confirmation .v145-favorit-cta,
+.trip-section.is-confirmation .v129-cta-btns,
+.trip-section.is-confirmation .cta-section:not(.v148-confirm-close){
+  display:none !important;
+}
+
+/* Sticky-CTA is OUTSIDE .trip-section (body-level). Hide it when ANY trip
+   on the page is a confirmation. The is-confirmation-mode body class is
+   added in JS (see embedded init below). For multi-trip pages where SOME
+   are confirmations and some aren't, we keep the sticky CTA visible since
+   it can still apply to the non-confirmation trips. */
+body.is-confirmation-mode .sticky-cta{
+  display:none !important;
+}
+
+/* PAYMENT PLAN — two-card layout, editorial luxury */
+.v148-payplan{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
+  gap:18px;
+  margin:0 0 24px;
+}
+.v148-pp-card{
+  position:relative;
+  padding:32px 28px 28px;
+  background:linear-gradient(135deg, #fdfcf9 0%, #faf6ed 100%);
+  border:1px solid var(--sand-deep);
+  border-radius:4px;
+  overflow:hidden;
+}
+.v148-pp-card::before{
+  content:'';
+  position:absolute;
+  top:0; left:0; right:0;
+  height:3px;
+  background:var(--gold);
+}
+.v148-pp-card.is-paid::before{background:#1a3028;}
+.v148-pp-eyebrow{
+  font-family:var(--ff-ui);
+  font-size:10px;
+  font-weight:500;
+  letter-spacing:0.24em;
+  text-transform:uppercase;
+  color:var(--gold);
+  margin-bottom:14px;
+}
+.v148-pp-amount{
+  font-family:var(--ff-display);
+  font-size:30px;
+  font-weight:400;
+  color:var(--ink);
+  letter-spacing:-0.01em;
+  line-height:1.1;
+  margin-bottom:10px;
+}
+.v148-pp-amount .cur{
+  font-family:var(--ff-ui);
+  font-size:11px;
+  font-weight:500;
+  letter-spacing:0.1em;
+  color:var(--ink-lt);
+  vertical-align:middle;
+  margin-right:6px;
+}
+.v148-pp-due{
+  font-family:var(--ff-body);
+  font-size:13px;
+  color:var(--ink-mid);
+  line-height:1.5;
+  margin-bottom:16px;
+}
+.v148-pp-status{
+  display:inline-block;
+  font-family:var(--ff-ui);
+  font-size:10px;
+  font-weight:500;
+  letter-spacing:0.16em;
+  text-transform:uppercase;
+  padding:6px 12px;
+  border-radius:99px;
+}
+.v148-pp-status.paid{
+  background:#1a3028;
+  color:#f6f1e8;
+}
+.v148-pp-status.pending{
+  background:transparent;
+  color:var(--ink-lt);
+  border:1px solid var(--sand-deep);
+}
+
+/* BOOKING REFERENCE — diskret under payment plan */
+.v148-bookingref{
+  font-family:var(--ff-ui);
+  font-size:11px;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  color:var(--ink-lt);
+  text-align:center;
+  margin:8px 0 16px;
+  padding:10px 14px;
+  background:var(--sand);
+  border-radius:4px;
+}
+.v148-bookingref strong{
+  color:var(--ink);
+  font-weight:600;
+  letter-spacing:0.06em;
+}
+
+/* BANK DETAILS — editorial table */
+.v148-bank{
+  background:#1a3028;
+  color:#ede5d1;
+  padding:32px 32px 28px;
+  border-radius:4px;
+  margin-bottom:24px;
+}
+.v148-bank-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
+  gap:18px 32px;
+  margin-bottom:18px;
+}
+.v148-bank-row{
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+  padding-bottom:12px;
+  border-bottom:1px solid rgba(196,180,154,0.18);
+}
+.v148-bank-row .lbl{
+  font-family:var(--ff-ui);
+  font-size:9.5px;
+  font-weight:500;
+  letter-spacing:0.22em;
+  text-transform:uppercase;
+  color:var(--gold);
+}
+.v148-bank-row .val{
+  font-family:var(--ff-display);
+  font-size:18px;
+  font-weight:400;
+  color:#f6f1e8;
+  letter-spacing:0.01em;
+}
+.v148-bank-note{
+  font-family:var(--ff-body);
+  font-size:12.5px;
+  font-style:italic;
+  color:#c4b49a;
+  line-height:1.6;
+  padding-top:6px;
+  border-top:1px solid rgba(196,180,154,0.18);
+}
+
+/* MOBILE — preserve responsiveness across all screen sizes */
+@media (max-width:760px){
+  .v148-pp-card{padding:26px 22px 22px;}
+  .v148-pp-amount{font-size:26px;}
+  .v148-bank{padding:26px 22px 22px;}
+  .v148-bank-row .val{font-size:16px;}
+}
+@media (max-width:480px){
+  .v148-payplan{gap:14px;}
+  .v148-pp-card{padding:22px 20px 20px;}
+  .v148-pp-amount{font-size:24px;}
+  .v148-pp-eyebrow{font-size:9.5px;letter-spacing:0.2em;}
+  .v148-bank{padding:22px 20px 20px;}
+  .v148-bank-grid{grid-template-columns:1fr;gap:14px;}
+  .v148-bank-row .val{font-size:15px;}
+  .v148-bank-note{font-size:12px;}
+  .v148-bookingref{font-size:10px;letter-spacing:0.1em;}
+}
 </style>
 </head>
 <body id="top">
@@ -3174,8 +3483,8 @@ body{overflow-x:clip;}
     <div class="hero-parallax"><div class="hero-bg-img"></div></div>
     <div class="hero-content">
       <div class="hero-eyebrow">Skræddersyet rejsetilbud</div>
-      <h1 class="hero-title">Maldiverne<br><em>januar 2027</em></h1>
-      <div class="hero-meta"><span class="nowrap">19. januar 2027 — 28. januar 2027</span> <span class="hero-meta-sep">·</span> <span class="nowrap">8 nætter / 10 dage</span></div>
+      <h1 class="hero-title">Maldiverne<br><em>jan / feb 2027</em></h1>
+      <div class="hero-meta"><span class="nowrap">30. januar 2027 — 08. februar 2027</span> <span class="hero-meta-sep">·</span> <span class="nowrap">8 nætter / 10 dage</span></div>
     </div>
     <div class="hero-scroll">
       <div class="scroll-line"></div>
@@ -3213,7 +3522,7 @@ body{overflow-x:clip;}
         <div class="v145-favorit-destination">Maldiverne</div>
         <div class="v145-favorit-price-row">
           <div class="v145-favorit-price-lbl">Pris fra</div>
-          <div class="v145-favorit-price-num"><span class="v145-favorit-price-cur">DKK</span>101.500</div>
+          <div class="v145-favorit-price-num"><span class="v145-favorit-price-cur">DKK</span>102.500</div>
         </div>
         <button type="button" class="v145-favorit-book" onclick="if(window.mldvOpenBooking)mldvOpenBooking({trip:0,hotel:0,rate:0})">Bestil →</button>
       </div>
@@ -3340,7 +3649,10 @@ body{overflow-x:clip;}
       </div>
       <div class="v133-hp-body">
         <div class="v133-hp-booking">
-          <div class="v133-hp-eyebrow">Vælg værelsestype &amp; forplejning</div>
+          <div class="v133-hp-eyebrow-row">
+            <div class="v133-hp-eyebrow">Vælg værelsestype &amp; forplejning</div>
+            <div class="v133-hp-stay">31. jan — 8. feb 2027 · 8 nætter</div>
+          </div>
           <div class="v133-hp-villa">
             <div class="v133-hp-villa-info">
               <div class="v133-hp-villa-name">Dhoni Water Villa</div>
@@ -3349,7 +3661,7 @@ body{overflow-x:clip;}
               </div>
             </div>
             <div class="v133-hp-villa-action">
-              <div class="v133-hp-villa-price"><span class="cur">DKK</span>101.500</div>
+              <div class="v133-hp-villa-price"><span class="cur">DKK</span>102.500</div>
               <button type="button" class="v133-hp-villa-book" onclick="if(window.mldvOpenBooking)mldvOpenBooking({trip:0,hotel:0,rate:0})">Bestil →</button>
             </div>
             <div class="v133-hp-villa-links">
@@ -3357,14 +3669,6 @@ body{overflow-x:clip;}
               <a href="https://maldivia.dk/wp-content/uploads/2025/12/COMO-Cocoa.pdf" target="_blank" rel="noopener">Læs mere om hotellet →</a>
             </div>
           </div>
-        </div>
-        <div class="v133-hp-highlights">
-          <div class="v133-hp-eyebrow">Højdepunkter</div>
-          <div class="v133-hp-hl-item">Ikoniske dhoni-villaer bygget udelukkende over vandet med direkte adgang til lagunen fra din private solterrasse</div>
-          <div class="v133-hp-hl-item">COMO Shambhala Retreat – et verdenskendt wellness-center med asiatisk inspirerede behandlinger, hydroterapi-pool og gratis yogaklasser</div>
-          <div class="v133-hp-hl-item">Uovertruffet husrev med drop-off tæt på øen, hvor du snorkler med revhajer, rokker og store stimer af fisk</div>
-          <div class="v133-hp-hl-item">COMO Shambhala Cuisine – fantastiske restauranter med fokus på lette, nærende og økologiske retter i absolut gourmetklasse</div>
-          <div class="v133-hp-hl-item">Intim barfods-luksus på en meget lille og eksklusiv ø med kun 33 villaer, hvilket garanterer maksimalt privatliv</div>
           <div class="v133-hp-curator-mini">
             <div class="ceyebrow">Rasmus&#39; anbefaling</div>
             <p class="cquote">COMO Cocoa Island er et eksklusivt og dybt personligt luksusresort i den sydlige Malé-atol, der hylder det enkle, underspillede ø-liv. Jeg elsker resortet for dets ikoniske overvandsvillaer, der er formet som traditionelle, maldiviske dhoni-både, og som flyder elegant på det krystalklare vand. Her er ingen vilde aktiviteter, kids club eller andet. Her er de romantiske aspekter i 1. række. Her er fokus på absolut diskretion, et fabelagtigt husrev og det verdensberømte COMO Shambhala wellness-koncept.</p>
@@ -3376,6 +3680,14 @@ body{overflow-x:clip;}
               </div>
             </div>
           </div>
+        </div>
+        <div class="v133-hp-highlights">
+          <div class="v133-hp-eyebrow">Højdepunkter</div>
+          <div class="v133-hp-hl-item">Ikoniske dhoni-villaer bygget udelukkende over vandet med direkte adgang til lagunen fra din private solterrasse</div>
+          <div class="v133-hp-hl-item">COMO Shambhala Retreat – et verdenskendt wellness-center med asiatisk inspirerede behandlinger, hydroterapi-pool og gratis yogaklasser</div>
+          <div class="v133-hp-hl-item">Uovertruffet husrev med drop-off tæt på øen, hvor du snorkler med revhajer, rokker og store stimer af fisk</div>
+          <div class="v133-hp-hl-item">COMO Shambhala Cuisine – fantastiske restauranter med fokus på lette, nærende og økologiske retter i absolut gourmetklasse</div>
+          <div class="v133-hp-hl-item">Intim barfods-luksus på en meget lille og eksklusiv ø med kun 33 villaer, hvilket garanterer maksimalt privatliv</div>
         </div>
       </div>
       <div class="v133-hp-info">
@@ -3434,7 +3746,7 @@ body{overflow-x:clip;}
         </div>
       </div>
       <div class="journey">
-        <div class="journey-header">København til Malé — 19.01.2027</div>
+        <div class="journey-header">København til Malé — 30.01.2027</div>
         <div class="flight-leg">
           <span class="leg-code">CPH→FRA</span>
           <div>
@@ -3477,7 +3789,7 @@ body{overflow-x:clip;}
         </div>
       </div>
       <div class="journey">
-        <div class="journey-header">Malé til København — 28.01.2027</div>
+        <div class="journey-header">Malé til København — 08.02.2027</div>
         <div class="flight-leg">
           <span class="leg-code">MLE→VIE</span>
           <div>
@@ -3487,17 +3799,17 @@ body{overflow-x:clip;}
         </div>
         <div class="flight-connector">
           <div class="connector-line"></div>
-          <span class="connector-label">Mellemlanding Wien · 1 t 20 m</span>
+          <span class="connector-label">Mellemlanding Wien · 4 t 40 m</span>
           <div class="connector-line"></div>
         </div>
         <div class="flight-leg">
           <span class="leg-code">VIE→CPH</span>
           <div>
-            <div class="leg-times">17:35 – 19:20</div>
+            <div class="leg-times">20:55 – 22:40</div>
             <div class="leg-meta">Austrian · Economy Class</div>
           </div>
         </div>
-        <div class="journey-total">Total rejsetid · 12 t 55 m</div>
+        <div class="journey-total">Total rejsetid · 16 t 15 m</div>
       </div>
 
       <div style="margin-top:28px;padding-top:24px;border-top:1px solid var(--sand-mid);">
@@ -3534,7 +3846,7 @@ body{overflow-x:clip;}
 
 </section><!-- /trip-section #maldiverne -->
 
-<script type="application/json" id="mldv-booking-data">{"customerName":"Henrik Kornum","customerEmail":"info@odg.dk","customerPhone":"","adults":2,"teenagers":0,"children":0,"infants":0,"teenagerAges":"","childrenAges":"","infantAges":"","sigName":"Rasmus Kirketerp","sigEmail":"rk@maldivia.dk","sigPhone":"+45 71 74 72 70","language":"da","bookingEndpoint":"https://formspree.io/f/meewjdoz","trips":[{"idx":0,"destination":"Maldiverne","monthYear":"januar 2027","dateRange":"19. januar 2027 — 28. januar 2027","nights":"8 nætter / 10 dage","currency":"DKK","isRoundTrip":false,"priceTotal":"101.500","priceTotalFmt":"101.500","route":[],"hotels":[{"id":"hotel-1780845714458-icwaz","name":"COMO Cocoa Island","location":"South Malé Atoll","rates":[{"idx":0,"room":"Dhoni Water Villa","mealPlan":"Gourmet Halvpension","total":"101500","totalFmt":"101.500","included":true}]}]}]}</script>
+<script type="application/json" id="mldv-booking-data">{"customerName":"Henrik Kornum","customerEmail":"info@odg.dk","customerPhone":"","adults":2,"teenagers":0,"children":0,"infants":0,"teenagerAges":"","childrenAges":"","infantAges":"","sigName":"Rasmus Kirketerp","sigEmail":"rk@maldivia.dk","sigPhone":"+45 71 74 72 70","language":"da","bookingEndpoint":"https://formspree.io/f/meewjdoz","trips":[{"idx":0,"destination":"Maldiverne","monthYear":"jan / feb 2027","dateRange":"30. januar 2027 — 08. februar 2027","nights":"8 nætter / 10 dage","currency":"DKK","isRoundTrip":false,"priceTotal":"102.500","priceTotalFmt":"102.500","route":[],"hotels":[{"id":"hotel-1780845714458-icwaz","name":"COMO Cocoa Island","location":"South Malé Atoll","rates":[{"idx":0,"room":"Dhoni Water Villa","mealPlan":"Gourmet Halvpension","total":"102500","totalFmt":"102.500","included":true}]}]}]}</script>
 
 <!-- ════ V130 BOOKING MODAL ════ -->
 <div id="mldv-booking-modal" class="mldv-bm" hidden role="dialog" aria-modal="true" aria-labelledby="mldv-bm-title">
@@ -4037,10 +4349,69 @@ body{overflow-x:clip;}
 
 /* ── SCROLL REVEAL ── */
 (function(){
-  const io = new IntersectionObserver(entries=>{
-    entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target);}});
-  },{threshold:0.07});
-  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  // V148.41: DEFENSE-IN-DEPTH against content disappearing on mobile.
+  //
+  // History: V148.40 fixed a specific symptom (threshold:0.07 unreachable
+  // for tall sections on small viewports), but the deeper architectural
+  // problem remained: .reveal { opacity:0 } means "hidden until JS fires"
+  // with NO FALLBACK. If anything goes wrong in this IIFE — observer not
+  // supported, threshold misconfig, exception thrown, JS blocked — entire
+  // sections vanish permanently and silently. Rasmus reported the "04
+  // HOTELLERNES DETALJER" section being completely invisible on mobile,
+  // and the bug had likely been shipping in customer-facing offers for
+  // an unknown time. Unacceptable.
+  //
+  // Three layers of defense now:
+  //   1. NO-JS FALLBACK: a <noscript> CSS rule (see <style> below) makes
+  //      .reveal fully visible if JS is off. Covers users with JS disabled,
+  //      blocked, or failed-to-load.
+  //   2. SAFETY-NET TIMER: regardless of observer behaviour, force all
+  //      .reveal elements visible after 2 seconds. Worst case: a slight
+  //      delay before some content appears, but it ALWAYS appears.
+  //   3. THRESHOLD:0 OBSERVER: fires the moment any pixel enters viewport,
+  //      reliable for elements of any size. This is the primary path —
+  //      gives the intended smooth fade-in for almost all visits.
+  //
+  // If steps 1+2 ever activate, content shows up. The observer (step 3)
+  // is now an ENHANCEMENT, not a requirement.
+  var revealEls = document.querySelectorAll('.reveal');
+
+  // Safety-net: unconditionally reveal everything after 2s. This catches
+  // (a) Observer not firing for any reason, (b) JS errors elsewhere that
+  // interrupt this script, (c) future regressions where someone re-breaks
+  // the threshold without realising.
+  var safetyTimer = setTimeout(function(){
+    revealEls.forEach(function(el){ el.classList.add('visible'); });
+  }, 2000);
+
+  // Primary path: IntersectionObserver with threshold:0 (any pixel visible
+  // triggers reveal). Works on iOS Safari 12.2+ and every modern browser.
+  if (!('IntersectionObserver' in window)) {
+    // Old browser without IntersectionObserver — reveal everything now,
+    // skip the animation. Cancel the safety-net (no longer needed).
+    clearTimeout(safetyTimer);
+    revealEls.forEach(function(el){ el.classList.add('visible'); });
+    return;
+  }
+
+  try {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0 });
+    revealEls.forEach(function(el){ io.observe(el); });
+  } catch (err) {
+    // Anything weird with IntersectionObserver setup — reveal everything,
+    // log so we know it happened. Safety-net would catch this too but
+    // immediate reveal is faster.
+    if (window.console && console.warn) console.warn('Reveal observer failed, falling back to immediate:', err);
+    clearTimeout(safetyTimer);
+    revealEls.forEach(function(el){ el.classList.add('visible'); });
+  }
 })();
 
 /* ── HOTEL TABS — supports multiple independent hotel-strips per page ── */
