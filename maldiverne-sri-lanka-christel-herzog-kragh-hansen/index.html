@@ -2180,8 +2180,14 @@ html{scroll-behavior:smooth;}
    numbered dots connected by a thin gold line, with city + nights under
    each. Lifts the rundrejse hero from "single price" to "this is the
    journey" — instant conversion clarity. */
-.v138-rr-route{display:flex;align-items:flex-start;gap:6px;margin:0 0 28px;padding:6px 0 2px;}
-.v138-rr-stop{display:flex;flex-direction:column;align-items:center;text-align:center;flex:1 1 0;min-width:0;}
+/* V148.64: max 3 stops per row. At 5 stops the equal-flex columns were too
+   narrow, so neighbouring city names touched ("AnuradhapurKandy"). Wrapping
+   to thirds gives each label a full third of the width + a real horizontal
+   gap, so 3 sit on line 1 and the rest flow to line 2. The connector dashes
+   are hidden here since a wrapped grid has no continuous horizontal line. */
+.v138-rr-route{display:flex;flex-wrap:wrap;justify-content:center;align-items:flex-start;gap:22px 0;margin:0 0 28px;padding:6px 0 2px;}
+.v138-rr-stop{display:flex;flex-direction:column;align-items:center;text-align:center;flex:0 0 33.333%;min-width:0;padding:0 6px;}
+.v138-rr-line{display:none;}
 .v138-rr-num{width:30px;height:30px;border:1px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--ff-display);font-size:13px;font-weight:500;color:var(--gold);margin-bottom:10px;background:var(--white);font-variant-numeric:lining-nums tabular-nums;line-height:1;flex-shrink:0;}
 /* V148.61: allow long multi-word city names to wrap (e.g. "North Ari Atoll")
    instead of forcing nowrap that pushed text into the neighbouring stop and
@@ -2190,18 +2196,14 @@ html{scroll-behavior:smooth;}
    stay whole; wrapping only happens at spaces (so "North Ari Atoll" can use
    2-3 lines but a single long word like "Anuradhapura" stays on one line).
    Font trimmed so the longest single words fit inside a stop column. */
-.v138-rr-city{font-family:var(--ff-display);font-size:12.5px;font-weight:500;color:var(--ink);line-height:1.18;margin-bottom:4px;letter-spacing:-0.01em;padding:0 2px;white-space:normal;overflow-wrap:normal;word-break:keep-all;hyphens:none;max-width:100%;}
+.v138-rr-city{font-family:var(--ff-display);font-size:14px;font-weight:500;color:var(--ink);line-height:1.18;margin-bottom:4px;letter-spacing:-0.005em;padding:0 2px;white-space:normal;overflow-wrap:normal;word-break:keep-all;hyphens:none;max-width:100%;}
 .v138-rr-nights{font-family:var(--ff-ui);font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--ink-lt);}
-/* Connector sits centred on the row of circles (circle is 30px tall → 15px)
-   and no longer eats horizontal space that squeezed the city labels. */
-.v138-rr-line{flex:0 0 12px;height:1px;background:var(--gold);opacity:0.45;margin-top:15px;align-self:flex-start;}
-/* V145.5: Route-timeline responsive — at narrow widths the equal-flex
-   stops crush text, so we wrap to 2-up grid for tablet and stack vertical
-   on phones. Numbered dots stay centered for hierarchical clarity. */
+/* V148.64: connector removed — the wrapped 3-per-row grid has no continuous
+   horizontal line, so the dashes are hidden globally (see base rule above). */
+/* V145.5: Route-timeline responsive — at narrow widths, drop to 2-up then
+   stack vertical on phones. Numbered dots stay centered for hierarchy. */
 @media(max-width:760px){
-  .v138-rr-route{flex-wrap:wrap;gap:18px 0;}
-  .v138-rr-stop{flex:0 0 calc(50% - 9px);min-width:0;}
-  .v138-rr-line{display:none;}
+  .v138-rr-stop{flex:0 0 50%;}
 }
 @media(max-width:480px){
   .v138-rr-stop{flex:0 0 100%;flex-direction:row;text-align:left;gap:14px;justify-content:flex-start;}
