@@ -2186,7 +2186,11 @@ html{scroll-behavior:smooth;}
 /* V148.61: allow long multi-word city names to wrap (e.g. "North Ari Atoll")
    instead of forcing nowrap that pushed text into the neighbouring stop and
    made labels collide. word-break keeps a very long single token contained. */
-.v138-rr-city{font-family:var(--ff-display);font-size:14.5px;font-weight:500;color:var(--ink);line-height:1.2;margin-bottom:4px;letter-spacing:-0.005em;padding:0 4px;white-space:normal;overflow-wrap:break-word;max-width:100%;}
+/* V148.63: never break a city name mid-word (was "Anur/adha/pura"). Words
+   stay whole; wrapping only happens at spaces (so "North Ari Atoll" can use
+   2-3 lines but a single long word like "Anuradhapura" stays on one line).
+   Font trimmed so the longest single words fit inside a stop column. */
+.v138-rr-city{font-family:var(--ff-display);font-size:12.5px;font-weight:500;color:var(--ink);line-height:1.18;margin-bottom:4px;letter-spacing:-0.01em;padding:0 2px;white-space:normal;overflow-wrap:normal;word-break:keep-all;hyphens:none;max-width:100%;}
 .v138-rr-nights{font-family:var(--ff-ui);font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--ink-lt);}
 /* Connector sits centred on the row of circles (circle is 30px tall → 15px)
    and no longer eats horizontal space that squeezed the city labels. */
@@ -3612,7 +3616,7 @@ body.is-confirmation-mode .sticky-cta{
     <div class="v129-rs-head">
       <div class="v129-rs-eyebrow">Din skræddersyede rejse</div>
       <h3 class="v129-rs-title">Maldiverne &amp; Sri Lanka — juli 2027</h3>
-      <div class="v129-rs-meta">6 stop · 15 nætter</div>
+      <div class="v129-rs-meta">5 stop · 15 nætter</div>
     </div>
     <div class="v129-rs-stops">
       <a href="#hotel-uga-ulagalla" class="v129-rs-stop" style="text-decoration:none;color:inherit;">
@@ -3660,12 +3664,13 @@ body.is-confirmation-mode .sticky-cta{
         <span class="seelink">Se detaljer →</span>
       </a>
       <a href="#hotel-niva-kuramathi" class="v129-rs-stop" style="text-decoration:none;color:inherit;">
-        <div class="step">06</div>
+        <div class="step">05</div>
         <div class="thumb"><img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2025/10/Kuramathi-5.jpg" alt=""></div>
         <div class="info">
           <div class="hdest">Maldiverne</div>
           <div class="hname">Niva Kuramathi</div>
           <div class="hloc">North Ari Atoll</div>
+          <div class="hdates">10.–17. jul. · 7 nætter</div>
         </div>
         <span class="seelink">Se detaljer →</span>
       </a>
