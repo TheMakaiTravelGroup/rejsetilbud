@@ -2180,12 +2180,17 @@ html{scroll-behavior:smooth;}
    numbered dots connected by a thin gold line, with city + nights under
    each. Lifts the rundrejse hero from "single price" to "this is the
    journey" — instant conversion clarity. */
-.v138-rr-route{display:flex;align-items:flex-start;gap:0;margin:0 0 28px;padding:6px 0 2px;}
-.v138-rr-stop{display:flex;flex-direction:column;align-items:center;text-align:center;flex:1;min-width:0;}
-.v138-rr-num{width:30px;height:30px;border:1px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--ff-display);font-size:13px;font-weight:500;color:var(--gold);margin-bottom:10px;background:var(--white);font-variant-numeric:lining-nums tabular-nums;line-height:1;}
-.v138-rr-city{font-family:var(--ff-display);font-size:14.5px;font-weight:500;color:var(--ink);line-height:1.15;margin-bottom:3px;letter-spacing:-0.005em;padding:0 4px;}
+.v138-rr-route{display:flex;align-items:flex-start;gap:6px;margin:0 0 28px;padding:6px 0 2px;}
+.v138-rr-stop{display:flex;flex-direction:column;align-items:center;text-align:center;flex:1 1 0;min-width:0;}
+.v138-rr-num{width:30px;height:30px;border:1px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--ff-display);font-size:13px;font-weight:500;color:var(--gold);margin-bottom:10px;background:var(--white);font-variant-numeric:lining-nums tabular-nums;line-height:1;flex-shrink:0;}
+/* V148.61: allow long multi-word city names to wrap (e.g. "North Ari Atoll")
+   instead of forcing nowrap that pushed text into the neighbouring stop and
+   made labels collide. word-break keeps a very long single token contained. */
+.v138-rr-city{font-family:var(--ff-display);font-size:14.5px;font-weight:500;color:var(--ink);line-height:1.2;margin-bottom:4px;letter-spacing:-0.005em;padding:0 4px;white-space:normal;overflow-wrap:break-word;max-width:100%;}
 .v138-rr-nights{font-family:var(--ff-ui);font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--ink-lt);}
-.v138-rr-line{flex:0 0 18px;height:1px;background:var(--gold);opacity:0.45;margin-top:15px;align-self:flex-start;}
+/* Connector sits centred on the row of circles (circle is 30px tall → 15px)
+   and no longer eats horizontal space that squeezed the city labels. */
+.v138-rr-line{flex:0 0 12px;height:1px;background:var(--gold);opacity:0.45;margin-top:15px;align-self:flex-start;}
 /* V145.5: Route-timeline responsive — at narrow widths the equal-flex
    stops crush text, so we wrap to 2-up grid for tablet and stack vertical
    on phones. Numbered dots stay centered for hierarchical clarity. */
@@ -3538,7 +3543,7 @@ body.is-confirmation-mode .sticky-cta{
           <div class="v138-rr-line"></div>
           <div class="v138-rr-stop">
             <div class="v138-rr-num">5</div>
-            <div class="v138-rr-city">North Ari Atoll</div>
+            <div class="v138-rr-city">Maldiverne</div>
             <div class="v138-rr-nights">7 nætter</div>
           </div>
         </div>
@@ -3607,60 +3612,60 @@ body.is-confirmation-mode .sticky-cta{
     <div class="v129-rs-head">
       <div class="v129-rs-eyebrow">Din skræddersyede rejse</div>
       <h3 class="v129-rs-title">Maldiverne &amp; Sri Lanka — juli 2027</h3>
-      <div class="v129-rs-meta">5 stops · 15 nætter</div>
+      <div class="v129-rs-meta">6 stop · 15 nætter</div>
     </div>
     <div class="v129-rs-stops">
-      <a href="#hotel-adigar-s-manor" class="v129-rs-stop" style="text-decoration:none;color:inherit;">
+      <a href="#hotel-uga-ulagalla" class="v129-rs-stop" style="text-decoration:none;color:inherit;">
         <div class="step">01</div>
-        <div class="thumb"><img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2026/08/AM-3-1.webp" alt=""></div>
+        <div class="thumb"><img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2026/08/UU-2.jpg" alt=""></div>
         <div class="info">
-          <div class="hdest">Anuradhapura</div>
-          <div class="hname">Adigar&#39;s Manor</div>
-          <div class="hloc">Kandy</div>
+          <div class="hdest">Sri Lanka</div>
+          <div class="hname">Uga Ulagalla</div>
+          <div class="hloc">Anuradhapura</div>
           <div class="hdates">2.–5. jul. · 3 nætter</div>
         </div>
         <span class="seelink">Se detaljer →</span>
       </a>
-      <a href="#hotel-uga-ghiri" class="v129-rs-stop" style="text-decoration:none;color:inherit;">
+      <a href="#hotel-adigar-s-manor" class="v129-rs-stop" style="text-decoration:none;color:inherit;">
         <div class="step">02</div>
-        <div class="thumb"><img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2026/08/UG-1-1.jpg" alt=""></div>
+        <div class="thumb"><img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2026/08/AM-3-1.webp" alt=""></div>
         <div class="info">
-          <div class="hdest">Kandy</div>
-          <div class="hname">Uga Ghiri</div>
-          <div class="hloc">Ella</div>
+          <div class="hdest">Sri Lanka</div>
+          <div class="hname">Adigar&#39;s Manor</div>
+          <div class="hloc">Kandy</div>
           <div class="hdates">5.–6. jul. · 1 nat</div>
         </div>
         <span class="seelink">Se detaljer →</span>
       </a>
-      <a href="#hotel-ahu-bay" class="v129-rs-stop" style="text-decoration:none;color:inherit;">
+      <a href="#hotel-uga-ghiri" class="v129-rs-stop" style="text-decoration:none;color:inherit;">
         <div class="step">03</div>
-        <div class="thumb"><img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2026/08/AHUBAY-3-1.jpg" alt=""></div>
+        <div class="thumb"><img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2026/08/UG-1-1.jpg" alt=""></div>
         <div class="info">
-          <div class="hdest">Ella</div>
-          <div class="hname">Ahu Bay</div>
-          <div class="hloc">Ahungalla</div>
+          <div class="hdest">Sri Lanka</div>
+          <div class="hname">Uga Ghiri</div>
+          <div class="hloc">Ella</div>
           <div class="hdates">6.–8. jul. · 2 nætter</div>
         </div>
         <span class="seelink">Se detaljer →</span>
       </a>
-      <a href="#hotel-uga-ulagalla" class="v129-rs-stop" style="text-decoration:none;color:inherit;">
+      <a href="#hotel-ahu-bay" class="v129-rs-stop" style="text-decoration:none;color:inherit;">
         <div class="step">04</div>
-        <div class="thumb"><img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2026/08/UU-2.jpg" alt=""></div>
+        <div class="thumb"><img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2026/08/AHUBAY-3-1.jpg" alt=""></div>
         <div class="info">
-          <div class="hdest">Ahungalla</div>
-          <div class="hname">Uga Ulagalla</div>
-          <div class="hloc">Anuradhapura</div>
+          <div class="hdest">Sri Lanka</div>
+          <div class="hname">Ahu Bay</div>
+          <div class="hloc">Ahungalla</div>
           <div class="hdates">8.–10. jul. · 2 nætter</div>
         </div>
         <span class="seelink">Se detaljer →</span>
       </a>
       <a href="#hotel-niva-kuramathi" class="v129-rs-stop" style="text-decoration:none;color:inherit;">
-        <div class="step">05</div>
+        <div class="step">06</div>
         <div class="thumb"><img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2025/10/Kuramathi-5.jpg" alt=""></div>
         <div class="info">
-          <div class="hdest">North Ari Atoll</div>
+          <div class="hdest">Maldiverne</div>
           <div class="hname">Niva Kuramathi</div>
-          <div class="hdates">10.–17. jul. · 7 nætter</div>
+          <div class="hloc">North Ari Atoll</div>
         </div>
         <span class="seelink">Se detaljer →</span>
       </a>
@@ -3748,10 +3753,10 @@ body.is-confirmation-mode .sticky-cta{
       <div class="v136-jump-inner">
         <span class="v136-jump-lbl">Hop til</span>
         <div class="v136-jump-pills">
+          <a href="#hotel-uga-ulagalla" class="v136-jump-pill" data-target="hotel-uga-ulagalla">Uga Ulagalla</a>
           <a href="#hotel-adigar-s-manor" class="v136-jump-pill" data-target="hotel-adigar-s-manor">Adigar&#39;s Manor</a>
           <a href="#hotel-uga-ghiri" class="v136-jump-pill" data-target="hotel-uga-ghiri">Uga Ghiri</a>
           <a href="#hotel-ahu-bay" class="v136-jump-pill" data-target="hotel-ahu-bay">Ahu Bay</a>
-          <a href="#hotel-uga-ulagalla" class="v136-jump-pill" data-target="hotel-uga-ulagalla">Uga Ulagalla</a>
           <a href="#hotel-niva-kuramathi" class="v136-jump-pill" data-target="hotel-niva-kuramathi">Niva Kuramathi</a>
         </div>
       </div>
@@ -3819,7 +3824,73 @@ body.is-confirmation-mode .sticky-cta{
     })();
     </script>
 
-    <div class="hotel-panel v133-hp v133-hp--rundrejse" data-panel="0" id="hotel-adigar-s-manor">
+    <div class="hotel-panel v133-hp v133-hp--rundrejse" data-panel="0" id="hotel-uga-ulagalla">
+      <div class="v133-hp-hero">
+        <img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2026/08/UU-2.jpg" alt="Uga Ulagalla">
+        <div class="v133-hp-hero-content">
+          <div class="loc">Anuradhapura</div>
+          <h2 class="name">Uga Ulagalla</h2>
+          <div class="meta">★★★★★ <span class="sep">·</span> 25 villaer</div>
+        </div>
+      </div>
+      <div class="v133-hp-gallery">
+        <a href="https://maldivia.dk/wp-content/uploads/2026/08/UU-3.jpeg" target="_blank"><img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2026/08/UU-3.jpeg" alt=""></a>
+        <a href="https://maldivia.dk/wp-content/uploads/2026/08/UU-4.webp" target="_blank"><img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2026/08/UU-4.webp" alt=""></a>
+        <a href="https://maldivia.dk/wp-content/uploads/2026/08/UU-1.webp" target="_blank"><img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2026/08/UU-1.webp" alt=""></a>
+        <a href="https://maldivia.dk/wp-content/uploads/2026/08/UU-5.jpg" target="_blank"><img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2026/08/UU-5.jpg" alt=""></a>
+      </div>
+      <div class="v133-hp-body">
+        <div class="v133-hp-booking">
+          <div class="v133-hp-eyebrow-row">
+            <div class="v133-hp-eyebrow">Detaljer for opholdet</div>
+            <div class="v133-hp-stay">2. jul — 5. jul 2027 · 3 nætter</div>
+          </div>
+          <div class="v133-hp-villa--stay">
+            <div class="stay-name">2x Ulagalla Pool Villa</div>
+            <div class="stay-meal">Morgenmad</div>
+            <div class="stay-meta">3 nætter · 2. – 5. juli</div>
+            <div class="stay-links">
+              <a href="https://www.ugaresorts.com/ulagalla/villas/ulagalla-pool-villa/" target="_blank" rel="noopener">Se indkvartering →</a>
+              <a href="https://www.ugaresorts.com/ulagalla/" target="_blank" rel="noopener">Læs mere om hotellet →</a>
+            </div>
+          </div>
+          <div class="v133-hp-curator-mini">
+            <div class="ceyebrow">Rasmus&#39; anbefaling</div>
+            <p class="cquote">Uga Ulagalla er en historisk og bæredygtig luksusoase, skabt omkring et 150 år gammelt, restaureret herskabshus (Walawwa), som oprindeligt tilhørte lokale høvdinge. Resortet ligger midt i Sri Lankas kulturelle triangel nær Anuradhapura, spredt over 58 tønder land med frodige rismarker, hundredårige træer og to private søer. Med sin egen solcellepark, der dækker størstedelen af energibehovet, og en arkitektur, der er opført uden at fælde et eneste gammelt træ, kombinerer stedet regal srilankansk kulturarv med kompromisløs naturbevarelse.</p>
+            <div class="csign">
+              <img src="https://maldivia.dk/wp-content/uploads/2026/05/RK-HERO-1.jpg" alt="Rasmus Kirketerp">
+              <div class="ctext">
+                <div class="cname">Rasmus Kirketerp</div>
+                <div class="crole">Travel Designer · Maldivia</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="v133-hp-highlights">
+          <div class="v133-hp-eyebrow">Højdepunkter</div>
+          <div class="v133-hp-hl-item">Villaerne udgøres af 25 fritstående, stråtækte chalets, som ligger spredt med enorm afstand i terrænet for at sikre absolut isolation. Hver chalet måler over 85 kvadratmeter og har sit eget private dybe bassin (plunge pool) på en overdækket træterrasse. Interiøret blander mørkt ædeltræ og rå tekstiler med moderne teknologiske løsninger, panoramavinduer mod rismarkerne og badeværelser med dobbelte brusere.</div>
+          <div class="v133-hp-hl-item">Gastronomien tager afsæt i farm-to-table-konceptet, hvor en stor del af grøntsagerne og risene dyrkes direkte på resortets egne marker. Hovedrestauranten Liyawela serverer forfinede udgaver af traditionelle srilankanske curries og internationale retter. Resortet tilbyder desuden skræddersyede spiseoplevelser såsom private middage i et træhus midt i rismarkerne, picnics ved søbredden eller madlavningskurser i den organiske urtehave.</div>
+          <div class="v133-hp-hl-item">Spaen ligger gemt i den tætte junglevegetation, designet som en underjordisk grofte med et rindende vandfald, der skaber en naturlig lydkulisse. Behandlingerne trækker på både ayurvediske traditioner og vestlige kropsterapier. Udover den private pool ved hver chalet har resortet en 30-meter lang fælles swimmingpool udformet som en klassisk reservoir-sø, et mindre fitnesslokale samt et udendørs yoga-dæk ved vandkanten.</div>
+          <div class="v133-hp-hl-item">Aktivitetsudvalget er præget af stedets enorme arealer og vilde dyreliv. Gæster kan udforske området på resortets egne heste fra det private ridecenter, cykle langs rismarkerne på stier med fritgående påfugle og aber, leje kajakker på søen eller gå på guidede fuglekikker-ture. Resortets beliggenhed gør det desuden til en oplagt base for udflugter til UNESCO-byen Anuradhapura og jeepsafarier i Minneriya og Wilpattu.</div>
+          <div class="v133-hp-hl-item">Stemningen er præget af den åbne plads og det rige dyreliv, som frit bevæger sig tværs over grunden. Rismarkernes skiftende grønne nuancer, synet af lokale bønder i markarbejde og lyden af tropiske fugle ved solopgang giver følelsen af at bo i en lysende, levende landsby, hvor tiden er standset.</div>
+        </div>
+      </div>
+      <div class="v133-hp-info">
+        <div class="v133-hp-info-col">
+          <div class="ilbl">Lokation</div>
+          <div class="ival">Anuradhapura</div>
+        </div>
+        <div class="v133-hp-info-col">
+          <div class="ilbl">Transfer</div>
+          <div class="ival">Inkluderet (bil) · ca. 4 timer (fra Colombo)</div>
+        </div>
+        <div class="v133-hp-info-col">
+          <div class="ilbl">Website</div>
+          <div class="ival"><a href="https://www.ugaresorts.com/ulagalla/" target="_blank">Udforsk Uga Ulagalla</a></div>
+        </div>
+      </div>
+    </div>
+    <div class="hotel-panel v133-hp v133-hp--rundrejse" data-panel="1" id="hotel-adigar-s-manor">
       <div class="v133-hp-hero">
         <img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2026/08/AM-3-1.webp" alt="Adigar&#39;s Manor">
         <div class="v133-hp-hero-content">
@@ -3843,7 +3914,7 @@ body.is-confirmation-mode .sticky-cta{
           <div class="v133-hp-villa--stay">
             <div class="stay-name">2x Deluxe Room</div>
             <div class="stay-meal">Morgenmad</div>
-            <div class="stay-meta">3 nætter · 2. – 5. juli</div>
+            <div class="stay-meta">1 nat · 5. – 6. juli</div>
             <div class="stay-links">
               <a href="https://adigarsmanor.com/" target="_blank" rel="noopener">Se indkvartering →</a>
               <a href="https://adigarsmanor.com/" target="_blank" rel="noopener">Læs mere om hotellet →</a>
@@ -3885,7 +3956,7 @@ body.is-confirmation-mode .sticky-cta{
         </div>
       </div>
     </div>
-    <div class="hotel-panel v133-hp v133-hp--rundrejse" data-panel="1" id="hotel-uga-ghiri">
+    <div class="hotel-panel v133-hp v133-hp--rundrejse" data-panel="2" id="hotel-uga-ghiri">
       <div class="v133-hp-hero">
         <img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2026/08/UG-1-1.jpg" alt="Uga Ghiri">
         <div class="v133-hp-hero-content">
@@ -3909,7 +3980,7 @@ body.is-confirmation-mode .sticky-cta{
           <div class="v133-hp-villa--stay">
             <div class="stay-name">2x Sutherland Jacuzzi Villa</div>
             <div class="stay-meal">All-Inclusive</div>
-            <div class="stay-meta">1 nat · 5. – 6. juli</div>
+            <div class="stay-meta">2 nætter · 6. – 8. juli</div>
             <div class="stay-links">
               <a href="https://www.ugaresorts.com/ghiri/villas/" target="_blank" rel="noopener">Se indkvartering →</a>
               <a href="https://www.ugaresorts.com/ghiri/" target="_blank" rel="noopener">Læs mere om hotellet →</a>
@@ -3951,7 +4022,7 @@ body.is-confirmation-mode .sticky-cta{
         </div>
       </div>
     </div>
-    <div class="hotel-panel v133-hp v133-hp--rundrejse" data-panel="2" id="hotel-ahu-bay">
+    <div class="hotel-panel v133-hp v133-hp--rundrejse" data-panel="3" id="hotel-ahu-bay">
       <div class="v133-hp-hero">
         <img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2026/08/AHUBAY-3-1.jpg" alt="Ahu Bay">
         <div class="v133-hp-hero-content">
@@ -3975,7 +4046,7 @@ body.is-confirmation-mode .sticky-cta{
           <div class="v133-hp-villa--stay">
             <div class="stay-name">2x Bay View Room</div>
             <div class="stay-meal">Morgenmad</div>
-            <div class="stay-meta">2 nætter · 6. – 8. juli</div>
+            <div class="stay-meta">2 nætter · 8. – 10. juli</div>
             <div class="stay-links">
               <a href="https://www.resplendentceylon.com/resort/ahu-bay/stay/" target="_blank" rel="noopener">Se indkvartering →</a>
               <a href="https://www.resplendentceylon.com/resort/ahu-bay/" target="_blank" rel="noopener">Læs mere om hotellet →</a>
@@ -4014,72 +4085,6 @@ body.is-confirmation-mode .sticky-cta{
         <div class="v133-hp-info-col">
           <div class="ilbl">Website</div>
           <div class="ival"><a href="https://www.resplendentceylon.com/resort/ahu-bay/" target="_blank">Udforsk Ahu Bay</a></div>
-        </div>
-      </div>
-    </div>
-    <div class="hotel-panel v133-hp v133-hp--rundrejse" data-panel="3" id="hotel-uga-ulagalla">
-      <div class="v133-hp-hero">
-        <img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2026/08/UU-2.jpg" alt="Uga Ulagalla">
-        <div class="v133-hp-hero-content">
-          <div class="loc">Anuradhapura</div>
-          <h2 class="name">Uga Ulagalla</h2>
-          <div class="meta">★★★★★ <span class="sep">·</span> 25 villaer</div>
-        </div>
-      </div>
-      <div class="v133-hp-gallery">
-        <a href="https://maldivia.dk/wp-content/uploads/2026/08/UU-3.jpeg" target="_blank"><img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2026/08/UU-3.jpeg" alt=""></a>
-        <a href="https://maldivia.dk/wp-content/uploads/2026/08/UU-4.webp" target="_blank"><img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2026/08/UU-4.webp" alt=""></a>
-        <a href="https://maldivia.dk/wp-content/uploads/2026/08/UU-1.webp" target="_blank"><img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2026/08/UU-1.webp" alt=""></a>
-        <a href="https://maldivia.dk/wp-content/uploads/2026/08/UU-5.jpg" target="_blank"><img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2026/08/UU-5.jpg" alt=""></a>
-      </div>
-      <div class="v133-hp-body">
-        <div class="v133-hp-booking">
-          <div class="v133-hp-eyebrow-row">
-            <div class="v133-hp-eyebrow">Detaljer for opholdet</div>
-            <div class="v133-hp-stay">2. jul — 5. jul 2027 · 3 nætter</div>
-          </div>
-          <div class="v133-hp-villa--stay">
-            <div class="stay-name">2x Ulagalla Pool Villa</div>
-            <div class="stay-meal">Morgenmad</div>
-            <div class="stay-meta">2 nætter · 8. – 10. juli</div>
-            <div class="stay-links">
-              <a href="https://www.ugaresorts.com/ulagalla/villas/ulagalla-pool-villa/" target="_blank" rel="noopener">Se indkvartering →</a>
-              <a href="https://www.ugaresorts.com/ulagalla/" target="_blank" rel="noopener">Læs mere om hotellet →</a>
-            </div>
-          </div>
-          <div class="v133-hp-curator-mini">
-            <div class="ceyebrow">Rasmus&#39; anbefaling</div>
-            <p class="cquote">Uga Ulagalla er en historisk og bæredygtig luksusoase, skabt omkring et 150 år gammelt, restaureret herskabshus (Walawwa), som oprindeligt tilhørte lokale høvdinge. Resortet ligger midt i Sri Lankas kulturelle triangel nær Anuradhapura, spredt over 58 tønder land med frodige rismarker, hundredårige træer og to private søer. Med sin egen solcellepark, der dækker størstedelen af energibehovet, og en arkitektur, der er opført uden at fælde et eneste gammelt træ, kombinerer stedet regal srilankansk kulturarv med kompromisløs naturbevarelse.</p>
-            <div class="csign">
-              <img src="https://maldivia.dk/wp-content/uploads/2026/05/RK-HERO-1.jpg" alt="Rasmus Kirketerp">
-              <div class="ctext">
-                <div class="cname">Rasmus Kirketerp</div>
-                <div class="crole">Travel Designer · Maldivia</div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="v133-hp-highlights">
-          <div class="v133-hp-eyebrow">Højdepunkter</div>
-          <div class="v133-hp-hl-item">Villaerne udgøres af 25 fritstående, stråtækte chalets, som ligger spredt med enorm afstand i terrænet for at sikre absolut isolation. Hver chalet måler over 85 kvadratmeter og har sit eget private dybe bassin (plunge pool) på en overdækket træterrasse. Interiøret blander mørkt ædeltræ og rå tekstiler med moderne teknologiske løsninger, panoramavinduer mod rismarkerne og badeværelser med dobbelte brusere.</div>
-          <div class="v133-hp-hl-item">Gastronomien tager afsæt i farm-to-table-konceptet, hvor en stor del af grøntsagerne og risene dyrkes direkte på resortets egne marker. Hovedrestauranten Liyawela serverer forfinede udgaver af traditionelle srilankanske curries og internationale retter. Resortet tilbyder desuden skræddersyede spiseoplevelser såsom private middage i et træhus midt i rismarkerne, picnics ved søbredden eller madlavningskurser i den organiske urtehave.</div>
-          <div class="v133-hp-hl-item">Spaen ligger gemt i den tætte junglevegetation, designet som en underjordisk grofte med et rindende vandfald, der skaber en naturlig lydkulisse. Behandlingerne trækker på både ayurvediske traditioner og vestlige kropsterapier. Udover den private pool ved hver chalet har resortet en 30-meter lang fælles swimmingpool udformet som en klassisk reservoir-sø, et mindre fitnesslokale samt et udendørs yoga-dæk ved vandkanten.</div>
-          <div class="v133-hp-hl-item">Aktivitetsudvalget er præget af stedets enorme arealer og vilde dyreliv. Gæster kan udforske området på resortets egne heste fra det private ridecenter, cykle langs rismarkerne på stier med fritgående påfugle og aber, leje kajakker på søen eller gå på guidede fuglekikker-ture. Resortets beliggenhed gør det desuden til en oplagt base for udflugter til UNESCO-byen Anuradhapura og jeepsafarier i Minneriya og Wilpattu.</div>
-          <div class="v133-hp-hl-item">Stemningen er præget af den åbne plads og det rige dyreliv, som frit bevæger sig tværs over grunden. Rismarkernes skiftende grønne nuancer, synet af lokale bønder i markarbejde og lyden af tropiske fugle ved solopgang giver følelsen af at bo i en lysende, levende landsby, hvor tiden er standset.</div>
-        </div>
-      </div>
-      <div class="v133-hp-info">
-        <div class="v133-hp-info-col">
-          <div class="ilbl">Lokation</div>
-          <div class="ival">Anuradhapura</div>
-        </div>
-        <div class="v133-hp-info-col">
-          <div class="ilbl">Transfer</div>
-          <div class="ival">Inkluderet (bil) · ca. 4 timer (fra Colombo)</div>
-        </div>
-        <div class="v133-hp-info-col">
-          <div class="ilbl">Website</div>
-          <div class="ival"><a href="https://www.ugaresorts.com/ulagalla/" target="_blank">Udforsk Uga Ulagalla</a></div>
         </div>
       </div>
     </div>
@@ -4321,7 +4326,7 @@ body.is-confirmation-mode .sticky-cta{
 
 </section><!-- /trip-section #maldiverne-sri-lanka -->
 
-<script type="application/json" id="mldv-booking-data">{"customerName":"Christel Herzog Kragh-Hansen","customerEmail":"christel1977@hotmail.com","customerPhone":"40 59 89 09","adults":2,"teenagers":2,"children":0,"infants":0,"teenagerAges":"14,16","childrenAges":"","infantAges":"","sigName":"Rasmus Kirketerp","sigEmail":"rk@maldivia.dk","sigPhone":"+45 71 74 72 70","language":"da","bookingEndpoint":"https://formspree.io/f/meewjdoz","trips":[{"idx":0,"destination":"Maldiverne & Sri Lanka","monthYear":"juli 2027","dateRange":"01. juli 2027 — 17. juli 2027","nights":"15 nætter","currency":"DKK","isRoundTrip":true,"priceTotal":"214.500","priceTotalFmt":"214.500","route":[{"hotel":"","city":"Anuradhapura","nights":3},{"hotel":"","city":"Kandy","nights":1},{"hotel":"","city":"Ella","nights":2},{"hotel":"","city":"Ahungalla","nights":2},{"hotel":"","city":"North Ari Atoll","nights":7}],"hotels":[{"id":"hotel-1787227290985-bss6u","name":"Adigar's Manor","location":"Kandy","rates":[{"idx":0,"room":"2x Deluxe Room","mealPlan":"Morgenmad","total":"214500","totalFmt":"214.500","included":true}]},{"id":"hotel-1787227917739-zcp2m","name":"Uga Ghiri","location":"Ella","rates":[{"idx":0,"room":"2x Sutherland Jacuzzi Villa","mealPlan":"All-Inclusive","total":"214500","totalFmt":"214.500","included":true}]},{"id":"hotel-1787228330506-rcy20","name":"Ahu Bay","location":"Ahungalla","rates":[{"idx":0,"room":"2x Bay View Room","mealPlan":"Morgenmad","total":"214500","totalFmt":"214.500","included":true}]},{"id":"hotel-1787226887302-dbp9v","name":"Uga Ulagalla","location":"Anuradhapura","rates":[{"idx":0,"room":"2x Ulagalla Pool Villa","mealPlan":"Morgenmad","total":"214500","totalFmt":"214.500","included":true}]},{"id":"hotel-1787228956955-oehyg","name":"Niva Kuramathi","location":"North Ari Atoll","rates":[{"idx":0,"room":"Two Bedroom Beach House","mealPlan":"All-Inclusive","total":"214500","totalFmt":"214.500","included":true}]}]}]}</script>
+<script type="application/json" id="mldv-booking-data">{"customerName":"Christel Herzog Kragh-Hansen","customerEmail":"christel1977@hotmail.com","customerPhone":"40 59 89 09","adults":2,"teenagers":2,"children":0,"infants":0,"teenagerAges":"14,16","childrenAges":"","infantAges":"","sigName":"Rasmus Kirketerp","sigEmail":"rk@maldivia.dk","sigPhone":"+45 71 74 72 70","language":"da","bookingEndpoint":"https://formspree.io/f/meewjdoz","trips":[{"idx":0,"destination":"Maldiverne & Sri Lanka","monthYear":"juli 2027","dateRange":"01. juli 2027 — 17. juli 2027","nights":"15 nætter","currency":"DKK","isRoundTrip":true,"priceTotal":"214.500","priceTotalFmt":"214.500","route":[{"hotel":"","city":"Anuradhapura","nights":3},{"hotel":"","city":"Kandy","nights":1},{"hotel":"","city":"Ella","nights":2},{"hotel":"","city":"Ahungalla","nights":2},{"hotel":"","city":"Maldiverne","nights":7}],"hotels":[{"id":"hotel-1787226887302-dbp9v","name":"Uga Ulagalla","location":"Anuradhapura","rates":[{"idx":0,"room":"2x Ulagalla Pool Villa","mealPlan":"Morgenmad","total":"214500","totalFmt":"214.500","included":true}]},{"id":"hotel-1787227290985-bss6u","name":"Adigar's Manor","location":"Kandy","rates":[{"idx":0,"room":"2x Deluxe Room","mealPlan":"Morgenmad","total":"214500","totalFmt":"214.500","included":true}]},{"id":"hotel-1787227917739-zcp2m","name":"Uga Ghiri","location":"Ella","rates":[{"idx":0,"room":"2x Sutherland Jacuzzi Villa","mealPlan":"All-Inclusive","total":"214500","totalFmt":"214.500","included":true}]},{"id":"hotel-1787228330506-rcy20","name":"Ahu Bay","location":"Ahungalla","rates":[{"idx":0,"room":"2x Bay View Room","mealPlan":"Morgenmad","total":"214500","totalFmt":"214.500","included":true}]},{"id":"hotel-1787228956955-oehyg","name":"Niva Kuramathi","location":"North Ari Atoll","rates":[{"idx":0,"room":"Two Bedroom Beach House","mealPlan":"All-Inclusive","total":"214500","totalFmt":"214.500","included":true}]}]}]}</script>
 
 <!-- ════ V130 BOOKING MODAL ════ -->
 <div id="mldv-booking-modal" class="mldv-bm" hidden role="dialog" aria-modal="true" aria-labelledby="mldv-bm-title">
