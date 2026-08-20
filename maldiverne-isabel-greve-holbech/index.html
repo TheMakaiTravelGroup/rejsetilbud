@@ -2180,19 +2180,31 @@ html{scroll-behavior:smooth;}
    numbered dots connected by a thin gold line, with city + nights under
    each. Lifts the rundrejse hero from "single price" to "this is the
    journey" — instant conversion clarity. */
-.v138-rr-route{display:flex;align-items:flex-start;gap:0;margin:0 0 28px;padding:6px 0 2px;}
-.v138-rr-stop{display:flex;flex-direction:column;align-items:center;text-align:center;flex:1;min-width:0;}
-.v138-rr-num{width:30px;height:30px;border:1px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--ff-display);font-size:13px;font-weight:500;color:var(--gold);margin-bottom:10px;background:var(--white);font-variant-numeric:lining-nums tabular-nums;line-height:1;}
-.v138-rr-city{font-family:var(--ff-display);font-size:14.5px;font-weight:500;color:var(--ink);line-height:1.15;margin-bottom:3px;letter-spacing:-0.005em;padding:0 4px;}
+/* V148.64: max 3 stops per row. At 5 stops the equal-flex columns were too
+   narrow, so neighbouring city names touched ("AnuradhapurKandy"). Wrapping
+   to thirds gives each label a full third of the width + a real horizontal
+   gap, so 3 sit on line 1 and the rest flow to line 2. The connector dashes
+   are hidden here since a wrapped grid has no continuous horizontal line. */
+.v138-rr-route{display:flex;flex-wrap:wrap;justify-content:center;align-items:flex-start;gap:22px 0;margin:0 0 28px;padding:6px 0 2px;}
+.v138-rr-stop{box-sizing:border-box;display:flex;flex-direction:column;align-items:center;text-align:center;flex:0 0 32%;min-width:0;padding:0 6px;}
+.v138-rr-line{display:none;}
+.v138-rr-num{width:30px;height:30px;border:1px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--ff-display);font-size:13px;font-weight:500;color:var(--gold);margin-bottom:10px;background:var(--white);font-variant-numeric:lining-nums tabular-nums;line-height:1;flex-shrink:0;}
+/* V148.61: allow long multi-word city names to wrap (e.g. "North Ari Atoll")
+   instead of forcing nowrap that pushed text into the neighbouring stop and
+   made labels collide. word-break keeps a very long single token contained. */
+/* V148.63: never break a city name mid-word (was "Anur/adha/pura"). Words
+   stay whole; wrapping only happens at spaces (so "North Ari Atoll" can use
+   2-3 lines but a single long word like "Anuradhapura" stays on one line).
+   Font trimmed so the longest single words fit inside a stop column. */
+.v138-rr-city{font-family:var(--ff-display);font-size:14px;font-weight:500;color:var(--ink);line-height:1.18;margin-bottom:4px;letter-spacing:-0.005em;padding:0 2px;white-space:normal;overflow-wrap:normal;word-break:keep-all;hyphens:none;max-width:100%;}
 .v138-rr-nights{font-family:var(--ff-ui);font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--ink-lt);}
-.v138-rr-line{flex:0 0 18px;height:1px;background:var(--gold);opacity:0.45;margin-top:15px;align-self:flex-start;}
-/* V145.5: Route-timeline responsive — at narrow widths the equal-flex
-   stops crush text, so we wrap to 2-up grid for tablet and stack vertical
-   on phones. Numbered dots stay centered for hierarchical clarity. */
-@media(max-width:760px){
-  .v138-rr-route{flex-wrap:wrap;gap:18px 0;}
-  .v138-rr-stop{flex:0 0 calc(50% - 9px);min-width:0;}
-  .v138-rr-line{display:none;}
+/* V148.64: connector removed — the wrapped 3-per-row grid has no continuous
+   horizontal line, so the dashes are hidden globally (see base rule above). */
+/* V148.65: keep the 3-per-row grid all the way down to phone width. The old
+   2-per-row tablet rule left an odd centred column with 5 stops. At ≤480px we
+   switch to the vertical itinerary list below (verified on 320/390px). */
+@media(max-width:520px){
+  .v138-rr-route{gap:16px 0;}
 }
 @media(max-width:480px){
   .v138-rr-stop{flex:0 0 100%;flex-direction:row;text-align:left;gap:14px;justify-content:flex-start;}
@@ -3484,7 +3496,7 @@ body.is-confirmation-mode .sticky-cta{
     <div class="hero-content">
       <div class="hero-eyebrow">Skræddersyet rejsetilbud</div>
       <h1 class="hero-title">Maldiverne<br><em>oktober 2026</em></h1>
-      <div class="hero-meta"><span class="nowrap">15. oktober 2026 — 25. oktober 2026</span> <span class="hero-meta-sep">·</span> <span class="nowrap">9 nætter / 11 dage</span></div>
+      <div class="hero-meta"><span class="nowrap">17. oktober 2026 — 25. oktober 2026</span> <span class="hero-meta-sep">·</span> <span class="nowrap">7 nætter / 9 dage</span></div>
     </div>
     <div class="hero-scroll">
       <div class="scroll-line"></div>
@@ -3502,8 +3514,8 @@ body.is-confirmation-mode .sticky-cta{
   </div>
 
   <div class="v129-price-overview reveal">
-    <h2 class="v129-pr-title">Skræddersyede rejsetilbud til Isabel — <span class="accent">2 hoteller</span></h2>
-    <p class="v129-pre-intro">Jeg har foreslået dig de 2 hoteller baseret på høj kvalitet, favorable specialtilbud og value for money.</p>
+    <h2 class="v129-pr-title">Skræddersyede rejsetilbud til Isabel — <span class="accent">1 hotel</span></h2>
+    <p class="v129-pre-intro">Jeg har foreslået dig hotellet baseret på høj kvalitet, favorable specialtilbud og value for money.</p>
     <div class="v145-favorit">
       <div class="v145-favorit-image" style="background-image:url('https://maldivia.dk/wp-content/uploads/2026/01/EM-13.jpg')">
         <div class="v145-favorit-loc">Raa Atoll</div>
@@ -3518,31 +3530,15 @@ body.is-confirmation-mode .sticky-cta{
           <a href="#hotel-emerald-maldives" class="v145-favorit-readmore">Læs hele anbefalingen →</a>
         </div>
         <div class="v145-favorit-divider"></div>
-        <div class="v145-favorit-meta"><span>9 nætter</span><span class="sep">·</span><span>2 voksne og 1 spædbarn</span></div>
+        <div class="v145-favorit-meta"><span>7 nætter</span><span class="sep">·</span><span>2 voksne og 1 spædbarn</span></div>
         <div class="v145-favorit-destination">Maldiverne</div>
         <div class="v145-favorit-price-row">
           <div class="v145-favorit-price-lbl">Rejsens pris</div>
-          <div class="v145-favorit-price-num"><span class="v145-favorit-price-cur">DKK</span>86.500</div>
+          <div class="v145-favorit-price-num"><span class="v145-favorit-price-cur">DKK</span>76.000</div>
         </div>
-        <button type="button" class="v145-favorit-book" onclick="if(window.mldvOpenBooking)mldvOpenBooking({trip:0,hotel:1,rate:0})">Bestil →</button>
+        <button type="button" class="v145-favorit-book" onclick="if(window.mldvOpenBooking)mldvOpenBooking({trip:0,hotel:0,rate:0})">Bestil →</button>
       </div>
     </div>
-    <div class="v138-range">
-      <div class="v138-range-col">
-        <div class="v138-range-lbl">Fra</div>
-        <div class="v138-range-price"><span class="cur">DKK</span>71.500</div>
-        <div class="v138-range-detail"><span class="v138-range-hotel">Niva Velassaru</span> · Beach Villa with Pool</div>
-        <div class="v138-range-meal">Halvpension</div>
-      </div>
-      <div class="v138-range-arrow">→</div>
-      <div class="v138-range-col">
-        <div class="v138-range-lbl">Op til</div>
-        <div class="v138-range-price"><span class="cur">DKK</span>89.500</div>
-        <div class="v138-range-detail"><span class="v138-range-hotel">Niva Velassaru</span> · Beach Villa with Pool</div>
-        <div class="v138-range-meal">All-Inclusive</div>
-      </div>
-    </div>
-    <div class="v138-range-foot">2 hoteller · <a href="#section-hoteller">se alle nedenfor ↓</a></div>
     <div class="v138-trust-row">
       <div class="v138-trust-card">
         <span class="ck">✓</span>
@@ -3589,83 +3585,6 @@ body.is-confirmation-mode .sticky-cta{
     </div>
   </div>
 
-  <div class="section-header reveal">
-    <span class="section-num">02</span>
-    <span class="section-title-label">De udvalgte hoteller</span>
-    <div class="section-rule"></div>
-  </div>
-
-  <div class="v129-hotel-grid-wrap reveal">
-    <div class="v129-featured">
-      <span class="v129-pill-badge">★ Fantastisk værdi</span>
-      <div class="v129-feat-img">
-        <img loading="eager" decoding="async" src="https://maldivia.dk/wp-content/uploads/2026/08/NVELASSARU-4-scaled.webp" alt="">
-        <div class="v129-img-meta">
-          <div class="loc">North Ari Atoll</div>
-          <div class="meta">★★★★★</div>
-        </div>
-      </div>
-      <div class="v129-feat-body">
-        <h3 class="v129-feat-name">Niva Velassaru</h3>
-        <div class="v129-feat-stars">★★★★★ · North Ari Atoll</div>
-        <div class="v129-feat-hl">
-          <div class="hlrow">Overnatningsmulighederne spænder fra intime strandbungalower gemt i tropisk vegetation til private overvandsvillaer hævet direkte over den krystalklare lagune. Mange af villaerne er udstyret med deres egne private pools på terrassen og udendørs siddegrupper skabt til uforstyrret udsigt over havet. Interiøret har rene linjer med naturlige farvetoner, åbne rumløsninger, moderne komfort og direkte adgang til henholdsvis sandet eller vandet.</div>
-          <div class="hlrow">Mad- og drikkeoplevelsen er et af øens store trækplastre med et varieret udvalg af restauranter og barer placeret i stemningsfulde omgivelser. Du kan vælge mellem alt fra afslappede internationale buffeter og strandservering til førsteklasses à la carte-restauranter, der tilbyder frisk fisk og skaldyr, grillet kød og teppanyaki. Derudover tilbydes der skræddersyede, private middage direkte på sandstranden under stjernehimlen samt uformelle drinks i strandbaren og ved infinity-poolen.</div>
-          <div class="hlrow">Resortets spaafdeling, The Spa at Velassaru, er bygget direkte over vandet med vidstrækkt kystudsigt. Spaen har ti behandlingsrum på pæle i lagunen, en hydroterapi-pool i vandkanten, sauna og dampbad. Behandlingsmenuen kombinerer traditionelle ingredienser med klassiske massageteknikker og suppleres af faste sessioner med gratis morgen- eller solnedgangsyoga og meditation i åbne pavilloner.</div>
-        </div>
-        <div class="v129-villa-box">
-          <div class="vlbl">Værelsestyper på dette hotel</div>
-          <div class="v129-vrow incl">
-            <div class="vinfo"><span class="vname">Beach Villa with Pool</span><span class="vmeal">Halvpension</span></div>
-            <span class="vprice">DKK 71.500</span>
-          </div>
-          <div class="v129-vrow">
-            <div class="vinfo"><span class="vname">Beach Villa with Pool</span><span class="vmeal">Helpension</span></div>
-            <span class="vprice">DKK 78.000</span>
-          </div>
-          <div class="v129-vrow">
-            <div class="vinfo"><span class="vname">Beach Villa with Pool</span><span class="vmeal">All-Inclusive</span></div>
-            <span class="vprice">DKK 89.500</span>
-          </div>
-        </div>
-        <div class="v129-feat-btns">
-          <button type="button" class="v129-feat-btn-book" onclick="if(window.mldvOpenBooking)mldvOpenBooking({trip:0,hotel:0,rate:0})">Bestil →</button>
-          <a href="#hotel-niva-velassaru" class="v129-feat-btn-detail">Læs mere om rejseforslaget ↓</a>
-        </div>
-      </div>
-    </div>
-    <div class="v129-alts-lbl">Eller vælg et alternativ</div>
-    <div class="v129-alts-grid">
-      <div class="v129-alt recommended">
-        <span class="v129-pill-badge green">Rasmus&#39; anbefaling</span>
-        <div class="v129-alt-img">
-          <img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2026/01/EM-13.jpg" alt="">
-        </div>
-        <div class="v129-alt-body">
-          <h4 class="v129-alt-name">Emerald Maldives</h4>
-          <div class="v129-alt-loc-row">
-            <span class="v129-alt-loc">Raa Atoll</span>
-            <span class="v129-alt-stars-inline">★★★★★</span>
-          </div>
-          <div class="v129-alt-hl">
-            <div class="hlrow">Resortets Deluxe All Inclusive-koncept er blandt Maldivernes mest omfattende. Det giver adgang til frit valg mellem fire forskellige restauranter og inkluderer et bredt udvalg af internationale premium-drikkevarer samt en dagligt opfyldt minibar.</div>
-            <div class="hlrow">Villaerne er bemærkelsesværdigt store og indrettet med store glaspartier og lyst interiør. De er fordelt på stranden og over lagunen, og en stor del af kategorierne har egen pool på terrassen.</div>
-          </div>
-          <div class="v129-alt-pricebox">
-            <div class="lbl">Fra</div>
-            <div class="pr"><span class="cur">DKK</span>86.500</div>
-            <div class="vname">Beach Villa with Pool</div>
-            <div class="vmeal">Deluxe All-Inclusive — Dine Around</div>
-          </div>
-          <div class="v129-alt-btns">
-            <button type="button" class="v129-alt-btn-book" onclick="if(window.mldvOpenBooking)mldvOpenBooking({trip:0,hotel:1,rate:0})">Bestil →</button>
-            <a href="#hotel-emerald-maldives" class="v129-alt-btn-link">Se rejseforslag →</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <div class="section-header reveal" id="section-inkludert">
     <span class="section-num">03</span>
     <span class="section-title-label">Inkluderet i rejsen</span>
@@ -3691,19 +3610,19 @@ body.is-confirmation-mode .sticky-cta{
       <div class="v129-incl-item">
         <div class="num">03</div>
         <div class="body">
-          <h3 class="ititle">9 nætter på det valgte resort</h3>
+          <h3 class="ititle">7 nætter på Emerald Maldives</h3>
         </div>
       </div>
       <div class="v129-incl-item">
         <div class="num">04</div>
         <div class="body">
-          <h3 class="ititle">Ophold i villatype som angivet</h3>
+          <h3 class="ititle">Ophold i en Beach Villa with Pool</h3>
         </div>
       </div>
       <div class="v129-incl-item">
         <div class="num">05</div>
         <div class="body">
-          <h3 class="ititle">Forplejning (meal plan) som angivet</h3>
+          <h3 class="ititle">Deluxe All-Inclusive (Dine Around)</h3>
         </div>
       </div>
       <div class="v129-incl-item">
@@ -3725,184 +3644,7 @@ body.is-confirmation-mode .sticky-cta{
 <div class="v129-hotel-details-wrap reveal">
   <div class="v129-hotel-details">
 
-    <nav class="v136-hotel-jump" aria-label="Hop til hotell">
-      <div class="v136-jump-inner">
-        <span class="v136-jump-lbl">Hop til</span>
-        <div class="v136-jump-pills">
-          <a href="#hotel-niva-velassaru" class="v136-jump-pill" data-target="hotel-niva-velassaru">Niva Velassaru</a>
-          <a href="#hotel-emerald-maldives" class="v136-jump-pill" data-target="hotel-emerald-maldives">Emerald Maldives</a>
-        </div>
-      </div>
-    </nav>
-
-    <script>
-    (function(){
-      var nav = document.querySelector(".v136-hotel-jump");
-      if (!nav) return;
-      var pills = nav.querySelectorAll(".v136-jump-pill");
-      if (!pills.length) return;
-      // Smooth scroll with offset for sticky header
-      pills.forEach(function(pill){
-        pill.addEventListener("click", function(e){
-          var href = pill.getAttribute("href");
-          if (!href || href.charAt(0) !== "#") return;
-          var target = document.getElementById(href.slice(1));
-          if (!target) return;
-          e.preventDefault();
-          var navH = nav.offsetHeight;
-          var y = target.getBoundingClientRect().top + window.pageYOffset - navH - 16;
-          window.scrollTo({ top: y, behavior: "smooth" });
-          history.replaceState(null, "", href);
-        });
-      });
-      // Active state via IntersectionObserver
-      if (!("IntersectionObserver" in window)) return;
-      var panels = nav.parentNode.querySelectorAll(".hotel-panel");
-      if (!panels.length) return;
-      var pillByHref = {};
-      pills.forEach(function(p){ pillByHref[p.getAttribute("href")] = p; });
-      var active = null;
-      var observer = new IntersectionObserver(function(entries){
-        var visible = [];
-        entries.forEach(function(e){
-          if (e.isIntersecting) visible.push({ id: e.target.id, ratio: e.intersectionRatio, top: e.boundingClientRect.top });
-        });
-        // Pick the topmost visible panel
-        panels.forEach(function(p){
-          var rect = p.getBoundingClientRect();
-          if (rect.top < window.innerHeight * 0.4 && rect.bottom > window.innerHeight * 0.2) {
-            if (!visible.find(function(v){ return v.id === p.id; })) visible.push({ id: p.id, ratio: 0.5, top: rect.top });
-          }
-        });
-        if (!visible.length) return;
-        visible.sort(function(a,b){ return a.top - b.top; });
-        var topId = visible[0].id;
-        if (topId === active) return;
-        active = topId;
-        pills.forEach(function(p){ p.classList.remove("active"); });
-        var ap = pillByHref["#" + topId];
-        if (ap) {
-          ap.classList.add("active");
-          // Auto-scroll the nav horizontally to keep active pill visible
-          var inner = nav.querySelector(".v136-jump-inner");
-          if (inner && ap.offsetLeft != null) {
-            var pillLeft = ap.offsetLeft - inner.offsetLeft;
-            var pillRight = pillLeft + ap.offsetWidth;
-            if (pillLeft < inner.scrollLeft) inner.scrollTo({ left: pillLeft - 20, behavior: "smooth" });
-            else if (pillRight > inner.scrollLeft + inner.clientWidth) inner.scrollTo({ left: pillRight - inner.clientWidth + 20, behavior: "smooth" });
-          }
-        }
-      }, { rootMargin: "-20% 0% -40% 0%", threshold: [0, 0.25, 0.5, 0.75, 1] });
-      panels.forEach(function(p){ observer.observe(p); });
-    })();
-    </script>
-
-    <div class="hotel-panel v133-hp" data-panel="0" id="hotel-niva-velassaru">
-      <div class="v133-hp-hero">
-        <img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2026/08/NVELASSARU-4-scaled.webp" alt="Niva Velassaru">
-        <div class="v133-hp-hero-content">
-          <div class="loc">North Ari Atoll</div>
-          <h2 class="name">Niva Velassaru</h2>
-          <div class="meta">★★★★★ <span class="sep">·</span> 129 villaer</div>
-        </div>
-      </div>
-      <div class="v133-hp-gallery">
-        <a href="https://maldivia.dk/wp-content/uploads/2026/08/NVELASSARU-2.webp" target="_blank"><img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2026/08/NVELASSARU-2.webp" alt=""></a>
-        <a href="https://maldivia.dk/wp-content/uploads/2026/08/NVELASSARU-5.webp" target="_blank"><img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2026/08/NVELASSARU-5.webp" alt=""></a>
-        <a href="https://maldivia.dk/wp-content/uploads/2026/08/NVELASSARU-3.webp" target="_blank"><img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2026/08/NVELASSARU-3.webp" alt=""></a>
-        <a href="https://maldivia.dk/wp-content/uploads/2026/08/NVELASSARU-1-scaled.jpg" target="_blank"><img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2026/08/NVELASSARU-1-scaled.jpg" alt=""></a>
-      </div>
-      <div class="v133-hp-body">
-        <div class="v133-hp-booking">
-          <div class="v133-hp-eyebrow-row">
-            <div class="v133-hp-eyebrow">Vælg værelsestype &amp; forplejning</div>
-            <div class="v133-hp-stay">16. okt — 25. okt 2026 · 9 nætter</div>
-          </div>
-          <div class="v133-hp-villa">
-            <div class="v133-hp-villa-info">
-              <div class="v133-hp-villa-name">Beach Villa with Pool</div>
-              <div class="v133-hp-villa-meta">
-                <span class="meal">Halvpension</span>
-              </div>
-            </div>
-            <div class="v133-hp-villa-action">
-              <div class="v133-hp-villa-price"><span class="cur">DKK</span>71.500</div>
-              <button type="button" class="v133-hp-villa-book" onclick="if(window.mldvOpenBooking)mldvOpenBooking({trip:0,hotel:0,rate:0})">Bestil →</button>
-            </div>
-            <div class="v133-hp-villa-links">
-              <a href="https://www.nivavelassaru.com/rooms-villas/beach-villa-with-pool/" target="_blank" rel="noopener">Se indkvartering →</a>
-              <a href="https://maldivia.dk/wp-content/uploads/2026/08/NVELASSARU-FS.pdf" target="_blank" rel="noopener">Læs mere om hotellet →</a>
-            </div>
-          </div>
-          <div class="v133-hp-villa">
-            <div class="v133-hp-villa-info">
-              <div class="v133-hp-villa-name">Beach Villa with Pool</div>
-              <div class="v133-hp-villa-meta">
-                <span class="meal">Helpension</span>
-              </div>
-            </div>
-            <div class="v133-hp-villa-action">
-              <div class="v133-hp-villa-price"><span class="cur">DKK</span>78.000</div>
-              <button type="button" class="v133-hp-villa-book" onclick="if(window.mldvOpenBooking)mldvOpenBooking({trip:0,hotel:0,rate:1})">Bestil →</button>
-            </div>
-            <div class="v133-hp-villa-links">
-              <a href="https://www.nivavelassaru.com/rooms-villas/beach-villa-with-pool/" target="_blank" rel="noopener">Se indkvartering →</a>
-              <a href="https://maldivia.dk/wp-content/uploads/2026/08/NVELASSARU-FS.pdf" target="_blank" rel="noopener">Læs mere om hotellet →</a>
-            </div>
-          </div>
-          <div class="v133-hp-villa">
-            <div class="v133-hp-villa-info">
-              <div class="v133-hp-villa-name">Beach Villa with Pool</div>
-              <div class="v133-hp-villa-meta">
-                <span class="meal">All-Inclusive</span>
-              </div>
-            </div>
-            <div class="v133-hp-villa-action">
-              <div class="v133-hp-villa-price"><span class="cur">DKK</span>89.500</div>
-              <button type="button" class="v133-hp-villa-book" onclick="if(window.mldvOpenBooking)mldvOpenBooking({trip:0,hotel:0,rate:2})">Bestil →</button>
-            </div>
-            <div class="v133-hp-villa-links">
-              <a href="https://www.nivavelassaru.com/rooms-villas/beach-villa-with-pool/" target="_blank" rel="noopener">Se indkvartering →</a>
-              <a href="https://maldivia.dk/wp-content/uploads/2026/08/NVELASSARU-FS.pdf" target="_blank" rel="noopener">Læs mere om hotellet →</a>
-            </div>
-          </div>
-          <div class="v133-hp-curator-mini">
-            <div class="ceyebrow">Rasmus&#39; anbefaling</div>
-            <p class="cquote">Niyama Velassaru Maldives er et 5-stjernet luksusresort i Syd-Malé-atollen, som dyrker den gennemførte &quot;barfodsluksus&quot;. Øen ligger kun en 25-minutters tur med speedbåd fra lufthavnen i Malé, hvilket gør rejsen uanstrengt og direkte. Arkitekturen præges af et minimalistisk, slankt og stilrent maldivisk design med indslag af træ, sten og stråtag, indrammet af en slående lyseblå lagune og brede sandstrande. Konceptet kombinerer uformel afslapning og moderne elegance med førsteklasses faciliteter for både par og feriegæster, der ønsker ro.</p>
-            <div class="csign">
-              <img src="https://maldivia.dk/wp-content/uploads/2026/05/RK-HERO-1.jpg" alt="Rasmus Kirketerp">
-              <div class="ctext">
-                <div class="cname">Rasmus Kirketerp</div>
-                <div class="crole">Travel Designer · Maldivia</div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="v133-hp-highlights">
-          <div class="v133-hp-eyebrow">Højdepunkter</div>
-          <div class="v133-hp-hl-item">Overnatningsmulighederne spænder fra intime strandbungalower gemt i tropisk vegetation til private overvandsvillaer hævet direkte over den krystalklare lagune. Mange af villaerne er udstyret med deres egne private pools på terrassen og udendørs siddegrupper skabt til uforstyrret udsigt over havet. Interiøret har rene linjer med naturlige farvetoner, åbne rumløsninger, moderne komfort og direkte adgang til henholdsvis sandet eller vandet.</div>
-          <div class="v133-hp-hl-item">Mad- og drikkeoplevelsen er et af øens store trækplastre med et varieret udvalg af restauranter og barer placeret i stemningsfulde omgivelser. Du kan vælge mellem alt fra afslappede internationale buffeter og strandservering til førsteklasses à la carte-restauranter, der tilbyder frisk fisk og skaldyr, grillet kød og teppanyaki. Derudover tilbydes der skræddersyede, private middage direkte på sandstranden under stjernehimlen samt uformelle drinks i strandbaren og ved infinity-poolen.</div>
-          <div class="v133-hp-hl-item">Resortets spaafdeling, The Spa at Velassaru, er bygget direkte over vandet med vidstrækkt kystudsigt. Spaen har ti behandlingsrum på pæle i lagunen, en hydroterapi-pool i vandkanten, sauna og dampbad. Behandlingsmenuen kombinerer traditionelle ingredienser med klassiske massageteknikker og suppleres af faste sessioner med gratis morgen- eller solnedgangsyoga og meditation i åbne pavilloner.</div>
-          <div class="v133-hp-hl-item">Det omkringliggende farvand byder på rige muligheder for både vandsport og undervandsoplevelser. Resortet råder over sit eget PADI-certificerede dykkercenter samt et aktivt vandsportscenter, der tilbyder alt fra kajak, paddleboarding og vindsurfing til motoriserede aktiviteter. Gæster har adgang til gratis udlån af snorkeludstyr til at udforske husrevet, og der arrangeres jævnligt guidede bådture, solnedgangscruises og udflugter i atollen.</div>
-          <div class="v133-hp-hl-item">Velassaru er verdenskendt for sin fortryllende, krystalklare og turkisblå lagune, der omkranser øen som en naturlig pool. De kridhvide, silkebløde sandstrande strækker sig hele vejen rundt om øen og danner den klassiske, postkortsmukke ramme om ferien. Det lave, rolige vand inviterer til lange svømmeture direkte fra strandkanten, uforstyrret solbadning og uforglemmelige aftenture i vandkanten, mens solen går ned over havet.</div>
-        </div>
-      </div>
-      <div class="v133-hp-info">
-        <div class="v133-hp-info-col">
-          <div class="ilbl">Lokation</div>
-          <div class="ival">North Ari Atoll</div>
-        </div>
-        <div class="v133-hp-info-col">
-          <div class="ilbl">Transfer</div>
-          <div class="ival">Speedbåd · 25 min.</div>
-        </div>
-        <div class="v133-hp-info-col">
-          <div class="ilbl">Website</div>
-          <div class="ival"><a href="https://www.nivavelassaru.com/" target="_blank">Udforsk Niva Velassaru</a></div>
-        </div>
-      </div>
-    </div>
-    <div class="hotel-panel v133-hp" data-panel="1" id="hotel-emerald-maldives">
+    <div class="hotel-panel v133-hp" data-panel="0" id="hotel-emerald-maldives">
       <div class="v133-hp-hero">
         <img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2026/01/EM-13.jpg" alt="Emerald Maldives">
         <div class="v133-hp-hero-content">
@@ -3921,7 +3663,7 @@ body.is-confirmation-mode .sticky-cta{
         <div class="v133-hp-booking">
           <div class="v133-hp-eyebrow-row">
             <div class="v133-hp-eyebrow">Vælg værelsestype &amp; forplejning</div>
-            <div class="v133-hp-stay">16. okt — 25. okt 2026 · 9 nætter</div>
+            <div class="v133-hp-stay">18. okt — 25. okt 2026 · 7 nætter</div>
           </div>
           <div class="v133-hp-villa">
             <div class="v133-hp-villa-info">
@@ -3931,8 +3673,8 @@ body.is-confirmation-mode .sticky-cta{
               </div>
             </div>
             <div class="v133-hp-villa-action">
-              <div class="v133-hp-villa-price"><span class="cur">DKK</span>86.500</div>
-              <button type="button" class="v133-hp-villa-book" onclick="if(window.mldvOpenBooking)mldvOpenBooking({trip:0,hotel:1,rate:0})">Bestil →</button>
+              <div class="v133-hp-villa-price"><span class="cur">DKK</span>76.000</div>
+              <button type="button" class="v133-hp-villa-book" onclick="if(window.mldvOpenBooking)mldvOpenBooking({trip:0,hotel:0,rate:0})">Bestil →</button>
             </div>
             <div class="v133-hp-villa-links">
               <a href="https://www.emerald-maldives.com/villas/b-pool" target="_blank" rel="noopener">Se indkvartering →</a>
@@ -4016,7 +3758,7 @@ body.is-confirmation-mode .sticky-cta{
         </div>
       </div>
       <div class="journey">
-        <div class="journey-header">København til Malé — 15.10.2026</div>
+        <div class="journey-header">København til Malé — 17.10.2026</div>
         <div class="flight-leg">
           <span class="leg-code">CPH→ZRH</span>
           <div>
@@ -4063,13 +3805,13 @@ body.is-confirmation-mode .sticky-cta{
         <div class="flight-leg">
           <span class="leg-code">MLE→ZRH</span>
           <div>
-            <div class="leg-times">09:40 – 16:00</div>
+            <div class="leg-times">09:30 – 16:10</div>
             <div class="leg-meta">Edelweiss · Economy Class</div>
           </div>
         </div>
         <div class="flight-connector">
           <div class="connector-line"></div>
-          <span class="connector-label">Mellemlanding Zürich · 1 t 15 m</span>
+          <span class="connector-label">Mellemlanding Zürich · 1 t 5 m</span>
           <div class="connector-line"></div>
         </div>
         <div class="flight-leg">
@@ -4079,7 +3821,7 @@ body.is-confirmation-mode .sticky-cta{
             <div class="leg-meta">Edelweiss · Economy Class</div>
           </div>
         </div>
-        <div class="journey-total">Total rejsetid · 13 t 25 m</div>
+        <div class="journey-total">Total rejsetid · 13 t 35 m</div>
       </div>
 
       <div style="margin-top:28px;padding-top:24px;border-top:1px solid var(--sand-mid);">
@@ -4116,7 +3858,7 @@ body.is-confirmation-mode .sticky-cta{
 
 </section><!-- /trip-section #maldiverne -->
 
-<script type="application/json" id="mldv-booking-data">{"customerName":"Isabel Greve Holbech","customerEmail":"isaisabel_3@hotmail.com","customerPhone":"+4528970653","adults":2,"teenagers":0,"children":0,"infants":1,"teenagerAges":"","childrenAges":"","infantAges":"1","sigName":"Rasmus Kirketerp","sigEmail":"rk@maldivia.dk","sigPhone":"+45 71 74 72 70","language":"da","bookingEndpoint":"https://formspree.io/f/meewjdoz","trips":[{"idx":0,"destination":"Maldiverne","monthYear":"oktober 2026","dateRange":"15. oktober 2026 — 25. oktober 2026","nights":"9 nætter / 11 dage","currency":"DKK","isRoundTrip":false,"priceTotal":"71.500","priceTotalFmt":"71.500","route":[],"hotels":[{"id":"hotel-1787215585982-1hd0f","name":"Niva Velassaru","location":"North Ari Atoll","rates":[{"idx":0,"room":"Beach Villa with Pool","mealPlan":"Halvpension","total":"71500","totalFmt":"71.500","included":true},{"idx":1,"room":"Beach Villa with Pool","mealPlan":"Helpension","total":"78000","totalFmt":"78.000","included":false},{"idx":2,"room":"Beach Villa with Pool","mealPlan":"All-Inclusive","total":"89500","totalFmt":"89.500","included":false}]},{"id":"hotel-1787215655146-2qorl","name":"Emerald Maldives","location":"Raa Atoll","rates":[{"idx":0,"room":"Beach Villa with Pool","mealPlan":"Deluxe All-Inclusive — Dine Around","total":"86500","totalFmt":"86.500","included":false}]}]}]}</script>
+<script type="application/json" id="mldv-booking-data">{"customerName":"Isabel Greve Holbech","customerEmail":"isaisabel_3@hotmail.com","customerPhone":"+4528970653","adults":2,"teenagers":0,"children":0,"infants":1,"teenagerAges":"","childrenAges":"","infantAges":"1","sigName":"Rasmus Kirketerp","sigEmail":"rk@maldivia.dk","sigPhone":"+45 71 74 72 70","language":"da","bookingEndpoint":"https://formspree.io/f/meewjdoz","trips":[{"idx":0,"destination":"Maldiverne","monthYear":"oktober 2026","dateRange":"17. oktober 2026 — 25. oktober 2026","nights":"7 nætter / 9 dage","currency":"DKK","isRoundTrip":false,"priceTotal":"76.000","priceTotalFmt":"76.000","route":[],"hotels":[{"id":"hotel-1787215655146-2qorl","name":"Emerald Maldives","location":"Raa Atoll","rates":[{"idx":0,"room":"Beach Villa with Pool","mealPlan":"Deluxe All-Inclusive — Dine Around","total":"76000","totalFmt":"76.000","included":true}]}]}]}</script>
 
 <!-- ════ V130 BOOKING MODAL ════ -->
 <div id="mldv-booking-modal" class="mldv-bm" hidden role="dialog" aria-modal="true" aria-labelledby="mldv-bm-title">
