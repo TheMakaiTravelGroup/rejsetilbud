@@ -2481,11 +2481,14 @@ html{scroll-behavior:smooth;}
 /* Desktop table */
 .v154-table-wrap{width:100%;}
 .v154-table{border-collapse:collapse;width:100%;}
-.v154-table th{padding:0 16px 20px;vertical-align:bottom;}
+.v154-table th{padding:0 20px 20px;vertical-align:bottom;}
 .v154-table th.v154-th-name{padding:0 20px 20px 0;}
-.v154-th-cat{font-family:var(--ff-ui);font-size:9px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:var(--ink-lt);margin-bottom:14px;text-align:center;}
-.v154-th-ends{display:flex;justify-content:space-between;font-family:var(--ff-display);font-size:11px;font-weight:600;color:var(--gold);gap:12px;}
-.v154-table td{padding:16px;min-width:96px;}
+.v154-th-cat{font-family:var(--ff-ui);font-size:9px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:var(--ink-lt);margin-bottom:14px;text-align:center;white-space:nowrap;}
+/* V154.1: ender må ALDRIG brydes (var "Ultra-/luxury" på 2 linjer). nowrap +
+   lidt mere kolonnebredde holder alle ender på én linje og kolonnerne lige høje. */
+.v154-th-ends{display:flex;justify-content:space-between;font-family:var(--ff-display);font-size:11px;font-weight:600;color:var(--gold);gap:14px;white-space:nowrap;}
+.v154-th-ends span{white-space:nowrap;}
+.v154-table td{padding:16px 20px;min-width:118px;}
 .v154-table tbody tr:nth-child(odd){background:var(--white);}
 .v154-table tbody tr:nth-child(even){background:#faf6ee;}
 .v154-td-name{padding:16px 20px 16px 0 !important;font-family:var(--ff-display);font-size:16px;font-weight:600;color:var(--ink);white-space:nowrap;}
