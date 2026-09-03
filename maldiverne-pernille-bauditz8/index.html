@@ -2490,7 +2490,9 @@ html{scroll-behavior:smooth;}
    kolonnebredde, som fik tabellen til at flyde ud over containeren).
    V154.4: mere kolonne-padding (20px) + mindre ende-skrift så lange ord som
    "Superb"/"Good" i nabo-kolonner ikke støder sammen. */
-.v154-th-ends{display:flex;justify-content:space-between;font-family:var(--ff-display);font-size:10px;font-weight:600;color:var(--gold-lt);gap:10px;white-space:nowrap;}
+/* V154.6: ender centreret med gap (ikke space-between) — så kategori-
+   overskrift + begge ord + prik deler samme centrum og "hænger sammen". */
+.v154-th-ends{display:flex;justify-content:center;font-family:var(--ff-display);font-size:10px;font-weight:600;color:var(--gold-lt);gap:22px;white-space:nowrap;}
 .v154-th-ends span{white-space:nowrap;}
 .v154-table td{padding:16px 20px;}
 .v154-table tbody tr:nth-child(odd){background:transparent;}
@@ -3871,7 +3873,6 @@ body.is-confirmation-mode .sticky-cta{
             <thead><tr>
               <th class="v154-th-name"></th>
               <th><div class="v154-th-cat">Luxury level</div><div class="v154-th-ends"><span>Moderate</span><span>Ultra-luxury</span></div></th>
-              <th><div class="v154-th-cat">Atmosphere</div><div class="v154-th-ends"><span>Lively</span><span>Tranquil</span></div></th>
               <th><div class="v154-th-cat">Fit for</div><div class="v154-th-ends"><span>Couples</span><span>Families</span></div></th>
               <th><div class="v154-th-cat">House reef</div><div class="v154-th-ends"><span>Non-existing</span><span>Superb</span></div></th>
               <th><div class="v154-th-cat">Gastronomy</div><div class="v154-th-ends"><span>Good</span><span>Outstanding</span></div></th>
@@ -3880,7 +3881,6 @@ body.is-confirmation-mode .sticky-cta{
               <tr>
                 <td class="v154-td-name">JA Manafaru</td>
                 <td><div class="v154-bar"><div class="v154-fill" style="width:65%"></div><div class="v154-mk" style="left:65%"></div></div></td>
-                <td><div class="v154-bar"><div class="v154-fill" style="width:75%"></div><div class="v154-mk" style="left:75%"></div></div></td>
                 <td><div class="v154-bar"><div class="v154-fill" style="width:35%"></div><div class="v154-mk" style="left:35%"></div></div></td>
                 <td><div class="v154-bar"><div class="v154-fill" style="width:60%"></div><div class="v154-mk" style="left:60%"></div></div></td>
                 <td><div class="v154-bar"><div class="v154-fill" style="width:90%"></div><div class="v154-mk" style="left:90%"></div></div></td>
@@ -3888,7 +3888,6 @@ body.is-confirmation-mode .sticky-cta{
               <tr>
                 <td class="v154-td-name">Alila Kothaifaru</td>
                 <td><div class="v154-bar"><div class="v154-fill" style="width:75%"></div><div class="v154-mk" style="left:75%"></div></div></td>
-                <td><div class="v154-bar"><div class="v154-fill" style="width:70%"></div><div class="v154-mk" style="left:70%"></div></div></td>
                 <td><div class="v154-bar"><div class="v154-fill" style="width:25%"></div><div class="v154-mk" style="left:25%"></div></div></td>
                 <td><div class="v154-bar"><div class="v154-fill" style="width:55%"></div><div class="v154-mk" style="left:55%"></div></div></td>
                 <td><div class="v154-bar"><div class="v154-fill" style="width:70%"></div><div class="v154-mk" style="left:70%"></div></div></td>
@@ -3896,14 +3895,12 @@ body.is-confirmation-mode .sticky-cta{
               <tr>
                 <td class="v154-td-name">COMO Cocoa Island</td>
                 <td><div class="v154-bar"><div class="v154-fill" style="width:80%"></div><div class="v154-mk" style="left:80%"></div></div></td>
-                <td><div class="v154-bar"><div class="v154-fill" style="width:100%"></div><div class="v154-mk" style="left:100%"></div></div></td>
                 <td><div class="v154-bar"><div class="v154-fill" style="width:5%"></div><div class="v154-mk" style="left:5%"></div></div></td>
                 <td><div class="v154-bar"><div class="v154-fill" style="width:80%"></div><div class="v154-mk" style="left:80%"></div></div></td>
                 <td><div class="v154-bar"><div class="v154-fill" style="width:85%"></div><div class="v154-mk" style="left:85%"></div></div></td>
               </tr>
               <tr>
                 <td class="v154-td-name">Park Hyatt Hadahaa</td>
-                <td><div class="v154-bar"><div class="v154-fill" style="width:80%"></div><div class="v154-mk" style="left:80%"></div></div></td>
                 <td><div class="v154-bar"><div class="v154-fill" style="width:80%"></div><div class="v154-mk" style="left:80%"></div></div></td>
                 <td><div class="v154-bar"><div class="v154-fill" style="width:10%"></div><div class="v154-mk" style="left:10%"></div></div></td>
                 <td><div class="v154-bar"><div class="v154-fill" style="width:90%"></div><div class="v154-mk" style="left:90%"></div></div></td>
@@ -3912,7 +3909,6 @@ body.is-confirmation-mode .sticky-cta{
               <tr>
                 <td class="v154-td-name">Huvafen Fushi</td>
                 <td><div class="v154-bar"><div class="v154-fill" style="width:80%"></div><div class="v154-mk" style="left:80%"></div></div></td>
-                <td><div class="v154-bar"><div class="v154-fill" style="width:70%"></div><div class="v154-mk" style="left:70%"></div></div></td>
                 <td><div class="v154-bar"><div class="v154-fill" style="width:20%"></div><div class="v154-mk" style="left:20%"></div></div></td>
                 <td><div class="v154-bar"><div class="v154-fill" style="width:70%"></div><div class="v154-mk" style="left:70%"></div></div></td>
                 <td><div class="v154-bar"><div class="v154-fill" style="width:80%"></div><div class="v154-mk" style="left:80%"></div></div></td>
@@ -3920,7 +3916,6 @@ body.is-confirmation-mode .sticky-cta{
               <tr>
                 <td class="v154-td-name">Milaidhoo Maldives</td>
                 <td><div class="v154-bar"><div class="v154-fill" style="width:85%"></div><div class="v154-mk" style="left:85%"></div></div></td>
-                <td><div class="v154-bar"><div class="v154-fill" style="width:90%"></div><div class="v154-mk" style="left:90%"></div></div></td>
                 <td><div class="v154-bar"><div class="v154-fill" style="width:0%"></div><div class="v154-mk" style="left:0%"></div></div></td>
                 <td><div class="v154-bar"><div class="v154-fill" style="width:85%"></div><div class="v154-mk" style="left:85%"></div></div></td>
                 <td><div class="v154-bar"><div class="v154-fill" style="width:85%"></div><div class="v154-mk" style="left:85%"></div></div></td>
@@ -3928,7 +3923,6 @@ body.is-confirmation-mode .sticky-cta{
               <tr>
                 <td class="v154-td-name">Kudadoo Private Island</td>
                 <td><div class="v154-bar"><div class="v154-fill" style="width:90%"></div><div class="v154-mk" style="left:90%"></div></div></td>
-                <td><div class="v154-bar"><div class="v154-fill" style="width:95%"></div><div class="v154-mk" style="left:95%"></div></div></td>
                 <td><div class="v154-bar"><div class="v154-fill" style="width:20%"></div><div class="v154-mk" style="left:20%"></div></div></td>
                 <td><div class="v154-bar"><div class="v154-fill" style="width:80%"></div><div class="v154-mk" style="left:80%"></div></div></td>
                 <td><div class="v154-bar"><div class="v154-fill" style="width:90%"></div><div class="v154-mk" style="left:90%"></div></div></td>
@@ -3943,11 +3937,6 @@ body.is-confirmation-mode .sticky-cta{
               <div class="v154-card-cat">Luxury level</div>
               <div class="v154-card-ends"><span>Moderate</span><span>Ultra-luxury</span></div>
               <div class="v154-bar"><div class="v154-fill" style="width:65%"></div><div class="v154-mk" style="left:65%"></div></div>
-            </div>
-            <div class="v154-card-ax">
-              <div class="v154-card-cat">Atmosphere</div>
-              <div class="v154-card-ends"><span>Lively</span><span>Tranquil</span></div>
-              <div class="v154-bar"><div class="v154-fill" style="width:75%"></div><div class="v154-mk" style="left:75%"></div></div>
             </div>
             <div class="v154-card-ax">
               <div class="v154-card-cat">Fit for</div>
@@ -3973,11 +3962,6 @@ body.is-confirmation-mode .sticky-cta{
               <div class="v154-bar"><div class="v154-fill" style="width:75%"></div><div class="v154-mk" style="left:75%"></div></div>
             </div>
             <div class="v154-card-ax">
-              <div class="v154-card-cat">Atmosphere</div>
-              <div class="v154-card-ends"><span>Lively</span><span>Tranquil</span></div>
-              <div class="v154-bar"><div class="v154-fill" style="width:70%"></div><div class="v154-mk" style="left:70%"></div></div>
-            </div>
-            <div class="v154-card-ax">
               <div class="v154-card-cat">Fit for</div>
               <div class="v154-card-ends"><span>Couples</span><span>Families</span></div>
               <div class="v154-bar"><div class="v154-fill" style="width:25%"></div><div class="v154-mk" style="left:25%"></div></div>
@@ -4001,11 +3985,6 @@ body.is-confirmation-mode .sticky-cta{
               <div class="v154-bar"><div class="v154-fill" style="width:80%"></div><div class="v154-mk" style="left:80%"></div></div>
             </div>
             <div class="v154-card-ax">
-              <div class="v154-card-cat">Atmosphere</div>
-              <div class="v154-card-ends"><span>Lively</span><span>Tranquil</span></div>
-              <div class="v154-bar"><div class="v154-fill" style="width:100%"></div><div class="v154-mk" style="left:100%"></div></div>
-            </div>
-            <div class="v154-card-ax">
               <div class="v154-card-cat">Fit for</div>
               <div class="v154-card-ends"><span>Couples</span><span>Families</span></div>
               <div class="v154-bar"><div class="v154-fill" style="width:5%"></div><div class="v154-mk" style="left:5%"></div></div>
@@ -4026,11 +4005,6 @@ body.is-confirmation-mode .sticky-cta{
             <div class="v154-card-ax">
               <div class="v154-card-cat">Luxury level</div>
               <div class="v154-card-ends"><span>Moderate</span><span>Ultra-luxury</span></div>
-              <div class="v154-bar"><div class="v154-fill" style="width:80%"></div><div class="v154-mk" style="left:80%"></div></div>
-            </div>
-            <div class="v154-card-ax">
-              <div class="v154-card-cat">Atmosphere</div>
-              <div class="v154-card-ends"><span>Lively</span><span>Tranquil</span></div>
               <div class="v154-bar"><div class="v154-fill" style="width:80%"></div><div class="v154-mk" style="left:80%"></div></div>
             </div>
             <div class="v154-card-ax">
@@ -4057,11 +4031,6 @@ body.is-confirmation-mode .sticky-cta{
               <div class="v154-bar"><div class="v154-fill" style="width:80%"></div><div class="v154-mk" style="left:80%"></div></div>
             </div>
             <div class="v154-card-ax">
-              <div class="v154-card-cat">Atmosphere</div>
-              <div class="v154-card-ends"><span>Lively</span><span>Tranquil</span></div>
-              <div class="v154-bar"><div class="v154-fill" style="width:70%"></div><div class="v154-mk" style="left:70%"></div></div>
-            </div>
-            <div class="v154-card-ax">
               <div class="v154-card-cat">Fit for</div>
               <div class="v154-card-ends"><span>Couples</span><span>Families</span></div>
               <div class="v154-bar"><div class="v154-fill" style="width:20%"></div><div class="v154-mk" style="left:20%"></div></div>
@@ -4085,11 +4054,6 @@ body.is-confirmation-mode .sticky-cta{
               <div class="v154-bar"><div class="v154-fill" style="width:85%"></div><div class="v154-mk" style="left:85%"></div></div>
             </div>
             <div class="v154-card-ax">
-              <div class="v154-card-cat">Atmosphere</div>
-              <div class="v154-card-ends"><span>Lively</span><span>Tranquil</span></div>
-              <div class="v154-bar"><div class="v154-fill" style="width:90%"></div><div class="v154-mk" style="left:90%"></div></div>
-            </div>
-            <div class="v154-card-ax">
               <div class="v154-card-cat">Fit for</div>
               <div class="v154-card-ends"><span>Couples</span><span>Families</span></div>
               <div class="v154-bar"><div class="v154-fill" style="width:0%"></div><div class="v154-mk" style="left:0%"></div></div>
@@ -4111,11 +4075,6 @@ body.is-confirmation-mode .sticky-cta{
               <div class="v154-card-cat">Luxury level</div>
               <div class="v154-card-ends"><span>Moderate</span><span>Ultra-luxury</span></div>
               <div class="v154-bar"><div class="v154-fill" style="width:90%"></div><div class="v154-mk" style="left:90%"></div></div>
-            </div>
-            <div class="v154-card-ax">
-              <div class="v154-card-cat">Atmosphere</div>
-              <div class="v154-card-ends"><span>Lively</span><span>Tranquil</span></div>
-              <div class="v154-bar"><div class="v154-fill" style="width:95%"></div><div class="v154-mk" style="left:95%"></div></div>
             </div>
             <div class="v154-card-ax">
               <div class="v154-card-cat">Fit for</div>
