@@ -2475,40 +2475,42 @@ html{scroll-behavior:smooth;}
 /* V154 — Samlet sammenlignings-oversigt. Desktop = tabel, mobil = stablet.
    Deler design-sprog med per-hotel-diagrammet (grå kategorier, guld-serif
    ender, D2-prikker). */
-.v154-cmp{background:var(--white);border:1px solid var(--sand-deep);border-radius:3px;padding:38px 44px;margin:0 0 56px;}
-.v154-eyebrow{font-family:var(--ff-ui);font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#a89a83;font-weight:600;margin-bottom:12px;}
-.v154-title{font-family:var(--ff-display);font-weight:500;font-size:28px;color:var(--ink);margin:0 0 28px;letter-spacing:-0.005em;}
+.v154-cmp{background:linear-gradient(135deg,#1f3329 0%,#1a2823 100%);border:none;border-radius:3px;padding:44px 48px;margin:0 0 56px;}
+.v154-eyebrow{font-family:var(--ff-ui);font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold-lt);font-weight:600;margin-bottom:14px;}
+.v154-title{font-family:var(--ff-display);font-weight:400;font-size:30px;color:#ede5d1;margin:0 0 30px;letter-spacing:-0.005em;}
 /* Desktop table */
 .v154-table-wrap{width:100%;}
 .v154-table{border-collapse:collapse;width:100%;table-layout:fixed;}
 .v154-table th{padding:0 20px 20px;vertical-align:bottom;}
 .v154-table th.v154-th-name{padding:0 14px 20px 0;width:21%;}
-.v154-th-cat{font-family:var(--ff-ui);font-size:9px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-lt);margin-bottom:14px;text-align:center;white-space:nowrap;}
+/* V154.5: kategori-overskrifter i dæmpet guld (matcher paletten) frem for
+   grøn-grå — træder stadig i baggrunden ift. de lyse hotelnavne. */
+.v154-th-cat{font-family:var(--ff-ui);font-size:9px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold-lt);opacity:0.75;margin-bottom:14px;text-align:center;white-space:nowrap;}
 /* V154.1: ender på én linje via nowrap + kompakt skrift/spacing (IKKE fast
    kolonnebredde, som fik tabellen til at flyde ud over containeren).
    V154.4: mere kolonne-padding (20px) + mindre ende-skrift så lange ord som
    "Superb"/"Good" i nabo-kolonner ikke støder sammen. */
-.v154-th-ends{display:flex;justify-content:space-between;font-family:var(--ff-display);font-size:10px;font-weight:600;color:var(--gold);gap:10px;white-space:nowrap;}
+.v154-th-ends{display:flex;justify-content:space-between;font-family:var(--ff-display);font-size:10px;font-weight:600;color:var(--gold-lt);gap:10px;white-space:nowrap;}
 .v154-th-ends span{white-space:nowrap;}
 .v154-table td{padding:16px 20px;}
-.v154-table tbody tr:nth-child(odd){background:var(--white);}
-.v154-table tbody tr:nth-child(even){background:#faf6ee;}
-/* V154.3: navne-kolonne bredere (23%) + mindre skrift så lange navne som
-   "COMO Cocoa Island" / "Kudadoo Private Island" står fuldt uden afkortning. */
-.v154-td-name{padding:16px 16px 16px 0 !important;font-family:var(--ff-display);font-size:14px;font-weight:600;color:var(--ink);white-space:nowrap;line-height:1.25;}
-.v154-bar{position:relative;height:1.5px;background:#e0d6c5;border-radius:2px;width:100%;}
+.v154-table tbody tr:nth-child(odd){background:transparent;}
+.v154-table tbody tr:nth-child(even){background:rgba(255,255,255,0.03);}
+/* V154.3: navne-kolonne bredere + mindre skrift så lange navne står fuldt.
+   Cream-farve så navnene lyser op mod den mørke grønne bund. */
+.v154-td-name{padding:16px 16px 16px 0 !important;font-family:var(--ff-display);font-size:14px;font-weight:600;color:#ede5d1;white-space:nowrap;line-height:1.25;}
+.v154-bar{position:relative;height:1.5px;background:rgba(196,180,154,0.22);border-radius:2px;width:100%;}
 .v154-bar--empty{opacity:0.4;}
-.v154-fill{position:absolute;left:0;top:0;height:1.5px;background:linear-gradient(90deg,var(--gold-lt),var(--gold));border-radius:2px;}
-.v154-mk{position:absolute;top:50%;width:8px;height:8px;border-radius:50%;background:var(--gold);transform:translate(-50%,-50%);box-shadow:0 0 0 2px var(--white);}
+.v154-fill{position:absolute;left:0;top:0;height:1.5px;background:linear-gradient(90deg,rgba(196,180,154,0.5),var(--gold-lt));border-radius:2px;}
+.v154-mk{position:absolute;top:50%;width:8px;height:8px;border-radius:50%;background:var(--gold-lt);transform:translate(-50%,-50%);box-shadow:0 0 0 2px #1a2823;}
 /* Mobile stacked — hidden on desktop */
 .v154-stack{display:none;}
-.v154-card{padding:20px 22px;background:var(--white);border:1px solid var(--sand-mid);border-radius:2px;margin-bottom:14px;}
+.v154-card{padding:20px 22px;background:rgba(255,255,255,0.04);border:1px solid rgba(196,180,154,0.18);border-radius:2px;margin-bottom:14px;}
 .v154-card:last-child{margin-bottom:0;}
-.v154-card-name{font-family:var(--ff-display);font-size:19px;font-weight:600;color:var(--ink);margin-bottom:16px;}
+.v154-card-name{font-family:var(--ff-display);font-size:19px;font-weight:600;color:#ede5d1;margin-bottom:16px;}
 .v154-card-ax{margin-bottom:14px;}
 .v154-card-ax:last-child{margin-bottom:0;}
-.v154-card-cat{font-family:var(--ff-ui);font-size:8.5px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:var(--ink-lt);margin-bottom:9px;}
-.v154-card-ends{display:flex;justify-content:space-between;font-family:var(--ff-display);font-size:12px;font-weight:600;color:var(--gold);margin-bottom:9px;}
+.v154-card-cat{font-family:var(--ff-ui);font-size:8.5px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold-lt);opacity:0.75;margin-bottom:9px;}
+.v154-card-ends{display:flex;justify-content:space-between;font-family:var(--ff-display);font-size:12px;font-weight:600;color:var(--gold-lt);margin-bottom:9px;}
 /* Switch: table → stacked at 1200px. Tabellen vises KUN på brede skærme hvor
    selv de længste ord (Non-existing, Sophisticated, Ultra-luxury) har rigelig
    plads — ellers den lodrette stak, hvor pladsen altid er der. Ingen ord
@@ -4344,7 +4346,7 @@ body.is-confirmation-mode .sticky-cta{
         </div>
       </div>
       <div class="v153-pos">
-        <div class="v153-pos-head">Sådan ligger resortet</div>
+        <div class="v153-pos-head">Lær resortet at kende</div>
         <div class="v153-pos-grid">
           <div class="v153-ax">
             <div class="v153-ax-cat">Luxury level</div>
@@ -4494,7 +4496,7 @@ body.is-confirmation-mode .sticky-cta{
         </div>
       </div>
       <div class="v153-pos">
-        <div class="v153-pos-head">Sådan ligger resortet</div>
+        <div class="v153-pos-head">Lær resortet at kende</div>
         <div class="v153-pos-grid">
           <div class="v153-ax">
             <div class="v153-ax-cat">Luxury level</div>
@@ -4628,7 +4630,7 @@ body.is-confirmation-mode .sticky-cta{
         </div>
       </div>
       <div class="v153-pos">
-        <div class="v153-pos-head">Sådan ligger resortet</div>
+        <div class="v153-pos-head">Lær resortet at kende</div>
         <div class="v153-pos-grid">
           <div class="v153-ax">
             <div class="v153-ax-cat">Luxury level</div>
@@ -4762,7 +4764,7 @@ body.is-confirmation-mode .sticky-cta{
         </div>
       </div>
       <div class="v153-pos">
-        <div class="v153-pos-head">Sådan ligger resortet</div>
+        <div class="v153-pos-head">Lær resortet at kende</div>
         <div class="v153-pos-grid">
           <div class="v153-ax">
             <div class="v153-ax-cat">Luxury level</div>
@@ -4896,7 +4898,7 @@ body.is-confirmation-mode .sticky-cta{
         </div>
       </div>
       <div class="v153-pos">
-        <div class="v153-pos-head">Sådan ligger resortet</div>
+        <div class="v153-pos-head">Lær resortet at kende</div>
         <div class="v153-pos-grid">
           <div class="v153-ax">
             <div class="v153-ax-cat">Luxury level</div>
@@ -5030,7 +5032,7 @@ body.is-confirmation-mode .sticky-cta{
         </div>
       </div>
       <div class="v153-pos">
-        <div class="v153-pos-head">Sådan ligger resortet</div>
+        <div class="v153-pos-head">Lær resortet at kende</div>
         <div class="v153-pos-grid">
           <div class="v153-ax">
             <div class="v153-ax-cat">Luxury level</div>
@@ -5148,7 +5150,7 @@ body.is-confirmation-mode .sticky-cta{
         </div>
       </div>
       <div class="v153-pos">
-        <div class="v153-pos-head">Sådan ligger resortet</div>
+        <div class="v153-pos-head">Lær resortet at kende</div>
         <div class="v153-pos-grid">
           <div class="v153-ax">
             <div class="v153-ax-cat">Luxury level</div>
