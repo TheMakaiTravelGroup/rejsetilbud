@@ -2180,31 +2180,19 @@ html{scroll-behavior:smooth;}
    numbered dots connected by a thin gold line, with city + nights under
    each. Lifts the rundrejse hero from "single price" to "this is the
    journey" — instant conversion clarity. */
-/* V148.64: max 3 stops per row. At 5 stops the equal-flex columns were too
-   narrow, so neighbouring city names touched ("AnuradhapurKandy"). Wrapping
-   to thirds gives each label a full third of the width + a real horizontal
-   gap, so 3 sit on line 1 and the rest flow to line 2. The connector dashes
-   are hidden here since a wrapped grid has no continuous horizontal line. */
-.v138-rr-route{display:flex;flex-wrap:wrap;justify-content:center;align-items:flex-start;gap:22px 0;margin:0 0 28px;padding:6px 0 2px;}
-.v138-rr-stop{box-sizing:border-box;display:flex;flex-direction:column;align-items:center;text-align:center;flex:0 0 32%;min-width:0;padding:0 6px;}
-.v138-rr-line{display:none;}
-.v138-rr-num{width:30px;height:30px;border:1px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--ff-display);font-size:13px;font-weight:500;color:var(--gold);margin-bottom:10px;background:var(--white);font-variant-numeric:lining-nums tabular-nums;line-height:1;flex-shrink:0;}
-/* V148.61: allow long multi-word city names to wrap (e.g. "North Ari Atoll")
-   instead of forcing nowrap that pushed text into the neighbouring stop and
-   made labels collide. word-break keeps a very long single token contained. */
-/* V148.63: never break a city name mid-word (was "Anur/adha/pura"). Words
-   stay whole; wrapping only happens at spaces (so "North Ari Atoll" can use
-   2-3 lines but a single long word like "Anuradhapura" stays on one line).
-   Font trimmed so the longest single words fit inside a stop column. */
-.v138-rr-city{font-family:var(--ff-display);font-size:14px;font-weight:500;color:var(--ink);line-height:1.18;margin-bottom:4px;letter-spacing:-0.005em;padding:0 2px;white-space:normal;overflow-wrap:normal;word-break:keep-all;hyphens:none;max-width:100%;}
+.v138-rr-route{display:flex;align-items:flex-start;gap:0;margin:0 0 28px;padding:6px 0 2px;}
+.v138-rr-stop{display:flex;flex-direction:column;align-items:center;text-align:center;flex:1;min-width:0;}
+.v138-rr-num{width:30px;height:30px;border:1px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--ff-display);font-size:13px;font-weight:500;color:var(--gold);margin-bottom:10px;background:var(--white);font-variant-numeric:lining-nums tabular-nums;line-height:1;}
+.v138-rr-city{font-family:var(--ff-display);font-size:14.5px;font-weight:500;color:var(--ink);line-height:1.15;margin-bottom:3px;letter-spacing:-0.005em;padding:0 4px;}
 .v138-rr-nights{font-family:var(--ff-ui);font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--ink-lt);}
-/* V148.64: connector removed — the wrapped 3-per-row grid has no continuous
-   horizontal line, so the dashes are hidden globally (see base rule above). */
-/* V148.65: keep the 3-per-row grid all the way down to phone width. The old
-   2-per-row tablet rule left an odd centred column with 5 stops. At ≤480px we
-   switch to the vertical itinerary list below (verified on 320/390px). */
-@media(max-width:520px){
-  .v138-rr-route{gap:16px 0;}
+.v138-rr-line{flex:0 0 18px;height:1px;background:var(--gold);opacity:0.45;margin-top:15px;align-self:flex-start;}
+/* V145.5: Route-timeline responsive — at narrow widths the equal-flex
+   stops crush text, so we wrap to 2-up grid for tablet and stack vertical
+   on phones. Numbered dots stay centered for hierarchical clarity. */
+@media(max-width:760px){
+  .v138-rr-route{flex-wrap:wrap;gap:18px 0;}
+  .v138-rr-stop{flex:0 0 calc(50% - 9px);min-width:0;}
+  .v138-rr-line{display:none;}
 }
 @media(max-width:480px){
   .v138-rr-stop{flex:0 0 100%;flex-direction:row;text-align:left;gap:14px;justify-content:flex-start;}
@@ -2462,6 +2450,24 @@ html{scroll-behavior:smooth;}
 .v129-hotel-details .hotel-panel{display:block !important;opacity:1 !important;visibility:visible !important;position:static !important;}
 .v129-hotel-details .hotel-panel + .hotel-panel{margin-top:80px;}
 
+/* V153 — Resort-positionerings-diagram. Sidder mellem hotel-body og info-række.
+   Luft over/under + divider-linje. Gold-markør, aktiv ende mørk, passiv dæmpet. */
+.v153-pos{padding:26px 40px 34px;border-top:1px solid var(--sand-deep);}
+.v153-pos-head{font-family:var(--ff-display);font-weight:500;font-size:22px;color:var(--ink);margin-bottom:26px;letter-spacing:-0.005em;line-height:1.1;}
+.v153-pos-grid{display:grid;grid-template-columns:1fr 1fr;gap:30px 56px;}
+.v153-ax-ends{display:flex;justify-content:space-between;margin-bottom:0;}
+/* V5: guld-serif labels — matcher hotelsidens eksklusive DNA */
+.v153-ax-end{font-family:var(--ff-display);font-size:15.5px;font-weight:600;letter-spacing:0.005em;color:var(--gold-dk);}
+.v153-ax-end.r{text-align:right;}
+/* D2: forfinet bar + prik — hårfin bar, gradient-fill, blød guldring */
+.v153-bar{position:relative;height:1.5px;background:#e0d6c5;border-radius:2px;margin-top:15px;}
+.v153-fill{position:absolute;left:0;top:0;height:1.5px;background:linear-gradient(90deg,var(--gold-lt),var(--gold));border-radius:2px;}
+.v153-marker{position:absolute;top:50%;width:9px;height:9px;border-radius:50%;background:var(--gold);transform:translate(-50%,-50%);box-shadow:0 0 0 4px var(--white),0 0 0 5px rgba(157,134,101,0.35);}
+@media(max-width:640px){
+  .v153-pos{padding:22px 24px 28px;}
+  .v153-pos-grid{grid-template-columns:1fr;gap:22px;}
+  .v153-ax-end{font-size:10px;}
+}
 /* V133 — Hotel detail panel redesign. Hero image + curator + gallery + booking + info */
 /* V142: ALL hotel-panels (perhotel + rundrejse) are now unified cards so
    the LOKATION info row anchors visually to its parent hotel instead of
@@ -3470,7 +3476,7 @@ body.is-confirmation-mode .sticky-cta{
   </div>
   <div class="curator-letter-inner reveal">
     <div class="curator-letter-eyebrow">Personligt skræddersyet</div>
-    <h1 class="curator-letter-title">Kære Mads & Pernille</h1>
+    <h1 class="curator-letter-title">Kære Pernille</h1>
     <div class="curator-letter-body">
       <p>Jeg glæder mig til at præsentere et skræddersyet rejseforslag til jer og håber, at det falder i smag.</p>
       <p>Jeg har håndplukket mulighederne nedenfor, som giver absolut bedst kvalitet og værdi for pengene ud fra jeres ønsker. Hos Maldivia tror vi ikke på standardløsninger. Vi viser jer udelukkende steder vi selv kender, og som garanterer fantastisk hotelkvalitet i de smukkeste omgivelser, og garanterer alt fra beliggenhed i særklasse, nydelige værelser og villaer til personlig service og gastronomi, som er second to none.</p>
@@ -4686,19 +4692,19 @@ body.is-confirmation-mode .sticky-cta{
     <div class="flight-hero" style="aspect-ratio:21/8;">
       <button type="button" class="gallery-btn prev">‹</button><button type="button" class="gallery-btn next">›</button>
       <div class="flight-hero-track">
-        <a href="https://maldivia.dk/wp-content/uploads/2025/10/Etihad.webp" target="_blank"><img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2025/10/Etihad.webp" alt="Etihad Airways"></a>
-        <a href="https://maldivia.no/wp-content/uploads/sites/2/2025/10/Etihad-HERO-3.jpg" target="_blank"><img loading="lazy" decoding="async" src="https://maldivia.no/wp-content/uploads/sites/2/2025/10/Etihad-HERO-3.jpg" alt="Etihad Airways"></a>
+        <a href="https://maldivia.dk/wp-content/uploads/2025/12/Edelweiss-1.jpg" target="_blank"><img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2025/12/Edelweiss-1.jpg" alt="Edelweiss"></a>
+        <a href="https://maldivia.dk/wp-content/uploads/2025/12/Edelweiss-2.webp" target="_blank"><img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2025/12/Edelweiss-2.webp" alt="Edelweiss"></a>
       </div>
     </div>
     <div class="alt-flight-body">
       <div class="alt-flight-row">
-        <div class="alt-flight-name"><strong>Business Class</strong> — Etihad Airways</div>
-        <div class="alt-flight-price"><span class="rate-currency">DKK</span> 89.500</div>
+        <div class="alt-flight-name"><strong>Business Class</strong> — Edelweiss</div>
+        <div class="alt-flight-price"><span class="rate-currency">DKK</span> 79.500</div>
       </div>
       <div class="alt-note">Ovenstående pris er den totale merpris for den alternative flyrejse. Pris og tilgængelighed kan ændre sig frem til endelig bestilling.</div>
     </div>
     <div style="margin-top:0;padding:24px 28px 24px;border-top:1px solid var(--sand-mid);">
-      <img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2025/10/Etihad-Logo.png" alt="Etihad Airways" style="height:26px;width:auto;opacity:0.55;">
+      <img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2025/12/Edelweiss_Air_Logo.svg-removebg-preview.png" alt="Edelweiss" style="height:26px;width:auto;opacity:0.55;">
     </div>
   </div>
 
