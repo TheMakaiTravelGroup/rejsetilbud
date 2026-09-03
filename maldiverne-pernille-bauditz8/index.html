@@ -2481,14 +2481,16 @@ html{scroll-behavior:smooth;}
 /* Desktop table */
 .v154-table-wrap{width:100%;}
 .v154-table{border-collapse:collapse;width:100%;table-layout:fixed;}
-.v154-table th{padding:0 12px 20px;vertical-align:bottom;}
-.v154-table th.v154-th-name{padding:0 16px 20px 0;width:23%;}
+.v154-table th{padding:0 20px 20px;vertical-align:bottom;}
+.v154-table th.v154-th-name{padding:0 14px 20px 0;width:21%;}
 .v154-th-cat{font-family:var(--ff-ui);font-size:9px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-lt);margin-bottom:14px;text-align:center;white-space:nowrap;}
 /* V154.1: ender på én linje via nowrap + kompakt skrift/spacing (IKKE fast
-   kolonnebredde, som fik tabellen til at flyde ud over containeren). */
-.v154-th-ends{display:flex;justify-content:space-between;font-family:var(--ff-display);font-size:10.5px;font-weight:600;color:var(--gold);gap:8px;white-space:nowrap;}
+   kolonnebredde, som fik tabellen til at flyde ud over containeren).
+   V154.4: mere kolonne-padding (20px) + mindre ende-skrift så lange ord som
+   "Exceptional"/"Good" i nabo-kolonner ikke støder sammen. */
+.v154-th-ends{display:flex;justify-content:space-between;font-family:var(--ff-display);font-size:10px;font-weight:600;color:var(--gold);gap:10px;white-space:nowrap;}
 .v154-th-ends span{white-space:nowrap;}
-.v154-table td{padding:16px 12px;}
+.v154-table td{padding:16px 20px;}
 .v154-table tbody tr:nth-child(odd){background:var(--white);}
 .v154-table tbody tr:nth-child(even){background:#faf6ee;}
 /* V154.3: navne-kolonne bredere (23%) + mindre skrift så lange navne som
