@@ -205,6 +205,10 @@ header{
   display:flex;align-items:center;gap:14px;
   opacity:0;
   border-left:1px solid var(--gold-lt);
+  /* V155: sticky-cta er nu et <button> (åbner overlay). Nulstil browser-
+     standard knap-styling så udseendet er identisk med det gamle <a>-link. */
+  border-top:none;border-right:none;border-bottom:none;
+  cursor:pointer;line-height:normal;-webkit-appearance:none;appearance:none;
 }
 .sticky-cta.visible{transform:translateY(-50%) translateX(0);opacity:1;}
 .sticky-cta::after{
@@ -3514,7 +3518,7 @@ body.is-confirmation-mode .sticky-cta{
 
 <a href="#main" class="skip-link">Spring til indhold</a>
 <div class="scroll-progress" id="scrollProgress"></div>
-<a href="mailto:rk@maldivia.dk?subject=Skr%C3%A6ddersyet%20rejsetilbud%20%7C%20Maldivia" class="sticky-cta">Bestil rejsen</a>
+<button type="button" class="sticky-cta" onclick="if(window.mldvOpenBooking)mldvOpenBooking()">Bestil rejsen</button>
 
 <header>
   <div class="header-logo">
