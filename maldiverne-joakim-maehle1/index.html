@@ -4083,7 +4083,7 @@ body.is-confirmation-mode .sticky-cta{
 
 </section><!-- /trip-section #maldiverne -->
 
-<script type="application/json" id="mldv-booking-data">{"customerName":"Joakim Mæhle","customerEmail":"maehlep@live.dk","customerPhone":"","adults":2,"teenagers":0,"children":0,"infants":1,"teenagerAges":"","childrenAges":"","infantAges":"1","sigName":"Rasmus Kirketerp","sigEmail":"rk@maldivia.dk","sigPhone":"+45 71 74 72 70","language":"da","bookingEndpoint":"https://formspree.io/f/meewjdoz","trips":[{"idx":0,"destination":"Maldiverne","monthYear":"december 2026","dateRange":"21. december 2026 — 29. december 2026","nights":"7 nætter / 9 dage","currency":"DKK","isRoundTrip":false,"priceTotal":"219.500","priceTotalFmt":"219.500","route":[],"hotels":[{"id":"hotel-1791406967825-qa9p0","name":"Constance Halaveli","location":"North Ari Atoll","rates":[{"idx":0,"room":"Beach Villa with Private Pool","mealPlan":"All-Inclusive — Dine Around","total":"219500","totalFmt":"219.500","included":true}]}]}]}</script>
+<script type="application/json" id="mldv-booking-data">{"customerName":"Joakim Mæhle","customerEmail":"maehlep@live.dk","customerPhone":"","adults":2,"teenagers":0,"children":0,"infants":1,"teenagerAges":"","childrenAges":"","infantAges":"1","sigName":"Rasmus Kirketerp","sigEmail":"rk@maldivia.dk","sigPhone":"+45 71 74 72 70","language":"da","bookingEndpoint":"https://formspree.io/f/meewjdoz","trips":[{"idx":0,"destination":"Maldiverne","monthYear":"december 2026","dateRange":"21. december 2026 — 29. december 2026","nights":"7 nætter / 9 dage","currency":"DKK","isRoundTrip":false,"priceTotal":"219.500","priceTotalFmt":"219.500","route":[],"flight":{"included":{"label":"Qatar Airways · Business Class","carrier":"Qatar Airways","cabin":"Business Class"},"alt":{"label":"Qatar Airways · Business Class","carrier":"Qatar Airways","cabin":"Business Class","total":"","totalFmt":"","currency":"DKK"}},"hotels":[{"id":"hotel-1791406967825-qa9p0","name":"Constance Halaveli","location":"North Ari Atoll","rates":[{"idx":0,"room":"Beach Villa with Private Pool","mealPlan":"All-Inclusive — Dine Around","total":"219500","totalFmt":"219.500","included":true}]}]}]}</script>
 
 <!-- ════ V130 BOOKING MODAL ════ -->
 <div id="mldv-booking-modal" class="mldv-bm" hidden role="dialog" aria-modal="true" aria-labelledby="mldv-bm-title">
@@ -4116,6 +4116,12 @@ body.is-confirmation-mode .sticky-cta{
           <div class="mldv-bm-field">
             <label>Værelsestype</label>
             <select name="villa" id="mldv-villa-select"></select>
+          </div>
+        </div>
+        <div id="mldv-flight-pick" style="display:none;">
+          <div class="mldv-bm-field">
+            <label>Flyrejse</label>
+            <select name="flight" id="mldv-flight-select"></select>
           </div>
         </div>
       </fieldset>
@@ -4230,6 +4236,7 @@ body.is-confirmation-mode .sticky-cta{
       // Set hidden values so submit knows it is rundrejse
       var hs = document.getElementById("mldv-hotel-select"); if (hs) { hs.removeAttribute("required"); hs.innerHTML = "<option value=\"0\">rundrejse</option>"; hs.value = "0"; }
       var vs = document.getElementById("mldv-villa-select"); if (vs) { vs.removeAttribute("required"); vs.innerHTML = "<option value=\"0\">rundrejse</option>"; vs.value = "0"; }
+      mldvUpdateFlightOptions(tripIdx);
       return;
     }
     // Per-hotel mode: show hotel/villa picker
@@ -4245,6 +4252,26 @@ body.is-confirmation-mode .sticky-cta{
       hs.appendChild(opt);
     });
     mldvUpdateVillaOptions(0);
+    mldvUpdateFlightOptions(tripIdx);
+  };
+
+  window.mldvUpdateFlightOptions = function(tripIdx) {
+    var trip = DATA.trips[tripIdx | 0];
+    var pick = document.getElementById("mldv-flight-pick");
+    var sel = document.getElementById("mldv-flight-select");
+    if (!trip || !pick || !sel || !trip.flight) { if (pick) pick.style.display = "none"; return; }
+    // kun vis valget hvis der FINDES en alternativ flyrejse
+    if (!trip.flight.alt) { pick.style.display = "none"; sel.innerHTML = ""; return; }
+    sel.innerHTML = "";
+    var o1 = document.createElement("option"); o1.value = "included";
+    o1.textContent = (trip.flight.included.label || L.inclFlightOpt) + " (" + L.inclFlightOpt + ")";
+    sel.appendChild(o1);
+    var alt = trip.flight.alt;
+    var o2 = document.createElement("option"); o2.value = "alt";
+    o2.textContent = alt.label + (alt.totalFmt ? " (+" + alt.currency + " " + alt.totalFmt + ")" : "");
+    sel.appendChild(o2);
+    sel.value = "included";
+    pick.style.display = "block";
   };
 
   // POPULATE villa options based on hotel index
@@ -4323,6 +4350,16 @@ body.is-confirmation-mode .sticky-cta{
       lines.push(villaTypeLbl + ": " + villa.room + (villa.mealPlan ? " — " + villa.mealPlan : ""));
       lines.push("Pris: " + trip.currency + " " + (villa.totalFmt || villa.total));
       emailHotelTag = hotel.name;
+    }
+    if (trip.flight && trip.flight.alt) {
+      var flightChoice = data.get("flight") || "included";
+      lines.push("");
+      lines.push("== FLYREJSE ==");
+      if (flightChoice === "alt") {
+        lines.push("Valgt: ALTERNATIV — " + trip.flight.alt.label + (trip.flight.alt.totalFmt ? " (+" + trip.flight.alt.currency + " " + trip.flight.alt.totalFmt + ")" : ""));
+      } else {
+        lines.push("Valgt: Inkluderet — " + trip.flight.included.label);
+      }
     }
     lines.push("");
     lines.push("== REJSENDE ==");
