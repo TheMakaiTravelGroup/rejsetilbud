@@ -4083,7 +4083,7 @@ body.is-confirmation-mode .sticky-cta{
 
 </section><!-- /trip-section #maldiverne -->
 
-<script type="application/json" id="mldv-booking-data">{"customerName":"Joakim Mæhle","customerEmail":"maehlep@live.dk","customerPhone":"","adults":2,"teenagers":0,"children":0,"infants":1,"teenagerAges":"","childrenAges":"","infantAges":"1","sigName":"Rasmus Kirketerp","sigEmail":"rk@maldivia.dk","sigPhone":"+45 71 74 72 70","language":"da","bookingEndpoint":"https://formspree.io/f/meewjdoz","trips":[{"idx":0,"destination":"Maldiverne","monthYear":"december 2026","dateRange":"21. december 2026 — 29. december 2026","nights":"7 nætter / 9 dage","currency":"DKK","isRoundTrip":false,"priceTotal":"219.500","priceTotalFmt":"219.500","route":[],"flight":{"included":{"label":"Qatar Airways · Business Class","carrier":"Qatar Airways","cabin":"Business Class","fromCity":"Frankfurt"},"alt":{"label":"Qatar Airways · Business Class","carrier":"Qatar Airways","cabin":"Business Class","fromCity":"Berlin","priceFmt":"8.500","currency":"DKK"}},"hotels":[{"id":"hotel-1791406967825-qa9p0","name":"Constance Halaveli","location":"North Ari Atoll","rates":[{"idx":0,"room":"Beach Villa with Private Pool","mealPlan":"All-Inclusive — Dine Around","total":"219500","totalFmt":"219.500","included":true}]}]}]}</script>
+<script type="application/json" id="mldv-booking-data">{"customerName":"Joakim Mæhle","customerEmail":"maehlep@live.dk","customerPhone":"","adults":2,"teenagers":0,"children":0,"infants":1,"teenagerAges":"","childrenAges":"","infantAges":"1","sigName":"Rasmus Kirketerp","sigEmail":"rk@maldivia.dk","sigPhone":"+45 71 74 72 70","language":"da","bookingEndpoint":"https://formspree.io/f/meewjdoz","trips":[{"idx":0,"destination":"Maldiverne","monthYear":"december 2026","dateRange":"21. december 2026 — 29. december 2026","dateEnd":"2026-12-29","nights":"7 nætter / 9 dage","currency":"DKK","isRoundTrip":false,"priceTotal":"219.500","priceTotalFmt":"219.500","route":[],"flight":{"included":{"label":"Qatar Airways · Business Class","carrier":"Qatar Airways","cabin":"Business Class","fromCity":"Frankfurt"},"alt":{"label":"Qatar Airways · Business Class","carrier":"Qatar Airways","cabin":"Business Class","fromCity":"Berlin","priceFmt":"8.500","currency":"DKK"}},"hotels":[{"id":"hotel-1791406967825-qa9p0","name":"Constance Halaveli","location":"North Ari Atoll","rates":[{"idx":0,"room":"Beach Villa with Private Pool","mealPlan":"All-Inclusive — Dine Around","total":"219500","totalFmt":"219.500","included":true}]}]}]}</script>
 
 <!-- ════ V130 BOOKING MODAL ════ -->
 <div id="mldv-booking-modal" class="mldv-bm" hidden role="dialog" aria-modal="true" aria-labelledby="mldv-bm-title">
@@ -4114,7 +4114,7 @@ body.is-confirmation-mode .sticky-cta{
             <select name="hotel" id="mldv-hotel-select" onchange="mldvUpdateVillaOptions(this.value)"></select>
           </div>
           <div class="mldv-bm-field">
-            <label>Værelsestype</label>
+            <label>Værelsestype &amp; forplejning</label>
             <select name="villa" id="mldv-villa-select"></select>
           </div>
         </div>
@@ -4161,7 +4161,7 @@ body.is-confirmation-mode .sticky-cta{
 (function(){
   var DATA = null;
   try { DATA = JSON.parse(document.getElementById("mldv-booking-data").textContent); } catch(e) { return; }
-  var L = {"adult":"Voksen","teen":"Teenager","child":"Barn","infant":"Spædbarn","fullName":"Fulde navn","birthDate":"Fødselsdato","successTitle":"Anmodningen er sendt","successBody":"Vi har modtaget din booking-anmodning. Vi tjekker pris og tilgængelighed og sender bekræftelse på mail.","successClose":"Luk","journeyEyebrow":"I bestiller","journeyTotal":"Hele rundrejsen","journeyUpgradeHint":"Ønsker I et af tillæggene fra tilbuddet (anden villatype eller meal plan)? Skriv det i feltet \"Specielle ønsker\" længere nede.","nightsWordSingular":"nat","nightsWordPlural":"nætter","inclFlightOpt":"Inkluderet","fromWord":"fra"};
+  var L = {"adult":"Voksen","teen":"Teenager","child":"Barn","infant":"Spædbarn","fullName":"Fulde navn","birthDate":"Fødselsdato","successTitle":"Anmodningen er sendt","successBody":"Vi har modtaget din booking-anmodning. Vi tjekker pris og tilgængelighed og sender bekræftelse på mail.","successClose":"Luk","journeyEyebrow":"I bestiller","journeyTotal":"Hele rundrejsen","journeyUpgradeHint":"Ønsker I et af tillæggene fra tilbuddet (anden villatype eller meal plan)? Skriv det i feltet \"Specielle ønsker\" længere nede.","nightsWordSingular":"nat","nightsWordPlural":"nætter","inclFlightOpt":"Inkluderet","fromWord":"fra","firstNames":"Fornavn(e)","lastName":"Efternavn(e)","ageReturn":"Alder ved hjemkomst","yearsWord":"år"};
   var modal = document.getElementById("mldv-booking-modal");
   if (!modal) return;
 
@@ -4297,6 +4297,19 @@ body.is-confirmation-mode .sticky-cta{
     });
   };
 
+  window.mldvAgeAtReturn = function(birthISO) {
+    if (!birthISO) return "";
+    var tripIdx = 0; var ts = document.getElementById("mldv-trip-select"); if (ts) tripIdx = parseInt(ts.value,10)||0;
+    var trip = DATA.trips[tripIdx]; if (!trip || !trip.dateEnd) return "";
+    var b = new Date(birthISO), r = new Date(trip.dateEnd);
+    if (isNaN(b) || isNaN(r)) return "";
+    var age = r.getFullYear() - b.getFullYear();
+    var m = r.getMonth() - b.getMonth();
+    if (m < 0 || (m === 0 && r.getDate() < b.getDate())) age--;
+    if (age < 0) return "";
+    return age + " " + L.yearsWord;
+  };
+
   // BUILD traveller rows based on customer counts
   window.mldvBuildTravellerRows = function() {
     var box = document.getElementById("mldv-travellers");
@@ -4306,10 +4319,18 @@ body.is-confirmation-mode .sticky-cta{
       row.className = "mldv-bm-traveller";
       var label = typeLbl + (total > 1 ? " " + idx + " af " + total : "");
       row.innerHTML = '<div class="tlbl">' + label + '</div>' +
-        '<div class="mldv-bm-grid"><div class="mldv-bm-field"><label>' + L.fullName + '</label><input type="text" name="trav_name[]" required></div>' +
-        '<div class="mldv-bm-field"><label>' + L.birthDate + '</label><input type="date" name="trav_birth[]" required></div></div>' +
+        '<div class="mldv-bm-grid">' +
+          '<div class="mldv-bm-field"><label>' + L.firstNames + '</label><input type="text" name="trav_first[]" required></div>' +
+          '<div class="mldv-bm-field"><label>' + L.lastName + '</label><input type="text" name="trav_last[]" required></div>' +
+        '</div>' +
+        '<div class="mldv-bm-grid">' +
+          '<div class="mldv-bm-field"><label>' + L.birthDate + '</label><input type="date" name="trav_birth[]" required class="mldv-birth"></div>' +
+          '<div class="mldv-bm-field"><label>' + L.ageReturn + '</label><input type="text" name="trav_age[]" readonly class="mldv-age" placeholder="—"></div>' +
+        '</div>' +
         '<input type="hidden" name="trav_type[]" value="' + typeLbl + '">';
       box.appendChild(row);
+      var birth = row.querySelector(".mldv-birth"), ageF = row.querySelector(".mldv-age");
+      birth.addEventListener("change", function(){ ageF.value = mldvAgeAtReturn(birth.value); });
     }
     var a = DATA.adults || 0, t = DATA.teenagers || 0, c = DATA.children || 0, i = DATA.infants || 0;
     for (var n = 1; n <= a; n++) addRow(L.adult, n, a);
@@ -4369,11 +4390,14 @@ body.is-confirmation-mode .sticky-cta{
     }
     lines.push("");
     lines.push("== REJSENDE ==");
-    var names = data.getAll("trav_name[]");
+    var firsts = data.getAll("trav_first[]");
+    var lasts = data.getAll("trav_last[]");
     var births = data.getAll("trav_birth[]");
+    var ages = data.getAll("trav_age[]");
     var types = data.getAll("trav_type[]");
-    for (var k = 0; k < names.length; k++) {
-      lines.push((k+1) + ". " + types[k] + ": " + names[k] + " — født " + births[k]);
+    for (var k = 0; k < firsts.length; k++) {
+      var ageTxt = (ages[k] && ages[k] !== "—") ? " — " + ages[k] + " v. hjemkomst" : "";
+      lines.push((k+1) + ". " + types[k] + ": " + (firsts[k]||"") + " / " + (lasts[k]||"") + " — født " + births[k] + ageTxt);
     }
     lines.push("");
     lines.push("== KONTAKT ==");
