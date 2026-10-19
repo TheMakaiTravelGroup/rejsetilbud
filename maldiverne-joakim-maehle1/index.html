@@ -2955,6 +2955,17 @@ html[lang="en"] .v133-hp-villa.included .v133-hp-villa-name::before{content:'★
 .v133-hp-curator-mini .csign .ctext .cname{font-family:var(--ff-display);font-size:15px;font-weight:500;color:var(--ink);letter-spacing:-0.005em;}
 .v133-hp-curator-mini .csign .ctext .crole{font-family:var(--ff-ui);font-size:9.5px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-top:3px;}
 
+/* V170: "Inkluderet på dette ophold" — fremhævet boks efter anbefalingen.
+   Gold-accent, let baggrund, editorielt look der matcher curator-boksen. */
+.v170-included{margin-top:20px;background:linear-gradient(135deg,#fdfaf2 0%,#f7f0e0 100%);
+  border:1px solid var(--gold);border-left:3px solid var(--gold);border-radius:3px;padding:22px 26px 20px;position:relative;overflow:hidden;}
+.v170-included::before{content:'\2726';position:absolute;top:-10px;right:16px;font-size:72px;line-height:1;color:var(--gold);opacity:0.1;pointer-events:none;}
+.v170-inc-head{display:flex;align-items:center;gap:10px;margin-bottom:14px;position:relative;}
+.v170-inc-ico{color:var(--gold);font-size:14px;}
+.v170-inc-title{font-family:var(--ff-ui);font-size:11px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold-dk,#9a7b2e);}
+.v170-inc-body{font-family:var(--ff-body);font-size:15px;line-height:1.7;color:var(--ink);position:relative;}
+@media(max-width:768px){ .v170-included{padding:18px 20px 16px;margin-top:16px;} }
+
 /* V140: trip-level Rasmus' anbefaling — now matches hotel-panel edges
    (no max-width constraint), with a gold accent top stripe + more
    editorial breathing room. Used for rundrejse to summarise the whole
@@ -3910,7 +3921,7 @@ body.is-confirmation-mode .sticky-cta{
           </div>
         </div>
         <div class="route-airport">
-          <div class="route-iata">FRA</div>
+          <div class="route-iata">BER</div>
           <div class="route-city">Berlin</div>
         </div>
       </div>
@@ -3929,7 +3940,7 @@ body.is-confirmation-mode .sticky-cta{
           <div class="connector-line"></div>
         </div>
         <div class="flight-leg">
-          <span class="leg-code">DOH→FRA</span>
+          <span class="leg-code">DOH→BER</span>
           <div>
             <div class="leg-times">15:40 – 19:55</div>
             <div class="leg-meta">Qatar Airways · Business Class</div>
