@@ -2875,12 +2875,20 @@ html[lang="en"] .v133-hp-villa.included .v133-hp-villa-name::before{content:'★
   letter-spacing:0.18em;text-transform:uppercase;
   opacity:0.85;
 }
+/* V175: headline stay-row (navn + INKLUDERET-mærkat) + inkluderet-badge */
+.v133-hp-villa--stay .stay-row{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;}
+.v133-hp-villa--stay .stay-row-info{flex:1;min-width:0;}
+.v133-hp-villa--stay .stay-surcharge{flex:0 0 auto;text-align:right;display:flex;flex-direction:column;align-items:flex-end;gap:1px;}
+.v133-hp-villa--stay .surcharge-lbl{font-family:var(--ff-ui);font-size:8px;font-weight:500;color:var(--gold);letter-spacing:0.18em;text-transform:uppercase;opacity:0.85;}
+.v133-hp-villa--stay .stay-included .surcharge-lbl{font-size:9px;opacity:1;}
 @media (max-width:600px){
   .v133-hp-villa--stay .stay-name{font-size:17px;}
   .v133-hp-villa--stay .stay-meal{font-size:12.5px;}
   .v133-hp-villa--stay .stay-meta{font-size:12.5px;}
   .v133-hp-villa--alt .stay-row{flex-direction:column;gap:6px;}
   .v133-hp-villa--alt .stay-surcharge{text-align:left;align-items:flex-start;}
+  .v133-hp-villa--stay .stay-row{flex-direction:row;}
+  .v133-hp-villa--stay .stay-surcharge{text-align:right;align-items:flex-end;}
 }
 /* BOOK button — gradient gold for headline (matches V145 favorit CTA),
    outlined gold for alternatives (lighter visual weight). */
@@ -2969,9 +2977,9 @@ html[lang="en"] .v133-hp-villa.included .v133-hp-villa-name::before{content:'★
 /* V175: RUNDREJSE-ophold — samme familie som v170, matcher guld-æstetikken */
 .v175-roundtrip{margin-top:20px;background:linear-gradient(135deg,#fdfaf2 0%,#f7f0e0 100%);
   border:1px solid var(--gold);border-left:3px solid var(--gold);border-radius:3px;padding:22px 26px 20px;position:relative;overflow:hidden;}
-.v175-roundtrip::before{content:'\1F6E3';position:absolute;top:-6px;right:16px;font-size:60px;line-height:1;opacity:0.08;pointer-events:none;}
-.v175-rt-head{display:flex;align-items:center;gap:10px;margin-bottom:16px;position:relative;}
-.v175-rt-ico{font-size:14px;}
+.v175-rt-head{display:flex;align-items:center;margin-bottom:16px;position:relative;
+  /* flugt med hotelnavnene: ryk ind svarende til nummer-cirklen (26px) + gap (14px) */
+  padding-left:40px;}
 .v175-rt-title{font-family:var(--ff-ui);font-size:11px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold-dk,#9a7b2e);}
 .v175-rt-list{display:flex;flex-direction:column;gap:0;position:relative;}
 .v175-rt-stop{display:flex;align-items:flex-start;gap:14px;padding:12px 0;border-bottom:1px solid rgba(154,123,46,0.14);}
@@ -3644,7 +3652,7 @@ body.is-confirmation-mode .sticky-cta{
         <div class="v145-favorit-price-row">
           <div class="v145-favorit-price-num"><span class="v145-favorit-price-cur">DKK</span>107.500</div>
         </div>
-        <button type="button" class="v145-favorit-book" onclick="if(window.mldvOpenBooking)mldvOpenBooking({trip:0,hotel:0,rate:0})">Bestil →</button>
+        <button type="button" class="v145-favorit-book" onclick="if(window.mldvOpenBooking)mldvOpenBooking({trip:0,hotel:1,rate:0})">Bestil →</button>
       </div>
     </div>
     <div class="v138-trust-row">
@@ -3706,24 +3714,23 @@ body.is-confirmation-mode .sticky-cta{
       <div class="v129-rs-meta">2 stops · 13 nætter / 15 dage</div>
     </div>
     <div class="v129-rs-stops">
-      <a href="#hotel-varu-by-atmosphere" class="v129-rs-stop" style="text-decoration:none;color:inherit;">
+      <a href="#hotel-rundrejse-sri-lanka" class="v129-rs-stop" style="text-decoration:none;color:inherit;">
         <div class="step">01</div>
-        <div class="thumb"><img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2026/08/VARU-1.webp" alt=""></div>
+        <div class="thumb"><img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2026/11/SIGIRIYA-scaled.jpg" alt=""></div>
         <div class="info">
           <div class="hdest">Sri Lanka</div>
-          <div class="hname">VARU by Atmosphere</div>
-          <div class="hloc">North Malé Atoll</div>
+          <div class="hname">Rundrejse | Sri Lanka</div>
           <div class="hdates">15.–24. jan. · 9 nætter</div>
         </div>
         <span class="seelink">Se detaljer →</span>
       </a>
-      <a href="#hotel-rundrejse-sri-lanka" class="v129-rs-stop" style="text-decoration:none;color:inherit;">
+      <a href="#hotel-varu-by-atmosphere" class="v129-rs-stop" style="text-decoration:none;color:inherit;">
         <div class="step">02</div>
-        <div class="thumb"><img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2026/11/SIGIRIYA-scaled.jpg" alt=""></div>
+        <div class="thumb"><img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2026/08/VARU-1.webp" alt=""></div>
         <div class="info">
           <div class="hdest">Maldiverne</div>
-          <div class="hname">Rundrejse | Sri Lanka</div>
-          <div class="hloc">Sri Lanka</div>
+          <div class="hname">VARU by Atmosphere</div>
+          <div class="hloc">North Malé Atoll</div>
           <div class="hdates">24.–28. jan. · 4 nætter</div>
         </div>
         <span class="seelink">Se detaljer →</span>
@@ -3806,8 +3813,8 @@ body.is-confirmation-mode .sticky-cta{
       <div class="v136-jump-inner">
         <span class="v136-jump-lbl">Hop til</span>
         <div class="v136-jump-pills">
-          <a href="#hotel-varu-by-atmosphere" class="v136-jump-pill" data-target="hotel-varu-by-atmosphere">VARU by Atmosphere</a>
           <a href="#hotel-rundrejse-sri-lanka" class="v136-jump-pill" data-target="hotel-rundrejse-sri-lanka">Rundrejse | Sri Lanka</a>
+          <a href="#hotel-varu-by-atmosphere" class="v136-jump-pill" data-target="hotel-varu-by-atmosphere">VARU by Atmosphere</a>
         </div>
       </div>
     </nav>
@@ -3874,7 +3881,127 @@ body.is-confirmation-mode .sticky-cta{
     })();
     </script>
 
-    <div class="hotel-panel v133-hp v133-hp--rundrejse" data-panel="0" id="hotel-varu-by-atmosphere">
+    <div class="hotel-panel v133-hp v133-hp--rundrejse" data-panel="0" id="hotel-rundrejse-sri-lanka">
+      <div class="v133-hp-hero">
+        <img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2026/11/SIGIRIYA-scaled.jpg" alt="Rundrejse | Sri Lanka">
+        <div class="v133-hp-hero-content">
+          <div class="loc">Sri Lanka</div>
+          <h2 class="name">Rundrejse | Sri Lanka</h2>
+          <div class="meta">★★★★</div>
+        </div>
+      </div>
+      <div class="v133-hp-gallery">
+        <a href="https://maldivia.dk/wp-content/uploads/2026/11/TRAIN.jpg" target="_blank"><img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2026/11/TRAIN.jpg" alt=""></a>
+        <a href="https://maldivia.dk/wp-content/uploads/2026/11/SAFARI2-scaled.webp" target="_blank"><img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2026/11/SAFARI2-scaled.webp" alt=""></a>
+        <a href="https://maldivia.dk/wp-content/uploads/2026/11/BEACH.webp" target="_blank"><img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2026/11/BEACH.webp" alt=""></a>
+        <a href="https://maldivia.dk/wp-content/uploads/2026/11/SAFARI.webp" target="_blank"><img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2026/11/SAFARI.webp" alt=""></a>
+      </div>
+      <div class="v133-hp-body">
+        <div class="v133-hp-booking">
+          <div class="v133-hp-eyebrow-row">
+            <div class="v133-hp-eyebrow">Detaljer for opholdet</div>
+            <div class="v133-hp-stay">15. jan — 24. jan 2027 · 9 nætter</div>
+          </div>
+          <div class="v133-hp-villa--stay">
+            <div class="stay-row">
+              <div class="stay-row-info">
+                <div class="stay-name">Sri Lanka Rundrejse</div>
+                <div class="stay-meal">Morgenmad</div>
+              </div>
+              <div class="stay-surcharge stay-included">
+                <span class="surcharge-lbl">Inkluderet</span>
+              </div>
+            </div>
+            <div class="stay-meta">9 nætter · 15. – 24. januar</div>
+          </div>
+          <div class="v133-hp-villa--stay v133-hp-villa--alt">
+            <div class="stay-row">
+              <div class="stay-row-info">
+                <div class="stay-meal">Halvpension</div>
+              </div>
+              <div class="stay-surcharge">
+                <span class="surcharge-amt">+ DKK 5.500</span>
+                <span class="surcharge-lbl">Tillæg</span>
+              </div>
+            </div>
+          </div>
+          <div class="v133-hp-curator-mini">
+            <div class="ceyebrow">Rasmus&#39; anbefaling</div>
+            <p class="cquote">Oplev Sri Lankas mange facetter på en gennemført rundrejse, der forener enestående kulturskatte, spektakulære naturoplevelser og afslappende strandliv. Fra Colombos livlige gader fortsætter rejsen til historiske kongebyer, majestætiske templer og safari blandt vilde elefanter. I det frodige højland venter bølgende teplantager, betagende bjerglandskaber og en ikonisk togrejse gennem noget af øens smukkeste natur. Rejsen rundes af med tre nætter på et elegant strandresort ved Koggala på Sri Lankas sydkyst, hvor Det Indiske Ocean danner rammen om de sidste på øen.</p>
+            <div class="csign">
+              <img src="https://maldivia.dk/wp-content/uploads/2026/05/RK-HERO-1.jpg" alt="Rasmus Kirketerp">
+              <div class="ctext">
+                <div class="cname">Rasmus Kirketerp</div>
+                <div class="crole">Travel Designer · Maldivia</div>
+              </div>
+            </div>
+          </div>
+          <div class="v170-included">
+            <div class="v170-inc-head"><span class="v170-inc-ico">✦</span><span class="v170-inc-title">Inklusioner | Sri Lanka Rundrejse</span></div>
+            <div class="v170-inc-body">- Private air-conditioned vehicle with English-speaking chauffeur guide throughout the tour<br><br>- Airport meet &amp; greet assistance upon arrival<br><br>- All fuel, parking fees and highway tolls<br><br>Entrance fees to:<br>- Gangaramaya<br>- Polonnaruwa Ancient City<br>- Minneriya National Park<br>- Sigiriya<br>- Spice Garden<br>- Temple of the Tooth Relic<br>- Tea Plantation &amp; Tea Factory<br>- Gregory Lake<br><br>- Hiriwadunna Village Safari with local lunch<br><br>- Galle Fort visit<br><br>- 1 private jeep safari in Minneriya National Park (maximum 5 persons per jeep, subject to elephant movements)<br><br>- Train tickets from Nanu Oya to Demodara (subject to availability)</div>
+          </div>
+          <div class="v175-roundtrip">
+            <div class="v175-rt-head"><span class="v175-rt-title">Rundrejsens hoteller &amp; rejseplan</span></div>
+            <div class="v175-rt-list">
+              <div class="v175-rt-stop">
+                <span class="v175-rt-num">1</span>
+                <div class="v175-rt-main">
+                  <div class="v175-rt-hotel"><a class="v175-rt-link" href="https://nynehotels.com/lake-lodge/" target="_blank" rel="noopener">Lake Lodge <span class="v175-rt-arrow">↗</span></a> <span class="v175-rt-stars">4★</span></div>
+                  <div class="v175-rt-meta"><span class="v175-rt-loc">Colombo</span> · <span class="v175-rt-room">Classic Room</span> · <span class="v175-rt-nights">1 nat</span></div>
+                </div>
+              </div>
+              <div class="v175-rt-stop">
+                <span class="v175-rt-num">2</span>
+                <div class="v175-rt-main">
+                  <div class="v175-rt-hotel"><a class="v175-rt-link" href="https://aarawild.com/" target="_blank" rel="noopener">AARA Wild Sigiriya <span class="v175-rt-arrow">↗</span></a> <span class="v175-rt-stars">5★</span></div>
+                  <div class="v175-rt-meta"><span class="v175-rt-loc">Kandalama</span> · <span class="v175-rt-room">Luxury Private Suite</span> · <span class="v175-rt-nights">2 nætter</span></div>
+                </div>
+              </div>
+              <div class="v175-rt-stop">
+                <span class="v175-rt-num">3</span>
+                <div class="v175-rt-main">
+                  <div class="v175-rt-hotel"><a class="v175-rt-link" href="https://www.theva.lk/" target="_blank" rel="noopener">Theva Residency <span class="v175-rt-arrow">↗</span></a> <span class="v175-rt-stars">4★</span></div>
+                  <div class="v175-rt-meta"><span class="v175-rt-loc">Kandy</span> · <span class="v175-rt-room">Luxury Suite</span> · <span class="v175-rt-nights">1 nat</span></div>
+                </div>
+              </div>
+              <div class="v175-rt-stop">
+                <span class="v175-rt-num">4</span>
+                <div class="v175-rt-main">
+                  <div class="v175-rt-hotel"><a class="v175-rt-link" href="https://lakegregory.w15.lk/" target="_blank" rel="noopener">W15 Lake Gregory <span class="v175-rt-arrow">↗</span></a> <span class="v175-rt-stars">4★</span></div>
+                  <div class="v175-rt-meta"><span class="v175-rt-loc">Nuwara Eliya</span> · <span class="v175-rt-room">Deluxe Lake View</span> · <span class="v175-rt-nights">2 nætter</span></div>
+                </div>
+              </div>
+              <div class="v175-rt-stop">
+                <span class="v175-rt-num">5</span>
+                <div class="v175-rt-main">
+                  <div class="v175-rt-hotel"><a class="v175-rt-link" href="https://www.fortressresortandspa.com/" target="_blank" rel="noopener">The Fortress Resort &amp; Spa <span class="v175-rt-arrow">↗</span></a> <span class="v175-rt-stars">5★</span></div>
+                  <div class="v175-rt-meta"><span class="v175-rt-loc">Koggala</span> · <span class="v175-rt-room">Ocean Room</span> · <span class="v175-rt-nights">3 nætter</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="v133-hp-highlights">
+          <div class="v133-hp-eyebrow">Højdepunkter</div>
+          <div class="v133-hp-hl-item">Sigiriya – Sri Lankas ikoniske klippefæstning | Oplev det imponerende Sigiriya, hvor en kongelig fæstning fra det 5. århundrede troner 200 meter over det omkringliggende landskab. Udforsk de historiske ruiner, smukke vandhaver og farverige fresker på et af Sri Lankas mest spektakulære UNESCO-verdensarvssteder.</div>
+          <div class="v133-hp-hl-item">Safari blandt vilde elefanter | Tag på privat jeepsafari i Minneriya Nationalpark, hvor vilde elefanter færdes frit gennem det tropiske landskab. Oplev Sri Lankas fascinerende dyreliv på nært hold, med mulighed for at se elefantflokke samles omkring parkens store sø.</div>
+          <div class="v133-hp-hl-item">Kandy og Sri Lankas kulturelle arv | Udforsk den historiske kongeby Polonnaruwa med dens ældgamle paladser, buddhistiske templer og imponerende stenskulpturer. I Kandy venter det berømte Tandtempel, et af buddhismens mest betydningsfulde helligsteder, hvor en relikvie fra Buddha opbevares.</div>
+          <div class="v133-hp-hl-item">Teplantager og en af verdens smukkeste togrejser | Rejs gennem Sri Lankas grønne højland, hvor endeløse teplantager, bjergskråninger og charmerende kolonitidsarkitektur præger landskabet. Besøg en traditionel tefabrik, og oplev den berømte togrute fra Nanu Oya til Demodara med spektakulære udsigter undervejs.</div>
+          <div class="v133-hp-hl-item">Kolonial charme og strandliv ved Det Indiske Ocean | Gå på opdagelse i Galle Forts stemningsfulde gader, hvor hollandsk kolonialarkitektur, små butikker og historiske fæstningsværker møder havet. Afslut rejsen med tre afslappende nætter på The Fortress Resort &amp; Spa ved Koggala, direkte ud til Sri Lankas smukke sydkyst.</div>
+        </div>
+      </div>
+      <div class="v133-hp-info">
+        <div class="v133-hp-info-col">
+          <div class="ilbl">Lokation</div>
+          <div class="ival">Sri Lanka</div>
+        </div>
+        <div class="v133-hp-info-col">
+          <div class="ilbl">Transfer</div>
+          <div class="ival">Inkluderet · ca. 16 timer totalt</div>
+        </div>
+      </div>
+    </div>
+    <div class="hotel-panel v133-hp v133-hp--rundrejse" data-panel="1" id="hotel-varu-by-atmosphere">
       <div class="v133-hp-hero">
         <img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2026/08/VARU-1.webp" alt="VARU by Atmosphere">
         <div class="v133-hp-hero-content">
@@ -3898,7 +4025,7 @@ body.is-confirmation-mode .sticky-cta{
           <div class="v133-hp-villa--stay">
             <div class="stay-name">Water Villa</div>
             <div class="stay-meal">Varu Plan All-Inclusive</div>
-            <div class="stay-meta">9 nætter · 15. – 24. januar</div>
+            <div class="stay-meta">4 nætter · 24. – 28. januar</div>
             <div class="stay-links">
               <a href="https://varu-atmosphere.com/en/our-villas/water-villa" target="_blank" rel="noopener">Se indkvartering →</a>
               <a href="https://maldivia.dk/wp-content/uploads/2026/08/VARUU-AI.pdf" target="_blank" rel="noopener">Se forplejning →</a>
@@ -3982,120 +4109,6 @@ body.is-confirmation-mode .sticky-cta{
         <div class="v133-hp-info-col">
           <div class="ilbl">Website</div>
           <div class="ival"><a href="https://varu-atmosphere.com/en" target="_blank">Udforsk VARU</a></div>
-        </div>
-      </div>
-    </div>
-    <div class="hotel-panel v133-hp v133-hp--rundrejse" data-panel="1" id="hotel-rundrejse-sri-lanka">
-      <div class="v133-hp-hero">
-        <img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2026/11/SIGIRIYA-scaled.jpg" alt="Rundrejse | Sri Lanka">
-        <div class="v133-hp-hero-content">
-          <div class="loc">Sri Lanka</div>
-          <h2 class="name">Rundrejse | Sri Lanka</h2>
-          <div class="meta">★★★★</div>
-        </div>
-      </div>
-      <div class="v133-hp-gallery">
-        <a href="https://maldivia.dk/wp-content/uploads/2026/11/TRAIN.jpg" target="_blank"><img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2026/11/TRAIN.jpg" alt=""></a>
-        <a href="https://maldivia.dk/wp-content/uploads/2026/11/SAFARI2-scaled.webp" target="_blank"><img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2026/11/SAFARI2-scaled.webp" alt=""></a>
-        <a href="https://maldivia.dk/wp-content/uploads/2026/11/BEACH.webp" target="_blank"><img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2026/11/BEACH.webp" alt=""></a>
-        <a href="https://maldivia.dk/wp-content/uploads/2026/11/SAFARI.webp" target="_blank"><img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2026/11/SAFARI.webp" alt=""></a>
-      </div>
-      <div class="v133-hp-body">
-        <div class="v133-hp-booking">
-          <div class="v133-hp-eyebrow-row">
-            <div class="v133-hp-eyebrow">Detaljer for opholdet</div>
-            <div class="v133-hp-stay">15. jan — 24. jan 2027 · 9 nætter</div>
-          </div>
-          <div class="v133-hp-villa--stay">
-            <div class="stay-name">Sri Lanka Rundrejse</div>
-            <div class="stay-meal">Morgenmad</div>
-            <div class="stay-meta">4 nætter · 24. – 28. januar</div>
-          </div>
-          <div class="v133-hp-villa--stay v133-hp-villa--alt">
-            <div class="stay-row">
-              <div class="stay-row-info">
-                <div class="stay-name">Sri Lanka Rundrejse</div>
-                <div class="stay-meal">Halvpension</div>
-              </div>
-              <div class="stay-surcharge">
-                <span class="surcharge-amt">+ DKK 5.500</span>
-                <span class="surcharge-lbl">Tillæg</span>
-              </div>
-            </div>
-          </div>
-          <div class="v133-hp-curator-mini">
-            <div class="ceyebrow">Rasmus&#39; anbefaling</div>
-            <p class="cquote">Oplev Sri Lankas mange facetter på en gennemført rundrejse, der forener enestående kulturskatte, spektakulære naturoplevelser og afslappende strandliv. Fra Colombos livlige gader fortsætter rejsen til historiske kongebyer, majestætiske templer og safari blandt vilde elefanter. I det frodige højland venter bølgende teplantager, betagende bjerglandskaber og en ikonisk togrejse gennem noget af øens smukkeste natur. Rejsen rundes af med tre nætter på et elegant strandresort ved Koggala på Sri Lankas sydkyst, hvor Det Indiske Ocean danner rammen om de sidste på øen.</p>
-            <div class="csign">
-              <img src="https://maldivia.dk/wp-content/uploads/2026/05/RK-HERO-1.jpg" alt="Rasmus Kirketerp">
-              <div class="ctext">
-                <div class="cname">Rasmus Kirketerp</div>
-                <div class="crole">Travel Designer · Maldivia</div>
-              </div>
-            </div>
-          </div>
-          <div class="v170-included">
-            <div class="v170-inc-head"><span class="v170-inc-ico">✦</span><span class="v170-inc-title">Inklusioner | Sri Lanka Rundrejse</span></div>
-            <div class="v170-inc-body">- Private air-conditioned vehicle with English-speaking chauffeur guide throughout the tour<br><br>- Airport meet &amp; greet assistance upon arrival<br><br>- All fuel, parking fees and highway tolls<br><br>Entrance fees to:<br>- Gangaramaya<br>- Polonnaruwa Ancient City<br>- Minneriya National Park<br>- Sigiriya<br>- Spice Garden<br>- Temple of the Tooth Relic<br>- Tea Plantation &amp; Tea Factory<br>- Gregory Lake<br><br>- Hiriwadunna Village Safari with local lunch<br><br>- Galle Fort visit<br><br>- 1 private jeep safari in Minneriya National Park (maximum 5 persons per jeep, subject to elephant movements)<br><br>- Train tickets from Nanu Oya to Demodara (subject to availability)</div>
-          </div>
-          <div class="v175-roundtrip">
-            <div class="v175-rt-head"><span class="v175-rt-ico">🛣️</span><span class="v175-rt-title">Rundrejsens hoteller &amp; rejseplan</span></div>
-            <div class="v175-rt-list">
-              <div class="v175-rt-stop">
-                <span class="v175-rt-num">1</span>
-                <div class="v175-rt-main">
-                  <div class="v175-rt-hotel"><a class="v175-rt-link" href="https://nynehotels.com/lake-lodge/" target="_blank" rel="noopener">Lake Lodge <span class="v175-rt-arrow">↗</span></a> <span class="v175-rt-stars">4★</span></div>
-                  <div class="v175-rt-meta"><span class="v175-rt-loc">Colombo</span> · <span class="v175-rt-room">Classic Room</span> · <span class="v175-rt-nights">1 nat</span></div>
-                </div>
-              </div>
-              <div class="v175-rt-stop">
-                <span class="v175-rt-num">2</span>
-                <div class="v175-rt-main">
-                  <div class="v175-rt-hotel"><a class="v175-rt-link" href="https://aarawild.com/" target="_blank" rel="noopener">AARA Wild Sigiriya <span class="v175-rt-arrow">↗</span></a> <span class="v175-rt-stars">5★</span></div>
-                  <div class="v175-rt-meta"><span class="v175-rt-loc">Kandalama</span> · <span class="v175-rt-room">Luxury Private Suite</span> · <span class="v175-rt-nights">2 nætter</span></div>
-                </div>
-              </div>
-              <div class="v175-rt-stop">
-                <span class="v175-rt-num">3</span>
-                <div class="v175-rt-main">
-                  <div class="v175-rt-hotel"><a class="v175-rt-link" href="https://www.theva.lk/" target="_blank" rel="noopener">Theva Residency <span class="v175-rt-arrow">↗</span></a> <span class="v175-rt-stars">4★</span></div>
-                  <div class="v175-rt-meta"><span class="v175-rt-loc">Kandy</span> · <span class="v175-rt-room">Luxury Suite</span> · <span class="v175-rt-nights">1 nat</span></div>
-                </div>
-              </div>
-              <div class="v175-rt-stop">
-                <span class="v175-rt-num">4</span>
-                <div class="v175-rt-main">
-                  <div class="v175-rt-hotel"><a class="v175-rt-link" href="https://lakegregory.w15.lk/" target="_blank" rel="noopener">W15 Lake Gregory <span class="v175-rt-arrow">↗</span></a> <span class="v175-rt-stars">4★</span></div>
-                  <div class="v175-rt-meta"><span class="v175-rt-loc">Nuwara Eliya</span> · <span class="v175-rt-room">Deluxe Lake View</span> · <span class="v175-rt-nights">2 nætter</span></div>
-                </div>
-              </div>
-              <div class="v175-rt-stop">
-                <span class="v175-rt-num">5</span>
-                <div class="v175-rt-main">
-                  <div class="v175-rt-hotel"><a class="v175-rt-link" href="https://www.fortressresortandspa.com/" target="_blank" rel="noopener">The Fortress Resort &amp; Spa <span class="v175-rt-arrow">↗</span></a> <span class="v175-rt-stars">5★</span></div>
-                  <div class="v175-rt-meta"><span class="v175-rt-loc">Koggala</span> · <span class="v175-rt-room">Ocean Room</span> · <span class="v175-rt-nights">3 nætter</span></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="v133-hp-highlights">
-          <div class="v133-hp-eyebrow">Højdepunkter</div>
-          <div class="v133-hp-hl-item">Sigiriya – Sri Lankas ikoniske klippefæstning | Oplev det imponerende Sigiriya, hvor en kongelig fæstning fra det 5. århundrede troner 200 meter over det omkringliggende landskab. Udforsk de historiske ruiner, smukke vandhaver og farverige fresker på et af Sri Lankas mest spektakulære UNESCO-verdensarvssteder.</div>
-          <div class="v133-hp-hl-item">Safari blandt vilde elefanter | Tag på privat jeepsafari i Minneriya Nationalpark, hvor vilde elefanter færdes frit gennem det tropiske landskab. Oplev Sri Lankas fascinerende dyreliv på nært hold, med mulighed for at se elefantflokke samles omkring parkens store sø.</div>
-          <div class="v133-hp-hl-item">Kandy og Sri Lankas kulturelle arv | Udforsk den historiske kongeby Polonnaruwa med dens ældgamle paladser, buddhistiske templer og imponerende stenskulpturer. I Kandy venter det berømte Tandtempel, et af buddhismens mest betydningsfulde helligsteder, hvor en relikvie fra Buddha opbevares.</div>
-          <div class="v133-hp-hl-item">Teplantager og en af verdens smukkeste togrejser | Rejs gennem Sri Lankas grønne højland, hvor endeløse teplantager, bjergskråninger og charmerende kolonitidsarkitektur præger landskabet. Besøg en traditionel tefabrik, og oplev den berømte togrute fra Nanu Oya til Demodara med spektakulære udsigter undervejs.</div>
-          <div class="v133-hp-hl-item">Kolonial charme og strandliv ved Det Indiske Ocean | Gå på opdagelse i Galle Forts stemningsfulde gader, hvor hollandsk kolonialarkitektur, små butikker og historiske fæstningsværker møder havet. Afslut rejsen med tre afslappende nætter på The Fortress Resort &amp; Spa ved Koggala, direkte ud til Sri Lankas smukke sydkyst.</div>
-        </div>
-      </div>
-      <div class="v133-hp-info">
-        <div class="v133-hp-info-col">
-          <div class="ilbl">Lokation</div>
-          <div class="ival">Sri Lanka</div>
-        </div>
-        <div class="v133-hp-info-col">
-          <div class="ilbl">Transfer</div>
-          <div class="ival">Inkluderet · ca. 16 timer totalt</div>
         </div>
       </div>
     </div>
@@ -4271,7 +4284,7 @@ body.is-confirmation-mode .sticky-cta{
 
 </section><!-- /trip-section #sri-lanka-maldiverne -->
 
-<script type="application/json" id="mldv-booking-data">{"customerName":"Cassandra Bryde","customerEmail":"Cassandrabryde95@gmail.com","customerPhone":"","adults":2,"teenagers":0,"children":0,"infants":0,"teenagerAges":"","childrenAges":"","infantAges":"","sigName":"Rasmus Kirketerp","sigEmail":"rk@maldivia.dk","sigPhone":"+45 71 74 72 70","language":"da","bookingEndpoint":"https://formspree.io/f/meewjdoz","trips":[{"idx":0,"destination":"Sri Lanka & Maldiverne","monthYear":"januar 2027","dateRange":"14. januar 2027 — 29. januar 2027","dateEnd":"2027-01-29","nights":"13 nætter / 15 dage","currency":"DKK","isRoundTrip":true,"priceTotal":"107.500","priceTotalFmt":"107.500","route":[{"hotel":"","city":"Sri Lanka","nights":9},{"hotel":"","city":"Maldiverne","nights":4}],"flight":{"included":{"label":"Emirates · Economy Class","carrier":"Emirates","cabin":"Economy Class","fromCity":"København"},"alt":null},"hotels":[{"id":"hotel-1793957247246-uzi6x","name":"VARU by Atmosphere","location":"North Malé Atoll","rates":[{"idx":0,"room":"Water Villa","mealPlan":"Varu Plan All-Inclusive","total":"107500","totalFmt":"107.500","included":true}]},{"id":"hotel-1793957381964-qu660","name":"Rundrejse | Sri Lanka","location":"Sri Lanka","rates":[{"idx":0,"room":"Sri Lanka Rundrejse","mealPlan":"Morgenmad","total":"107500","totalFmt":"107.500","included":true},{"idx":1,"room":"Sri Lanka Rundrejse","mealPlan":"Halvpension","total":"113000","totalFmt":"113.000","included":false}]}]}]}</script>
+<script type="application/json" id="mldv-booking-data">{"customerName":"Cassandra Bryde","customerEmail":"Cassandrabryde95@gmail.com","customerPhone":"","adults":2,"teenagers":0,"children":0,"infants":0,"teenagerAges":"","childrenAges":"","infantAges":"","sigName":"Rasmus Kirketerp","sigEmail":"rk@maldivia.dk","sigPhone":"+45 71 74 72 70","language":"da","bookingEndpoint":"https://formspree.io/f/meewjdoz","trips":[{"idx":0,"destination":"Sri Lanka & Maldiverne","monthYear":"januar 2027","dateRange":"14. januar 2027 — 29. januar 2027","dateEnd":"2027-01-29","nights":"13 nætter / 15 dage","currency":"DKK","isRoundTrip":true,"priceTotal":"107.500","priceTotalFmt":"107.500","route":[{"hotel":"","city":"Sri Lanka","nights":9},{"hotel":"","city":"Maldiverne","nights":4}],"flight":{"included":{"label":"Emirates · Economy Class","carrier":"Emirates","cabin":"Economy Class","fromCity":"København"},"alt":null},"hotels":[{"id":"hotel-1793957381964-qu660","name":"Rundrejse | Sri Lanka","location":"Sri Lanka","rates":[{"idx":0,"room":"Sri Lanka Rundrejse","mealPlan":"Morgenmad","total":"107500","totalFmt":"107.500","included":true},{"idx":1,"room":"Sri Lanka Rundrejse","mealPlan":"Halvpension","total":"113000","totalFmt":"113.000","included":false}]},{"id":"hotel-1793957247246-uzi6x","name":"VARU by Atmosphere","location":"North Malé Atoll","rates":[{"idx":0,"room":"Water Villa","mealPlan":"Varu Plan All-Inclusive","total":"107500","totalFmt":"107.500","included":true}]}]}]}</script>
 
 <!-- ════ V130 BOOKING MODAL ════ -->
 <div id="mldv-booking-modal" class="mldv-bm" hidden role="dialog" aria-modal="true" aria-labelledby="mldv-bm-title">
