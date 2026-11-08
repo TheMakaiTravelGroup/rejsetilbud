@@ -873,6 +873,7 @@ header{
 .leg-times{font-family:var(--ff-display);font-size:23px;font-weight:600;color:var(--ink);line-height:1;margin-bottom:3px;}
 .leg-times .plus1{font-size:11px;vertical-align:super;color:var(--gold);font-family:var(--ff-ui);font-weight:500;}
 .leg-meta{font-family:var(--ff-ui);font-size:11px;color:var(--ink-lt);letter-spacing:0.03em;}
+.leg-cabin-note{font-family:var(--ff-ui);font-size:10px;color:var(--gold-dk,#7a6849);font-weight:600;letter-spacing:0.03em;margin-top:2px;}
 .flight-connector{display:flex;align-items:center;gap:10px;margin:10px 0 14px;}
 .connector-line{flex:1;height:1px;background:repeating-linear-gradient(90deg,var(--sand-deep) 0,var(--sand-deep) 5px,transparent 5px,transparent 10px);}
 .connector-label{font-family:var(--ff-ui);font-size:10px;color:var(--ink-lt);letter-spacing:0.04em;white-space:nowrap;}
@@ -2503,7 +2504,7 @@ html{scroll-behavior:smooth;}
 .v154-table tbody tr:nth-child(even){background:rgba(255,255,255,0.03);}
 /* V154.3: navne-kolonne bredere + mindre skrift så lange navne står fuldt.
    Cream-farve så navnene lyser op mod den mørke grønne bund. */
-.v154-td-name{padding:16px 16px 16px 0 !important;font-family:var(--ff-display);font-size:14px;font-weight:600;color:#ede5d1;white-space:nowrap;line-height:1.25;}
+.v154-td-name{padding:16px 16px 16px 0 !important;font-family:var(--ff-display);font-size:14px;font-weight:600;color:#ede5d1;line-height:1.25;white-space:normal;overflow-wrap:break-word;word-break:normal;}
 .v154-bar{position:relative;height:1.5px;background:rgba(196,180,154,0.22);border-radius:2px;width:100%;}
 .v154-bar--empty{opacity:0.4;}
 .v154-fill{position:absolute;left:0;top:0;height:1.5px;background:linear-gradient(90deg,rgba(196,180,154,0.5),var(--gold-lt));border-radius:2px;}
@@ -2874,12 +2875,20 @@ html[lang="en"] .v133-hp-villa.included .v133-hp-villa-name::before{content:'★
   letter-spacing:0.18em;text-transform:uppercase;
   opacity:0.85;
 }
+/* V175: headline stay-row (navn + INKLUDERET-mærkat) + inkluderet-badge */
+.v133-hp-villa--stay .stay-row{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;}
+.v133-hp-villa--stay .stay-row-info{flex:1;min-width:0;}
+.v133-hp-villa--stay .stay-surcharge{flex:0 0 auto;text-align:right;display:flex;flex-direction:column;align-items:flex-end;gap:1px;}
+.v133-hp-villa--stay .surcharge-lbl{font-family:var(--ff-ui);font-size:8px;font-weight:500;color:var(--gold);letter-spacing:0.18em;text-transform:uppercase;opacity:0.85;}
+.v133-hp-villa--stay .stay-included .surcharge-lbl{font-size:9px;opacity:1;}
 @media (max-width:600px){
   .v133-hp-villa--stay .stay-name{font-size:17px;}
   .v133-hp-villa--stay .stay-meal{font-size:12.5px;}
   .v133-hp-villa--stay .stay-meta{font-size:12.5px;}
   .v133-hp-villa--alt .stay-row{flex-direction:column;gap:6px;}
   .v133-hp-villa--alt .stay-surcharge{text-align:left;align-items:flex-start;}
+  .v133-hp-villa--stay .stay-row{flex-direction:row;}
+  .v133-hp-villa--stay .stay-surcharge{text-align:right;align-items:flex-end;}
 }
 /* BOOK button — gradient gold for headline (matches V145 favorit CTA),
    outlined gold for alternatives (lighter visual weight). */
@@ -2953,6 +2962,40 @@ html[lang="en"] .v133-hp-villa.included .v133-hp-villa-name::before{content:'★
 .v133-hp-curator-mini .csign .ctext{min-width:0;}
 .v133-hp-curator-mini .csign .ctext .cname{font-family:var(--ff-display);font-size:15px;font-weight:500;color:var(--ink);letter-spacing:-0.005em;}
 .v133-hp-curator-mini .csign .ctext .crole{font-family:var(--ff-ui);font-size:9.5px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-top:3px;}
+
+/* V170: "Inkluderet på dette ophold" — fremhævet boks efter anbefalingen.
+   Gold-accent, let baggrund, editorielt look der matcher curator-boksen. */
+.v170-included{margin-top:20px;background:linear-gradient(135deg,#fdfaf2 0%,#f7f0e0 100%);
+  border:1px solid var(--gold);border-left:3px solid var(--gold);border-radius:3px;padding:22px 26px 20px;position:relative;overflow:hidden;}
+.v170-included::before{content:'\2726';position:absolute;top:-10px;right:16px;font-size:72px;line-height:1;color:var(--gold);opacity:0.1;pointer-events:none;}
+.v170-inc-head{display:flex;align-items:center;gap:10px;margin-bottom:14px;position:relative;}
+.v170-inc-ico{color:var(--gold);font-size:14px;}
+.v170-inc-title{font-family:var(--ff-ui);font-size:11px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold-dk,#9a7b2e);}
+.v170-inc-body{font-family:var(--ff-body);font-size:15px;line-height:1.7;color:var(--ink);position:relative;}
+@media(max-width:768px){ .v170-included{padding:18px 20px 16px;margin-top:16px;} }
+
+/* V175: RUNDREJSE-ophold — samme familie som v170, matcher guld-æstetikken */
+.v175-roundtrip{margin-top:20px;background:linear-gradient(135deg,#fdfaf2 0%,#f7f0e0 100%);
+  border:1px solid var(--gold);border-left:3px solid var(--gold);border-radius:3px;padding:22px 26px 20px;position:relative;overflow:hidden;}
+.v175-rt-logo{position:absolute;top:18px;right:20px;width:38px;height:38px;opacity:0.95;pointer-events:none;}
+.v175-rt-head{display:flex;align-items:center;margin-bottom:16px;position:relative;
+  /* flugt med hotelnavnene: ryk ind svarende til nummer-cirklen (26px) + gap (14px) */
+  padding-left:40px;}
+.v175-rt-title{font-family:var(--ff-ui);font-size:11px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold-dk,#9a7b2e);}
+.v175-rt-list{display:flex;flex-direction:column;gap:0;position:relative;}
+.v175-rt-stop{display:flex;align-items:flex-start;gap:14px;padding:12px 0;border-bottom:1px solid rgba(154,123,46,0.14);}
+.v175-rt-stop:last-child{border-bottom:none;}
+.v175-rt-num{flex:0 0 26px;width:26px;height:26px;border-radius:50%;background:var(--gold);color:#fff;
+  font-family:var(--ff-ui);font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:1px;}
+.v175-rt-main{flex:1;min-width:0;}
+.v175-rt-hotel{font-family:var(--ff-body);font-size:15px;font-weight:600;color:var(--ink);line-height:1.35;}
+.v175-rt-stars{color:var(--gold-dk,#9a7b2e);font-size:13px;white-space:nowrap;}
+.v175-rt-meta{font-family:var(--ff-ui);font-size:12px;color:var(--ink-mid);margin-top:2px;letter-spacing:0.02em;}
+.v175-rt-nights{font-weight:600;color:var(--gold-dk,#9a7b2e);}
+.v175-rt-link{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--gold);transition:color .15s;}
+.v175-rt-link:hover{color:var(--gold-dk,#9a7b2e);}
+.v175-rt-arrow{font-size:11px;color:var(--gold-dk,#9a7b2e);}
+@media(max-width:768px){ .v175-roundtrip{padding:18px 20px 16px;margin-top:16px;} .v175-rt-stop{gap:11px;} }
 
 /* V140: trip-level Rasmus' anbefaling — now matches hotel-panel edges
    (no max-width constraint), with a gold accent top stripe + more
@@ -3091,7 +3134,23 @@ html[lang="en"] .v133-hp-villa.included .v133-hp-villa-name::before{content:'★
 .mldv-bm-field label{display:block;font-family:var(--ff-ui);font-size:10.5px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-lt);margin-bottom:6px;}
 .mldv-bm input[type=text],.mldv-bm input[type=email],.mldv-bm input[type=tel],.mldv-bm input[type=date],.mldv-bm select,.mldv-bm textarea{width:100%;padding:13px 16px;font-family:var(--ff-body);font-size:15px;color:var(--ink);background:var(--white);border:1px solid var(--sand-deep);border-radius:3px;transition:all 0.2s;outline:none;-webkit-appearance:none;appearance:none;}
 .mldv-bm input:focus,.mldv-bm select:focus,.mldv-bm textarea:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(157,134,101,0.15);}
-.mldv-bm select{font-family:var(--ff-ui);font-size:13.5px;letter-spacing:0.02em;color:var(--ink);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='%239d8665' d='M4 6l4 4 4-4'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;background-size:16px;padding-right:42px;cursor:pointer;}
+.mldv-bm select{font-family:var(--ff-ui);font-size:13.5px;letter-spacing:0.02em;color:var(--ink);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='%239d8665' d='M4 6l4 4 4-4'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;background-size:16px;padding-right:42px;cursor:pointer;
+  /* V175: lange hotelnavne må aldrig sprænge formens kant — select krymper korrekt og klipper med ellipsis i stedet */
+  max-width:100%;box-sizing:border-box;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;}
+.mldv-bm-field{min-width:0;}
+/* V175: custom 2-linjers dropdown — native <option> kan ikke wrappe, så vi
+   bygger en div-baseret dropdown der aldrig går ud over skærmkanten. */
+.mldv-dd{position:relative;width:100%;}
+.mldv-dd-btn{width:100%;box-sizing:border-box;text-align:left;background:var(--white);border:1px solid var(--sand-deep);border-radius:3px;padding:12px 42px 12px 16px;font-family:var(--ff-ui);color:var(--ink);cursor:pointer;position:relative;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='%239d8665' d='M4 6l4 4 4-4'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;background-size:16px;}
+.mldv-dd-btn:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(157,134,101,0.15);}
+.mldv-dd-l1{font-size:14px;font-weight:600;line-height:1.3;color:var(--ink);word-break:break-word;}
+.mldv-dd-l2{font-size:12px;line-height:1.35;color:var(--ink-mid);margin-top:2px;word-break:break-word;}
+.mldv-dd-menu{display:none;position:absolute;top:calc(100% + 4px);left:0;right:0;z-index:50;background:var(--white);border:1px solid var(--sand-deep);border-radius:4px;box-shadow:0 10px 28px rgba(0,0,0,0.14);max-height:320px;overflow-y:auto;}
+.mldv-dd.open .mldv-dd-menu{display:block;}
+.mldv-dd-opt{padding:11px 16px;cursor:pointer;border-bottom:1px solid rgba(157,134,101,0.12);}
+.mldv-dd-opt:last-child{border-bottom:none;}
+.mldv-dd-opt:hover,.mldv-dd-opt.sel{background:#faf6ec;}
 .mldv-bm textarea{min-height:80px;resize:vertical;font-family:var(--ff-body);line-height:1.55;}
 .mldv-bm-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
 .mldv-bm-grid-3{display:grid;grid-template-columns:1fr 2fr;gap:14px;}
@@ -3099,6 +3158,7 @@ html[lang="en"] .v133-hp-villa.included .v133-hp-villa-name::before{content:'★
 .mldv-bm-traveller .tlbl{font-family:var(--ff-ui);font-size:10px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;}
 .mldv-bm-submit{display:block;width:100%;font-family:var(--ff-ui);font-size:13px;font-weight:500;color:var(--white);background:var(--gold);text-decoration:none;padding:18px 24px;border:none;border-radius:3px;letter-spacing:0.16em;text-transform:uppercase;cursor:pointer;transition:all 0.2s;margin-top:8px;}
 .mldv-bm-submit:hover{background:var(--gold-dk);transform:translateY(-1px);box-shadow:0 12px 24px rgba(157,134,101,0.3);}
+.mldv-bm-reserve{font-family:var(--ff-body);font-size:13.5px;line-height:1.6;color:var(--ink);background:#faf6ec;border:1px solid var(--gold);border-left:3px solid var(--gold);border-radius:4px;padding:14px 18px;margin-bottom:16px;}
 .mldv-bm-legal{font-family:var(--ff-body);font-size:12.5px;color:var(--ink-lt);line-height:1.55;margin-top:20px;text-align:center;}
 .mldv-bm-legal strong{color:var(--ink);font-weight:500;}
 .mldv-bm-success{padding:64px 48px;text-align:center;}
@@ -3564,7 +3624,7 @@ body.is-confirmation-mode .sticky-cta{
     <div class="hero-content">
       <div class="hero-eyebrow">Skræddersyet rejsetilbud</div>
       <h1 class="hero-title">Maldiverne<br><em>jan / feb 2027</em></h1>
-      <div class="hero-meta"><span class="nowrap">28. januar 2027 — 06. februar 2027</span> <span class="hero-meta-sep">·</span> <span class="nowrap">7 nætter / 9 dage</span> <span class="hero-meta-sep">·</span> <span class="nowrap">2 voksne</span></div>
+      <div class="hero-meta"><span class="nowrap">30. januar 2027 — 9. februar 2027</span> <span class="hero-meta-sep">·</span> <span class="nowrap">8 nætter / 10 dage</span> <span class="hero-meta-sep">·</span> <span class="nowrap">2 voksne</span></div>
     </div>
     <div class="hero-scroll">
       <div class="scroll-line"></div>
@@ -3582,27 +3642,27 @@ body.is-confirmation-mode .sticky-cta{
   </div>
 
   <div class="v129-price-overview reveal">
-    <h2 class="v129-pr-title">Skræddersyede rejsetilbud til Louise — <span class="accent">5 hoteller</span></h2>
-    <p class="v129-pre-intro">Jeg har foreslået dig de 5 hoteller baseret på høj kvalitet, favorable specialtilbud og value for money.</p>
+    <h2 class="v129-pr-title">Skræddersyede rejsetilbud til Louise — <span class="accent">3 hoteller</span></h2>
+    <p class="v129-pre-intro">Jeg har foreslået dig de 3 hoteller baseret på høj kvalitet, favorable specialtilbud og value for money.</p>
     <div class="v145-favorit">
-      <div class="v145-favorit-image" style="background-image:url('https://maldivia.dk/wp-content/uploads/2026/08/SFF-1.webp')">
-        <div class="v145-favorit-loc">Shaviyani Atoll</div>
+      <div class="v145-favorit-image" style="background-image:url('https://maldivia.dk/wp-content/uploads/2026/07/NH-HERO.jpg')">
+        <div class="v145-favorit-loc">Gaafu Dhaalu Atoll</div>
       </div>
       <div class="v145-favorit-content">
-        <div class="v145-favorit-stars">★★★★★</div>
-        <h3 class="v145-favorit-name">Sirru Fen Fushi</h3>
-        <div class="v145-favorit-villa">Beach Sunrise Villa with Pool · Halvpension</div>
+        <div class="v145-favorit-stars">★★★★+</div>
+        <h3 class="v145-favorit-name">NH Collection Havodda</h3>
+        <div class="v145-favorit-villa">Sunrise Beach Villa · Helpension</div>
         <div class="v145-favorit-quote">
           <span class="qlbl">Hvorfor vi anbefaler dette</span>
-          Sirru Fen Fushi Private Lagoon Resort er et eksklusivt 5-stjernet luksusresort i den uberørte Shaviyani-atol, cirka 55 minutters naturskøn tur med vandflyver fra lufthavnen i Malé. Øens navn betyder…
-          <a href="#hotel-sirru-fen-fushi" class="v145-favorit-readmore">Læs hele anbefalingen →</a>
+          NH Collection Maldives Havodda Resort er et visionært og charmerende retreat, beliggende på en af de mest uspolerede øer i Gaafu Dhaalu-atollen, blot et stenkast fra ækvator. Her smelter en idyllisk…
+          <a href="#hotel-nh-collection-havodda" class="v145-favorit-readmore">Læs hele anbefalingen →</a>
         </div>
         <div class="v145-favorit-divider"></div>
-        <div class="v145-favorit-meta"><span>7 nætter</span><span class="sep">·</span><span>2 voksne</span></div>
+        <div class="v145-favorit-meta"><span>8 nætter</span><span class="sep">·</span><span>2 voksne</span></div>
         <div class="v145-favorit-destination">Maldiverne</div>
         <div class="v145-favorit-price-row">
-          <div class="v145-favorit-price-lbl">Rejsens pris</div>
-          <div class="v145-favorit-price-num"><span class="v145-favorit-price-cur">DKK</span>69.500</div>
+          <div class="v145-favorit-price-lbl">Pris fra</div>
+          <div class="v145-favorit-price-num"><span class="v145-favorit-price-cur">DKK</span>72.500</div>
         </div>
         <button type="button" class="v145-favorit-book" onclick="if(window.mldvOpenBooking)mldvOpenBooking({trip:0,hotel:1,rate:0})">Bestil →</button>
       </div>
@@ -3610,19 +3670,19 @@ body.is-confirmation-mode .sticky-cta{
     <div class="v138-range">
       <div class="v138-range-col">
         <div class="v138-range-lbl">Fra</div>
-        <div class="v138-range-price"><span class="cur">DKK</span>58.000</div>
+        <div class="v138-range-price"><span class="cur">DKK</span>72.500</div>
         <div class="v138-range-detail"><span class="v138-range-hotel">NH Collection Havodda</span> · Sunrise Beach Villa</div>
-        <div class="v138-range-meal">Halvpension</div>
+        <div class="v138-range-meal">Helpension</div>
       </div>
       <div class="v138-range-arrow">→</div>
       <div class="v138-range-col">
         <div class="v138-range-lbl">Op til</div>
-        <div class="v138-range-price"><span class="cur">DKK</span>77.000</div>
+        <div class="v138-range-price"><span class="cur">DKK</span>87.500</div>
         <div class="v138-range-detail"><span class="v138-range-hotel">Sun Siyam Vilu Reef</span> · Grand Beach Villa with Pool</div>
-        <div class="v138-range-meal">All Inclusive</div>
+        <div class="v138-range-meal">All-Inclusive — Dine Around</div>
       </div>
     </div>
-    <div class="v138-range-foot">5 hoteller · <a href="#section-hoteller">se alle nedenfor ↓</a></div>
+    <div class="v138-range-foot">3 hoteller · <a href="#section-hoteller">se alle nedenfor ↓</a></div>
     <div class="v138-trust-row">
       <div class="v138-trust-card">
         <span class="ck">✓</span>
@@ -3696,79 +3756,22 @@ body.is-confirmation-mode .sticky-cta{
         <div class="v129-villa-box">
           <div class="vlbl">Værelsestyper på dette hotel</div>
           <div class="v129-vrow incl">
-            <div class="vinfo"><span class="vname">Sunrise Beach Villa</span><span class="vmeal">Halvpension</span></div>
-            <span class="vprice">DKK 58.000</span>
-          </div>
-          <div class="v129-vrow">
             <div class="vinfo"><span class="vname">Sunrise Beach Villa</span><span class="vmeal">Helpension</span></div>
-            <span class="vprice">DKK 63.500</span>
+            <span class="vprice">DKK 72.500</span>
           </div>
-          <div class="v129-vrow">
-            <div class="vinfo"><span class="vname">Sunrise Beach Villa</span><span class="vmeal">All Inclusive</span></div>
-            <span class="vprice">DKK 73.500</span>
+          <div class="v129-vrow incl">
+            <div class="vinfo"><span class="vname">Sunrise Beach Villa</span><span class="vmeal">All-Inclusive</span></div>
+            <span class="vprice">DKK 72.500</span>
           </div>
         </div>
         <div class="v129-feat-btns">
-          <button type="button" class="v129-feat-btn-book" onclick="if(window.mldvOpenBooking)mldvOpenBooking({trip:0,hotel:0,rate:0})">Bestil →</button>
+          <button type="button" class="v129-feat-btn-book" onclick="if(window.mldvOpenBooking)mldvOpenBooking({trip:0,hotel:1,rate:0})">Bestil →</button>
           <a href="#hotel-nh-collection-havodda" class="v129-feat-btn-detail">Læs mere om rejseforslaget ↓</a>
         </div>
       </div>
     </div>
     <div class="v129-alts-lbl">Eller vælg et alternativ</div>
     <div class="v129-alts-grid">
-      <div class="v129-alt recommended">
-        <span class="v129-pill-badge green">Rasmus&#39; anbefaling</span>
-        <div class="v129-alt-img">
-          <img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2026/08/SFF-1.webp" alt="">
-        </div>
-        <div class="v129-alt-body">
-          <h4 class="v129-alt-name">Sirru Fen Fushi</h4>
-          <div class="v129-alt-loc-row">
-            <span class="v129-alt-loc">Shaviyani Atoll</span>
-            <span class="v129-alt-stars-inline">★★★★★</span>
-          </div>
-          <div class="v129-alt-hl">
-            <div class="hlrow">Resortets 120 villaer har alle deres egen private plunge pool og tilbydes i tre unikke kategorier: klassiske strandvillaer omgivet af tæt vegetationsafskærmning, luksuriøse overvandsvillaer hevet over den turkise lagune samt eksklusive safari-inspirerede Tented Jungle Villas placeret i øens grønne indre. Boligerne er indrettet med boheme-chic elegance, kobberbadekar, åbne udendørsbadeværelser og personlig 24-timers butler-service.  </div>
-            <div class="hlrow">Restauranterne byder på et rigt kulinarisk udvalg fordelt på flere spisekoncepter og barer. Raha Market danner rammen om afslappede internationale buffeter og temaaftener direkte på strandkanten, mens Azure serverer frisk seafood og fine dining ved havet. Kata byder på overvands-japansk fusion og en stemningsfuld rooftop-bar, og den bambusbyggede beach club Onu Onu er det naturlige samlingspunkt til forfriskninger og cocktails.  </div>
-          </div>
-          <div class="v129-alt-pricebox">
-            <div class="lbl">Fra</div>
-            <div class="pr"><span class="cur">DKK</span>69.500</div>
-            <div class="vname">Beach Sunrise Villa with Pool</div>
-            <div class="vmeal">Halvpension</div>
-          </div>
-          <div class="v129-alt-btns">
-            <button type="button" class="v129-alt-btn-book" onclick="if(window.mldvOpenBooking)mldvOpenBooking({trip:0,hotel:1,rate:0})">Bestil →</button>
-            <a href="#hotel-sirru-fen-fushi" class="v129-alt-btn-link">Se rejseforslag →</a>
-          </div>
-        </div>
-      </div>
-      <div class="v129-alt">
-        <div class="v129-alt-img">
-          <img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2026/08/VARU-1.webp" alt="">
-        </div>
-        <div class="v129-alt-body">
-          <h4 class="v129-alt-name">VARU by Atmosphere</h4>
-          <div class="v129-alt-loc-row">
-            <span class="v129-alt-loc">North Malé Atoll</span>
-            <span class="v129-alt-stars-inline">★★★★+</span>
-          </div>
-          <div class="v129-alt-hl">
-            <div class="hlrow">Resortets villaer er fordelt mellem stranden og lagunen, hvor mange af enhederne er udstyret med private pools på terrassen. Strandvillaerne ligger omgivet af tropisk vegetation med direkte adgang til det kridhvide sand, mens overvandsvillaerne strækker sig ud over det turkise vand med direkte trappe ned til lagunen. Boligerne er indrettet med luftige rum, højt til loftet, moderne komfort og private udendørsarealer skabt til uforstyrret afslapning.</div>
-            <div class="hlrow">Gastronomien er et af øens centrale omdrejningspunkter med i alt fire restauranter og barer. Hovedrestauranten LIME &amp; CHILI byder på live-cooking, temaaftener og buffeter, mens à la carte-stederne tæller CHARCOAL (seafood og grill på stranden), NU (overvandsrestaurant med mediterrane retter og fisk og skaldyr) og KAAGÉ, som serverer autentiske maldiviske retter i traditionelle rammer. Drikkevareudvalget dækker alt fra klassiske drinks og vine til friskpresset juice og premium-mærker.</div>
-          </div>
-          <div class="v129-alt-pricebox">
-            <div class="lbl">Fra</div>
-            <div class="pr"><span class="cur">DKK</span>70.500</div>
-            <div class="vname">Water Villa</div>
-            <div class="vmeal">All Inclusive</div>
-          </div>
-          <div class="v129-alt-btns">
-            <button type="button" class="v129-alt-btn-book" onclick="if(window.mldvOpenBooking)mldvOpenBooking({trip:0,hotel:2,rate:0})">Bestil →</button>
-            <a href="#hotel-varu-by-atmosphere" class="v129-alt-btn-link">Se rejseforslag →</a>
-          </div>
-        </div>
-      </div>
       <div class="v129-alt">
         <div class="v129-alt-img">
           <img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2026/05/AV-1.webp" alt="">
@@ -3785,19 +3788,19 @@ body.is-confirmation-mode .sticky-cta{
           </div>
           <div class="v129-alt-pricebox">
             <div class="lbl">Fra</div>
-            <div class="pr"><span class="cur">DKK</span>71.000</div>
+            <div class="pr"><span class="cur">DKK</span>84.500</div>
             <div class="vname">Beachfront Infinity Pool Villa</div>
-            <div class="vmeal">All Inclusive</div>
+            <div class="vmeal">All-Inclusive Dine</div>
           </div>
           <div class="v129-alt-btns">
-            <button type="button" class="v129-alt-btn-book" onclick="if(window.mldvOpenBooking)mldvOpenBooking({trip:0,hotel:3,rate:0})">Bestil →</button>
+            <button type="button" class="v129-alt-btn-book" onclick="if(window.mldvOpenBooking)mldvOpenBooking({trip:0,hotel:0,rate:0})">Bestil →</button>
             <a href="#hotel-angsana-velavaru" class="v129-alt-btn-link">Se rejseforslag →</a>
           </div>
         </div>
       </div>
       <div class="v129-alt">
         <div class="v129-alt-img">
-          <img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2026/09/SSVR-1-scaled.jpg" alt="">
+          <img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2026/09/SSVR-6.jpg" alt="">
         </div>
         <div class="v129-alt-body">
           <h4 class="v129-alt-name">Sun Siyam Vilu Reef</h4>
@@ -3806,17 +3809,17 @@ body.is-confirmation-mode .sticky-cta{
             <span class="v129-alt-stars-inline">★★★★+</span>
           </div>
           <div class="v129-alt-hl">
-            <div class="hlrow">Indkvarteringen fordeler sig på 103 fritstående strand- og vandvillaer. Mange af villaerne råder over egen pool eller udendørs spabad på solterrassen, og indretningen er lys og moderne med detaljer i naturligt træ, tropiske tekstiler og store glaspartier, der lukker omgivelserne ind. Afhængigt af villakategorien er der direkte adgang til enten den kridhvide strand eller lagunens rolige, turkisblå vand.</div>
-            <div class="hlrow">Gastronomien spænder over flere forskellige koncepter. Hovedrestauranten Aqua serverer internationale buffeter med udsigt over lagunen, mens The Well Done har fokus på frisk fisk og skaldyr samt grillet kød i afslappede omgivelser direkte på stranden. På Ristorante Roma serveres italienske klassikere, mens private middage i sandet kan arrangeres for gæster, der ønsker en mere intim oplevelse.</div>
+            <div class="hlrow">Indkvarteringen består af 103 fritstående strand- og vandvillaer. Villaerne er lyst og moderne indrettet med varme træsorter, tropiske farver og store vinduespartier. Mange af villaerne har egen pool eller udendørs spabad på terrassen samt direkte adgang til enten stranden eller lagunen.</div>
+            <div class="hlrow">Resortet har flere restauranter med forskellige kulinariske profiler. Aqua serverer internationale retter som buffet, mens The Well Done har fokus på frisk fisk, skaldyr og grillede kødretter ved stranden. På Ristorante Roma serveres italienske klassikere, og der er desuden mulighed for private middage på stranden.</div>
           </div>
           <div class="v129-alt-pricebox">
             <div class="lbl">Fra</div>
-            <div class="pr"><span class="cur">DKK</span>77.000</div>
+            <div class="pr"><span class="cur">DKK</span>87.500</div>
             <div class="vname">Grand Beach Villa with Pool</div>
-            <div class="vmeal">All Inclusive</div>
+            <div class="vmeal">All-Inclusive — Dine Around</div>
           </div>
           <div class="v129-alt-btns">
-            <button type="button" class="v129-alt-btn-book" onclick="if(window.mldvOpenBooking)mldvOpenBooking({trip:0,hotel:4,rate:0})">Bestil →</button>
+            <button type="button" class="v129-alt-btn-book" onclick="if(window.mldvOpenBooking)mldvOpenBooking({trip:0,hotel:2,rate:0})">Bestil →</button>
             <a href="#hotel-sun-siyam-vilu-reef" class="v129-alt-btn-link">Se rejseforslag →</a>
           </div>
         </div>
@@ -3838,119 +3841,36 @@ body.is-confirmation-mode .sticky-cta{
             </tr></thead>
             <tbody>
               <tr>
-                <td class="v154-td-name">NH Collection Havodda</td>
-                <td><div class="v154-bar"><div class="v154-fill" style="width:68%"></div><div class="v154-mk" style="left:68%"></div></div></td>
-                <td><div class="v154-bar"><div class="v154-fill" style="width:48%"></div><div class="v154-mk" style="left:48%"></div></div></td>
-                <td><div class="v154-bar"><div class="v154-fill" style="width:93%"></div><div class="v154-mk v154-mk--sig" style="left:93%"></div></div></td>
-                <td><div class="v154-bar"><div class="v154-fill" style="width:67%"></div><div class="v154-mk" style="left:67%"></div></div></td>
-              </tr>
-              <tr>
-                <td class="v154-td-name">Sirru Fen Fushi</td>
-                <td><div class="v154-bar"><div class="v154-fill" style="width:80%"></div><div class="v154-mk v154-mk--sig" style="left:80%"></div></div></td>
-                <td><div class="v154-bar"><div class="v154-fill" style="width:53%"></div><div class="v154-mk" style="left:53%"></div></div></td>
-                <td><div class="v154-bar"><div class="v154-fill" style="width:75%"></div><div class="v154-mk" style="left:75%"></div></div></td>
-                <td><div class="v154-bar"><div class="v154-fill" style="width:72%"></div><div class="v154-mk" style="left:72%"></div></div></td>
-              </tr>
-              <tr>
-                <td class="v154-td-name">VARU by Atmosphere</td>
-                <td><div class="v154-bar"><div class="v154-fill" style="width:67%"></div><div class="v154-mk" style="left:67%"></div></div></td>
-                <td><div class="v154-bar"><div class="v154-fill" style="width:53%"></div><div class="v154-mk" style="left:53%"></div></div></td>
-                <td><div class="v154-bar"><div class="v154-fill" style="width:0%"></div><div class="v154-mk" style="left:0%"></div></div></td>
-                <td><div class="v154-bar"><div class="v154-fill" style="width:72%"></div><div class="v154-mk v154-mk--sig" style="left:72%"></div></div></td>
-              </tr>
-              <tr>
                 <td class="v154-td-name">Angsana Velavaru</td>
-                <td><div class="v154-bar"><div class="v154-fill" style="width:65%"></div><div class="v154-mk" style="left:65%"></div></div></td>
+                <td><div class="v154-bar"><div class="v154-fill" style="width:69%"></div><div class="v154-mk" style="left:69%"></div></div></td>
                 <td><div class="v154-bar"><div class="v154-fill" style="width:40%"></div><div class="v154-mk" style="left:40%"></div></div></td>
                 <td><div class="v154-bar"><div class="v154-fill" style="width:70%"></div><div class="v154-mk v154-mk--sig" style="left:70%"></div></div></td>
                 <td><div class="v154-bar"><div class="v154-fill" style="width:70%"></div><div class="v154-mk" style="left:70%"></div></div></td>
               </tr>
               <tr>
+                <td class="v154-td-name">NH Collection Havodda</td>
+                <td><div class="v154-bar"><div class="v154-fill" style="width:71%"></div><div class="v154-mk" style="left:71%"></div></div></td>
+                <td><div class="v154-bar"><div class="v154-fill" style="width:48%"></div><div class="v154-mk" style="left:48%"></div></div></td>
+                <td><div class="v154-bar"><div class="v154-fill" style="width:94%"></div><div class="v154-mk v154-mk--sig" style="left:94%"></div></div></td>
+                <td><div class="v154-bar"><div class="v154-fill" style="width:72%"></div><div class="v154-mk" style="left:72%"></div></div></td>
+              </tr>
+              <tr>
                 <td class="v154-td-name">Sun Siyam Vilu Reef</td>
-                <td><div class="v154-bar"><div class="v154-fill" style="width:68%"></div><div class="v154-mk" style="left:68%"></div></div></td>
+                <td><div class="v154-bar"><div class="v154-fill" style="width:73%"></div><div class="v154-mk" style="left:73%"></div></div></td>
                 <td><div class="v154-bar"><div class="v154-fill" style="width:46%"></div><div class="v154-mk" style="left:46%"></div></div></td>
                 <td><div class="v154-bar"><div class="v154-fill" style="width:86%"></div><div class="v154-mk v154-mk--sig" style="left:86%"></div></div></td>
-                <td><div class="v154-bar"><div class="v154-fill" style="width:68%"></div><div class="v154-mk" style="left:68%"></div></div></td>
+                <td><div class="v154-bar"><div class="v154-fill" style="width:72%"></div><div class="v154-mk" style="left:72%"></div></div></td>
               </tr>
             </tbody>
           </table>
         </div>
         <div class="v154-stack">
           <div class="v154-card">
-            <div class="v154-card-name">NH Collection Havodda</div>
-            <div class="v154-card-ax">
-              <div class="v154-card-cat">Luxury level</div>
-              <div class="v154-card-ends"><span>Moderate</span><span>Ultra-luxury</span></div>
-              <div class="v154-bar"><div class="v154-fill" style="width:68%"></div><div class="v154-mk" style="left:68%"></div></div>
-            </div>
-            <div class="v154-card-ax">
-              <div class="v154-card-cat">Fit for</div>
-              <div class="v154-card-ends"><span>Couples</span><span>Families</span></div>
-              <div class="v154-bar"><div class="v154-fill" style="width:48%"></div><div class="v154-mk" style="left:48%"></div></div>
-            </div>
-            <div class="v154-card-ax">
-              <div class="v154-card-cat">House reef</div>
-              <div class="v154-card-ends"><span>Non-existing</span><span>Superb</span></div>
-              <div class="v154-bar"><div class="v154-fill" style="width:93%"></div><div class="v154-mk v154-mk--sig" style="left:93%"></div></div>
-            </div>
-            <div class="v154-card-ax">
-              <div class="v154-card-cat">Gastronomy</div>
-              <div class="v154-card-ends"><span>Good</span><span>Outstanding</span></div>
-              <div class="v154-bar"><div class="v154-fill" style="width:67%"></div><div class="v154-mk" style="left:67%"></div></div>
-            </div>
-          </div>
-          <div class="v154-card">
-            <div class="v154-card-name">Sirru Fen Fushi</div>
-            <div class="v154-card-ax">
-              <div class="v154-card-cat">Luxury level</div>
-              <div class="v154-card-ends"><span>Moderate</span><span>Ultra-luxury</span></div>
-              <div class="v154-bar"><div class="v154-fill" style="width:80%"></div><div class="v154-mk v154-mk--sig" style="left:80%"></div></div>
-            </div>
-            <div class="v154-card-ax">
-              <div class="v154-card-cat">Fit for</div>
-              <div class="v154-card-ends"><span>Couples</span><span>Families</span></div>
-              <div class="v154-bar"><div class="v154-fill" style="width:53%"></div><div class="v154-mk" style="left:53%"></div></div>
-            </div>
-            <div class="v154-card-ax">
-              <div class="v154-card-cat">House reef</div>
-              <div class="v154-card-ends"><span>Non-existing</span><span>Superb</span></div>
-              <div class="v154-bar"><div class="v154-fill" style="width:75%"></div><div class="v154-mk" style="left:75%"></div></div>
-            </div>
-            <div class="v154-card-ax">
-              <div class="v154-card-cat">Gastronomy</div>
-              <div class="v154-card-ends"><span>Good</span><span>Outstanding</span></div>
-              <div class="v154-bar"><div class="v154-fill" style="width:72%"></div><div class="v154-mk" style="left:72%"></div></div>
-            </div>
-          </div>
-          <div class="v154-card">
-            <div class="v154-card-name">VARU by Atmosphere</div>
-            <div class="v154-card-ax">
-              <div class="v154-card-cat">Luxury level</div>
-              <div class="v154-card-ends"><span>Moderate</span><span>Ultra-luxury</span></div>
-              <div class="v154-bar"><div class="v154-fill" style="width:67%"></div><div class="v154-mk" style="left:67%"></div></div>
-            </div>
-            <div class="v154-card-ax">
-              <div class="v154-card-cat">Fit for</div>
-              <div class="v154-card-ends"><span>Couples</span><span>Families</span></div>
-              <div class="v154-bar"><div class="v154-fill" style="width:53%"></div><div class="v154-mk" style="left:53%"></div></div>
-            </div>
-            <div class="v154-card-ax">
-              <div class="v154-card-cat">House reef</div>
-              <div class="v154-card-ends"><span>Non-existing</span><span>Superb</span></div>
-              <div class="v154-bar"><div class="v154-fill" style="width:0%"></div><div class="v154-mk" style="left:0%"></div></div>
-            </div>
-            <div class="v154-card-ax">
-              <div class="v154-card-cat">Gastronomy</div>
-              <div class="v154-card-ends"><span>Good</span><span>Outstanding</span></div>
-              <div class="v154-bar"><div class="v154-fill" style="width:72%"></div><div class="v154-mk v154-mk--sig" style="left:72%"></div></div>
-            </div>
-          </div>
-          <div class="v154-card">
             <div class="v154-card-name">Angsana Velavaru</div>
             <div class="v154-card-ax">
               <div class="v154-card-cat">Luxury level</div>
               <div class="v154-card-ends"><span>Moderate</span><span>Ultra-luxury</span></div>
-              <div class="v154-bar"><div class="v154-fill" style="width:65%"></div><div class="v154-mk" style="left:65%"></div></div>
+              <div class="v154-bar"><div class="v154-fill" style="width:69%"></div><div class="v154-mk" style="left:69%"></div></div>
             </div>
             <div class="v154-card-ax">
               <div class="v154-card-cat">Fit for</div>
@@ -3969,11 +3889,34 @@ body.is-confirmation-mode .sticky-cta{
             </div>
           </div>
           <div class="v154-card">
+            <div class="v154-card-name">NH Collection Havodda</div>
+            <div class="v154-card-ax">
+              <div class="v154-card-cat">Luxury level</div>
+              <div class="v154-card-ends"><span>Moderate</span><span>Ultra-luxury</span></div>
+              <div class="v154-bar"><div class="v154-fill" style="width:71%"></div><div class="v154-mk" style="left:71%"></div></div>
+            </div>
+            <div class="v154-card-ax">
+              <div class="v154-card-cat">Fit for</div>
+              <div class="v154-card-ends"><span>Couples</span><span>Families</span></div>
+              <div class="v154-bar"><div class="v154-fill" style="width:48%"></div><div class="v154-mk" style="left:48%"></div></div>
+            </div>
+            <div class="v154-card-ax">
+              <div class="v154-card-cat">House reef</div>
+              <div class="v154-card-ends"><span>Non-existing</span><span>Superb</span></div>
+              <div class="v154-bar"><div class="v154-fill" style="width:94%"></div><div class="v154-mk v154-mk--sig" style="left:94%"></div></div>
+            </div>
+            <div class="v154-card-ax">
+              <div class="v154-card-cat">Gastronomy</div>
+              <div class="v154-card-ends"><span>Good</span><span>Outstanding</span></div>
+              <div class="v154-bar"><div class="v154-fill" style="width:72%"></div><div class="v154-mk" style="left:72%"></div></div>
+            </div>
+          </div>
+          <div class="v154-card">
             <div class="v154-card-name">Sun Siyam Vilu Reef</div>
             <div class="v154-card-ax">
               <div class="v154-card-cat">Luxury level</div>
               <div class="v154-card-ends"><span>Moderate</span><span>Ultra-luxury</span></div>
-              <div class="v154-bar"><div class="v154-fill" style="width:68%"></div><div class="v154-mk" style="left:68%"></div></div>
+              <div class="v154-bar"><div class="v154-fill" style="width:73%"></div><div class="v154-mk" style="left:73%"></div></div>
             </div>
             <div class="v154-card-ax">
               <div class="v154-card-cat">Fit for</div>
@@ -3988,7 +3931,7 @@ body.is-confirmation-mode .sticky-cta{
             <div class="v154-card-ax">
               <div class="v154-card-cat">Gastronomy</div>
               <div class="v154-card-ends"><span>Good</span><span>Outstanding</span></div>
-              <div class="v154-bar"><div class="v154-fill" style="width:68%"></div><div class="v154-mk" style="left:68%"></div></div>
+              <div class="v154-bar"><div class="v154-fill" style="width:72%"></div><div class="v154-mk" style="left:72%"></div></div>
             </div>
           </div>
         </div>
@@ -4018,7 +3961,7 @@ body.is-confirmation-mode .sticky-cta{
       <div class="v129-incl-item">
         <div class="num">03</div>
         <div class="body">
-          <h3 class="ititle">7 nætter på det valgte resort</h3>
+          <h3 class="ititle">8 nætter på det valgte resort</h3>
         </div>
       </div>
       <div class="v129-incl-item">
@@ -4056,10 +3999,8 @@ body.is-confirmation-mode .sticky-cta{
       <div class="v136-jump-inner">
         <span class="v136-jump-lbl">Hop til</span>
         <div class="v136-jump-pills">
-          <a href="#hotel-nh-collection-havodda" class="v136-jump-pill" data-target="hotel-nh-collection-havodda">NH Collection Havodda</a>
-          <a href="#hotel-sirru-fen-fushi" class="v136-jump-pill" data-target="hotel-sirru-fen-fushi">Sirru Fen Fushi</a>
-          <a href="#hotel-varu-by-atmosphere" class="v136-jump-pill" data-target="hotel-varu-by-atmosphere">VARU by Atmosphere</a>
           <a href="#hotel-angsana-velavaru" class="v136-jump-pill" data-target="hotel-angsana-velavaru">Angsana Velavaru</a>
+          <a href="#hotel-nh-collection-havodda" class="v136-jump-pill" data-target="hotel-nh-collection-havodda">NH Collection Havodda</a>
           <a href="#hotel-sun-siyam-vilu-reef" class="v136-jump-pill" data-target="hotel-sun-siyam-vilu-reef">Sun Siyam Vilu Reef</a>
         </div>
       </div>
@@ -4127,393 +4068,7 @@ body.is-confirmation-mode .sticky-cta{
     })();
     </script>
 
-    <div class="hotel-panel v133-hp" data-panel="0" id="hotel-nh-collection-havodda">
-      <div class="v133-hp-hero">
-        <img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2026/07/NH-HERO.jpg" alt="NH Collection Havodda">
-        <div class="v133-hp-hero-content">
-          <div class="loc">Gaafu Dhaalu Atoll</div>
-          <h2 class="name">NH Collection Havodda</h2>
-          <div class="meta">★★★★+ <span class="sep">·</span> 120 villaer</div>
-        </div>
-      </div>
-      <div class="v133-hp-gallery">
-        <a href="https://maldivia.dk/wp-content/uploads/2026/07/NH-1.jpg" target="_blank"><img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2026/07/NH-1.jpg" alt=""></a>
-        <a href="https://maldivia.dk/wp-content/uploads/2026/07/NH-4.jpg" target="_blank"><img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2026/07/NH-4.jpg" alt=""></a>
-        <a href="https://maldivia.dk/wp-content/uploads/2026/07/NH-7.jpg" target="_blank"><img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2026/07/NH-7.jpg" alt=""></a>
-        <a href="https://maldivia.dk/wp-content/uploads/2026/07/NH-5-1.avif" target="_blank"><img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2026/07/NH-5-1.avif" alt=""></a>
-      </div>
-      <div class="v133-hp-body">
-        <div class="v133-hp-booking">
-          <div class="v133-hp-eyebrow-row">
-            <div class="v133-hp-eyebrow">Vælg værelsestype &amp; forplejning</div>
-            <div class="v133-hp-stay">29. jan — 5. feb 2027 · 7 nætter</div>
-          </div>
-          <div class="v133-hp-villa">
-            <div class="v133-hp-villa-info">
-              <div class="v133-hp-villa-name">Sunrise Beach Villa</div>
-              <div class="v133-hp-villa-meta">
-                <span class="meal">Halvpension</span>
-              </div>
-            </div>
-            <div class="v133-hp-villa-action">
-              <div class="v133-hp-villa-price"><span class="cur">DKK</span>58.000</div>
-              <button type="button" class="v133-hp-villa-book" onclick="if(window.mldvOpenBooking)mldvOpenBooking({trip:0,hotel:0,rate:0})">Bestil →</button>
-            </div>
-            <div class="v133-hp-villa-links">
-              <a href="https://world.nh-hotels.com/en/nh-collection-maldives-havodda/villas/sunrise-beach-villa" target="_blank" rel="noopener">Se indkvartering →</a>
-              <a href="https://world.nh-hotels.com/en/nh-collection-maldives-havodda" target="_blank" rel="noopener">Læs mere om hotellet →</a>
-            </div>
-          </div>
-          <div class="v133-hp-villa">
-            <div class="v133-hp-villa-info">
-              <div class="v133-hp-villa-name">Sunrise Beach Villa</div>
-              <div class="v133-hp-villa-meta">
-                <span class="meal">Helpension</span>
-              </div>
-            </div>
-            <div class="v133-hp-villa-action">
-              <div class="v133-hp-villa-price"><span class="cur">DKK</span>63.500</div>
-              <button type="button" class="v133-hp-villa-book" onclick="if(window.mldvOpenBooking)mldvOpenBooking({trip:0,hotel:0,rate:1})">Bestil →</button>
-            </div>
-            <div class="v133-hp-villa-links">
-              <a href="https://world.nh-hotels.com/en/nh-collection-maldives-havodda/villas/sunrise-beach-villa" target="_blank" rel="noopener">Se indkvartering →</a>
-              <a href="https://world.nh-hotels.com/en/nh-collection-maldives-havodda" target="_blank" rel="noopener">Læs mere om hotellet →</a>
-            </div>
-          </div>
-          <div class="v133-hp-villa">
-            <div class="v133-hp-villa-info">
-              <div class="v133-hp-villa-name">Sunrise Beach Villa</div>
-              <div class="v133-hp-villa-meta">
-                <span class="meal">All Inclusive</span>
-              </div>
-            </div>
-            <div class="v133-hp-villa-action">
-              <div class="v133-hp-villa-price"><span class="cur">DKK</span>73.500</div>
-              <button type="button" class="v133-hp-villa-book" onclick="if(window.mldvOpenBooking)mldvOpenBooking({trip:0,hotel:0,rate:2})">Bestil →</button>
-            </div>
-            <div class="v133-hp-villa-links">
-              <a href="https://world.nh-hotels.com/en/nh-collection-maldives-havodda/villas/sunrise-beach-villa" target="_blank" rel="noopener">Se indkvartering →</a>
-              <a href="https://world.nh-hotels.com/en/nh-collection-maldives-havodda" target="_blank" rel="noopener">Læs mere om hotellet →</a>
-            </div>
-          </div>
-          <div class="v133-hp-curator-mini">
-            <div class="ceyebrow">Rasmus&#39; anbefaling</div>
-            <p class="cquote">NH Collection Maldives Havodda Resort er et visionært og charmerende retreat, beliggende på en af de mest uspolerede øer i Gaafu Dhaalu-atollen, blot et stenkast fra ækvator. Her smelter en idyllisk, uspoleret beliggenhed sammen med afslappet luksus under svajende palmetræer, omkranset af et af Maldivernes bedste husrev. Arkitekturen forener moderne high-end minimalisme med traditionel maldivisk kunst, hvilket skaber en sofistikeret og organisk ramme om opholdet. Det er et eksklusivt getaway skabt til det kvalitetsbevidste publikum, der søger en transformerende pause i ultimative og naturskønne rammer.</p>
-            <div class="csign">
-              <img src="https://maldivia.dk/wp-content/uploads/2026/05/RK-HERO-1.jpg" alt="Rasmus Kirketerp">
-              <div class="ctext">
-                <div class="cname">Rasmus Kirketerp</div>
-                <div class="crole">Travel Designer · Maldivia</div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="v133-hp-highlights">
-          <div class="v133-hp-eyebrow">Højdepunkter</div>
-          <div class="v133-hp-hl-item">Øens uberørte husrev er et usædvanligt levende undervandsparadis med en ekstrem høj biodiversitet, hvor du kan træde direkte ud fra stranden og snorkle i krystalklart vand blandt over 100 arter af koraller, havskildpadder, harpunfisk og farverige revhajer.</div>
-          <div class="v133-hp-hl-item">Den prisvindende Balance Wellness by+ Elements er en gemt oase dybt inde i øens jungle, hvor terapeuter mestrer traditionel thaimassage og ayurvediske ritualer i ugenerede, åbne behandlingspavilloner omgivet af tropisk fuglesang.</div>
-          <div class="v133-hp-hl-item">Det gastronomiske hjerte slår under åben himmel på strandrestauranten SURF, der mestrer den traditionelle japanske Robatayaki-grillmetode, hvor friske hummere og premium kød tilberedes over glødende kul i vandkanten.</div>
-          <div class="v133-hp-hl-item">Dagene under ækvators sol kan tilbringes i den enorme, kileformede infinity-pool med udsigt over oceanet, eller med professionel træning på øens oplyste tennisbane, beachvolleyball-arena og det fuldt udstyrede fitnesscenter.</div>
-          <div class="v133-hp-hl-item">De 120 luksusvillaer falder i ét med naturen, hvor du enten kan vågne op med direkte adgang til det pudderbløde sand eller vælge en villa over vandet, hvor de eksklusive Overwater Pool Villaer forkæler med egen dyb infinity-pool, hængekøjer spændt ud over lagunen og et nedsænket udendørs badekar.</div>
-        </div>
-      </div>
-      <div class="v153-pos">
-        <div class="v153-pos-head">Lær resortet at kende</div>
-        <div class="v153-pos-grid">
-          <div class="v153-ax">
-            <div class="v153-ax-cat">Luxury level</div>
-            <div class="v153-ax-ends"><span class="v153-ax-end">Moderate</span><span class="v153-ax-end r">Ultra-luxury</span></div>
-            <div class="v153-bar"><div class="v153-fill" style="width:68%"></div><div class="v153-marker" style="left:68%"></div></div>
-          </div>
-          <div class="v153-ax">
-            <div class="v153-ax-cat">Atmosphere</div>
-            <div class="v153-ax-ends"><span class="v153-ax-end">Lively</span><span class="v153-ax-end r">Tranquil</span></div>
-            <div class="v153-bar"><div class="v153-fill" style="width:52%"></div><div class="v153-marker" style="left:52%"></div></div>
-          </div>
-          <div class="v153-ax">
-            <div class="v153-ax-cat">Location</div>
-            <div class="v153-ax-ends"><span class="v153-ax-end">Nearby</span><span class="v153-ax-end r">Remote</span></div>
-            <div class="v153-bar"><div class="v153-fill" style="width:92%"></div><div class="v153-marker" style="left:92%"></div></div>
-          </div>
-          <div class="v153-ax">
-            <div class="v153-ax-cat">Fit for</div>
-            <div class="v153-ax-ends"><span class="v153-ax-end">Couples</span><span class="v153-ax-end r">Families</span></div>
-            <div class="v153-bar"><div class="v153-fill" style="width:48%"></div><div class="v153-marker" style="left:48%"></div></div>
-          </div>
-          <div class="v153-ax">
-            <div class="v153-ax-cat">Style</div>
-            <div class="v153-ax-ends"><span class="v153-ax-end">Barefoot</span><span class="v153-ax-end r">Sophisticated</span></div>
-            <div class="v153-bar"><div class="v153-fill" style="width:64%"></div><div class="v153-marker" style="left:64%"></div></div>
-          </div>
-          <div class="v153-ax">
-            <div class="v153-ax-cat">House reef</div>
-            <div class="v153-ax-ends"><span class="v153-ax-end">Non-existing</span><span class="v153-ax-end r">Superb</span></div>
-            <div class="v153-bar"><div class="v153-fill" style="width:93%"></div><div class="v153-marker" style="left:93%"></div></div>
-          </div>
-          <div class="v153-ax">
-            <div class="v153-ax-cat">Gastronomy</div>
-            <div class="v153-ax-ends"><span class="v153-ax-end">Good</span><span class="v153-ax-end r">Outstanding</span></div>
-            <div class="v153-bar"><div class="v153-fill" style="width:67%"></div><div class="v153-marker" style="left:67%"></div></div>
-          </div>
-          <div class="v153-ax">
-            <div class="v153-ax-cat">Lagoon</div>
-            <div class="v153-ax-ends"><span class="v153-ax-end">Pretty</span><span class="v153-ax-end r">Breathtaking</span></div>
-            <div class="v153-bar"><div class="v153-fill" style="width:80%"></div><div class="v153-marker" style="left:80%"></div></div>
-          </div>
-        </div>
-      </div>
-      <div class="v133-hp-info">
-        <div class="v133-hp-info-col">
-          <div class="ilbl">Lokation</div>
-          <div class="ival">Gaafu Dhaalu Atoll</div>
-        </div>
-        <div class="v133-hp-info-col">
-          <div class="ilbl">Transfer</div>
-          <div class="ival">Indenrigsfly &amp; Båd · ca. 75 min.</div>
-        </div>
-        <div class="v133-hp-info-col">
-          <div class="ilbl">Website</div>
-          <div class="ival"><a href="https://world.nh-hotels.com/en/nh-collection-maldives-havodda" target="_blank">Udforsk Havodda</a></div>
-        </div>
-      </div>
-    </div>
-    <div class="hotel-panel v133-hp" data-panel="1" id="hotel-sirru-fen-fushi">
-      <div class="v133-hp-hero">
-        <img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2026/08/SFF-1.webp" alt="Sirru Fen Fushi">
-        <div class="v133-hp-hero-content">
-          <div class="loc">Shaviyani Atoll</div>
-          <h2 class="name">Sirru Fen Fushi</h2>
-          <div class="meta">★★★★★ <span class="sep">·</span> 120 villaer</div>
-        </div>
-      </div>
-      <div class="v133-hp-gallery">
-        <a href="https://maldivia.dk/wp-content/uploads/2026/08/SFF-4.webp" target="_blank"><img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2026/08/SFF-4.webp" alt=""></a>
-        <a href="https://maldivia.dk/wp-content/uploads/2026/08/SFF-7.jpg" target="_blank"><img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2026/08/SFF-7.jpg" alt=""></a>
-        <a href="https://maldivia.dk/wp-content/uploads/2026/08/SFF-3.webp" target="_blank"><img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2026/08/SFF-3.webp" alt=""></a>
-        <a href="https://maldivia.dk/wp-content/uploads/2026/08/SFF-6.webp" target="_blank"><img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2026/08/SFF-6.webp" alt=""></a>
-      </div>
-      <div class="v133-hp-body">
-        <div class="v133-hp-booking">
-          <div class="v133-hp-eyebrow-row">
-            <div class="v133-hp-eyebrow">Vælg værelsestype &amp; forplejning</div>
-            <div class="v133-hp-stay">29. jan — 5. feb 2027 · 7 nætter</div>
-          </div>
-          <div class="v133-hp-villa">
-            <div class="v133-hp-villa-info">
-              <div class="v133-hp-villa-name">Beach Sunrise Villa with Pool</div>
-              <div class="v133-hp-villa-meta">
-                <span class="meal">Halvpension</span>
-              </div>
-            </div>
-            <div class="v133-hp-villa-action">
-              <div class="v133-hp-villa-price"><span class="cur">DKK</span>69.500</div>
-              <button type="button" class="v133-hp-villa-book" onclick="if(window.mldvOpenBooking)mldvOpenBooking({trip:0,hotel:1,rate:0})">Bestil →</button>
-            </div>
-            <div class="v133-hp-villa-links">
-              <a href="https://sirrufenfushi.com/villas/" target="_blank" rel="noopener">Se indkvartering →</a>
-              <a href="https://maldivia.dk/wp-content/uploads/2026/08/Meal-Plan-from-11-Jan-2026-10-Jan-2027-updated.pdf" target="_blank" rel="noopener">Se forplejning →</a>
-            </div>
-          </div>
-          <div class="v133-hp-curator-mini">
-            <div class="ceyebrow">Rasmus&#39; anbefaling</div>
-            <p class="cquote">Sirru Fen Fushi Private Lagoon Resort er et eksklusivt 5-stjernet luksusresort i den uberørte Shaviyani-atol, cirka 55 minutters naturskøn tur med vandflyver fra lufthavnen i Malé. Øens navn betyder &quot;Secret Water Island&quot; på maldivisk (Dhivehi), og navnet passer perfekt til de 16 hektar tropisk ø indrammet af en af Maldivernes største naturlige laguner på over 600 hektar. Resortet udmærker sig ved sin markante arkitektur, sit fokus på bæredygtighed og sin ikoniske 200 meter lange centralt beliggende infinity-pool.  </p>
-            <div class="csign">
-              <img src="https://maldivia.dk/wp-content/uploads/2026/05/RK-HERO-1.jpg" alt="Rasmus Kirketerp">
-              <div class="ctext">
-                <div class="cname">Rasmus Kirketerp</div>
-                <div class="crole">Travel Designer · Maldivia</div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="v133-hp-highlights">
-          <div class="v133-hp-eyebrow">Højdepunkter</div>
-          <div class="v133-hp-hl-item">Resortets 120 villaer har alle deres egen private plunge pool og tilbydes i tre unikke kategorier: klassiske strandvillaer omgivet af tæt vegetationsafskærmning, luksuriøse overvandsvillaer hevet over den turkise lagune samt eksklusive safari-inspirerede Tented Jungle Villas placeret i øens grønne indre. Boligerne er indrettet med boheme-chic elegance, kobberbadekar, åbne udendørsbadeværelser og personlig 24-timers butler-service.  </div>
-          <div class="v133-hp-hl-item">Restauranterne byder på et rigt kulinarisk udvalg fordelt på flere spisekoncepter og barer. Raha Market danner rammen om afslappede internationale buffeter og temaaftener direkte på strandkanten, mens Azure serverer frisk seafood og fine dining ved havet. Kata byder på overvands-japansk fusion og en stemningsfuld rooftop-bar, og den bambusbyggede beach club Onu Onu er det naturlige samlingspunkt til forfriskninger og cocktails.  </div>
-          <div class="v133-hp-hl-item">Det omfattende wellness-område Arufen Spa er en 2.000 kvadratmeter stor oase dedikeret til holistisk sundhed og afslapning. Spaen er placeret i naturskønne omgivelser og tilbyder skræddersyede kropsterapier, skønhedsbehandlinger, dampbade og saunaer. Der afholdes desuden faste økter i yoga, meditation og funktionel træning i overvands-paviljonger og på stranden.  </div>
-          <div class="v133-hp-hl-item">Øen rummer stærke tilbud til både aktive gæster, familier og kunstinteresserede. Et af øens varemærker er The Coralarium – verdens første delvist undersøiske kunstgalleri og koralkunstværk skabt af kunstneren Jason deCaires Taylor. Derudover finder man et 9 km langt husrev til snorkling, dykker- og vandsportscenter, tennisbane, det banebrydende Sustainability Lab samt Kids Club og Teen Hub til børn og unge.  </div>
-          <div class="v133-hp-hl-item">Den omkringliggende lagune er et kapitel for sig selv. Det krystalklare, turkisblå vand strækker sig hundreder af meter ud fra land og rammer brede, silkemyke kridhvide sandstrande ind. Det rolige og lave vand gør lagunen ideel til paddleboarding, kajak, svømmeture og uforstyrrede gåture i vandkanten langs den uberørte kystlinje.</div>
-        </div>
-      </div>
-      <div class="v153-pos">
-        <div class="v153-pos-head">Lær resortet at kende</div>
-        <div class="v153-pos-grid">
-          <div class="v153-ax">
-            <div class="v153-ax-cat">Luxury level</div>
-            <div class="v153-ax-ends"><span class="v153-ax-end">Moderate</span><span class="v153-ax-end r">Ultra-luxury</span></div>
-            <div class="v153-bar"><div class="v153-fill" style="width:80%"></div><div class="v153-marker" style="left:80%"></div></div>
-          </div>
-          <div class="v153-ax">
-            <div class="v153-ax-cat">Atmosphere</div>
-            <div class="v153-ax-ends"><span class="v153-ax-end">Lively</span><span class="v153-ax-end r">Tranquil</span></div>
-            <div class="v153-bar"><div class="v153-fill" style="width:51%"></div><div class="v153-marker" style="left:51%"></div></div>
-          </div>
-          <div class="v153-ax">
-            <div class="v153-ax-cat">Location</div>
-            <div class="v153-ax-ends"><span class="v153-ax-end">Nearby</span><span class="v153-ax-end r">Remote</span></div>
-            <div class="v153-bar"><div class="v153-fill" style="width:83%"></div><div class="v153-marker" style="left:83%"></div></div>
-          </div>
-          <div class="v153-ax">
-            <div class="v153-ax-cat">Fit for</div>
-            <div class="v153-ax-ends"><span class="v153-ax-end">Couples</span><span class="v153-ax-end r">Families</span></div>
-            <div class="v153-bar"><div class="v153-fill" style="width:53%"></div><div class="v153-marker" style="left:53%"></div></div>
-          </div>
-          <div class="v153-ax">
-            <div class="v153-ax-cat">Style</div>
-            <div class="v153-ax-ends"><span class="v153-ax-end">Barefoot</span><span class="v153-ax-end r">Sophisticated</span></div>
-            <div class="v153-bar"><div class="v153-fill" style="width:84%"></div><div class="v153-marker" style="left:84%"></div></div>
-          </div>
-          <div class="v153-ax">
-            <div class="v153-ax-cat">House reef</div>
-            <div class="v153-ax-ends"><span class="v153-ax-end">Non-existing</span><span class="v153-ax-end r">Superb</span></div>
-            <div class="v153-bar"><div class="v153-fill" style="width:75%"></div><div class="v153-marker" style="left:75%"></div></div>
-          </div>
-          <div class="v153-ax">
-            <div class="v153-ax-cat">Gastronomy</div>
-            <div class="v153-ax-ends"><span class="v153-ax-end">Good</span><span class="v153-ax-end r">Outstanding</span></div>
-            <div class="v153-bar"><div class="v153-fill" style="width:72%"></div><div class="v153-marker" style="left:72%"></div></div>
-          </div>
-          <div class="v153-ax">
-            <div class="v153-ax-cat">Lagoon</div>
-            <div class="v153-ax-ends"><span class="v153-ax-end">Pretty</span><span class="v153-ax-end r">Breathtaking</span></div>
-            <div class="v153-bar"><div class="v153-fill" style="width:83%"></div><div class="v153-marker" style="left:83%"></div></div>
-          </div>
-        </div>
-      </div>
-      <div class="v133-hp-info">
-        <div class="v133-hp-info-col">
-          <div class="ilbl">Lokation</div>
-          <div class="ival">Shaviyani Atoll</div>
-        </div>
-        <div class="v133-hp-info-col">
-          <div class="ilbl">Transfer</div>
-          <div class="ival">Vandfly · ca. 55 min.</div>
-        </div>
-        <div class="v133-hp-info-col">
-          <div class="ilbl">Website</div>
-          <div class="ival"><a href="https://sirrufenfushi.com/" target="_blank">Udforsk Sirru Fen Fushi</a></div>
-        </div>
-      </div>
-    </div>
-    <div class="hotel-panel v133-hp" data-panel="2" id="hotel-varu-by-atmosphere">
-      <div class="v133-hp-hero">
-        <img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2026/08/VARU-1.webp" alt="VARU by Atmosphere">
-        <div class="v133-hp-hero-content">
-          <div class="loc">North Malé Atoll</div>
-          <h2 class="name">VARU by Atmosphere</h2>
-          <div class="meta">★★★★+ <span class="sep">·</span> 108 villaer</div>
-        </div>
-      </div>
-      <div class="v133-hp-gallery">
-        <a href="https://maldivia.dk/wp-content/uploads/2026/08/VARU-4-scaled.jpg" target="_blank"><img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2026/08/VARU-4-scaled.jpg" alt=""></a>
-        <a href="https://maldivia.dk/wp-content/uploads/2026/08/VARU-2.webp" target="_blank"><img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2026/08/VARU-2.webp" alt=""></a>
-        <a href="https://maldivia.dk/wp-content/uploads/2026/08/VARU-3.jpg" target="_blank"><img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2026/08/VARU-3.jpg" alt=""></a>
-        <a href="https://maldivia.dk/wp-content/uploads/2026/08/VARU-5.jpg" target="_blank"><img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2026/08/VARU-5.jpg" alt=""></a>
-      </div>
-      <div class="v133-hp-body">
-        <div class="v133-hp-booking">
-          <div class="v133-hp-eyebrow-row">
-            <div class="v133-hp-eyebrow">Vælg værelsestype &amp; forplejning</div>
-            <div class="v133-hp-stay">29. jan — 5. feb 2027 · 7 nætter</div>
-          </div>
-          <div class="v133-hp-villa">
-            <div class="v133-hp-villa-info">
-              <div class="v133-hp-villa-name">Water Villa</div>
-              <div class="v133-hp-villa-meta">
-                <span class="meal">All Inclusive</span>
-              </div>
-            </div>
-            <div class="v133-hp-villa-action">
-              <div class="v133-hp-villa-price"><span class="cur">DKK</span>70.500</div>
-              <button type="button" class="v133-hp-villa-book" onclick="if(window.mldvOpenBooking)mldvOpenBooking({trip:0,hotel:2,rate:0})">Bestil →</button>
-            </div>
-            <div class="v133-hp-villa-links">
-              <a href="https://varu-atmosphere.com/en/our-villas/water-villa" target="_blank" rel="noopener">Se indkvartering →</a>
-              <a href="https://maldivia.dk/wp-content/uploads/2026/08/VARUU-AI.pdf" target="_blank" rel="noopener">Se forplejning →</a>
-            </div>
-          </div>
-          <div class="v133-hp-curator-mini">
-            <div class="ceyebrow">Rasmus&#39; anbefaling</div>
-            <p class="cquote">VARU by Atmosphere er et resort i Nord-Malé-atollen, som skaber en balanceret ramme om den klassiske maldiviske øferie. Resortets navn VARU betyder &quot;styrke og overflod&quot; på det lokale sprog dhivehi, og øens arkitektur fletter moderne design sammen med traditionelt maldivisk træarbejde og naturlige elementer. Resortet er især kendt for sit gennemtænkte VARU Plan™ – et unikt All Inclusive-koncept, hvor gastronomi, udvalgte udflugter, vandsport og spa-behandlinger er tænkt ind fra starten, så du kan fokusere på oplevelsen uden uforudsete regninger.</p>
-            <div class="csign">
-              <img src="https://maldivia.dk/wp-content/uploads/2026/05/RK-HERO-1.jpg" alt="Rasmus Kirketerp">
-              <div class="ctext">
-                <div class="cname">Rasmus Kirketerp</div>
-                <div class="crole">Travel Designer · Maldivia</div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="v133-hp-highlights">
-          <div class="v133-hp-eyebrow">Højdepunkter</div>
-          <div class="v133-hp-hl-item">Resortets villaer er fordelt mellem stranden og lagunen, hvor mange af enhederne er udstyret med private pools på terrassen. Strandvillaerne ligger omgivet af tropisk vegetation med direkte adgang til det kridhvide sand, mens overvandsvillaerne strækker sig ud over det turkise vand med direkte trappe ned til lagunen. Boligerne er indrettet med luftige rum, højt til loftet, moderne komfort og private udendørsarealer skabt til uforstyrret afslapning.</div>
-          <div class="v133-hp-hl-item">Gastronomien er et af øens centrale omdrejningspunkter med i alt fire restauranter og barer. Hovedrestauranten LIME &amp; CHILI byder på live-cooking, temaaftener og buffeter, mens à la carte-stederne tæller CHARCOAL (seafood og grill på stranden), NU (overvandsrestaurant med mediterrane retter og fisk og skaldyr) og KAAGÉ, som serverer autentiske maldiviske retter i traditionelle rammer. Drikkevareudvalget dækker alt fra klassiske drinks og vine til friskpresset juice og premium-mærker.</div>
-          <div class="v133-hp-hl-item">Wellness-oplevelsen foldes ud i ELE|NA The Spa, som ligger hævet over vandet. Spa-konceptet kombinerer holistiske kropsterapier med naturlige ingredienser og både østlige og vestlige massageteknikker. Udover klassiske krops- og ansigtsbehandlinger tilbydes der hydroterapi, skønhedssalon og guidede sessioner inden for yoga og meditation i åbne pavilloner med udsigt over havet.</div>
-          <div class="v133-hp-hl-item">Øens beliggenhed i Nord-Malé-atollen giver direkte adgang til et rigt og levende marineliv. Gæster kan udforske snorkling eller benytte resortets PADI-certificerede dykker- og vandsportscenter, som tilbyder alt fra snorkelture og kajak til vindsurfing og motoriseret vandsport. Derudover arrangeres der faste udflugter som solnedgangsfiskeri og cruises i området.</div>
-          <div class="v133-hp-hl-item">Resortet imødekommer både par og familier med gennemtænkte faciliteter over hele øen. Der findes en stor primær infinity-pool, et moderne træningscenter og udendørs sportsbaner. Til yngre rejsende tilbyder Onamalu Kids Club kreative værksteder, spil og børnepool, så hele familien får plads til at nyde ferien i sit eget tempo.</div>
-        </div>
-      </div>
-      <div class="v153-pos">
-        <div class="v153-pos-head">Lær resortet at kende</div>
-        <div class="v153-pos-grid">
-          <div class="v153-ax">
-            <div class="v153-ax-cat">Luxury level</div>
-            <div class="v153-ax-ends"><span class="v153-ax-end">Moderate</span><span class="v153-ax-end r">Ultra-luxury</span></div>
-            <div class="v153-bar"><div class="v153-fill" style="width:67%"></div><div class="v153-marker" style="left:67%"></div></div>
-          </div>
-          <div class="v153-ax">
-            <div class="v153-ax-cat">Atmosphere</div>
-            <div class="v153-ax-ends"><span class="v153-ax-end">Lively</span><span class="v153-ax-end r">Tranquil</span></div>
-            <div class="v153-bar"><div class="v153-fill" style="width:45%"></div><div class="v153-marker" style="left:45%"></div></div>
-          </div>
-          <div class="v153-ax">
-            <div class="v153-ax-cat">Location</div>
-            <div class="v153-ax-ends"><span class="v153-ax-end">Nearby</span><span class="v153-ax-end r">Remote</span></div>
-            <div class="v153-bar"><div class="v153-fill" style="width:55%"></div><div class="v153-marker" style="left:55%"></div></div>
-          </div>
-          <div class="v153-ax">
-            <div class="v153-ax-cat">Fit for</div>
-            <div class="v153-ax-ends"><span class="v153-ax-end">Couples</span><span class="v153-ax-end r">Families</span></div>
-            <div class="v153-bar"><div class="v153-fill" style="width:53%"></div><div class="v153-marker" style="left:53%"></div></div>
-          </div>
-          <div class="v153-ax">
-            <div class="v153-ax-cat">Style</div>
-            <div class="v153-ax-ends"><span class="v153-ax-end">Barefoot</span><span class="v153-ax-end r">Sophisticated</span></div>
-            <div class="v153-bar"><div class="v153-fill" style="width:65%"></div><div class="v153-marker" style="left:65%"></div></div>
-          </div>
-          <div class="v153-ax">
-            <div class="v153-ax-cat">House reef</div>
-            <div class="v153-ax-ends"><span class="v153-ax-end">Non-existing</span><span class="v153-ax-end r">Superb</span></div>
-            <div class="v153-bar"><div class="v153-fill" style="width:0%"></div><div class="v153-marker" style="left:0%"></div></div>
-          </div>
-          <div class="v153-ax">
-            <div class="v153-ax-cat">Gastronomy</div>
-            <div class="v153-ax-ends"><span class="v153-ax-end">Good</span><span class="v153-ax-end r">Outstanding</span></div>
-            <div class="v153-bar"><div class="v153-fill" style="width:72%"></div><div class="v153-marker" style="left:72%"></div></div>
-          </div>
-          <div class="v153-ax">
-            <div class="v153-ax-cat">Lagoon</div>
-            <div class="v153-ax-ends"><span class="v153-ax-end">Pretty</span><span class="v153-ax-end r">Breathtaking</span></div>
-            <div class="v153-bar"><div class="v153-fill" style="width:85%"></div><div class="v153-marker" style="left:85%"></div></div>
-          </div>
-        </div>
-      </div>
-      <div class="v133-hp-info">
-        <div class="v133-hp-info-col">
-          <div class="ilbl">Lokation</div>
-          <div class="ival">North Malé Atoll</div>
-        </div>
-        <div class="v133-hp-info-col">
-          <div class="ilbl">Transfer</div>
-          <div class="ival">Båd · ca. 40 min.</div>
-        </div>
-        <div class="v133-hp-info-col">
-          <div class="ilbl">Website</div>
-          <div class="ival"><a href="https://varu-atmosphere.com/en" target="_blank">Udforsk VARU</a></div>
-        </div>
-      </div>
-    </div>
-    <div class="hotel-panel v133-hp" data-panel="3" id="hotel-angsana-velavaru">
+    <div class="hotel-panel v133-hp" data-panel="0" id="hotel-angsana-velavaru">
       <div class="v133-hp-hero">
         <img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2026/05/AV-1.webp" alt="Angsana Velavaru">
         <div class="v133-hp-hero-content">
@@ -4532,18 +4087,18 @@ body.is-confirmation-mode .sticky-cta{
         <div class="v133-hp-booking">
           <div class="v133-hp-eyebrow-row">
             <div class="v133-hp-eyebrow">Vælg værelsestype &amp; forplejning</div>
-            <div class="v133-hp-stay">29. jan — 5. feb 2027 · 7 nætter</div>
+            <div class="v133-hp-stay">31. jan — 8. feb 2027 · 8 nætter</div>
           </div>
           <div class="v133-hp-villa">
             <div class="v133-hp-villa-info">
               <div class="v133-hp-villa-name">Beachfront Infinity Pool Villa</div>
               <div class="v133-hp-villa-meta">
-                <span class="meal">All Inclusive</span>
+                <span class="meal">All-Inclusive Dine</span>
               </div>
             </div>
             <div class="v133-hp-villa-action">
-              <div class="v133-hp-villa-price"><span class="cur">DKK</span>71.000</div>
-              <button type="button" class="v133-hp-villa-book" onclick="if(window.mldvOpenBooking)mldvOpenBooking({trip:0,hotel:3,rate:0})">Bestil →</button>
+              <div class="v133-hp-villa-price"><span class="cur">DKK</span>72.500</div>
+              <button type="button" class="v133-hp-villa-book" onclick="if(window.mldvOpenBooking)mldvOpenBooking({trip:0,hotel:0,rate:0})">Bestil →</button>
             </div>
             <div class="v133-hp-villa-links">
               <a href="https://www.angsana.com/maldives/velavaru/accommodation/beachfront-infinity-pool-villa" target="_blank" rel="noopener">Se indkvartering →</a>
@@ -4577,7 +4132,7 @@ body.is-confirmation-mode .sticky-cta{
           <div class="v153-ax">
             <div class="v153-ax-cat">Luxury level</div>
             <div class="v153-ax-ends"><span class="v153-ax-end">Moderate</span><span class="v153-ax-end r">Ultra-luxury</span></div>
-            <div class="v153-bar"><div class="v153-fill" style="width:65%"></div><div class="v153-marker" style="left:65%"></div></div>
+            <div class="v153-bar"><div class="v153-fill" style="width:69%"></div><div class="v153-marker" style="left:69%"></div></div>
           </div>
           <div class="v153-ax">
             <div class="v153-ax-cat">Atmosphere</div>
@@ -4631,46 +4186,62 @@ body.is-confirmation-mode .sticky-cta{
         </div>
       </div>
     </div>
-    <div class="hotel-panel v133-hp" data-panel="4" id="hotel-sun-siyam-vilu-reef">
+    <div class="hotel-panel v133-hp" data-panel="1" id="hotel-nh-collection-havodda">
       <div class="v133-hp-hero">
-        <img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2026/09/SSVR-1-scaled.jpg" alt="Sun Siyam Vilu Reef">
+        <img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2026/07/NH-HERO.jpg" alt="NH Collection Havodda">
         <div class="v133-hp-hero-content">
-          <div class="loc">Dhaalu Atoll</div>
-          <h2 class="name">Sun Siyam Vilu Reef</h2>
-          <div class="meta">★★★★+ <span class="sep">·</span> 103 villaer</div>
+          <div class="loc">Gaafu Dhaalu Atoll</div>
+          <h2 class="name">NH Collection Havodda</h2>
+          <div class="meta">★★★★+ <span class="sep">·</span> 120 villaer</div>
         </div>
       </div>
       <div class="v133-hp-gallery">
-        <a href="https://maldivia.dk/wp-content/uploads/2026/09/SSVR-3.jpg" target="_blank"><img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2026/09/SSVR-3.jpg" alt=""></a>
-        <a href="https://maldivia.dk/wp-content/uploads/2026/09/SSVR-5.jpg" target="_blank"><img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2026/09/SSVR-5.jpg" alt=""></a>
-        <a href="https://maldivia.dk/wp-content/uploads/2026/09/SSVR-6.jpg" target="_blank"><img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2026/09/SSVR-6.jpg" alt=""></a>
-        <a href="https://maldivia.dk/wp-content/uploads/2026/09/SSVR-2.jpg" target="_blank"><img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2026/09/SSVR-2.jpg" alt=""></a>
+        <a href="https://maldivia.dk/wp-content/uploads/2026/07/NH-1.jpg" target="_blank"><img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2026/07/NH-1.jpg" alt=""></a>
+        <a href="https://maldivia.dk/wp-content/uploads/2026/07/NH-4.jpg" target="_blank"><img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2026/07/NH-4.jpg" alt=""></a>
+        <a href="https://maldivia.dk/wp-content/uploads/2026/07/NH-7.jpg" target="_blank"><img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2026/07/NH-7.jpg" alt=""></a>
+        <a href="https://maldivia.dk/wp-content/uploads/2026/07/NH-5-1.avif" target="_blank"><img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2026/07/NH-5-1.avif" alt=""></a>
       </div>
       <div class="v133-hp-body">
         <div class="v133-hp-booking">
           <div class="v133-hp-eyebrow-row">
             <div class="v133-hp-eyebrow">Vælg værelsestype &amp; forplejning</div>
-            <div class="v133-hp-stay">29. jan — 5. feb 2027 · 7 nætter</div>
+            <div class="v133-hp-stay">31. jan — 8. feb 2027 · 8 nætter</div>
           </div>
           <div class="v133-hp-villa">
             <div class="v133-hp-villa-info">
-              <div class="v133-hp-villa-name">Grand Beach Villa with Pool</div>
+              <div class="v133-hp-villa-name">Sunrise Beach Villa</div>
               <div class="v133-hp-villa-meta">
-                <span class="meal">All Inclusive</span>
+                <span class="meal">Helpension</span>
               </div>
             </div>
             <div class="v133-hp-villa-action">
-              <div class="v133-hp-villa-price"><span class="cur">DKK</span>77.000</div>
-              <button type="button" class="v133-hp-villa-book" onclick="if(window.mldvOpenBooking)mldvOpenBooking({trip:0,hotel:4,rate:0})">Bestil →</button>
+              <div class="v133-hp-villa-price"><span class="cur">DKK</span>72.500</div>
+              <button type="button" class="v133-hp-villa-book" onclick="if(window.mldvOpenBooking)mldvOpenBooking({trip:0,hotel:1,rate:0})">Bestil →</button>
             </div>
             <div class="v133-hp-villa-links">
-              <a href="https://www.sunsiyam.com/sun-siyam-vilu-reef/accommodation/grand-beach-villa-with-pool/" target="_blank" rel="noopener">Se indkvartering →</a>
-              <a href="https://maldivia.dk/wp-content/uploads/2026/09/SSVR-PAI.pdf" target="_blank" rel="noopener">Se forplejning →</a>
+              <a href="https://world.nh-hotels.com/en/nh-collection-maldives-havodda/villas/sunrise-beach-villa" target="_blank" rel="noopener">Se indkvartering →</a>
+              <a href="https://world.nh-hotels.com/en/nh-collection-maldives-havodda" target="_blank" rel="noopener">Læs mere om hotellet →</a>
+            </div>
+          </div>
+          <div class="v133-hp-villa">
+            <div class="v133-hp-villa-info">
+              <div class="v133-hp-villa-name">Sunrise Beach Villa</div>
+              <div class="v133-hp-villa-meta">
+                <span class="meal">All-Inclusive</span>
+              </div>
+            </div>
+            <div class="v133-hp-villa-action">
+              <div class="v133-hp-villa-price"><span class="cur">DKK</span>72.500</div>
+              <button type="button" class="v133-hp-villa-book" onclick="if(window.mldvOpenBooking)mldvOpenBooking({trip:0,hotel:1,rate:1})">Bestil →</button>
+            </div>
+            <div class="v133-hp-villa-links">
+              <a href="https://world.nh-hotels.com/en/nh-collection-maldives-havodda/villas/sunrise-beach-villa" target="_blank" rel="noopener">Se indkvartering →</a>
+              <a href="https://world.nh-hotels.com/en/nh-collection-maldives-havodda" target="_blank" rel="noopener">Læs mere om hotellet →</a>
             </div>
           </div>
           <div class="v133-hp-curator-mini">
             <div class="ceyebrow">Rasmus&#39; anbefaling</div>
-            <p class="cquote">Sun Siyam Vilu Reef er et stilrent og klassisk femstjernet resort beliggende i den sydlige Nilandhe-atol på Malediverne, cirka 35 minutter med vandflyver fra Malé. Den kompakte ø er omkranset af kridhvidt sand og en lavvandet, krystalklar lagune, mens den frodige tropiske vegetation skaber en naturlig og intim ramme om opholdet. Med sit fokus på tilbagelænet elegance, naturlige materialer og nærheden til Det Indiske Ocean tilbyder resortet en autentisk maldivisk øoplevelse for både par og familier.</p>
+            <p class="cquote">NH Collection Maldives Havodda Resort er et visionært og charmerende retreat, beliggende på en af de mest uspolerede øer i Gaafu Dhaalu-atollen, blot et stenkast fra ækvator. Her smelter en idyllisk, uspoleret beliggenhed sammen med afslappet luksus under svajende palmetræer, omkranset af et af Maldivernes bedste husrev. Arkitekturen forener moderne high-end minimalisme med traditionel maldivisk kunst, hvilket skaber en sofistikeret og organisk ramme om opholdet. Det er et eksklusivt getaway skabt til det kvalitetsbevidste publikum, der søger en transformerende pause i ultimative og naturskønne rammer.</p>
             <div class="csign">
               <img src="https://maldivia.dk/wp-content/uploads/2026/05/RK-HERO-1.jpg" alt="Rasmus Kirketerp">
               <div class="ctext">
@@ -4682,11 +4253,11 @@ body.is-confirmation-mode .sticky-cta{
         </div>
         <div class="v133-hp-highlights">
           <div class="v133-hp-eyebrow">Højdepunkter</div>
-          <div class="v133-hp-hl-item">Indkvarteringen fordeler sig på 103 fritstående strand- og vandvillaer. Mange af villaerne råder over egen pool eller udendørs spabad på solterrassen, og indretningen er lys og moderne med detaljer i naturligt træ, tropiske tekstiler og store glaspartier, der lukker omgivelserne ind. Afhængigt af villakategorien er der direkte adgang til enten den kridhvide strand eller lagunens rolige, turkisblå vand.</div>
-          <div class="v133-hp-hl-item">Gastronomien spænder over flere forskellige koncepter. Hovedrestauranten Aqua serverer internationale buffeter med udsigt over lagunen, mens The Well Done har fokus på frisk fisk og skaldyr samt grillet kød i afslappede omgivelser direkte på stranden. På Ristorante Roma serveres italienske klassikere, mens private middage i sandet kan arrangeres for gæster, der ønsker en mere intim oplevelse.</div>
-          <div class="v133-hp-hl-item">Spaområdet The Spa ligger fredfyldt over vandet og består af private behandlingspavilloner med udsigt over oceanet. Behandlingsmenuen kombinerer traditionelle asiatiske massageteknikker med ayurvediske ritualer og naturlige kropsbehandlinger, alt sammen ledsaget af lyden fra bølgerne nedenfor.</div>
-          <div class="v133-hp-hl-item">Et af resortets største trumfkort er den direkte adgang til et artsrigt husrev blot få meter fra kysten, hvilket skaber særdeles gode muligheder for både snorkling og dykning. Vandsportscentret tilbyder desuden blandt andet katamaransejlads, windsurfing og stand-up-paddleboarding, mens resortets udvalg af udflugter giver mulighed for at opleve det rige marine liv omkring atollen.</div>
-          <div class="v133-hp-hl-item">Det særlige ved Sun Siyam Vilu Reef er kombinationen af den kompakte ø, den intime atmosfære og den lette adgang til et attraktivt husrev. Sammen med de gode muligheder for snorkling og dykning samt den fredelige beliggenhed i den sydlige Nilandhe-atol gør det resortet til en stærk og klassisk Malediverne-oplevelse.</div>
+          <div class="v133-hp-hl-item">Øens uberørte husrev er et usædvanligt levende undervandsparadis med en ekstrem høj biodiversitet, hvor du kan træde direkte ud fra stranden og snorkle i krystalklart vand blandt over 100 arter af koraller, havskildpadder, harpunfisk og farverige revhajer.</div>
+          <div class="v133-hp-hl-item">Den prisvindende Balance Wellness by+ Elements er en gemt oase dybt inde i øens jungle, hvor terapeuter mestrer traditionel thaimassage og ayurvediske ritualer i ugenerede, åbne behandlingspavilloner omgivet af tropisk fuglesang.</div>
+          <div class="v133-hp-hl-item">Det gastronomiske hjerte slår under åben himmel på strandrestauranten SURF, der mestrer den traditionelle japanske Robatayaki-grillmetode, hvor friske hummere og premium kød tilberedes over glødende kul i vandkanten.</div>
+          <div class="v133-hp-hl-item">Dagene under ækvators sol kan tilbringes i den enorme, kileformede infinity-pool med udsigt over oceanet, eller med professionel træning på øens oplyste tennisbane, beachvolleyball-arena og det fuldt udstyrede fitnesscenter.</div>
+          <div class="v133-hp-hl-item">De 120 luksusvillaer falder i ét med naturen, hvor du enten kan vågne op med direkte adgang til det pudderbløde sand eller vælge en villa over vandet, hvor de eksklusive Overwater Pool Villaer forkæler med egen dyb infinity-pool, hængekøjer spændt ud over lagunen og et nedsænket udendørs badekar.</div>
         </div>
       </div>
       <div class="v153-pos">
@@ -4695,7 +4266,125 @@ body.is-confirmation-mode .sticky-cta{
           <div class="v153-ax">
             <div class="v153-ax-cat">Luxury level</div>
             <div class="v153-ax-ends"><span class="v153-ax-end">Moderate</span><span class="v153-ax-end r">Ultra-luxury</span></div>
-            <div class="v153-bar"><div class="v153-fill" style="width:68%"></div><div class="v153-marker" style="left:68%"></div></div>
+            <div class="v153-bar"><div class="v153-fill" style="width:71%"></div><div class="v153-marker" style="left:71%"></div></div>
+          </div>
+          <div class="v153-ax">
+            <div class="v153-ax-cat">Atmosphere</div>
+            <div class="v153-ax-ends"><span class="v153-ax-end">Lively</span><span class="v153-ax-end r">Tranquil</span></div>
+            <div class="v153-bar"><div class="v153-fill" style="width:52%"></div><div class="v153-marker" style="left:52%"></div></div>
+          </div>
+          <div class="v153-ax">
+            <div class="v153-ax-cat">Location</div>
+            <div class="v153-ax-ends"><span class="v153-ax-end">Nearby</span><span class="v153-ax-end r">Remote</span></div>
+            <div class="v153-bar"><div class="v153-fill" style="width:92%"></div><div class="v153-marker" style="left:92%"></div></div>
+          </div>
+          <div class="v153-ax">
+            <div class="v153-ax-cat">Fit for</div>
+            <div class="v153-ax-ends"><span class="v153-ax-end">Couples</span><span class="v153-ax-end r">Families</span></div>
+            <div class="v153-bar"><div class="v153-fill" style="width:48%"></div><div class="v153-marker" style="left:48%"></div></div>
+          </div>
+          <div class="v153-ax">
+            <div class="v153-ax-cat">Style</div>
+            <div class="v153-ax-ends"><span class="v153-ax-end">Barefoot</span><span class="v153-ax-end r">Sophisticated</span></div>
+            <div class="v153-bar"><div class="v153-fill" style="width:70%"></div><div class="v153-marker" style="left:70%"></div></div>
+          </div>
+          <div class="v153-ax">
+            <div class="v153-ax-cat">House reef</div>
+            <div class="v153-ax-ends"><span class="v153-ax-end">Non-existing</span><span class="v153-ax-end r">Superb</span></div>
+            <div class="v153-bar"><div class="v153-fill" style="width:94%"></div><div class="v153-marker" style="left:94%"></div></div>
+          </div>
+          <div class="v153-ax">
+            <div class="v153-ax-cat">Gastronomy</div>
+            <div class="v153-ax-ends"><span class="v153-ax-end">Good</span><span class="v153-ax-end r">Outstanding</span></div>
+            <div class="v153-bar"><div class="v153-fill" style="width:72%"></div><div class="v153-marker" style="left:72%"></div></div>
+          </div>
+          <div class="v153-ax">
+            <div class="v153-ax-cat">Lagoon</div>
+            <div class="v153-ax-ends"><span class="v153-ax-end">Pretty</span><span class="v153-ax-end r">Breathtaking</span></div>
+            <div class="v153-bar"><div class="v153-fill" style="width:80%"></div><div class="v153-marker" style="left:80%"></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="v133-hp-info">
+        <div class="v133-hp-info-col">
+          <div class="ilbl">Lokation</div>
+          <div class="ival">Gaafu Dhaalu Atoll</div>
+        </div>
+        <div class="v133-hp-info-col">
+          <div class="ilbl">Transfer</div>
+          <div class="ival">Indenrigsfly &amp; Båd · ca. 75 min.</div>
+        </div>
+        <div class="v133-hp-info-col">
+          <div class="ilbl">Website</div>
+          <div class="ival"><a href="https://world.nh-hotels.com/en/nh-collection-maldives-havodda" target="_blank">Udforsk Havodda</a></div>
+        </div>
+      </div>
+    </div>
+    <div class="hotel-panel v133-hp" data-panel="2" id="hotel-sun-siyam-vilu-reef">
+      <div class="v133-hp-hero">
+        <img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2026/09/SSVR-6.jpg" alt="Sun Siyam Vilu Reef">
+        <div class="v133-hp-hero-content">
+          <div class="loc">Dhaalu Atoll</div>
+          <h2 class="name">Sun Siyam Vilu Reef</h2>
+          <div class="meta">★★★★+ <span class="sep">·</span> 103 villaer</div>
+        </div>
+      </div>
+      <div class="v133-hp-gallery">
+        <a href="https://maldivia.dk/wp-content/uploads/2026/09/SSVR-5.jpg" target="_blank"><img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2026/09/SSVR-5.jpg" alt=""></a>
+        <a href="https://maldivia.dk/wp-content/uploads/2026/09/SSVR-3.jpg" target="_blank"><img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2026/09/SSVR-3.jpg" alt=""></a>
+        <a href="https://maldivia.dk/wp-content/uploads/2026/09/SSVR-1-scaled.jpg" target="_blank"><img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2026/09/SSVR-1-scaled.jpg" alt=""></a>
+        <a href="https://maldivia.dk/wp-content/uploads/2026/09/SSVR-2.jpg" target="_blank"><img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2026/09/SSVR-2.jpg" alt=""></a>
+      </div>
+      <div class="v133-hp-body">
+        <div class="v133-hp-booking">
+          <div class="v133-hp-eyebrow-row">
+            <div class="v133-hp-eyebrow">Vælg værelsestype &amp; forplejning</div>
+            <div class="v133-hp-stay">31. jan — 8. feb 2027 · 8 nætter</div>
+          </div>
+          <div class="v133-hp-villa">
+            <div class="v133-hp-villa-info">
+              <div class="v133-hp-villa-name">Grand Beach Villa with Pool</div>
+              <div class="v133-hp-villa-meta">
+                <span class="meal">All-Inclusive — Dine Around</span>
+              </div>
+            </div>
+            <div class="v133-hp-villa-action">
+              <div class="v133-hp-villa-price"><span class="cur">DKK</span>72.500</div>
+              <button type="button" class="v133-hp-villa-book" onclick="if(window.mldvOpenBooking)mldvOpenBooking({trip:0,hotel:2,rate:0})">Bestil →</button>
+            </div>
+            <div class="v133-hp-villa-links">
+              <a href="https://www.sunsiyam.com/sun-siyam-vilu-reef/accommodation/grand-beach-villa-with-pool/" target="_blank" rel="noopener">Se indkvartering →</a>
+              <a href="https://maldivia.dk/wp-content/uploads/2026/09/SSVR-PAI.pdf" target="_blank" rel="noopener">Se forplejning →</a>
+            </div>
+          </div>
+          <div class="v133-hp-curator-mini">
+            <div class="ceyebrow">Rasmus&#39; anbefaling</div>
+            <p class="cquote">Sun Siyam Vilu Reef er et eksklusivt og stilfuldt resort beliggende i den sydlige Nilandhe-atol, cirka 35 minutter med vandflyver fra Malé. Øen er omgivet af kridhvidt sand, en lavvandet, turkisblå lagune og et flot husrev med et rigt marineliv. Resortet har en afslappet, tropisk atmosfære med et elegant og moderne udtryk, hvor naturlige materialer, varme træsorter og lyse farver går igen i både villaer og fællesområder. Kombinationen af den intime ø, den smukke lagune og den nemme adgang til havet giver en klassisk maldivisk ferieoplevelse med et mere chikt og gennemført præg.</p>
+            <div class="csign">
+              <img src="https://maldivia.dk/wp-content/uploads/2026/05/RK-HERO-1.jpg" alt="Rasmus Kirketerp">
+              <div class="ctext">
+                <div class="cname">Rasmus Kirketerp</div>
+                <div class="crole">Travel Designer · Maldivia</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="v133-hp-highlights">
+          <div class="v133-hp-eyebrow">Højdepunkter</div>
+          <div class="v133-hp-hl-item">Indkvarteringen består af 103 fritstående strand- og vandvillaer. Villaerne er lyst og moderne indrettet med varme træsorter, tropiske farver og store vinduespartier. Mange af villaerne har egen pool eller udendørs spabad på terrassen samt direkte adgang til enten stranden eller lagunen.</div>
+          <div class="v133-hp-hl-item">Resortet har flere restauranter med forskellige kulinariske profiler. Aqua serverer internationale retter som buffet, mens The Well Done har fokus på frisk fisk, skaldyr og grillede kødretter ved stranden. På Ristorante Roma serveres italienske klassikere, og der er desuden mulighed for private middage på stranden.</div>
+          <div class="v133-hp-hl-item">The Spa ligger over lagunen og tilbyder forskellige massage-, krops- og velværebehandlinger i rolige omgivelser med udsigt over havet. Behandlingerne kombinerer blandt andet asiatiske massageteknikker, ayurvedisk inspiration og naturlige olier.</div>
+          <div class="v133-hp-hl-item">En af resortets største kvaliteter er husrevet, som ligger tæt på stranden og giver gode muligheder for både snorkling og dykning. Vandsportscentret tilbyder desuden blandt andet katamaransejlads, windsurfing, standup-paddleboarding og forskellige bådture til nærliggende dykkersteder.</div>
+          <div class="v133-hp-hl-item">Det særlige ved Sun Siyam Vilu Reef er kombinationen af den forholdsvis intime ø, det flotte husrev og den afslappede atmosfære. Resortet passer godt til rejsende, der ønsker klassisk maldivisk østemning, gode muligheder for snorkling og et mere overskueligt resort.</div>
+        </div>
+      </div>
+      <div class="v153-pos">
+        <div class="v153-pos-head">Lær resortet at kende</div>
+        <div class="v153-pos-grid">
+          <div class="v153-ax">
+            <div class="v153-ax-cat">Luxury level</div>
+            <div class="v153-ax-ends"><span class="v153-ax-end">Moderate</span><span class="v153-ax-end r">Ultra-luxury</span></div>
+            <div class="v153-bar"><div class="v153-fill" style="width:73%"></div><div class="v153-marker" style="left:73%"></div></div>
           </div>
           <div class="v153-ax">
             <div class="v153-ax-cat">Atmosphere</div>
@@ -4715,7 +4404,7 @@ body.is-confirmation-mode .sticky-cta{
           <div class="v153-ax">
             <div class="v153-ax-cat">Style</div>
             <div class="v153-ax-ends"><span class="v153-ax-end">Barefoot</span><span class="v153-ax-end r">Sophisticated</span></div>
-            <div class="v153-bar"><div class="v153-fill" style="width:62%"></div><div class="v153-marker" style="left:62%"></div></div>
+            <div class="v153-bar"><div class="v153-fill" style="width:66%"></div><div class="v153-marker" style="left:66%"></div></div>
           </div>
           <div class="v153-ax">
             <div class="v153-ax-cat">House reef</div>
@@ -4725,12 +4414,12 @@ body.is-confirmation-mode .sticky-cta{
           <div class="v153-ax">
             <div class="v153-ax-cat">Gastronomy</div>
             <div class="v153-ax-ends"><span class="v153-ax-end">Good</span><span class="v153-ax-end r">Outstanding</span></div>
-            <div class="v153-bar"><div class="v153-fill" style="width:68%"></div><div class="v153-marker" style="left:68%"></div></div>
+            <div class="v153-bar"><div class="v153-fill" style="width:72%"></div><div class="v153-marker" style="left:72%"></div></div>
           </div>
           <div class="v153-ax">
             <div class="v153-ax-cat">Lagoon</div>
             <div class="v153-ax-ends"><span class="v153-ax-end">Pretty</span><span class="v153-ax-end r">Breathtaking</span></div>
-            <div class="v153-bar"><div class="v153-fill" style="width:85%"></div><div class="v153-marker" style="left:85%"></div></div>
+            <div class="v153-bar"><div class="v153-fill" style="width:86%"></div><div class="v153-marker" style="left:86%"></div></div>
           </div>
         </div>
       </div>
@@ -4790,7 +4479,7 @@ body.is-confirmation-mode .sticky-cta{
         </div>
       </div>
       <div class="journey">
-        <div class="journey-header">København til Malé — 28.01.2027</div>
+        <div class="journey-header">København til Malé — 30.01.2027</div>
         <div class="flight-leg">
           <span class="leg-code">CPH→AUH</span>
           <div>
@@ -4833,7 +4522,7 @@ body.is-confirmation-mode .sticky-cta{
         </div>
       </div>
       <div class="journey">
-        <div class="journey-header">Malé til København — 05.02.2027</div>
+        <div class="journey-header">Malé til København — 08.02.2027</div>
         <div class="flight-leg">
           <span class="leg-code">MLE→AUH</span>
           <div>
@@ -4872,13 +4561,13 @@ body.is-confirmation-mode .sticky-cta{
     <div class="flight-hero" style="aspect-ratio:21/8;">
       <button type="button" class="gallery-btn prev">‹</button><button type="button" class="gallery-btn next">›</button>
       <div class="flight-hero-track">
-        <a href="https://maldivia.dk/wp-content/uploads/2025/12/Edelweiss-1.jpg" target="_blank"><img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2025/12/Edelweiss-1.jpg" alt="Edelweiss &amp; Austrian"></a>
-        <a href="https://maldivia.dk/wp-content/uploads/2025/10/Austrian-HERO-3-scaled.jpg" target="_blank"><img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2025/10/Austrian-HERO-3-scaled.jpg" alt="Edelweiss &amp; Austrian"></a>
+        <a href="https://maldivia.dk/wp-content/uploads/2025/12/Edelweiss-1.jpg" target="_blank"><img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2025/12/Edelweiss-1.jpg" alt="Edelweiss"></a>
+        <a href="https://maldivia.dk/wp-content/uploads/2025/10/Austrian-HERO-2.webp" target="_blank"><img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2025/10/Austrian-HERO-2.webp" alt="Edelweiss"></a>
       </div>
     </div>
     <div class="alt-flight-body">
       <div class="alt-flight-row">
-        <div class="alt-flight-name"><strong>Economy Class</strong> — Edelweiss &amp; Austrian</div>
+        <div class="alt-flight-name"><strong>Economy Class</strong> — Edelweiss</div>
         <div class="alt-flight-price"><span class="rate-currency">DKK</span> 1.500</div>
       </div>
       <div class="alt-note">Ovenstående pris er den totale merpris for den alternative flyrejse. Pris og tilgængelighed kan ændre sig frem til endelig bestilling.</div>
@@ -4902,23 +4591,23 @@ body.is-confirmation-mode .sticky-cta{
         </div>
       </div>
       <div class="journey">
-        <div class="journey-header">København til Malé — 27.01.2027</div>
+        <div class="journey-header">København til Malé — 30.01.2027</div>
         <div class="flight-leg">
           <span class="leg-code">CPH→ZRH</span>
           <div>
             <div class="leg-times">15:00 – 16:45</div>
-            <div class="leg-meta">Swiss · Economy Class</div>
+            <div class="leg-meta">SAS · Economy Class</div>
           </div>
         </div>
         <div class="flight-connector">
           <div class="connector-line"></div>
-          <span class="connector-label">Mellemlanding i Zürich · 1 t 50 m</span>
+          <span class="connector-label">Mellemlanding i Zürich · 1 t 40 m</span>
           <div class="connector-line"></div>
         </div>
         <div class="flight-leg">
           <span class="leg-code">ZRH→MLE</span>
           <div>
-            <div class="leg-times">18:35 – 07:55<span class="plus1">+1 (næste dag)</span></div>
+            <div class="leg-times">18:25 – 07:55<span class="plus1">+1 (næste dag)</span></div>
             <div class="leg-meta">Edelweiss · Economy Class</div>
           </div>
         </div>
@@ -4936,7 +4625,7 @@ body.is-confirmation-mode .sticky-cta{
           <div style="flex:1;height:1px;background:repeating-linear-gradient(90deg,var(--sand-deep) 0,var(--sand-deep) 5px,transparent 5px,transparent 10px);"></div>
           <div style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);background:var(--sand);padding:0 8px;display:flex;flex-direction:column;align-items:center;gap:4px;">
             <div style="width:8px;height:8px;border-radius:50%;background:var(--gold);border:2px solid var(--white);box-shadow:0 0 0 1px var(--gold);"></div>
-            <div style="font-family:var(--ff-ui);font-size:8px;letter-spacing:0.1em;color:var(--ink-lt);text-transform:uppercase;white-space:nowrap;">Via Wien</div>
+            <div style="font-family:var(--ff-ui);font-size:8px;letter-spacing:0.1em;color:var(--ink-lt);text-transform:uppercase;white-space:nowrap;">Via Frankfurt</div>
           </div>
         </div>
         <div class="route-airport">
@@ -4945,31 +4634,31 @@ body.is-confirmation-mode .sticky-cta{
         </div>
       </div>
       <div class="journey">
-        <div class="journey-header">Malé til København — 04.02.2027</div>
+        <div class="journey-header">Malé til København — 08.02.2027</div>
         <div class="flight-leg">
-          <span class="leg-code">MLE→VIE</span>
+          <span class="leg-code">MLE→FRA</span>
           <div>
-            <div class="leg-times">10:25 – 16:15</div>
-            <div class="leg-meta">Austrian Airlines · Economy Class</div>
+            <div class="leg-times">10:40 – 18:00</div>
+            <div class="leg-meta">Discover Airlines · Economy Class</div>
           </div>
         </div>
         <div class="flight-connector">
           <div class="connector-line"></div>
-          <span class="connector-label">Mellemlanding i Wien · 1 t 20 m</span>
+          <span class="connector-label">Mellemlanding i Frankfurt · 4 t 20 m</span>
           <div class="connector-line"></div>
         </div>
         <div class="flight-leg">
-          <span class="leg-code">VIE→CPH</span>
+          <span class="leg-code">FRA→CPH</span>
           <div>
-            <div class="leg-times">17:35 – 19:20</div>
-            <div class="leg-meta">Austrian Airlines · Economy Class</div>
+            <div class="leg-times">22:20 – 23:35</div>
+            <div class="leg-meta">Lufthansa · Economy Class</div>
           </div>
         </div>
-        <div class="journey-total">Total rejsetid · 12 t 55 m</div>
+        <div class="journey-total">Total rejsetid · 16 t 55 m</div>
       </div>
     </div>
     <div style="margin-top:0;padding:24px 28px 24px;border-top:1px solid var(--sand-mid);">
-      <img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2025/12/Edelweiss_Air_Logo.svg-removebg-preview.png" alt="Edelweiss &amp; Austrian" style="height:26px;width:auto;opacity:0.55;">
+      <img loading="lazy" decoding="async" src="https://maldivia.dk/wp-content/uploads/2025/12/Edelweiss_Air_Logo.svg-removebg-preview.png" alt="Edelweiss" style="height:26px;width:auto;opacity:0.55;">
     </div>
   </div>
 
@@ -5001,7 +4690,7 @@ body.is-confirmation-mode .sticky-cta{
 
 </section><!-- /trip-section #maldiverne -->
 
-<script type="application/json" id="mldv-booking-data">{"customerName":"Louise Jacques","customerEmail":"louisejacques@mail.com","customerPhone":"+4531215321","adults":2,"teenagers":0,"children":0,"infants":0,"teenagerAges":"","childrenAges":"","infantAges":"","sigName":"Rasmus Kirketerp","sigEmail":"rk@maldivia.dk","sigPhone":"+45 71 74 72 70","language":"da","bookingEndpoint":"https://formspree.io/f/meewjdoz","trips":[{"idx":0,"destination":"Maldiverne","monthYear":"jan / feb 2027","dateRange":"28. januar 2027 — 06. februar 2027","nights":"7 nætter / 9 dage","currency":"DKK","isRoundTrip":false,"priceTotal":"58.000","priceTotalFmt":"58.000","route":[],"hotels":[{"id":"hotel-1790673019788-lh1ip","name":"NH Collection Havodda","location":"Gaafu Dhaalu Atoll","rates":[{"idx":0,"room":"Sunrise Beach Villa","mealPlan":"Halvpension","total":"58000","totalFmt":"58.000","included":true},{"idx":1,"room":"Sunrise Beach Villa","mealPlan":"Helpension","total":"63500","totalFmt":"63.500","included":false},{"idx":2,"room":"Sunrise Beach Villa","mealPlan":"All Inclusive","total":"73500","totalFmt":"73.500","included":false}]},{"id":"hotel-1790673077965-mjppd","name":"Sirru Fen Fushi","location":"Shaviyani Atoll","rates":[{"idx":0,"room":"Beach Sunrise Villa with Pool","mealPlan":"Halvpension","total":"69500","totalFmt":"69.500","included":false}]},{"id":"hotel-1790673060036-4s64r","name":"VARU by Atmosphere","location":"North Malé Atoll","rates":[{"idx":0,"room":"Water Villa","mealPlan":"All Inclusive","total":"70500","totalFmt":"70.500","included":false}]},{"id":"hotel-1790673042232-0sn5o","name":"Angsana Velavaru","location":"Dhaalu Atoll","rates":[{"idx":0,"room":"Beachfront Infinity Pool Villa","mealPlan":"All Inclusive","total":"71000","totalFmt":"71.000","included":false}]},{"id":"hotel-1790673095319-hle0c","name":"Sun Siyam Vilu Reef","location":"Dhaalu Atoll","rates":[{"idx":0,"room":"Grand Beach Villa with Pool","mealPlan":"All Inclusive","total":"77000","totalFmt":"77.000","included":false}]}]}]}</script>
+<script type="application/json" id="mldv-booking-data">{"customerName":"Louise Jacques","customerEmail":"louisejacques@mail.com","customerPhone":"+4531215321","adults":2,"teenagers":0,"children":0,"infants":0,"teenagerAges":"","childrenAges":"","infantAges":"","sigName":"Rasmus Kirketerp","sigEmail":"rk@maldivia.dk","sigPhone":"+45 71 74 72 70","language":"da","bookingEndpoint":"https://formspree.io/f/meewjdoz","trips":[{"idx":0,"destination":"Maldiverne","monthYear":"jan / feb 2027","dateRange":"30. januar 2027 — 9. februar 2027","dateEnd":"2027-02-09","nights":"8 nætter / 10 dage","currency":"DKK","isRoundTrip":false,"priceTotal":"72.500","priceTotalFmt":"72.500","route":[],"flight":{"included":{"label":"Etihad Airways · Economy Class · 30. jan. → 8. feb.","carrier":"Etihad Airways","cabin":"Economy Class","fromCity":"København"},"alt":{"label":"Edelweiss · Economy Class · 30. jan. → 8. feb.","carrier":"Edelweiss","cabin":"Economy Class","fromCity":"København","priceFmt":"1.500","currency":"DKK"}},"hotels":[{"id":"hotel-1794143373036-ii79l","name":"Angsana Velavaru","location":"Dhaalu Atoll","stars":"4plus","rates":[{"idx":0,"room":"Beachfront Infinity Pool Villa","mealPlan":"All-Inclusive Dine","total":"72500","totalFmt":"72.500","included":true}]},{"id":"hotel-1794143386351-5bz8y","name":"NH Collection Havodda","location":"Gaafu Dhaalu Atoll","stars":"4plus","rates":[{"idx":0,"room":"Sunrise Beach Villa","mealPlan":"Helpension","total":"72500","totalFmt":"72.500","included":true},{"idx":1,"room":"Sunrise Beach Villa","mealPlan":"All-Inclusive","total":"72500","totalFmt":"72.500","included":true}]},{"id":"hotel-1794143395542-ww2f1","name":"Sun Siyam Vilu Reef","location":"Dhaalu Atoll","stars":"4plus","rates":[{"idx":0,"room":"Grand Beach Villa with Pool","mealPlan":"All-Inclusive — Dine Around","total":"72500","totalFmt":"72.500","included":true}]}]}]}</script>
 
 <!-- ════ V130 BOOKING MODAL ════ -->
 <div id="mldv-booking-modal" class="mldv-bm" hidden role="dialog" aria-modal="true" aria-labelledby="mldv-bm-title">
@@ -5011,10 +4700,10 @@ body.is-confirmation-mode .sticky-cta{
     <div class="mldv-bm-head">
       <div class="eyebrow-gold">Send booking-anmodning</div>
       <h2 id="mldv-bm-title">Et skridt fra <span class="accent">drømmerejsen</span></h2>
-      <p>Dette er en forespørgsel på booking af den valgte rejse. Vi tjekker pris og tilgængelighed og vender tilbage til dig på mail med bekræftelsen, såfremt alle elementer er ledige og til ovenstående priser.</p>
+      <p>Send afsted, så bekræfter vi rejsen — så længe alle elementer stadig er ledige og til priserne i tilbuddet. Du får bekræftelsen på mail. Har noget ændret sig, hører du fra os først.</p>
     </div>
     <div class="mldv-bm-trust">
-      <span class="mldv-bm-trust-item"><span class="ck">✓</span>Ingen binding før endelig bekræftelse</span>
+      <span class="mldv-bm-trust-item"><span class="ck">✓</span>Bekræftet så længe pris og tilgængelighed holder</span>
       <span class="mldv-bm-trust-item"><span class="ck">✓</span>Vi tjekker pris og tilgængelighed først</span>
       <span class="mldv-bm-trust-item"><span class="ck">✓</span>The &quot;Maldivia Promise&quot;</span>
     </div>
@@ -5029,11 +4718,20 @@ body.is-confirmation-mode .sticky-cta{
         <div id="mldv-hotel-pick">
           <div class="mldv-bm-field">
             <label>Hotel</label>
-            <select name="hotel" id="mldv-hotel-select" onchange="mldvUpdateVillaOptions(this.value)"></select>
+            <div class="mldv-dd" id="mldv-hotel-dd"><div class="mldv-dd-btn" tabindex="0" role="button"><div class="mldv-dd-l1"></div><div class="mldv-dd-l2"></div></div><div class="mldv-dd-menu"></div></div>
+            <input type="hidden" name="hotel" id="mldv-hotel-select">
           </div>
           <div class="mldv-bm-field">
-            <label>Værelsestype</label>
-            <select name="villa" id="mldv-villa-select"></select>
+            <label>Værelsestype &amp; forplejning</label>
+            <div class="mldv-dd" id="mldv-villa-dd"><div class="mldv-dd-btn" tabindex="0" role="button"><div class="mldv-dd-l1"></div><div class="mldv-dd-l2"></div></div><div class="mldv-dd-menu"></div></div>
+            <input type="hidden" name="villa" id="mldv-villa-select">
+          </div>
+        </div>
+        <div id="mldv-flight-pick" style="display:none;">
+          <div class="mldv-bm-field">
+            <label>Flyrejse</label>
+            <div class="mldv-dd" id="mldv-flight-dd"><div class="mldv-dd-btn" tabindex="0" role="button"><div class="mldv-dd-l1"></div><div class="mldv-dd-l2"></div></div><div class="mldv-dd-menu"></div></div>
+            <input type="hidden" name="flight" id="mldv-flight-select">
           </div>
         </div>
       </fieldset>
@@ -5064,6 +4762,7 @@ body.is-confirmation-mode .sticky-cta{
         <p class="hint">Bryllupsrejse, jubilæum, kostbehov, sædepreferencer — eller andet vi bør vide. Helt frivilligt.</p>
         <div class="mldv-bm-field"><textarea name="wishes" rows="3" placeholder=""></textarea></div>
       </fieldset>
+      <div class="mldv-bm-reserve">Dette er en forespørgsel på booking af den valgte rejse. Så længe alle elementer stadig er ledige og koster det samme som i tilbuddet, er rejsen bekræftet — og vi sender bekræftelsen på mail. Skulle noget have ændret sig, kontakter vi dig, før vi går videre.</div>
       <button type="submit" class="mldv-bm-submit">Send booking-anmodning →</button>
       <p class="mldv-bm-legal">Ved at bekræfte accepterer du vores <a href="https://maldivia.dk/information" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">betalingsbetingelser</a>. Rejsebekræftelsen sendes pr. e-mail med forbehold for at alle elementer kan bookes i overensstemmelse med tilbuddet.</p>
     </form>
@@ -5073,7 +4772,7 @@ body.is-confirmation-mode .sticky-cta{
 (function(){
   var DATA = null;
   try { DATA = JSON.parse(document.getElementById("mldv-booking-data").textContent); } catch(e) { return; }
-  var L = {"adult":"Voksen","teen":"Teenager","child":"Barn","infant":"Spædbarn","fullName":"Fulde navn","birthDate":"Fødselsdato","successTitle":"Anmodningen er sendt","successBody":"Vi har modtaget din booking-anmodning. Vi tjekker pris og tilgængelighed og sender bekræftelse på mail.","successClose":"Luk","journeyEyebrow":"I bestiller","journeyTotal":"Hele rundrejsen","journeyUpgradeHint":"Ønsker I et af tillæggene fra tilbuddet (anden villatype eller meal plan)? Skriv det i feltet \"Specielle ønsker\" længere nede.","nightsWordSingular":"nat","nightsWordPlural":"nætter"};
+  var L = {"adult":"Voksen","teen":"Teenager","child":"Barn","infant":"Spædbarn","fullName":"Fulde navn","birthDate":"Fødselsdato","successTitle":"Anmodningen er sendt","successBody":"Vi har modtaget din booking-anmodning. Så længe alle elementer stadig er ledige og til samme pris, er rejsen bekræftet — og du får bekræftelsen på mail. Har noget ændret sig, hører du fra os først.","successClose":"Luk","journeyEyebrow":"I bestiller","journeyTotal":"Hele rundrejsen","journeyUpgradeHint":"Ønsker I et af tillæggene fra tilbuddet (anden villatype eller meal plan)? Skriv det i feltet \"Specielle ønsker\" længere nede.","nightsWordSingular":"nat","nightsWordPlural":"nætter","inclFlightOpt":"Inkluderet","fromWord":"fra","firstNames":"Fornavn(e)","lastName":"Efternavn(e)","ageReturn":"Alder ved hjemkomst","yearsWord":"år"};
   var modal = document.getElementById("mldv-booking-modal");
   if (!modal) return;
 
@@ -5082,9 +4781,9 @@ body.is-confirmation-mode .sticky-cta{
     var p = preselect || {};
     if (p.trip != null) { var ts = document.getElementById("mldv-trip-select"); if (ts) ts.value = p.trip; }
     mldvUpdateHotelOptions(document.getElementById("mldv-trip-select").value);
-    if (p.hotel != null) { var hs = document.getElementById("mldv-hotel-select"); if (hs) hs.value = p.hotel; }
+    if (p.hotel != null) { mldvSelectDD("mldv-hotel-dd", "mldv-hotel-select", String(p.hotel)); }
     mldvUpdateVillaOptions(document.getElementById("mldv-hotel-select").value);
-    if (p.rate != null) { var vs = document.getElementById("mldv-villa-select"); if (vs) vs.value = p.rate; }
+    if (p.rate != null) { mldvSelectDD("mldv-villa-dd", "mldv-villa-select", String(p.rate)); }
     mldvBuildTravellerRows();
     modal.hidden = false;
     document.body.style.overflow = "hidden";
@@ -5146,23 +4845,82 @@ body.is-confirmation-mode .sticky-cta{
       summary.style.display = "block";
       picker.style.display = "none";
       // Set hidden values so submit knows it is rundrejse
-      var hs = document.getElementById("mldv-hotel-select"); if (hs) { hs.removeAttribute("required"); hs.innerHTML = "<option value=\"0\">rundrejse</option>"; hs.value = "0"; }
-      var vs = document.getElementById("mldv-villa-select"); if (vs) { vs.removeAttribute("required"); vs.innerHTML = "<option value=\"0\">rundrejse</option>"; vs.value = "0"; }
+      var hs = document.getElementById("mldv-hotel-select"); if (hs) { hs.removeAttribute("required"); hs.value = "0"; }
+      var vs = document.getElementById("mldv-villa-select"); if (vs) { vs.removeAttribute("required"); vs.value = "0"; }
+      mldvUpdateFlightOptions(tripIdx);
       return;
     }
     // Per-hotel mode: show hotel/villa picker
     summary.style.display = "none";
     picker.style.display = "block";
     var hs = document.getElementById("mldv-hotel-select");
-    hs.setAttribute("required","required");
-    hs.innerHTML = "";
-    trip.hotels.forEach(function(h, i) {
-      var opt = document.createElement("option");
-      opt.value = i;
-      opt.textContent = h.name + (h.location ? " · " + h.location : "");
-      hs.appendChild(opt);
+    if (hs) hs.setAttribute("required","required");
+    var hotelOpts = trip.hotels.map(function(h, i){
+      var st = h.stars ? (" " + String(h.stars).replace("+","") + "\u2605" + (String(h.stars).indexOf("+")>-1?"+":"")) : "";
+      return { value: String(i), l1: h.name + st, l2: (h.location || "") };
     });
+    mldvFillDD("mldv-hotel-dd", "mldv-hotel-select", hotelOpts, function(val){ mldvUpdateVillaOptions(val); });
     mldvUpdateVillaOptions(0);
+    mldvUpdateFlightOptions(tripIdx);
+  };
+
+  window.mldvUpdateFlightOptions = function(tripIdx) {
+    var trip = DATA.trips[tripIdx | 0];
+    var pick = document.getElementById("mldv-flight-pick");
+    var sel = document.getElementById("mldv-flight-select");
+    if (!trip || !pick || !sel || !trip.flight) { if (pick) pick.style.display = "none"; return; }
+    // kun vis valget hvis der FINDES en alternativ flyrejse
+    if (!trip.flight.alt) { pick.style.display = "none"; sel.innerHTML = ""; return; }
+    var incl = trip.flight.included;
+    var inclFrom = incl.fromCity ? " (" + L.fromWord + " " + incl.fromCity + ")" : "";
+    var alt = trip.flight.alt;
+    var altFrom = alt.fromCity ? " (" + L.fromWord + " " + alt.fromCity + ")" : "";
+    var altPrice = alt.priceFmt ? "+" + alt.currency + " " + alt.priceFmt : "";
+    var flightOpts = [
+      { value:"included", l1: incl.label + inclFrom, l2: L.inclFlightOpt },
+      { value:"alt", l1: alt.label + altFrom, l2: altPrice || L.altFlightOpt }
+    ];
+    mldvFillDD("mldv-flight-dd", "mldv-flight-select", flightOpts, null);
+    pick.style.display = "block";
+  };
+
+  window.mldvFillDD = function(ddId, hiddenId, opts, onChange){
+    var dd = document.getElementById(ddId); var hidden = document.getElementById(hiddenId);
+    if (!dd || !hidden) return;
+    var btn = dd.querySelector(".mldv-dd-btn"); var menu = dd.querySelector(".mldv-dd-menu");
+    var l1 = btn.querySelector(".mldv-dd-l1"); var l2 = btn.querySelector(".mldv-dd-l2");
+    menu.innerHTML = "";
+    var setSel = function(o){ hidden.value = o.value; l1.textContent = o.l1 || ""; l2.textContent = o.l2 || ""; l2.style.display = o.l2 ? "block" : "none"; };
+    opts.forEach(function(o){
+      var el = document.createElement("div"); el.className = "mldv-dd-opt"; el.setAttribute("data-val", o.value);
+      var d1 = document.createElement("div"); d1.className = "mldv-dd-l1"; d1.textContent = o.l1 || "";
+      el.appendChild(d1);
+      if (o.l2) { var d2 = document.createElement("div"); d2.className = "mldv-dd-l2"; d2.textContent = o.l2; el.appendChild(d2); }
+      el.addEventListener("click", function(){
+        setSel(o); dd.classList.remove("open");
+        menu.querySelectorAll(".mldv-dd-opt").forEach(function(x){ x.classList.remove("sel"); }); el.classList.add("sel");
+        if (typeof onChange === "function") onChange(o.value);
+      });
+      menu.appendChild(el);
+    });
+    if (opts.length) { setSel(opts[0]); var first = menu.querySelector(".mldv-dd-opt"); if (first) first.classList.add("sel"); }
+    if (!dd._wired) { dd._wired = true;
+      btn.addEventListener("click", function(e){ e.stopPropagation(); document.querySelectorAll(".mldv-dd.open").forEach(function(x){ if(x!==dd) x.classList.remove("open"); }); dd.classList.toggle("open"); });
+      btn.addEventListener("keydown", function(e){ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); dd.classList.toggle("open"); } });
+      document.addEventListener("click", function(e){ if(!dd.contains(e.target)) dd.classList.remove("open"); });
+    }
+  };
+  window.mldvSelectDD = function(ddId, hiddenId, val){
+    var dd = document.getElementById(ddId); var hidden = document.getElementById(hiddenId);
+    if (!dd || !hidden) return;
+    var opt = dd.querySelector(".mldv-dd-opt[data-val=\"" + val + "\"]");
+    if (!opt) return;
+    var l1 = opt.querySelector(".mldv-dd-l1"); var l2 = opt.querySelector(".mldv-dd-l2");
+    hidden.value = val;
+    var btnL1 = dd.querySelector(".mldv-dd-btn .mldv-dd-l1"); var btnL2 = dd.querySelector(".mldv-dd-btn .mldv-dd-l2");
+    if (btnL1) btnL1.textContent = l1 ? l1.textContent : "";
+    if (btnL2) { btnL2.textContent = l2 ? l2.textContent : ""; btnL2.style.display = l2 ? "block" : "none"; }
+    dd.querySelectorAll(".mldv-dd-opt").forEach(function(x){ x.classList.remove("sel"); }); opt.classList.add("sel");
   };
 
   // POPULATE villa options based on hotel index
@@ -5173,15 +4931,25 @@ body.is-confirmation-mode .sticky-cta{
     var hotel = trip.hotels[hotelIdx | 0];
     if (!hotel) return;
     var vs = document.getElementById("mldv-villa-select");
-    vs.innerHTML = "";
-    hotel.rates.forEach(function(r, i) {
-      var opt = document.createElement("option");
-      opt.value = i;
-      var price = r.totalFmt ? "  —  " + trip.currency + " " + r.totalFmt : "";
-      var meal = r.mealPlan ? "  ·  " + r.mealPlan : "";
-      opt.textContent = r.room + meal + price;
-      vs.appendChild(opt);
+    var villaOpts = hotel.rates.map(function(r, i){
+      var price = r.totalFmt ? (trip.currency + " " + r.totalFmt) : "";
+      var l2 = [r.mealPlan || "", price].filter(Boolean).join("  \u00b7  ");
+      return { value: String(i), l1: r.room || "", l2: l2 };
     });
+    mldvFillDD("mldv-villa-dd", "mldv-villa-select", villaOpts, null);
+  };
+
+  window.mldvAgeAtReturn = function(birthISO) {
+    if (!birthISO) return "";
+    var tripIdx = 0; var ts = document.getElementById("mldv-trip-select"); if (ts) tripIdx = parseInt(ts.value,10)||0;
+    var trip = DATA.trips[tripIdx]; if (!trip || !trip.dateEnd) return "";
+    var b = new Date(birthISO), r = new Date(trip.dateEnd);
+    if (isNaN(b) || isNaN(r)) return "";
+    var age = r.getFullYear() - b.getFullYear();
+    var m = r.getMonth() - b.getMonth();
+    if (m < 0 || (m === 0 && r.getDate() < b.getDate())) age--;
+    if (age < 0) return "";
+    return age + " " + L.yearsWord;
   };
 
   // BUILD traveller rows based on customer counts
@@ -5193,10 +4961,18 @@ body.is-confirmation-mode .sticky-cta{
       row.className = "mldv-bm-traveller";
       var label = typeLbl + (total > 1 ? " " + idx + " af " + total : "");
       row.innerHTML = '<div class="tlbl">' + label + '</div>' +
-        '<div class="mldv-bm-grid"><div class="mldv-bm-field"><label>' + L.fullName + '</label><input type="text" name="trav_name[]" required></div>' +
-        '<div class="mldv-bm-field"><label>' + L.birthDate + '</label><input type="date" name="trav_birth[]" required></div></div>' +
+        '<div class="mldv-bm-grid">' +
+          '<div class="mldv-bm-field"><label>' + L.firstNames + '</label><input type="text" name="trav_first[]" required></div>' +
+          '<div class="mldv-bm-field"><label>' + L.lastName + '</label><input type="text" name="trav_last[]" required></div>' +
+        '</div>' +
+        '<div class="mldv-bm-grid">' +
+          '<div class="mldv-bm-field"><label>' + L.birthDate + '</label><input type="date" name="trav_birth[]" required class="mldv-birth"></div>' +
+          '<div class="mldv-bm-field"><label>' + L.ageReturn + '</label><input type="text" name="trav_age[]" readonly class="mldv-age" placeholder="—"></div>' +
+        '</div>' +
         '<input type="hidden" name="trav_type[]" value="' + typeLbl + '">';
       box.appendChild(row);
+      var birth = row.querySelector(".mldv-birth"), ageF = row.querySelector(".mldv-age");
+      birth.addEventListener("change", function(){ ageF.value = mldvAgeAtReturn(birth.value); });
     }
     var a = DATA.adults || 0, t = DATA.teenagers || 0, c = DATA.children || 0, i = DATA.infants || 0;
     for (var n = 1; n <= a; n++) addRow(L.adult, n, a);
@@ -5242,13 +5018,28 @@ body.is-confirmation-mode .sticky-cta{
       lines.push("Pris: " + trip.currency + " " + (villa.totalFmt || villa.total));
       emailHotelTag = hotel.name;
     }
+    if (trip.flight && trip.flight.alt) {
+      var flightChoice = data.get("flight") || "included";
+      lines.push("");
+      lines.push("== FLYREJSE ==");
+      if (flightChoice === "alt") {
+        var a = trip.flight.alt;
+        lines.push("Valgt: ALTERNATIV — " + a.label + (a.fromCity ? " (fra " + a.fromCity + ")" : "") + (a.priceFmt ? " — merpris " + a.currency + " " + a.priceFmt : ""));
+      } else {
+        var inc = trip.flight.included;
+        lines.push("Valgt: Inkluderet — " + inc.label + (inc.fromCity ? " (fra " + inc.fromCity + ")" : ""));
+      }
+    }
     lines.push("");
     lines.push("== REJSENDE ==");
-    var names = data.getAll("trav_name[]");
+    var firsts = data.getAll("trav_first[]");
+    var lasts = data.getAll("trav_last[]");
     var births = data.getAll("trav_birth[]");
+    var ages = data.getAll("trav_age[]");
     var types = data.getAll("trav_type[]");
-    for (var k = 0; k < names.length; k++) {
-      lines.push((k+1) + ". " + types[k] + ": " + names[k] + " — født " + births[k]);
+    for (var k = 0; k < firsts.length; k++) {
+      var ageTxt = (ages[k] && ages[k] !== "—") ? " — " + ages[k] + " v. hjemkomst" : "";
+      lines.push((k+1) + ". " + types[k] + ": " + (firsts[k]||"") + " / " + (lasts[k]||"") + " — født " + births[k] + ageTxt);
     }
     lines.push("");
     lines.push("== KONTAKT ==");
@@ -5651,6 +5442,7 @@ body.is-confirmation-mode .sticky-cta{
     lb.classList.add('open');
     document.body.style.overflow = 'hidden';
   }
+
   function closeLightbox(){
     lb.classList.remove('open');
     document.body.style.overflow = '';
